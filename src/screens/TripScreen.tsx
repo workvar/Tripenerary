@@ -6,12 +6,14 @@ import DayHeader from '@/components/DayHeader';
 import ScheduleItem from '@/components/ScheduleItem';
 import StayCard from '@/components/StayCard';
 import NoteList from '@/components/NoteList';
+import RouteMap from '@/components/RouteMap';
 import Message from '@/components/Message';
 import Press from '@/components/Press';
 import { prefetch } from '@/components/SmartImage';
 import { IconButton, SectionTitle } from '@/components/ui';
 import { colors, elevation, radius, spacing, type } from '@/theme';
 import { todayKey } from '@/lib/dates';
+import { buildRoute } from '@/lib/route';
 import type { Day, Itinerary, Prefs, TripFetchState } from '@/types';
 
 function pickInitialDate(days: readonly Day[], today: string): string | null {
@@ -57,6 +59,8 @@ export default function TripScreen({
   );
 
   const stay = day?.stayId ? (data?.staysById[day.stayId] ?? null) : null;
+
+  const route = useMemo(() => (day ? buildRoute(day, stay) : []), [day, stay]);
 
   // Warm the day's photos so scrolling down does not stutter on first paint.
   useEffect(() => {
@@ -169,6 +173,13 @@ export default function TripScreen({
             {day.notes.length > 0 ? (
               <View style={s.block}>
                 <NoteList notes={day.notes} />
+              </View>
+            ) : null}
+
+            {route.length > 1 ? (
+              <View style={s.block}>
+                <SectionTitle>Day route</SectionTitle>
+                <RouteMap stops={route} />
               </View>
             ) : null}
           </>

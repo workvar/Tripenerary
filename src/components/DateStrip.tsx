@@ -38,7 +38,12 @@ function Cell({ day, selected, isToday, onPress }: CellProps) {
         <Text style={[s.month, selected && s.selectedMuted]}>{monthShort(day.date)}</Text>
       </View>
 
-      <View style={[s.dot, isToday && s.dotToday]} />
+      <Text
+        style={[s.dayLabel, selected && s.dayLabelSelected, !selected && isToday && s.dayLabelToday]}
+        numberOfLines={1}
+      >
+        {`Day ${day.dayNumber}`}
+      </Text>
     </Pressable>
   );
 }
@@ -109,6 +114,13 @@ const s = StyleSheet.create({
   selectedText: { color: colors.primaryDark },
   selectedMuted: { color: colors.textMuted },
 
-  dot: { width: 5, height: 5, borderRadius: 3, marginTop: 6, backgroundColor: 'transparent' },
-  dotToday: { backgroundColor: colors.accent },
+  dayLabel: {
+    fontSize: 9.5,
+    fontWeight: '700',
+    letterSpacing: 0.3,
+    marginTop: 5,
+    color: colors.onDarkFaint,
+  },
+  dayLabelSelected: { color: colors.onDark },
+  dayLabelToday: { color: colors.accent },
 });
