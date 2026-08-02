@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 // Standalone checker for itinerary JSON files.
-// Usage: node scripts/validate-itinerary.mjs path/to/itinerary.json
+//
+// Usage: node scripts/validate-itinerary.mjs path/to/itinerary.json [--check-images]
+//
+// --check-images additionally requests every image URL and reports the ones a
+// phone would fail to load. Worth running whenever photos do not show up.
 
 import { readFileSync } from 'node:fs';
 
@@ -29,6 +33,7 @@ try {
 
 const errors = [];
 const warnings = [];
+const seenImages = new Map(); // url -> first location it appeared
 let imageCount = 0;
 
 function checkImages(value, at) {
@@ -36,7 +41,10 @@ function checkImages(value, at) {
     if (!url) warnings.push(at + '[' + i + '] has no usable url and will be skipped.');
     else if (!/^https:\/\//i.test(url)) {
       warnings.push(at + '[' + i + '] is not an https URL; it will not load on device.');
-    } else imageCount += 1;
+    } else {
+      imageCount += 1;
+      if (!seenImages.has(url)) seenImages.set(url, at + '[' + i + ']');
+    }
   });
 }
 
@@ -117,5 +125,59 @@ if (errors.length) {
 }
 console.log(
   '\nOK  ' + dayCount + ' days, ' + itemCount + ' items, ' + pinned + ' mapped locations, ' +
-  stayIds.size + ' stays, ' + imageCount + ' images.'
+  stayIds.size + ' stays, ' + imageCount + ' images (' + seenImages.size + ' distinct).'
 );
+
+if (process.argv.includes('--check-images')) {
+  await checkImagesReachable();
+}
+
+// Phones give up silently on an image that 404s, redirects badly, or comes back
+// as HTML. Ask for each one the way the device would and report what happened.
+async function checkImagesReachable() {
+  const urls = [...seenImages.keys()];
+  console.log('\nRequesting ' + urls.length + ' image URLs...');
+
+  const problems = [];
+  let done = 0;
+
+  const note = (reason, url) => problems.push(reason + '\n      ' + url + '\n      used at ' + seenImages.get(url));
+
+  const check = async (url) => {
+    try {
+      const res = await fetch(url, {
+        headers: {
+          // Wikimedia rejects requests without a descriptive User-Agent.
+          'User-Agent': 'TripenerarySampleCheck/1.0 (itinerary image validator)',
+          Accept: 'image/*',
+        },
+        redirect: 'follow',
+        signal: AbortSignal.timeout(20000),
+      });
+      const kind = res.headers.get('content-type') || '';
+      if (!res.ok) note('HTTP ' + res.status, url);
+      else if (!kind.startsWith('image/')) note('not an image, got ' + kind, url);
+    } catch (e) {
+      note('unreachable (' + (e.name || 'error') + ')', url);
+    } finally {
+      done += 1;
+      if (done % 20 === 0) console.log('  ...' + done + '/' + urls.length);
+    }
+  };
+
+  // Small concurrency so we stay polite to the host.
+  const queue = [...urls];
+  await Promise.all(
+    Array.from({ length: 6 }, async () => {
+      for (let next = queue.pop(); next; next = queue.pop()) await check(next);
+    })
+  );
+
+  if (problems.length === 0) {
+    console.log('All ' + urls.length + ' images loaded.');
+    return;
+  }
+  console.log('\n' + problems.length + ' image(s) a phone could not load:');
+  problems.forEach((p) => console.log('  ' + p));
+  process.exitCode = 1;
+}

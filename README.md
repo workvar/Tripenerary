@@ -16,8 +16,8 @@ and the phone updates. You can keep several trips side by side.
 - **Daily refresh** – every trip re-downloads itself once a day when the app opens or returns
   to the foreground. The **↻** button on the home screen forces it immediately, and each trip
   has its own refresh button in Settings.
-- **Top date bar** – scrollable strip of every day in the trip. Today is marked with a dot,
-  and a "Jump to today" bar appears when you scroll away from it.
+- **Bottom date bar** – scrollable strip of every day in the trip, within thumb reach. Today
+  is marked with a dot, and a "Jump to today" bar appears above it when you move away.
 - **Day view** – optional hero photo, day number, base city, title and summary, then the
   schedule as full-width blocks: time on top, everything else underneath. No empty gutter.
 - **Photos** – trips, days, schedule items and stays can all carry images. They fade in over a
@@ -156,9 +156,26 @@ Each accepts a bare string or an object, and `items[].images` also accepts an ar
 ]
 ```
 
-Anything that is not an `https://` URL is ignored, and an image that fails to load leaves no
-gap in the layout. Point at a host that allows hotlinking; the sample uses Wikimedia Commons
-`Special:FilePath` links, which resize on request via `?width=1400`.
+Anything that is not an `https://` URL is ignored, and an image that fails to load falls back
+to a muted placeholder rather than breaking the layout.
+
+**The host has to allow hotlinking and serve the file directly.** This is the usual reason
+photos do not appear: the URL is fine in a browser but returns HTML, a redirect chain, or a
+403 to the phone. Google Drive and Dropbox preview pages will not work. The sample points at
+`upload.wikimedia.org` thumbnails, which are plain files with no redirect:
+
+```
+https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Maya_Bay.jpg/800px-Maya_Bay.jpg
+```
+
+To check a file before you hand it to anyone:
+
+```bash
+node scripts/validate-itinerary.mjs sample/thailand-sample.json --check-images
+```
+
+That requests every image the way the device would and prints the status code, content type
+and itinerary location of anything that fails.
 
 Check a file before publishing it:
 

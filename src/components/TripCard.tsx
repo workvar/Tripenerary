@@ -61,7 +61,12 @@ export default function TripCard({
         scaleTo={0.975}
         accessibilityLabel={`${trip.title ?? 'Untitled trip'}, ${status.label}`}
       >
-        <SmartImage uri={trip.coverImage} style={StyleSheet.absoluteFill} radiusValue={radius.xl} />
+        <SmartImage
+          uri={trip.coverImage}
+          style={StyleSheet.absoluteFill}
+          radiusValue={radius.xl}
+          hideOnError
+        />
         <View style={s.scrim} />
         <View style={s.scrimBottom} />
 

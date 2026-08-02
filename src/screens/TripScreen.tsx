@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import DateStrip from '@/components/DateStrip';
 import DayHeader from '@/components/DayHeader';
 import ScheduleItem from '@/components/ScheduleItem';
@@ -8,8 +8,9 @@ import StayCard from '@/components/StayCard';
 import NoteList from '@/components/NoteList';
 import Message from '@/components/Message';
 import Press from '@/components/Press';
+import { prefetch } from '@/components/SmartImage';
 import { IconButton, SectionTitle } from '@/components/ui';
-import { colors, radius, spacing, type } from '@/theme';
+import { colors, elevation, radius, spacing, type } from '@/theme';
 import { todayKey } from '@/lib/dates';
 import type { Day, Itinerary, Prefs, TripFetchState } from '@/types';
 
@@ -40,6 +41,7 @@ export default function TripScreen({
   onOpenSettings,
   onOpenInfo,
 }: TripScreenProps) {
+  const insets = useSafeAreaInsets();
   const { refreshing = false, error } = status;
   const today = todayKey(data?.trip.timezone);
   const days = data?.days ?? [];
@@ -55,6 +57,12 @@ export default function TripScreen({
   );
 
   const stay = day?.stayId ? (data?.staysById[day.stayId] ?? null) : null;
+
+  // Warm the day's photos so scrolling down does not stutter on first paint.
+  useEffect(() => {
+    if (!day || !prefs.showImages) return;
+    prefetch([day.image, ...day.items.flatMap((i) => i.images.map((img) => img.url))]);
+  }, [day, prefs.showImages]);
   const hasToday = days.some((d) => d.date === today);
   const isOnToday = day?.date === today;
 
@@ -86,22 +94,7 @@ export default function TripScreen({
           <View style={s.gap} />
           <IconButton glyph={'\u{2699}'} label="Settings" tone="dark" onPress={onOpenSettings} size={34} />
         </View>
-
-        {days.length > 0 ? (
-          <DateStrip
-            days={days}
-            selectedDate={day?.date ?? null}
-            todayDate={today}
-            onSelect={setSelected}
-          />
-        ) : null}
       </View>
-
-      {!isOnToday && hasToday ? (
-        <Press style={s.todayBar} onPress={() => setSelected(today)} scaleTo={0.99}>
-          <Text style={s.todayBarText}>{'Jump to today  \u{2193}'}</Text>
-        </Press>
-      ) : null}
 
       <ScrollView
         contentContainerStyle={s.scroll}
@@ -181,6 +174,22 @@ export default function TripScreen({
           </>
         ) : null}
       </ScrollView>
+
+      {days.length > 0 ? (
+        <View style={[s.footer, { paddingBottom: insets.bottom }]}>
+          {!isOnToday && hasToday ? (
+            <Press style={s.todayBar} onPress={() => setSelected(today)} scaleTo={0.99}>
+              <Text style={s.todayBarText}>{'\u{2191}  Jump to today'}</Text>
+            </Press>
+          ) : null}
+          <DateStrip
+            days={days}
+            selectedDate={day?.date ?? null}
+            todayDate={today}
+            onSelect={setSelected}
+          />
+        </View>
+      ) : null}
     </SafeAreaView>
   );
 }
@@ -200,10 +209,23 @@ const s = StyleSheet.create({
   subtitle: { fontSize: 12, color: colors.onDarkMuted, marginTop: 1 },
   gap: { width: 6 },
 
-  todayBar: { backgroundColor: colors.accent, paddingVertical: 9, alignItems: 'center' },
+  // Day picker lives at the bottom, within thumb reach.
+  footer: {
+    backgroundColor: colors.primary,
+    borderTopLeftRadius: radius.lg,
+    borderTopRightRadius: radius.lg,
+    ...elevation.lg,
+  },
+  todayBar: {
+    backgroundColor: colors.accent,
+    paddingVertical: 9,
+    alignItems: 'center',
+    borderTopLeftRadius: radius.lg,
+    borderTopRightRadius: radius.lg,
+  },
   todayBarText: { color: '#fff', fontWeight: '700', fontSize: 13, letterSpacing: 0.2 },
 
-  scroll: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xxl * 2 },
+  scroll: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xl },
   center: { paddingVertical: spacing.xxl * 2 },
   schedule: { marginTop: spacing.sm },
   block: { marginTop: spacing.md, marginBottom: spacing.lg },

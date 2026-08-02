@@ -76,7 +76,7 @@ export default function DateStrip({ days, selectedDate, todayDate, onSelect }: D
 }
 
 const s = StyleSheet.create({
-  wrap: { flexGrow: 0, paddingBottom: spacing.md },
+  wrap: { flexGrow: 0, paddingVertical: spacing.md },
   list: { paddingHorizontal: spacing.lg, gap: GAP },
   cell: {
     width: ITEM_WIDTH,

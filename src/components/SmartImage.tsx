@@ -1,14 +1,21 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   Animated,
   Image,
   StyleSheet,
+  Text,
   View,
+  type ImageErrorEventData,
   type ImageResizeMode,
+  type NativeSyntheticEvent,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { colors, motion, radius } from '@/theme';
+import { colors, motion, radius, type } from '@/theme';
+
+/** If `onLoad` never arrives (cached decodes and some CDNs skip it), reveal anyway
+ *  rather than leaving a permanently transparent image. */
+const REVEAL_FAILSAFE_MS = 2_500;
 
 interface SmartImageProps {
   readonly uri: string | undefined;
@@ -16,39 +23,62 @@ interface SmartImageProps {
   readonly radiusValue?: number;
   readonly resizeMode?: ImageResizeMode;
   readonly children?: ReactNode;
+  /** Show nothing at all when the URL is dead, instead of a placeholder tile. */
+  readonly hideOnError?: boolean;
 }
 
-/** Remote image that fades in over a tinted placeholder and quietly disappears
- *  if the URL is dead, so a bad link never leaves a gap in the layout. */
 export default function SmartImage({
   uri,
   style,
   radiusValue = radius.md,
   resizeMode = 'cover',
   children,
+  hideOnError = false,
 }: SmartImageProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const [failed, setFailed] = useState(false);
 
-  if (!uri || failed) return null;
-
-  const reveal = () => {
+  const reveal = useCallback(() => {
     Animated.timing(opacity, {
       toValue: 1,
       duration: motion.base,
       useNativeDriver: true,
     }).start();
-  };
+  }, [opacity]);
+
+  useEffect(() => {
+    setFailed(false);
+    opacity.setValue(0);
+    const timer = setTimeout(reveal, REVEAL_FAILSAFE_MS);
+    return () => clearTimeout(timer);
+  }, [uri, opacity, reveal]);
+
+  const onError = useCallback((e: NativeSyntheticEvent<ImageErrorEventData>) => {
+    if (__DEV__) {
+      console.warn(`[SmartImage] failed to load ${uri}`, e.nativeEvent.error);
+    }
+    setFailed(true);
+  }, [uri]);
+
+  if (!uri) return null;
+  if (failed && hideOnError) return null;
 
   return (
     <View style={[s.wrap, { borderRadius: radiusValue }, style]}>
-      <Animated.Image
-        source={{ uri }}
-        onLoad={reveal}
-        onError={() => setFailed(true)}
-        resizeMode={resizeMode}
-        style={[StyleSheet.absoluteFill, { opacity }]}
-      />
+      {failed ? (
+        <View style={s.fallback}>
+          <Text style={s.fallbackGlyph}>{'\u{1F5BC}'}</Text>
+          <Text style={s.fallbackText}>Photo unavailable offline</Text>
+        </View>
+      ) : (
+        <Animated.Image
+          source={{ uri }}
+          onLoad={reveal}
+          onError={onError}
+          resizeMode={resizeMode}
+          style={[StyleSheet.absoluteFill, { opacity }]}
+        />
+      )}
       {children}
     </View>
   );
@@ -63,4 +93,7 @@ export function prefetch(urls: readonly string[]): void {
 
 const s = StyleSheet.create({
   wrap: { overflow: 'hidden', backgroundColor: colors.surfaceSunken },
+  fallback: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', gap: 4 },
+  fallbackGlyph: { fontSize: 22, opacity: 0.45 },
+  fallbackText: { ...type.caption, color: colors.textFaint },
 });
