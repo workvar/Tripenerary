@@ -27,3 +27,18 @@ export const FETCH_TIMEOUT_MS = 15_000;
 export const AUTO_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
 export const SPLASH_MIN_MS = 1_600;
+
+/**
+ * Sent with every remote image request.
+ *
+ * React Native's Android image loader identifies itself as `okhttp/4.x`, and some
+ * hosts reject that outright. Wikimedia is the notable one: its User-Agent policy
+ * answers 403 to any generic or missing agent, which shows up as photos silently
+ * failing while maps still work.
+ *
+ * Replace the contact URL with your own if you fork this.
+ */
+export const IMAGE_HEADERS: Readonly<Record<string, string>> = {
+  'User-Agent': 'Tripenerary/1.0 (https://github.com/tripenerary; itinerary companion app)',
+  Accept: 'image/avif,image/webp,image/jpeg,image/png,*/*',
+};

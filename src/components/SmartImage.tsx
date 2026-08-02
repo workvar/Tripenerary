@@ -12,6 +12,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { colors, motion, radius, type } from '@/theme';
+import { IMAGE_HEADERS } from '@/config';
 
 /** If `onLoad` never arrives (cached decodes and some CDNs skip it), reveal anyway
  *  rather than leaving a permanently transparent image. */
@@ -68,11 +69,11 @@ export default function SmartImage({
       {failed ? (
         <View style={s.fallback}>
           <Text style={s.fallbackGlyph}>{'\u{1F5BC}'}</Text>
-          <Text style={s.fallbackText}>Photo unavailable offline</Text>
+          <Text style={s.fallbackText}>Photo unavailable</Text>
         </View>
       ) : (
         <Animated.Image
-          source={{ uri }}
+          source={{ uri, headers: IMAGE_HEADERS }}
           onLoad={reveal}
           onError={onError}
           resizeMode={resizeMode}
@@ -84,8 +85,14 @@ export default function SmartImage({
   );
 }
 
-/** Warm the cache so the first scroll feels instant. */
+/**
+ * Warm the cache so the first scroll feels instant.
+ *
+ * `Image.prefetch` cannot carry headers, so it is skipped whenever custom ones are
+ * configured; prefetching without them would just collect 403s and warm nothing.
+ */
 export function prefetch(urls: readonly string[]): void {
+  if (Object.keys(IMAGE_HEADERS).length > 0) return;
   for (const url of urls) {
     if (url) void Image.prefetch(url).catch(() => false);
   }

@@ -147,9 +147,10 @@ async function checkImagesReachable() {
     try {
       const res = await fetch(url, {
         headers: {
-          // Wikimedia rejects requests without a descriptive User-Agent.
-          'User-Agent': 'TripenerarySampleCheck/1.0 (itinerary image validator)',
-          Accept: 'image/*',
+          // Match src/config.ts IMAGE_HEADERS: Wikimedia and friends answer 403
+          // to a generic agent, which is what the app hits without this.
+          'User-Agent': 'Tripenerary/1.0 (https://github.com/tripenerary; itinerary companion app)',
+          Accept: 'image/avif,image/webp,image/jpeg,image/png,*/*',
         },
         redirect: 'follow',
         signal: AbortSignal.timeout(20000),

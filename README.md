@@ -168,6 +168,12 @@ photos do not appear: the URL is fine in a browser but returns HTML, a redirect 
 https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Maya_Bay.jpg/800px-Maya_Bay.jpg
 ```
 
+**Some hosts also demand a real User-Agent.** React Native's Android image loader announces
+itself as `okhttp/4.x`, and Wikimedia's User-Agent policy answers 403 to anything that
+generic. The symptom is distinctive: maps render fine, every photo silently fails. Every
+image request therefore carries the headers in `IMAGE_HEADERS` (`src/config.ts`) — change the
+contact URL there if you fork this.
+
 To check a file before you hand it to anyone:
 
 ```bash
