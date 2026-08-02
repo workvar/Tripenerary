@@ -3,6 +3,8 @@
 import { Area, Grid2, Select, Text } from '@/components/Field';
 import BlockEditor from '@/components/BlockEditor';
 import NotesEditor from '@/components/NotesEditor';
+import Button, { IconButton } from '@/components/ui/Button';
+import AiFillButton from '@/components/ai/AiFillButton';
 import { dayProgress } from '@/lib/stats';
 import type { DraftApi } from '@/lib/useDraft';
 import type { DraftDay, DraftStay } from '@/types/itinerary';
@@ -17,6 +19,23 @@ interface Props {
 
 export default function DayEditor({ day, index, total, stays, api }: Props) {
   const { blocks, done } = dayProgress(day);
+
+  const blockContext = {
+    trip: api.draft.trip.title,
+    base: day.base,
+    date: day.date,
+  };
+
+  const summaryFacts = {
+    Trip: api.draft.trip.title,
+    Date: day.date,
+    City: day.base,
+    'Day title': day.title,
+    Plan: day.items
+      .map((b) => [b.time, b.title].filter(Boolean).join(' '))
+      .filter(Boolean)
+      .join('; '),
+  };
 
   const stayOptions = [
     { value: '', label: 'No stay' },
@@ -38,29 +57,22 @@ export default function DayEditor({ day, index, total, stays, api }: Props) {
         </span>
 
         <div className="ml-auto flex gap-2">
-          <button type="button" className="btn-mini" disabled={index === 0} onClick={() => api.moveDay(day.id, -1)} title="Move day earlier">
+          <IconButton label="Move day earlier" disabled={index === 0} onClick={() => api.moveDay(day.id, -1)}>
             {'\u{2191}'}
-          </button>
-          <button
-            type="button"
-            className="btn-mini"
+          </IconButton>
+          <IconButton
+            label="Move day later"
             disabled={index === total - 1}
             onClick={() => api.moveDay(day.id, 1)}
-            title="Move day later"
           >
             {'\u{2193}'}
-          </button>
-          <button type="button" className="btn-ghost !py-1 !text-xs" onClick={() => api.duplicateDay(day.id)}>
+          </IconButton>
+          <Button size="sm" onClick={() => api.duplicateDay(day.id)}>
             Duplicate
-          </button>
-          <button
-            type="button"
-            className="btn-danger !py-1 !text-xs"
-            disabled={total <= 1}
-            onClick={() => api.removeDay(day.id)}
-          >
+          </Button>
+          <Button size="sm" variant="danger" disabled={total <= 1} onClick={() => api.removeDay(day.id)}>
             Delete day
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -71,7 +83,20 @@ export default function DayEditor({ day, index, total, stays, api }: Props) {
         </Grid2>
 
         <Text label="Day title" value={day.title} onChange={(v) => api.patchDay(day.id, { title: v })} placeholder="Arrival and a gentle introduction" />
-        <Area label="Summary" value={day.summary} onChange={(v) => api.patchDay(day.id, { summary: v })} rows={2} />
+        <Area
+          label="Summary"
+          value={day.summary}
+          onChange={(v) => api.patchDay(day.id, { summary: v })}
+          rows={2}
+          action={
+            <AiFillButton
+              kind="day"
+              value={day.summary}
+              facts={summaryFacts}
+              onFilled={(summary) => api.patchDay(day.id, { summary })}
+            />
+          }
+        />
 
         <Grid2>
           <Select
@@ -87,9 +112,9 @@ export default function DayEditor({ day, index, total, stays, api }: Props) {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h3 className="text-[11px] font-bold uppercase tracking-wider text-muted">Schedule blocks</h3>
-          <button type="button" className="btn-primary !py-1.5 !text-xs" onClick={() => api.addBlock(day.id)}>
+          <Button size="sm" variant="primary" onClick={() => api.addBlock(day.id)}>
             + Add block
-          </button>
+          </Button>
         </div>
 
         {day.items.length === 0 ? (
@@ -104,6 +129,7 @@ export default function DayEditor({ day, index, total, stays, api }: Props) {
             block={block}
             index={i}
             total={day.items.length}
+            context={blockContext}
             onPatch={(patch) => api.patchBlock(day.id, block.id, patch)}
             onRemove={() => api.removeBlock(day.id, block.id)}
             onMove={(delta) => api.moveBlock(day.id, block.id, delta)}

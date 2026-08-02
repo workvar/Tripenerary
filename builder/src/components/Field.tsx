@@ -1,6 +1,9 @@
 'use client';
 
-import type { ChangeEvent, ReactNode } from 'react';
+import { useId, type ChangeEvent, type ReactNode } from 'react';
+import Dropdown, { type DropdownOption } from '@/components/ui/Dropdown';
+import TextInput, { TextArea } from '@/components/ui/TextInput';
+import { cx } from '@/components/ui/tokens';
 
 interface BaseProps {
   readonly label: string;
@@ -8,19 +11,46 @@ interface BaseProps {
   readonly onChange: (value: string) => void;
   readonly placeholder?: string;
   readonly className?: string;
+  /** Rendered on the right of the label row, e.g. an AI generate button. */
+  readonly action?: ReactNode;
 }
 
-export function Text({ label, value, onChange, placeholder, className = '' }: BaseProps) {
+/** A div rather than a <label> wrapper: the row can hold its own button, and
+ *  nesting a button inside a label is both odd for screen readers and clicky. */
+function LabelRow({
+  label,
+  htmlFor,
+  action,
+}: {
+  readonly label: string;
+  readonly htmlFor?: string;
+  readonly action?: ReactNode;
+}) {
   return (
-    <label className={`block ${className}`}>
-      <span className="label">{label}</span>
-      <input
-        className="field"
+    <div className="mb-1 flex min-h-[28px] items-center justify-between gap-2">
+      <label
+        htmlFor={htmlFor}
+        className="text-[11px] font-bold uppercase tracking-wider text-muted"
+      >
+        {label}
+      </label>
+      {action}
+    </div>
+  );
+}
+
+export function Text({ label, value, onChange, placeholder, className, action }: BaseProps) {
+  const id = useId();
+  return (
+    <div className={cx('block', className)}>
+      <LabelRow label={label} htmlFor={id} action={action} />
+      <TextInput
+        id={id}
         value={value}
         placeholder={placeholder}
         onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
       />
-    </label>
+    </div>
   );
 }
 
@@ -30,19 +60,21 @@ export function Area({
   onChange,
   placeholder,
   rows = 3,
-  className = '',
+  className,
+  action,
 }: BaseProps & { readonly rows?: number }) {
+  const id = useId();
   return (
-    <label className={`block ${className}`}>
-      <span className="label">{label}</span>
-      <textarea
-        className="field resize-y"
+    <div className={cx('block', className)}>
+      <LabelRow label={label} htmlFor={id} action={action} />
+      <TextArea
+        id={id}
         rows={rows}
         value={value}
         placeholder={placeholder}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
       />
-    </label>
+    </div>
   );
 }
 
@@ -51,27 +83,25 @@ export function Select<T extends string>({
   value,
   onChange,
   options,
-  className = '',
+  className,
+  action,
 }: {
   readonly label: string;
   readonly value: T;
   readonly onChange: (value: T) => void;
-  readonly options: readonly { readonly value: T; readonly label: string }[];
+  readonly options: readonly DropdownOption<T>[];
   readonly className?: string;
+  readonly action?: ReactNode;
 }) {
   return (
-    <label className={`block ${className}`}>
-      <span className="label">{label}</span>
-      <select className="field" value={value} onChange={(e) => onChange(e.target.value as T)}>
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-    </label>
+    <div className={cx('block', className)}>
+      <LabelRow label={label} action={action} />
+      <Dropdown<T> value={value} onChange={onChange} options={options} />
+    </div>
   );
 }
+
+export { type DropdownOption };
 
 export function Grid2({ children }: { readonly children: ReactNode }) {
   return <div className="grid gap-3 sm:grid-cols-2">{children}</div>;

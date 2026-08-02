@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Button from '@/components/ui/Button';
 import { toJsonString } from '@/lib/exportJson';
 import { parseDraft } from '@/lib/importJson';
 import { rekeyDraft } from '@/lib/merge';
@@ -57,37 +58,21 @@ export default function JsonScreen({ draft, onApply }: Props) {
 
         {editing ? (
           <>
-            <button
-              type="button"
-              onClick={cancel}
-              className="rounded-sm bg-white/15 px-2.5 py-1.5 text-xs font-bold text-white hover:bg-white/25"
-            >
+            <Button size="sm" variant="inverse" onClick={cancel}>
               Cancel
-            </button>
-            <button
-              type="button"
-              onClick={apply}
-              className="rounded-sm bg-accent px-2.5 py-1.5 text-xs font-bold text-white hover:brightness-110"
-            >
+            </Button>
+            <Button size="sm" variant="accent" onClick={apply}>
               Apply
-            </button>
+            </Button>
           </>
         ) : (
           <>
-            <button
-              type="button"
-              onClick={copy}
-              className="rounded-sm bg-white/15 px-2.5 py-1.5 text-xs font-bold text-white hover:bg-white/25"
-            >
+            <Button size="sm" variant="inverse" onClick={copy}>
               {copied ? 'Copied' : 'Copy'}
-            </button>
-            <button
-              type="button"
-              onClick={() => setEditing(true)}
-              className="rounded-sm bg-white/15 px-2.5 py-1.5 text-xs font-bold text-white hover:bg-white/25"
-            >
+            </Button>
+            <Button size="sm" variant="inverse" onClick={() => setEditing(true)}>
               Edit
-            </button>
+            </Button>
           </>
         )}
       </div>

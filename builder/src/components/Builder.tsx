@@ -12,6 +12,7 @@ import DayScreen from '@/components/preview/DayScreen';
 import InfoScreen from '@/components/preview/InfoScreen';
 import JsonScreen from '@/components/preview/JsonScreen';
 import PhoneFrame from '@/components/preview/PhoneFrame';
+import Chip from '@/components/ui/Chip';
 import { useDraft } from '@/lib/useDraft';
 
 const EDITOR_TABS = ['Days', 'Trip', 'Stays', 'Info', 'Checks'] as const;
@@ -40,16 +41,9 @@ export default function Builder() {
         <main className="flex min-h-0 min-w-0 flex-1 flex-col gap-3">
           <nav className="flex shrink-0 flex-wrap gap-1.5">
             {EDITOR_TABS.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setTab(t)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
-                  tab === t ? 'bg-primary text-white' : 'bg-white text-muted hover:text-primary'
-                }`}
-              >
+              <Chip key={t} active={tab === t} onClick={() => setTab(t)}>
                 {t}
-              </button>
+              </Chip>
             ))}
           </nav>
 
@@ -85,16 +79,9 @@ export default function Builder() {
         <aside className="flex min-h-0 flex-1 flex-col gap-3 lg:w-[42%] lg:min-w-[380px] lg:max-w-[560px] lg:flex-none">
           <div className="flex shrink-0 justify-center gap-1.5">
             {PREVIEW_TABS.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setPreview(t)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
-                  preview === t ? 'bg-ink text-white' : 'bg-white text-muted hover:text-ink'
-                }`}
-              >
+              <Chip key={t} tone="ink" active={preview === t} onClick={() => setPreview(t)}>
                 {t}
-              </button>
+              </Chip>
             ))}
           </div>
 

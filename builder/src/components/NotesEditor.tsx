@@ -1,5 +1,8 @@
 'use client';
 
+import Button, { IconButton } from '@/components/ui/Button';
+import { TextArea } from '@/components/ui/TextInput';
+
 interface Props {
   readonly notes: string[];
   readonly onChange: (next: string[]) => void;
@@ -13,13 +16,9 @@ export default function NotesEditor({ notes, onChange }: Props) {
         <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Day notes {notes.length > 0 ? `(${notes.length})` : null}
         </span>
-        <button
-          type="button"
-          className="text-xs font-semibold text-primary"
-          onClick={() => onChange([...notes, ''])}
-        >
+        <Button size="xs" variant="subtle" onClick={() => onChange([...notes, ''])}>
           + Add note
-        </button>
+        </Button>
       </div>
 
       {notes.length === 0 ? <p className="text-xs text-faint">No notes for this day.</p> : null}
@@ -27,21 +26,20 @@ export default function NotesEditor({ notes, onChange }: Props) {
       <div className="space-y-2">
         {notes.map((note, i) => (
           <div key={i} className="flex gap-2">
-            <textarea
-              className="field resize-y"
+            <TextArea
               rows={2}
               value={note}
               placeholder="Buy a SIM at arrivals, 300 to 600 baht."
               onChange={(e) => onChange(notes.map((n, j) => (j === i ? e.target.value : n)))}
             />
-            <button
-              type="button"
-              className="btn-mini self-start hover:border-danger hover:text-danger"
+            <IconButton
+              label="Remove note"
+              variant="danger"
+              className="self-start"
               onClick={() => onChange(notes.filter((_, j) => j !== i))}
-              title="Remove note"
             >
               {'\u{2715}'}
-            </button>
+            </IconButton>
           </div>
         ))}
       </div>

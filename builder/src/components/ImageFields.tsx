@@ -1,6 +1,8 @@
 'use client';
 
 import { Grid2, Text } from '@/components/Field';
+import Button, { IconButton } from '@/components/ui/Button';
+import TextInput from '@/components/ui/TextInput';
 import { newImage } from '@/lib/factories';
 import type { DraftImage } from '@/types/itinerary';
 
@@ -19,13 +21,9 @@ export default function ImageFields({ images, onChange }: Props) {
         <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Photos {images.length > 0 ? `(${images.length})` : null}
         </span>
-        <button
-          type="button"
-          className="text-xs font-semibold text-primary"
-          onClick={() => onChange([...images, newImage()])}
-        >
+        <Button size="xs" variant="subtle" onClick={() => onChange([...images, newImage()])}>
           + Add photo
-        </button>
+        </Button>
       </div>
 
       {images.length === 0 ? (
@@ -36,20 +34,19 @@ export default function ImageFields({ images, onChange }: Props) {
         {images.map((img) => (
           <div key={img.id} className="space-y-2">
             <div className="flex gap-2">
-              <input
-                className="field"
+              <TextInput
                 value={img.url}
                 placeholder="https://..."
                 onChange={(e) => set(img.id, { url: e.target.value })}
               />
-              <button
-                type="button"
-                className="btn-mini"
-                title="Remove photo"
+              <IconButton
+                label="Remove photo"
+                variant="danger"
+                size="md"
                 onClick={() => onChange(images.filter((i) => i.id !== img.id))}
               >
                 {'\u{2715}'}
-              </button>
+              </IconButton>
             </div>
             <Grid2>
               <Text label="Caption" value={img.caption} onChange={(v) => set(img.id, { caption: v })} />

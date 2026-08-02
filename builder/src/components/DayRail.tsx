@@ -20,7 +20,8 @@ export default function DayRail({ api }: { readonly api: DraftApi }) {
               key={day.id}
               type="button"
               onClick={() => setDayIndex(i)}
-              className={`w-[86px] shrink-0 rounded-md border p-2 text-left transition ${
+              aria-pressed={active}
+              className={`w-[86px] shrink-0 rounded-md border p-2 text-left outline-none transition focus-visible:ring-2 focus-visible:ring-primary/25 ${
                 active
                   ? 'border-primary bg-primary text-white'
                   : 'border-line bg-white hover:border-primary/40'
@@ -53,7 +54,7 @@ export default function DayRail({ api }: { readonly api: DraftApi }) {
         <button
           type="button"
           onClick={addDay}
-          className="flex w-[86px] shrink-0 flex-col items-center justify-center rounded-md border border-dashed border-line bg-white text-primary transition hover:border-primary"
+          className="flex w-[86px] shrink-0 flex-col items-center justify-center rounded-md border border-dashed border-line bg-white text-primary outline-none transition hover:border-primary focus-visible:ring-2 focus-visible:ring-primary/25"
         >
           <span className="text-xl leading-none">+</span>
           <span className="mt-1 text-[10px] font-bold uppercase tracking-wider">New day</span>

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Area, Grid3, Select, Text } from '@/components/Field';
 import ImageFields from '@/components/ImageFields';
 import LocationFields from '@/components/LocationFields';
+import { IconButton } from '@/components/ui/Button';
+import AiFillButton from '@/components/ai/AiFillButton';
 import { ITEM_TYPES, ITEM_TYPE_META } from '@/types/itinerary';
 import type { DraftBlock, ItemType } from '@/types/itinerary';
 
@@ -12,16 +14,32 @@ const TYPE_OPTIONS = ITEM_TYPES.map((t) => ({
   label: `${ITEM_TYPE_META[t].glyph}  ${ITEM_TYPE_META[t].label}`,
 }));
 
+/** Surrounding facts the AI can lean on, supplied by the day being edited. */
+export interface BlockContext {
+  readonly trip: string;
+  readonly base: string;
+  readonly date: string;
+}
+
 interface Props {
   readonly block: DraftBlock;
   readonly index: number;
   readonly total: number;
+  readonly context: BlockContext;
   readonly onPatch: (patch: Partial<DraftBlock>) => void;
   readonly onRemove: () => void;
   readonly onMove: (delta: number) => void;
 }
 
-export default function BlockEditor({ block, index, total, onPatch, onRemove, onMove }: Props) {
+export default function BlockEditor({
+  block,
+  index,
+  total,
+  context,
+  onPatch,
+  onRemove,
+  onMove,
+}: Props) {
   const [open, setOpen] = useState(!block.title);
   const meta = ITEM_TYPE_META[block.type];
 
@@ -31,7 +49,12 @@ export default function BlockEditor({ block, index, total, onPatch, onRemove, on
         <span className="text-base" aria-hidden>
           {meta.glyph}
         </span>
-        <button type="button" className="flex-1 text-left" onClick={() => setOpen(!open)}>
+        <button
+          type="button"
+          aria-expanded={open}
+          className="flex-1 rounded-xs text-left outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
+          onClick={() => setOpen(!open)}
+        >
           <span className="block truncate text-sm font-semibold text-ink">
             {block.title || `Untitled ${meta.label.toLowerCase()}`}
           </span>
@@ -41,21 +64,15 @@ export default function BlockEditor({ block, index, total, onPatch, onRemove, on
           </span>
         </button>
 
-        <button type="button" className="btn-mini" disabled={index === 0} onClick={() => onMove(-1)} title="Move up">
+        <IconButton label="Move up" disabled={index === 0} onClick={() => onMove(-1)}>
           {'\u{2191}'}
-        </button>
-        <button
-          type="button"
-          className="btn-mini"
-          disabled={index === total - 1}
-          onClick={() => onMove(1)}
-          title="Move down"
-        >
+        </IconButton>
+        <IconButton label="Move down" disabled={index === total - 1} onClick={() => onMove(1)}>
           {'\u{2193}'}
-        </button>
-        <button type="button" className="btn-mini hover:border-danger hover:text-danger" onClick={onRemove} title="Delete block">
+        </IconButton>
+        <IconButton label="Delete block" variant="danger" onClick={onRemove}>
           {'\u{2715}'}
-        </button>
+        </IconButton>
       </div>
 
       {open ? (
@@ -77,6 +94,25 @@ export default function BlockEditor({ block, index, total, onPatch, onRemove, on
             value={block.description}
             onChange={(v) => onPatch({ description: v })}
             placeholder="What happens, how long it takes, anything worth knowing."
+            action={
+              <AiFillButton
+                kind="block"
+                value={block.description}
+                onFilled={(description) => onPatch({ description })}
+                facts={{
+                  Trip: context.trip,
+                  Date: context.date,
+                  City: context.base,
+                  Activity: block.title,
+                  Kind: meta.label,
+                  Starts: block.time,
+                  Ends: block.endTime,
+                  Place: block.location.name,
+                  Address: block.location.address,
+                  Cost: block.cost,
+                }}
+              />
+            }
           />
 
           <Grid3>

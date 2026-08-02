@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import ImportDialog from '@/components/ImportDialog';
+import Button from '@/components/ui/Button';
 import { suggestedFilename, toJsonString } from '@/lib/exportJson';
 import { newDraft } from '@/lib/factories';
 import { validate } from '@/lib/stats';
@@ -63,15 +64,15 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
             <span className="rounded-sm bg-primarySoft px-3 py-1.5 text-xs font-semibold text-primary">{message}</span>
           ) : null}
 
-          <button type="button" className="btn-ghost !py-1.5 !text-xs" onClick={reset}>
+          <Button size="sm" onClick={reset}>
             New
-          </button>
-          <button type="button" className="btn-ghost !py-1.5 !text-xs" onClick={() => setImporting(true)}>
+          </Button>
+          <Button size="sm" onClick={() => setImporting(true)}>
             Import JSON
-          </button>
-          <button type="button" className="btn-primary !py-1.5 !text-xs" onClick={exportFile}>
+          </Button>
+          <Button size="sm" variant="primary" onClick={exportFile}>
             Export JSON
-          </button>
+          </Button>
         </div>
       </header>
 

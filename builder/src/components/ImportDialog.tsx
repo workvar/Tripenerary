@@ -1,6 +1,11 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Button from '@/components/ui/Button';
+import Chip from '@/components/ui/Chip';
+import Modal from '@/components/ui/Modal';
+import RadioCard from '@/components/ui/RadioCard';
+import TextInput, { TextArea } from '@/components/ui/TextInput';
 import { parseDraft } from '@/lib/importJson';
 import { mergeDraft, summarise, type MergeMode } from '@/lib/merge';
 import type { Draft } from '@/types/itinerary';
@@ -82,33 +87,25 @@ export default function ImportDialog({ current, onApply, onClose }: Props) {
   const summary = staged ? summarise(staged) : null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4" onClick={onClose}>
-      <div
-        className="max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-5 shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="mb-4 flex items-start justify-between">
-          <div>
-            <h2 className="text-lg font-extrabold tracking-tight text-ink">Import itinerary JSON</h2>
-            <p className="text-sm text-muted">Load an existing file, then keep editing it here.</p>
-          </div>
-          <button type="button" className="btn-mini" onClick={onClose}>
-            {'\u{2715}'}
-          </button>
-        </div>
-
+    <Modal
+      title="Import itinerary JSON"
+      subtitle="Load an existing file, then keep editing it here."
+      onClose={onClose}
+      footer={
+        <>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button variant="primary" disabled={!staged} onClick={apply}>
+            Import and edit
+          </Button>
+        </>
+      }
+    >
+      <div className="pr-1">
         <div className="mb-3 flex gap-1.5">
           {SOURCES.map((s) => (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => setSource(s.id)}
-              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
-                source === s.id ? 'bg-primary text-white' : 'bg-sunken text-muted hover:text-primary'
-              }`}
-            >
+            <Chip key={s.id} active={source === s.id} onClick={() => setSource(s.id)}>
               {s.label}
-            </button>
+            </Chip>
           ))}
         </div>
 
@@ -123,9 +120,9 @@ export default function ImportDialog({ current, onApply, onClose }: Props) {
             className="rounded-md border border-dashed border-line bg-elevated p-8 text-center"
           >
             <p className="text-sm text-muted">Drop a .json file here</p>
-            <button type="button" className="btn-ghost mt-3 !py-1.5 !text-xs" onClick={() => fileRef.current?.click()}>
+            <Button size="sm" className="mt-3" onClick={() => fileRef.current?.click()}>
               Choose a file
-            </button>
+            </Button>
             <input
               ref={fileRef}
               type="file"
@@ -141,8 +138,8 @@ export default function ImportDialog({ current, onApply, onClose }: Props) {
         ) : null}
 
         {source === 'paste' ? (
-          <textarea
-            className="field h-48 resize-y font-mono text-[12px]"
+          <TextArea
+            className="h-48 font-mono !text-[12px]"
             placeholder='{ "trip": { ... }, "days": [ ... ] }'
             value={text}
             onChange={(e) => {
@@ -155,15 +152,14 @@ export default function ImportDialog({ current, onApply, onClose }: Props) {
 
         {source === 'url' ? (
           <div className="flex gap-2">
-            <input
-              className="field"
+            <TextInput
               placeholder="https://example.com/itinerary.json"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
-            <button type="button" className="btn-ghost !text-xs" disabled={!url.trim() || busy} onClick={fetchUrl}>
+            <Button disabled={!url.trim() || busy} onClick={fetchUrl}>
               {busy ? 'Fetching…' : 'Fetch'}
-            </button>
+            </Button>
           </div>
         ) : null}
 
@@ -181,39 +177,19 @@ export default function ImportDialog({ current, onApply, onClose }: Props) {
           </div>
         ) : null}
 
-        <div className="mt-4 space-y-1.5">
+        <div className="mt-4 space-y-1.5" role="radiogroup" aria-label="How should it land?">
           <span className="label">How should it land?</span>
           {MODES.map((m) => (
-            <label
+            <RadioCard
               key={m.id}
-              className={`flex cursor-pointer gap-3 rounded-sm border p-3 transition ${
-                mode === m.id ? 'border-primary bg-primarySoft' : 'border-line bg-white hover:border-primary/40'
-              }`}
-            >
-              <input
-                type="radio"
-                name="merge-mode"
-                className="mt-1"
-                checked={mode === m.id}
-                onChange={() => setMode(m.id)}
-              />
-              <span>
-                <span className="block text-sm font-bold text-ink">{m.label}</span>
-                <span className="block text-[12px] text-muted">{m.hint}</span>
-              </span>
-            </label>
+              checked={mode === m.id}
+              onSelect={() => setMode(m.id)}
+              label={m.label}
+              hint={m.hint}
+            />
           ))}
         </div>
-
-        <div className="mt-5 flex justify-end gap-2">
-          <button type="button" className="btn-ghost !text-xs" onClick={onClose}>
-            Cancel
-          </button>
-          <button type="button" className="btn-primary !text-xs" disabled={!staged} onClick={apply}>
-            Import and edit
-          </button>
-        </div>
       </div>
-    </div>
+    </Modal>
   );
 }

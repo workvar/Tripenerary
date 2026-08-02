@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Grid2, Text } from '@/components/Field';
+import Button from '@/components/ui/Button';
 import type { DraftLocation } from '@/types/itinerary';
 
 interface Props {
@@ -43,9 +44,9 @@ export default function LocationFields({ value, onChange }: Props) {
         <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Location {pinned ? <span className="text-primary">{'\u{2713}'} pinned</span> : null}
         </span>
-        <button type="button" className="text-xs font-semibold text-primary" onClick={() => setOpen(!open)}>
+        <Button size="xs" variant="subtle" aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? 'Fewer fields' : 'More fields'}
-        </button>
+        </Button>
       </div>
 
       <Grid2>

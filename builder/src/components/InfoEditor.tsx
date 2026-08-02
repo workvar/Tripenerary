@@ -1,6 +1,7 @@
 'use client';
 
 import { Area, Grid2, Select, Text } from '@/components/Field';
+import Button, { IconButton } from '@/components/ui/Button';
 import { newContact, newInfo } from '@/lib/factories';
 import type { DraftApi } from '@/lib/useDraft';
 import { CONTACT_TYPES } from '@/types/itinerary';
@@ -25,13 +26,13 @@ export default function InfoEditor({ api }: { readonly api: DraftApi }) {
             <h2 className="text-lg font-extrabold tracking-tight text-ink">Documents</h2>
             <p className="text-sm text-muted">Long-form sections on the trip info screen.</p>
           </div>
-          <button
-            type="button"
-            className="btn-primary !py-1.5 !text-xs"
+          <Button
+            size="sm"
+            variant="primary"
             onClick={() => setDraft((d) => ({ ...d, info: [...d.info, newInfo()] }))}
           >
             + Add section
-          </button>
+          </Button>
         </div>
 
         {draft.info.length === 0 ? (
@@ -42,15 +43,16 @@ export default function InfoEditor({ api }: { readonly api: DraftApi }) {
 
         {draft.info.map((section) => (
           <div key={section.id} className="card space-y-3">
-            <div className="flex items-center gap-2">
+            <div className="flex items-end gap-2">
               <Text label="Title" value={section.title} onChange={(v) => patchInfo(section.id, { title: v })} className="flex-1" />
-              <button
-                type="button"
-                className="btn-mini mt-5 hover:border-danger hover:text-danger"
+              <IconButton
+                label="Remove section"
+                variant="danger"
+                size="md"
                 onClick={() => setDraft((d) => ({ ...d, info: d.info.filter((i) => i.id !== section.id) }))}
               >
                 {'\u{2715}'}
-              </button>
+              </IconButton>
             </div>
             <Area label="Body" value={section.body} onChange={(v) => patchInfo(section.id, { body: v })} rows={6} />
             <Text label="Image URL" value={section.image} onChange={(v) => patchInfo(section.id, { image: v })} />
@@ -64,13 +66,13 @@ export default function InfoEditor({ api }: { readonly api: DraftApi }) {
             <h2 className="text-lg font-extrabold tracking-tight text-ink">Contacts</h2>
             <p className="text-sm text-muted">Numbers and links worth having offline.</p>
           </div>
-          <button
-            type="button"
-            className="btn-primary !py-1.5 !text-xs"
+          <Button
+            size="sm"
+            variant="primary"
             onClick={() => setDraft((d) => ({ ...d, contacts: [...d.contacts, newContact()] }))}
           >
             + Add contact
-          </button>
+          </Button>
         </div>
 
         {draft.contacts.map((contact) => (
@@ -87,15 +89,16 @@ export default function InfoEditor({ api }: { readonly api: DraftApi }) {
                 value={contact.type}
                 onChange={(v) => patchContact(contact.id, { type: v })}
                 options={CONTACT_OPTIONS}
-                className="w-28"
+                className="w-32 shrink-0"
               />
-              <button
-                type="button"
-                className="btn-mini mb-1 hover:border-danger hover:text-danger"
+              <IconButton
+                label="Remove contact"
+                variant="danger"
+                size="md"
                 onClick={() => setDraft((d) => ({ ...d, contacts: d.contacts.filter((c) => c.id !== contact.id) }))}
               >
                 {'\u{2715}'}
-              </button>
+              </IconButton>
             </div>
           </div>
         ))}

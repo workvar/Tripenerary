@@ -1,6 +1,9 @@
 'use client';
 
 import { Grid2, Grid3, Text } from '@/components/Field';
+import Button from '@/components/ui/Button';
+import Chip from '@/components/ui/Chip';
+import AiFillButton from '@/components/ai/AiFillButton';
 import { addDays, daysBetween, isDateKey } from '@/lib/dates';
 import { newDay } from '@/lib/factories';
 import { tripStats } from '@/lib/stats';
@@ -50,7 +53,25 @@ export default function TripSettings({ api }: { readonly api: DraftApi }) {
 
       <div className="card space-y-3">
         <Text label="Title" value={draft.trip.title} onChange={(v) => patchTrip({ title: v })} placeholder="Thailand: A Relaxed 12-Day Journey" />
-        <Text label="Subtitle" value={draft.trip.subtitle} onChange={(v) => patchTrip({ subtitle: v })} placeholder="Bangkok, Khao Lak, Phuket" />
+        <Text
+          label="Subtitle"
+          value={draft.trip.subtitle}
+          onChange={(v) => patchTrip({ subtitle: v })}
+          placeholder="Bangkok, Khao Lak, Phuket"
+          action={
+            <AiFillButton
+              kind="trip"
+              value={draft.trip.subtitle}
+              onFilled={(subtitle) => patchTrip({ subtitle })}
+              facts={{
+                Title: draft.trip.title,
+                Cities: Array.from(new Set(draft.days.map((d) => d.base).filter(Boolean))).join(', '),
+                Length: span > 0 ? `${span} days` : '',
+                Travellers: draft.trip.travellers.join(', '),
+              }}
+            />
+          }
+        />
 
         <Grid2>
           <Text label="Start date" value={draft.trip.startDate} onChange={(v) => patchTrip({ startDate: v })} placeholder="2026-08-22" />
@@ -62,14 +83,9 @@ export default function TripSettings({ api }: { readonly api: DraftApi }) {
             The range covers <strong className="text-ink">{span || '—'}</strong> days. You currently have{' '}
             <strong className="text-ink">{stats.days}</strong>.
           </span>
-          <button
-            type="button"
-            className="btn-ghost !py-1.5 !text-xs"
-            disabled={span < 1 || span === stats.days}
-            onClick={syncDays}
-          >
+          <Button size="sm" disabled={span < 1 || span === stats.days} onClick={syncDays}>
             Match days to the date range
-          </button>
+          </Button>
         </div>
 
         <Grid3>
@@ -85,18 +101,14 @@ export default function TripSettings({ api }: { readonly api: DraftApi }) {
 
         <div className="flex flex-wrap gap-1.5">
           {TIMEZONES.map((tz) => (
-            <button
+            <Chip
               key={tz}
-              type="button"
-              className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold transition ${
-                draft.trip.timezone === tz
-                  ? 'border-primary bg-primary text-white'
-                  : 'border-line bg-white text-muted hover:border-primary hover:text-primary'
-              }`}
+              size="xs"
+              active={draft.trip.timezone === tz}
               onClick={() => patchTrip({ timezone: tz })}
             >
               {tz}
-            </button>
+            </Chip>
           ))}
         </div>
 
