@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, elevation, radius, spacing } from '@/theme';
+import { colors, elevation, spacing } from '@/theme';
 import { dayOfMonth, monthShort, weekdayShort } from '@/lib/dates';
 import type { Day } from '@/types';
 
-const ITEM_WIDTH = 58;
-const GAP = spacing.sm;
-const STRIDE = ITEM_WIDTH + GAP;
+/** The selector is a true circle, so width and height are the same number. */
+const DIAMETER = 48;
+const GAP = spacing.md;
+const STRIDE = DIAMETER + GAP;
 
 interface CellProps {
   readonly day: Day;
@@ -21,17 +22,22 @@ function Cell({ day, selected, isToday, onPress }: CellProps) {
       onPress={onPress}
       accessibilityRole="tab"
       accessibilityState={{ selected }}
-      style={({ pressed }) => [
-        s.cell,
-        selected && s.cellSelected,
-        pressed && !selected && s.cellPressed,
-      ]}
+      style={s.cell}
+      hitSlop={4}
     >
-      <Text style={[s.weekday, selected && s.selectedMuted]}>
-        {weekdayShort(day.date).toUpperCase()}
-      </Text>
-      <Text style={[s.dayNum, selected && s.selectedText]}>{dayOfMonth(day.date)}</Text>
-      <Text style={[s.month, selected && s.selectedMuted]}>{monthShort(day.date)}</Text>
+      <Text style={s.weekday}>{weekdayShort(day.date).toUpperCase()}</Text>
+
+      <View
+        style={[
+          s.circle,
+          selected && s.circleSelected,
+          !selected && isToday && s.circleToday,
+        ]}
+      >
+        <Text style={[s.dayNum, selected && s.selectedText]}>{dayOfMonth(day.date)}</Text>
+        <Text style={[s.month, selected && s.selectedMuted]}>{monthShort(day.date)}</Text>
+      </View>
+
       <View style={[s.dot, isToday && s.dotToday]} />
     </Pressable>
   );
@@ -78,20 +84,31 @@ export default function DateStrip({ days, selectedDate, todayDate, onSelect }: D
 const s = StyleSheet.create({
   wrap: { flexGrow: 0, paddingVertical: spacing.md },
   list: { paddingHorizontal: spacing.lg, gap: GAP },
-  cell: {
-    width: ITEM_WIDTH,
-    paddingVertical: 9,
-    borderRadius: radius.md,
+
+  cell: { width: DIAMETER, alignItems: 'center' },
+  weekday: {
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.8,
+    color: colors.onDarkMuted,
+    marginBottom: 5,
+  },
+  circle: {
+    width: DIAMETER,
+    height: DIAMETER,
+    borderRadius: DIAMETER / 2,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.10)',
   },
-  cellPressed: { backgroundColor: 'rgba(255,255,255,0.20)' },
-  cellSelected: { backgroundColor: '#fff', ...elevation.sm },
-  weekday: { fontSize: 10, fontWeight: '700', color: 'rgba(255,255,255,0.62)', letterSpacing: 0.8 },
-  dayNum: { fontSize: 20, fontWeight: '800', letterSpacing: -0.4, color: '#fff', marginTop: 1 },
-  month: { fontSize: 10, fontWeight: '600', color: 'rgba(255,255,255,0.62)', letterSpacing: 0.4 },
+  circleToday: { borderWidth: 1.5, borderColor: colors.accent },
+  circleSelected: { backgroundColor: '#fff', ...elevation.sm },
+
+  dayNum: { fontSize: 18, fontWeight: '800', letterSpacing: -0.4, color: '#fff' },
+  month: { fontSize: 9, fontWeight: '600', letterSpacing: 0.3, color: colors.onDarkMuted, marginTop: -1 },
   selectedText: { color: colors.primaryDark },
   selectedMuted: { color: colors.textMuted },
-  dot: { width: 5, height: 5, borderRadius: 3, marginTop: 5, backgroundColor: 'transparent' },
+
+  dot: { width: 5, height: 5, borderRadius: 3, marginTop: 6, backgroundColor: 'transparent' },
   dotToday: { backgroundColor: colors.accent },
 });

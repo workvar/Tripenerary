@@ -1,0 +1,465 @@
+{
+  "_comment": "Which Wikimedia Commons file belongs in which itinerary slot. scripts/set-image-host.mjs rewrites the sample from this, so the curation survives changing image hosts.",
+  "entries": [
+    {
+      "path": "trip.coverImage",
+      "file": "Wat_Arun_from_Chao_Phraya_River_at_sunset.jpg"
+    },
+    {
+      "path": "stays[0].image",
+      "file": "Panorama_of_Chao_Phraya_River_from_Iconsiam_at_night,_Bangkok.jpg"
+    },
+    {
+      "path": "stays[1].image",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "stays[2].image",
+      "file": "Kata_Beach_November_2011_-_panoramio.jpg"
+    },
+    {
+      "path": "days[0].image",
+      "file": "Bangkok_Wat_Pho_reclining_Buddha.jpg"
+    },
+    {
+      "path": "days[0].items[0].images[0]",
+      "file": "Suvarnabhumi_Airport,_Arrival_Hall.JPG"
+    },
+    {
+      "path": "days[0].items[0].images[1]",
+      "file": "Suvarnabhumi_Airport,_Hall,_Bangkok,_Thailand.jpg"
+    },
+    {
+      "path": "days[0].items[1].images[0]",
+      "file": "Thai_Food_in_street.JPG"
+    },
+    {
+      "path": "days[0].items[2].images[0]",
+      "file": "Chao_Phraya_River_Bangkok.jpg"
+    },
+    {
+      "path": "days[0].items[3].images[0]",
+      "file": "Bangkok_Wat_Pho_reclining_Buddha.jpg"
+    },
+    {
+      "path": "days[0].items[3].images[1]",
+      "file": "Bangkok_Wat_Arun_P1130114.JPG"
+    },
+    {
+      "path": "days[0].items[4].images[0]",
+      "file": "Phat_Thai_kung_Chang_Khien_street_stall.jpg"
+    },
+    {
+      "path": "days[0].items[5].images[0]",
+      "file": "Chao_Phraya_-_Wat_Arun.JPG"
+    },
+    {
+      "path": "days[0].items[6].images[0]",
+      "file": "Panorama_of_Chao_Phraya_River_from_Iconsiam_at_night,_Bangkok.jpg"
+    },
+    {
+      "path": "days[0].items[6].images[1]",
+      "file": "Chao_Phraya_Express_Boat_Service,_Bangkok_(7053053911).jpg"
+    },
+    {
+      "path": "days[1].image",
+      "file": "Bangkok_Grand_Palace_Wat_Phra_Kaew_triple.jpg"
+    },
+    {
+      "path": "days[1].items[0].images[0]",
+      "file": "Bangkok_Grand_Palace_Wat_Phra_Kaew_triple.jpg"
+    },
+    {
+      "path": "days[1].items[0].images[1]",
+      "file": "Grand_Palace_Bangkok,_Thailand.jpg"
+    },
+    {
+      "path": "days[1].items[1].images[0]",
+      "file": "Wat_Arun_from_Chao_Phraya_River_at_sunset.jpg"
+    },
+    {
+      "path": "days[1].items[1].images[1]",
+      "file": "Chao_Phraya_Express_Boat_Service,_Bangkok_(7053053911).jpg"
+    },
+    {
+      "path": "days[1].items[2].images[0]",
+      "file": "Pad_Thai.JPG"
+    },
+    {
+      "path": "days[1].items[3].images[0]",
+      "file": "Bangkok_canals_Khlongs_in_the_Thon_Buri_district_-_panoramio_(14).jpg"
+    },
+    {
+      "path": "days[1].items[3].images[1]",
+      "file": "Khlong_Bang_Luang_Floating_Market.jpg"
+    },
+    {
+      "path": "days[1].items[4].images[0]",
+      "file": "Chinatown_in_Bangkok.JPG"
+    },
+    {
+      "path": "days[1].items[4].images[1]",
+      "file": "Tom_yum_goong-01.jpg"
+    },
+    {
+      "path": "days[2].image",
+      "file": "Chatuchak_Weekend_Market_P1100759.JPG"
+    },
+    {
+      "path": "days[2].items[0].images[0]",
+      "file": "Chatuchak_Weekend_Market_P1100759.JPG"
+    },
+    {
+      "path": "days[2].items[0].images[1]",
+      "file": "Bangkok_Chatuchak_Market_1.jpg"
+    },
+    {
+      "path": "days[2].items[1].images[0]",
+      "file": "Wat_Bang_Nam_Phueng_Nok_1.jpg"
+    },
+    {
+      "path": "days[2].items[1].images[1]",
+      "file": "Khlong_Bang_Chueak_Nang_canal.jpg"
+    },
+    {
+      "path": "days[2].items[2].images[0]",
+      "file": "Floating_Market,_Khlong_Phasi_Charoen_06.23.jpg"
+    },
+    {
+      "path": "days[2].items[3].images[0]",
+      "file": "Weekend_market_bangkok.jpg"
+    },
+    {
+      "path": "days[3].image",
+      "file": "Sanctuary_of_Truth_Pattaya.jpg"
+    },
+    {
+      "path": "days[3].items[0].images[0]",
+      "file": "Songthaew_on_Koh_Larn_02.JPG"
+    },
+    {
+      "path": "days[3].items[1].images[0]",
+      "file": "Sanctuary_of_Truth_Pattaya.jpg"
+    },
+    {
+      "path": "days[3].items[1].images[1]",
+      "file": "Sanctuary_of_Truth_1.jpg"
+    },
+    {
+      "path": "days[3].items[2].images[0]",
+      "file": "Koh_Larn,Thailand.jpg"
+    },
+    {
+      "path": "days[3].items[2].images[1]",
+      "file": "Koh_larn_pattaya_-_panoramio.jpg"
+    },
+    {
+      "path": "days[3].items[3].images[0]",
+      "file": "Pattaya-Koh_Larn_ferry.JPG"
+    },
+    {
+      "path": "days[3].items[3].images[1]",
+      "file": "Sunset_on_Koh_Larn_-_panoramio.jpg"
+    },
+    {
+      "path": "days[3].items[4].images[0]",
+      "file": "Chao_Phraya_River_Bangkok.jpg"
+    },
+    {
+      "path": "days[3].items[5].images[0]",
+      "file": "Tom_Yum_Soup.JPG"
+    },
+    {
+      "path": "days[4].image",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "days[4].items[0].images[0]",
+      "file": "Panorama_of_Chao_Phraya_River_from_Iconsiam_at_night,_Bangkok.jpg"
+    },
+    {
+      "path": "days[4].items[1].images[0]",
+      "file": "Suvarnabhumi_Airport_Departures_Hall_Bangkok_Thailand.jpg"
+    },
+    {
+      "path": "days[4].items[2].images[0]",
+      "file": "Aerial_view_phuket_international_airport.jpg"
+    },
+    {
+      "path": "days[4].items[3].images[0]",
+      "file": "PhuketAirport02.jpg"
+    },
+    {
+      "path": "days[4].items[4].images[0]",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "days[4].items[5].images[0]",
+      "file": "Pad_Thai_en_Bangkok,_Tailandia_(23790424338).jpg"
+    },
+    {
+      "path": "days[5].image",
+      "file": "Khao_Lak-Lam_Ru_National_Park,_Rainforest,_Thailand.jpg"
+    },
+    {
+      "path": "days[5].items[0].images[0]",
+      "file": "Khao_Lak-Lam_Ru_National_Park,_Rainforest,_Thailand.jpg"
+    },
+    {
+      "path": "days[5].items[1].images[0]",
+      "file": "Man_Daeng_Waterfall.jpg"
+    },
+    {
+      "path": "days[5].items[1].images[1]",
+      "file": "Haew_Suwat_Waterfall_Khao-Yai01.jpg"
+    },
+    {
+      "path": "days[5].items[2].images[0]",
+      "file": "Thai_Food_in_street.JPG"
+    },
+    {
+      "path": "days[5].items[3].images[0]",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "days[5].items[4].images[0]",
+      "file": "Khao_Lak_Police_Boat_813.jpg"
+    },
+    {
+      "path": "days[5].items[4].images[1]",
+      "file": "Khao_Lak_Police_Boat_813_Monument.jpg"
+    },
+    {
+      "path": "days[6].image",
+      "file": "Ko_Tapu_(James_Bond)_Island_in_Phang_Nga_Bay,_Thailand.jpg"
+    },
+    {
+      "path": "days[6].items[0].images[0]",
+      "file": "Sunrise,_Koh_Yao_Noi_(island),_Phang_Nga_Bay,_Thailand.jpg"
+    },
+    {
+      "path": "days[6].items[1].images[0]",
+      "file": "James_Bond_Felsen_phang_nga_bay_DSC02997.JPG"
+    },
+    {
+      "path": "days[6].items[1].images[1]",
+      "file": "TH_Phang_Nga_-_James_Bond_Island.jpg"
+    },
+    {
+      "path": "days[6].items[2].images[0]",
+      "file": "Ko_Tapu_(James_Bond)_Island_in_Phang_Nga_Bay,_Thailand.jpg"
+    },
+    {
+      "path": "days[6].items[2].images[1]",
+      "file": "Isla_Panyee,_Phuket,_Tailandia,_2013-08-20,_DD_09.JPG"
+    },
+    {
+      "path": "days[6].items[3].images[0]",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "days[6].items[4].images[0]",
+      "file": "Tom_yum_goong-01.jpg"
+    },
+    {
+      "path": "days[7].image",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "days[7].items[0].images[0]",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    },
+    {
+      "path": "days[7].items[1].images[0]",
+      "file": "Thai_Massage.jpg"
+    },
+    {
+      "path": "days[7].items[1].images[1]",
+      "file": "Thaimassage.jpg"
+    },
+    {
+      "path": "days[7].items[2].images[0]",
+      "file": "Phat_Thai_kung_Chang_Khien_street_stall.jpg"
+    },
+    {
+      "path": "days[7].items[3].images[0]",
+      "file": "Khao_Lak-Lam_Ru_National_Park,_Rainforest,_Thailand.jpg"
+    },
+    {
+      "path": "days[7].items[4].images[0]",
+      "file": "Sunset_at_Promthep_cape,_Phuket_island,_Thailand.jpg"
+    },
+    {
+      "path": "days[7].items[5].images[0]",
+      "file": "Thai_Food_in_street.JPG"
+    },
+    {
+      "path": "days[8].image",
+      "file": "Kata_Beach_November_2011_-_panoramio.jpg"
+    },
+    {
+      "path": "days[8].items[0].images[0]",
+      "file": "Phuket_airport_(2013_December)_-_panoramio.jpg"
+    },
+    {
+      "path": "days[8].items[1].images[0]",
+      "file": "Karon_Beach,_Phuket.jpg"
+    },
+    {
+      "path": "days[8].items[2].images[0]",
+      "file": "Kata_Beach_November_2011_-_panoramio.jpg"
+    },
+    {
+      "path": "days[8].items[2].images[1]",
+      "file": "Freedom_beach_-_Karon,_Phuket,_Thailand_-_panoramio.jpg"
+    },
+    {
+      "path": "days[8].items[3].images[0]",
+      "file": "Phuket_Promthep_Cape.jpg"
+    },
+    {
+      "path": "days[8].items[3].images[1]",
+      "file": "Lighthouse_Promthep_Cape_05.jpg"
+    },
+    {
+      "path": "days[8].items[4].images[0]",
+      "file": "Tom_Yum_Soup.JPG"
+    },
+    {
+      "path": "days[9].image",
+      "file": "Maya_Bay.jpg"
+    },
+    {
+      "path": "days[9].items[0].images[0]",
+      "file": "Phi_Phi_Island_Tour_(4297215540).jpg"
+    },
+    {
+      "path": "days[9].items[1].images[0]",
+      "file": "Maya_Bay.jpg"
+    },
+    {
+      "path": "days[9].items[1].images[1]",
+      "file": "A_View_from_Maya_Bay,_Phi_Phi_Le.jpg"
+    },
+    {
+      "path": "days[9].items[2].images[0]",
+      "file": "Koh_Phi_Phi_Leh.JPG"
+    },
+    {
+      "path": "days[9].items[2].images[1]",
+      "file": "The_boulder_of_the_Loh_Samah_bay_at_Koh_Phi_Phi_Leh.jpg"
+    },
+    {
+      "path": "days[9].items[3].images[0]",
+      "file": "Koh_Phi_Phi_Islands.JPG"
+    },
+    {
+      "path": "days[9].items[4].images[0]",
+      "file": "Bamboo_Island.jpg"
+    },
+    {
+      "path": "days[9].items[4].images[1]",
+      "file": "Bamboo_Island_P1120579.JPG"
+    },
+    {
+      "path": "days[9].items[5].images[0]",
+      "file": "Longtail_Boat_At_Maya_Bay,_Krabi,_Thailand.jpg"
+    },
+    {
+      "path": "days[9].items[6].images[0]",
+      "file": "Pad_Thai_en_Bangkok,_Tailandia_(23790424338).jpg"
+    },
+    {
+      "path": "days[10].image",
+      "file": "The_Big_Buddha,_Phuket.jpg"
+    },
+    {
+      "path": "days[10].items[0].images[0]",
+      "file": "Thalang_Road,_Old_Phuket_Town.jpg"
+    },
+    {
+      "path": "days[10].items[0].images[1]",
+      "file": "Phuket_Old_Town_3.jpg"
+    },
+    {
+      "path": "days[10].items[1].images[0]",
+      "file": "Phuket_Town_Thailand-Murals-in-Thalang-Road-01.jpg"
+    },
+    {
+      "path": "days[10].items[2].images[0]",
+      "file": "The_Big_Buddha,_Phuket.jpg"
+    },
+    {
+      "path": "days[10].items[2].images[1]",
+      "file": "Big_Buddha_-_Phuket,_Thailand.JPG"
+    },
+    {
+      "path": "days[10].items[3].images[0]",
+      "file": "Phuket_Viewpoint.jpg"
+    },
+    {
+      "path": "days[10].items[3].images[1]",
+      "file": "Karon_Beach,_Phuket.jpg"
+    },
+    {
+      "path": "days[10].items[4].images[0]",
+      "file": "Tom_yum_goong-01.jpg"
+    },
+    {
+      "path": "days[10].items[5].images[0]",
+      "file": "Kata_Beach_November_2011_-_panoramio.jpg"
+    },
+    {
+      "path": "days[11].image",
+      "file": "Suvarnabhumi_Airport_Departures_Hall_Bangkok_Thailand.jpg"
+    },
+    {
+      "path": "days[11].items[0].images[0]",
+      "file": "Karon_Beach,_Phuket.jpg"
+    },
+    {
+      "path": "days[11].items[1].images[0]",
+      "file": "Phuket_airport_(2013_December)_-_panoramio.jpg"
+    },
+    {
+      "path": "days[11].items[2].images[0]",
+      "file": "PhuketAirport02.jpg"
+    },
+    {
+      "path": "days[11].items[3].images[0]",
+      "file": "Aerial_view_phuket_international_airport.jpg"
+    },
+    {
+      "path": "info[0].image",
+      "file": "Suvarnabhumi_Airport,_Arrival_Hall.JPG"
+    },
+    {
+      "path": "info[1].image",
+      "file": "Sunrise,_Koh_Yao_Noi_(island),_Phang_Nga_Bay,_Thailand.jpg"
+    },
+    {
+      "path": "info[2].image",
+      "file": "Bangkok_Chatuchak_Market_1.jpg"
+    },
+    {
+      "path": "info[3].image",
+      "file": "Chao_Phraya_Express_Boat_Service,_Bangkok_(7053053911).jpg"
+    },
+    {
+      "path": "info[4].image",
+      "file": "Suvarnabhumi_Airport,_Hall,_Bangkok,_Thailand.jpg"
+    },
+    {
+      "path": "info[5].image",
+      "file": "Thai_Massage.jpg"
+    },
+    {
+      "path": "info[6].image",
+      "file": "Grand_Palace_Bangkok,_Thailand.jpg"
+    },
+    {
+      "path": "info[7].image",
+      "file": "Thailand_-_Khao_Lak_-_Beach_Resort_(16345629343).jpg"
+    }
+  ]
+}

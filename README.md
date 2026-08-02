@@ -168,11 +168,33 @@ photos do not appear: the URL is fine in a browser but returns HTML, a redirect 
 https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Maya_Bay.jpg/800px-Maya_Bay.jpg
 ```
 
-**Some hosts also demand a real User-Agent.** React Native's Android image loader announces
-itself as `okhttp/4.x`, and Wikimedia's User-Agent policy answers 403 to anything that
-generic. The symptom is distinctive: maps render fine, every photo silently fails. Every
-image request therefore carries the headers in `IMAGE_HEADERS` (`src/config.ts`) — change the
-contact URL there if you fork this.
+**Some hosts refuse the phone outright.** Wikimedia answers 403 to React Native's Android
+image loader, is not talked round by a polite `User-Agent`, and refuses image proxies too.
+The symptom is distinctive: maps render fine, every photo silently fails. Requests do carry
+the headers in `IMAGE_HEADERS` (`src/config.ts`), which satisfies hosts that only want an
+identifiable agent, but nothing on the client can fix a host that has decided to say no.
+
+Find out what your network allows before committing to a host:
+
+```bash
+node scripts/check-image-hosts.mjs
+```
+
+It fetches the same photo from six hosts under two agents — the `okhttp/4.x` that RN Android
+sends, and ours. Anything marked OK under `okhttp` will work on the phone.
+
+Then point the sample at whichever host won:
+
+```bash
+node scripts/set-image-host.mjs picsum      # always loads, generic stock imagery
+node scripts/set-image-host.mjs thumb       # Wikimedia CDN, pre-scaled
+node scripts/set-image-host.mjs filepath    # Wikimedia Special:FilePath
+node scripts/set-image-host.mjs weserv      # image proxy in front of Wikimedia
+node scripts/set-image-host.mjs local       # ./assets/photos/, hosted by you
+```
+
+Which photo belongs in which slot lives in `sample/image-manifest.json`, so switching hosts
+rewrites all 115 URLs without losing the curation or the captions.
 
 To check a file before you hand it to anyone:
 

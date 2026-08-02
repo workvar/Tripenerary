@@ -7,7 +7,14 @@ const isHttpUrl = (v: string): boolean => /^https?:\/\//i.test(v);
 const isRecord = (v: unknown): v is Record<string, unknown> =>
   typeof v === 'object' && v !== null;
 
-/** Images may be written as a bare URL string, or as `{ url, caption, credit }`. */
+/**
+ * Images may be written as a bare URL string, or as `{ url, caption, credit }`.
+ *
+ * Note there is deliberately no host rewriting here. An earlier version routed
+ * Wikimedia links through an image proxy to dodge their 403, but the proxy was
+ * refused too and turned a 403 into a 404 — a worse failure, further from the
+ * cause. Choosing a host is a data decision: see scripts/set-image-host.mjs.
+ */
 export function normImage(raw: unknown): TripImage | null {
   if (typeof raw === 'string') {
     const url = raw.trim();
