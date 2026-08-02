@@ -42,6 +42,14 @@ npx expo start
 Scan the QR code with **Expo Go** on the phone. That is enough to see everything except the
 embedded map previews, which need a native build (see below).
 
+The codebase is TypeScript in `strict` mode with `noUncheckedIndexedAccess`, and imports use
+the `@/*` alias for `src/*` (Metro reads it straight from `tsconfig.json`).
+
+```bash
+npm run typecheck   # tsc --noEmit
+npm run check       # typecheck, then validate the sample itinerary
+```
+
 ### Building an installable app
 
 ```bash
@@ -164,21 +172,28 @@ coordinates out of range, and image URLs that will not load on a phone.
 ## Project layout
 
 ```
-App.js                      splash, base screen, overlays
-src/config.js               storage keys, defaults, refresh interval, optional built-in URL
-src/theme.js                colours, spacing, type scale, elevation
-src/lib/dates.js            YYYY-MM-DD helpers, no timezone drift
-src/lib/maps.js             Google Maps URL building and native app handoff
-src/lib/fetchItinerary.js   share-link rewriting, fetch with timeout
-src/lib/normalize.js        validation and shaping of raw JSON
-src/lib/images.js           image field parsing
-src/lib/tripSummary.js      card summaries, live/upcoming/past status, ordering
-src/lib/storage.js          AsyncStorage wrapper, trip index, v1 migration
-src/hooks/useTripLibrary.js the whole library: add, remove, open, refresh, prefs
+index.ts                    entry point
+App.tsx                     splash, base screen, overlays
+tsconfig.json               strict config plus the @/* path alias
+src/types.ts                the whole domain model in one place
+src/config.ts               storage keys, defaults, refresh interval, optional built-in URL
+src/theme.ts                colours, spacing, type scale, elevation
+src/lib/dates.ts            YYYY-MM-DD helpers, no timezone drift
+src/lib/maps.ts             Google Maps URL building and native app handoff
+src/lib/fetchItinerary.ts   share-link rewriting, fetch with timeout
+src/lib/normalize.ts        parses `unknown` JSON into a typed Itinerary
+src/lib/images.ts           image field parsing
+src/lib/tripSummary.ts      card summaries, live/upcoming/past status, ordering
+src/lib/storage.ts          AsyncStorage wrapper, trip index, v1 migration
+src/hooks/useTripLibrary.ts the whole library: add, remove, open, refresh, prefs
 src/components/             TripCard, AddTripSheet, DateStrip, ScheduleItem, SmartImage, ...
 src/screens/                Splash, Landing, Trip, Settings, Info
-scripts/                    JSON validator, syntax checker
+scripts/                    standalone JSON validator
 ```
+
+`normalizeItinerary` is the single boundary between untrusted JSON and the app: it takes
+`unknown` and returns a fully populated `Itinerary`, so no screen ever guards against a
+missing field. Everything downstream of it is `readonly`.
 
 Trips added in an older build are migrated into the library automatically on first launch.
 

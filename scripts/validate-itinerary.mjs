@@ -98,6 +98,10 @@ const seenDates = new Set();
   });
 });
 
+(data.info || []).forEach((section, i) => {
+  if (section && section.image) checkImages(section.image, 'info[' + i + '].image');
+});
+
 const dayCount = (data.days || []).length;
 const itemCount = (data.days || []).reduce((n, d) => n + ((d.items || []).length), 0);
 const pinned = (data.days || []).reduce(

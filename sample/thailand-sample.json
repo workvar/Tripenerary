@@ -90,8 +90,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%2C%20Hall%2C%20Bangkok%2C%20Thailand.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%2C%20Arrival%20Hall.JPG?width=1200",
               "caption": "Suvarnabhumi arrivals hall"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%2C%20Hall%2C%20Bangkok%2C%20Thailand.jpg?width=1200",
+              "caption": "The main terminal concourse"
             }
           ]
         },
@@ -104,7 +108,13 @@
             "name": "Magic Food Point, Suvarnabhumi",
             "lat": 13.6889,
             "lng": 100.747
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai%20Food%20in%20street.JPG?width=1200",
+              "caption": "Thai food, cooked in front of you"
+            }
+          ]
         },
         {
           "time": "07:30",
@@ -115,7 +125,13 @@
             "name": "Phaya Thai Station",
             "lat": 13.757,
             "lng": 100.534
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20River%20Bangkok.jpg?width=1200",
+              "caption": "The Chao Phraya, the spine of the city"
+            }
+          ]
         },
         {
           "time": "09:00",
@@ -131,11 +147,11 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Pho%20reclining%20Buddha.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Pho%20reclining%20Buddha.jpg?width=1200",
               "caption": "The 46-metre Reclining Buddha"
             },
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Arun%20P1130114.JPG?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Arun%20P1130114.JPG?width=1200",
               "caption": "Riverside temple spires nearby"
             }
           ]
@@ -149,13 +165,25 @@
             "name": "Tha Tien Pier",
             "lat": 13.7433,
             "lng": 100.492
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat%20Thai%20kung%20Chang%20Khien%20street%20stall.jpg?width=1200",
+              "caption": "Phat thai from a street stall"
+            }
+          ]
         },
         {
           "time": "14:00",
           "title": "Hotel check-in and rest",
           "type": "hotel",
-          "description": "Standard check-in is 14:00. Take the afternoon completely off. A proper three-hour sleep sets up the rest of the trip."
+          "description": "Standard check-in is 14:00. Take the afternoon completely off. A proper three-hour sleep sets up the rest of the trip.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20-%20Wat%20Arun.JPG?width=1200",
+              "caption": "The riverside district"
+            }
+          ]
         },
         {
           "time": "18:30",
@@ -169,8 +197,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20of%20Chao%20Phraya%20River%20from%20Iconsiam%20at%20night%2C%20Bangkok.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20of%20Chao%20Phraya%20River%20from%20Iconsiam%20at%20night%2C%20Bangkok.jpg?width=1200",
               "caption": "The Chao Phraya after dark"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20Express%20Boat%20Service%2C%20Bangkok%20%287053053911%29.jpg?width=1200",
+              "caption": "River boats run late into the evening"
             }
           ]
         }
@@ -201,11 +233,11 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Grand%20Palace%20Wat%20Phra%20Kaew%20triple.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Grand%20Palace%20Wat%20Phra%20Kaew%20triple.jpg?width=1200",
               "caption": "Wat Phra Kaew inside the Grand Palace"
             },
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Palace%20Bangkok%2C%20Thailand.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Palace%20Bangkok%2C%20Thailand.jpg?width=1200",
               "caption": "Gilded chedis in the palace grounds"
             }
           ]
@@ -222,8 +254,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wat%20Arun%20from%20Chao%20Phraya%20River%20at%20sunset.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wat%20Arun%20from%20Chao%20Phraya%20River%20at%20sunset.jpg?width=1200",
               "caption": "Wat Arun at sunset from the river"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20Express%20Boat%20Service%2C%20Bangkok%20%287053053911%29.jpg?width=1200",
+              "caption": "The cross-river ferry"
             }
           ]
         },
@@ -231,7 +267,13 @@
           "time": "12:30",
           "title": "Lunch and a long break",
           "type": "rest",
-          "description": "Return to the hotel or find an air-conditioned spot. Midday heat and humidity in August is the real challenge, not the walking. Plan to be indoors 12:30 to 16:00 on all Bangkok days."
+          "description": "Return to the hotel or find an air-conditioned spot. Midday heat and humidity in August is the real challenge, not the walking. Plan to be indoors 12:30 to 16:00 on all Bangkok days.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pad%20Thai.JPG?width=1200",
+              "caption": "Lunch, then a long break"
+            }
+          ]
         },
         {
           "time": "16:30",
@@ -243,7 +285,17 @@
             "name": "Tha Chang Pier",
             "lat": 13.7522,
             "lng": 100.4893
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20canals%20Khlongs%20in%20the%20Thon%20Buri%20district%20-%20panoramio%20%2814%29.jpg?width=1200",
+              "caption": "Canals in the Thonburi district"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khlong%20Bang%20Luang%20Floating%20Market.jpg?width=1200",
+              "caption": "Khlong Bang Luang"
+            }
+          ]
         },
         {
           "time": "19:00",
@@ -257,8 +309,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinatown%20in%20Bangkok.JPG?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinatown%20in%20Bangkok.JPG?width=1200",
               "caption": "Yaowarat Road in Chinatown"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tom%20yum%20goong-01.jpg?width=1200",
+              "caption": "Tom yum goong"
             }
           ]
         }
@@ -287,8 +343,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chatuchak%20Weekend%20Market%20P1100759.JPG?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chatuchak%20Weekend%20Market%20P1100759.JPG?width=1200",
               "caption": "A quiet corner of Chatuchak"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Chatuchak%20Market%201.jpg?width=1200",
+              "caption": "Stalls run for acres"
             }
           ]
         },
@@ -301,7 +361,17 @@
             "name": "Klong Toey Pier",
             "lat": 13.708,
             "lng": 100.567
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wat%20Bang%20Nam%20Phueng%20Nok%201.jpg?width=1200",
+              "caption": "Wat Bang Nam Phueng, inside the Bang Krachao loop"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khlong%20Bang%20Chueak%20Nang%20canal.jpg?width=1200",
+              "caption": "Quiet canals off the river"
+            }
+          ]
         },
         {
           "time": "14:00",
@@ -312,13 +382,25 @@
             "name": "Bang Nam Pheung Floating Market",
             "lat": 13.6866,
             "lng": 100.5657
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Floating%20Market%2C%20Khlong%20Phasi%20Charoen%2006.23.jpg?width=1200",
+              "caption": "A Bangkok canal-side market"
+            }
+          ]
         },
         {
           "time": "17:00",
           "title": "Return and evening at leisure",
           "type": "rest",
-          "description": "Consider a Thai massage near the hotel, then an early night. Tomorrow is a full day trip."
+          "description": "Consider a Thai massage near the hotel, then an early night. Tomorrow is a full day trip.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Weekend%20market%20bangkok.jpg?width=1200",
+              "caption": "Evening at leisure"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chatuchak%20Weekend%20Market%20P1100759.JPG?width=1400"
@@ -338,7 +420,13 @@
           "title": "Depart Bangkok by private car",
           "type": "travel",
           "description": "Roughly two hours on Highway 7. Hire a car with driver for the day so it waits and brings you back.",
-          "cost": "2,500 to 3,500 THB return"
+          "cost": "2,500 to 3,500 THB return",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Songthaew%20on%20Koh%20Larn%2002.JPG?width=1200",
+              "caption": "Songthaews do the short hops"
+            }
+          ]
         },
         {
           "time": "09:45",
@@ -352,8 +440,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanctuary%20of%20Truth%20Pattaya.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanctuary%20of%20Truth%20Pattaya.jpg?width=1200",
               "caption": "The all-teak Sanctuary of Truth"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanctuary%20of%20Truth%201.jpg?width=1200",
+              "caption": "Carved entirely without nails"
             }
           ]
         },
@@ -366,7 +458,17 @@
             "name": "Bali Hai Pier",
             "lat": 12.9188,
             "lng": 100.8746
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Larn%2CThailand.jpg?width=1200",
+              "caption": "Koh Larn, the Coral Island"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20larn%20pattaya%20-%20panoramio.jpg?width=1200",
+              "caption": "Clear water a short ferry ride out"
+            }
+          ]
         },
         {
           "time": "15:30",
@@ -377,19 +479,41 @@
             "name": "Pattaya Viewpoint, Pratumnak Hill",
             "lat": 12.9153,
             "lng": 100.8672
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pattaya-Koh%20Larn%20ferry.JPG?width=1200",
+              "caption": "The ferry back to Pattaya"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20on%20Koh%20Larn%20-%20panoramio.jpg?width=1200",
+              "caption": "Sunset from the island"
+            }
+          ]
         },
         {
           "time": "17:00",
           "title": "Drive back to Bangkok",
           "type": "travel",
-          "description": "Roughly two hours. Aim to be back at the hotel by around 19:00."
+          "description": "Roughly two hours. Aim to be back at the hotel by around 19:00.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20River%20Bangkok.jpg?width=1200",
+              "caption": "Back into Bangkok for the night"
+            }
+          ]
         },
         {
           "time": "19:30",
           "title": "Dinner near the hotel",
           "type": "food",
-          "description": "Keep the last Bangkok evening simple, since tomorrow involves a flight."
+          "description": "Keep the last Bangkok evening simple, since tomorrow involves a flight.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tom%20Yum%20Soup.JPG?width=1200",
+              "caption": "Tom yum to finish the day"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanctuary%20of%20Truth%20Pattaya.jpg?width=1400"
@@ -409,7 +533,13 @@
           "time": "09:00",
           "title": "Relaxed morning and checkout",
           "type": "hotel",
-          "description": "No rush. Proper breakfast, finish packing, check out. Bags can be stored if needed."
+          "description": "No rush. Proper breakfast, finish packing, check out. Bags can be stored if needed.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20of%20Chao%20Phraya%20River%20from%20Iconsiam%20at%20night%2C%20Bangkok.jpg?width=1200",
+              "caption": "A last morning on the river"
+            }
+          ]
         },
         {
           "time": "11:00",
@@ -420,7 +550,13 @@
             "name": "Suvarnabhumi Airport",
             "lat": 13.69,
             "lng": 100.7501
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%20Departures%20Hall%20Bangkok%20Thailand.jpg?width=1200",
+              "caption": "Suvarnabhumi departures"
+            }
+          ]
         },
         {
           "time": "14:00",
@@ -436,7 +572,13 @@
             "name": "Phuket International Airport",
             "lat": 8.1132,
             "lng": 98.3169
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20phuket%20international%20airport.jpg?width=1200",
+              "caption": "Phuket International from the air"
+            }
+          ]
         },
         {
           "time": "16:00",
@@ -446,8 +588,8 @@
           "cost": "1,800 to 2,500 THB",
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1000",
-              "caption": "The long, calm beach at Khao Lak"
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/PhuketAirport02.jpg?width=1200",
+              "caption": "Phuket airport terminal"
             }
           ]
         },
@@ -460,7 +602,13 @@
             "name": "Khao Lak",
             "lat": 8.656,
             "lng": 98.245
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1200",
+              "caption": "The long, calm beach at Khao Lak"
+            }
+          ]
         },
         {
           "time": "19:00",
@@ -471,7 +619,13 @@
             "name": "Bang Niang Beach",
             "lat": 8.66,
             "lng": 98.242
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pad%20Thai%20en%20Bangkok%2C%20Tailandia%20%2823790424338%29.jpg?width=1200",
+              "caption": "First dinner on the Andaman coast"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1400"
@@ -498,7 +652,7 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak-Lam%20Ru%20National%20Park%2C%20Rainforest%2C%20Thailand.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak-Lam%20Ru%20National%20Park%2C%20Rainforest%2C%20Thailand.jpg?width=1200",
               "caption": "Khao Lak-Lam Ru rainforest"
             }
           ]
@@ -512,7 +666,17 @@
             "name": "Ton Chong Fa Waterfall",
             "lat": 8.681,
             "lng": 98.282
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20Daeng%20Waterfall.jpg?width=1200",
+              "caption": "A rainforest waterfall in southern Thailand"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Haew%20Suwat%20Waterfall%20Khao-Yai01.jpg?width=1200",
+              "caption": "Pools worth the short walk"
+            }
+          ]
         },
         {
           "time": "13:30",
@@ -523,13 +687,25 @@
             "name": "Nang Thong Beach",
             "lat": 8.637,
             "lng": 98.24
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai%20Food%20in%20street.JPG?width=1200",
+              "caption": "Lunch in Nang Thong"
+            }
+          ]
         },
         {
           "time": "15:00",
           "title": "Afternoon completely free",
           "type": "rest",
-          "description": "An intentionally empty block. Spa, pool, book, sleep. Khao Lak resorts are built for exactly this."
+          "description": "An intentionally empty block. Spa, pool, book, sleep. Khao Lak resorts are built for exactly this.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1200",
+              "caption": "The afternoon is yours"
+            }
+          ]
         },
         {
           "time": "18:30",
@@ -540,7 +716,17 @@
             "name": "Tsunami Memorial Police Boat 813",
             "lat": 8.6626,
             "lng": 98.2437
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak%20Police%20Boat%20813.jpg?width=1200",
+              "caption": "Police Boat 813, carried inland by the 2004 tsunami"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak%20Police%20Boat%20813%20Monument.jpg?width=1200",
+              "caption": "The memorial around the boat"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak-Lam%20Ru%20National%20Park%2C%20Rainforest%2C%20Thailand.jpg?width=1400"
@@ -565,7 +751,13 @@
             "name": "Ao Por Pier",
             "lat": 8.05,
             "lng": 98.46
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunrise%2C%20Koh%20Yao%20Noi%20%28island%29%2C%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1200",
+              "caption": "Sunrise over Phang Nga Bay"
+            }
+          ]
         },
         {
           "time": "09:30",
@@ -579,12 +771,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunrise%2C%20Koh%20Yao%20Noi%20%28island%29%2C%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1000",
-              "caption": "Sunrise over Phang Nga Bay"
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20Bond%20Felsen%20phang%20nga%20bay%20DSC02997.JPG?width=1200",
+              "caption": "Limestone karsts hide the hongs"
             },
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ko%20Tapu%20%28James%20Bond%29%20Island%20in%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1000",
-              "caption": "Ko Tapu, the James Bond island"
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/TH%20Phang%20Nga%20-%20James%20Bond%20Island.jpg?width=1200",
+              "caption": "Still water between the cliffs"
             }
           ]
         },
@@ -597,19 +789,41 @@
             "name": "Koh Panyee",
             "lat": 8.323,
             "lng": 98.506
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ko%20Tapu%20%28James%20Bond%29%20Island%20in%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1200",
+              "caption": "Ko Tapu, the James Bond island"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Isla%20Panyee%2C%20Phuket%2C%20Tailandia%2C%202013-08-20%2C%20DD%2009.JPG?width=1200",
+              "caption": "Ko Panyi, the stilt village"
+            }
+          ]
         },
         {
           "time": "15:30",
           "title": "Return to Khao Lak",
           "type": "travel",
-          "description": "Back at the resort by late afternoon."
+          "description": "Back at the resort by late afternoon.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1200",
+              "caption": "Back to Khao Lak by late afternoon"
+            }
+          ]
         },
         {
           "time": "19:00",
           "title": "Dinner at leisure",
           "type": "food",
-          "description": "Beachfront seafood at Bang Niang."
+          "description": "Beachfront seafood at Bang Niang.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tom%20yum%20goong-01.jpg?width=1200",
+              "caption": "Dinner at your own pace"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ko%20Tapu%20%28James%20Bond%29%20Island%20in%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1400"
@@ -628,14 +842,30 @@
           "time": "Morning",
           "title": "Nothing scheduled",
           "type": "rest",
-          "description": "Sleep late, take a long breakfast, and let the resort pool and the beach set the pace."
+          "description": "Sleep late, take a long breakfast, and let the resort pool and the beach set the pace.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1200",
+              "caption": "A day with nothing in it"
+            }
+          ]
         },
         {
           "time": "11:00",
           "title": "Optional Thai massage or spa",
           "type": "activity",
           "description": "A traditional Thai or oil massage runs 300 to 600 baht for an hour at a village spa, considerably more at a resort spa.",
-          "cost": "300 to 600 THB"
+          "cost": "300 to 600 THB",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai%20Massage.jpg?width=1200",
+              "caption": "Traditional Thai massage"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thaimassage.jpg?width=1200",
+              "caption": "An hour is usually enough"
+            }
+          ]
         },
         {
           "time": "13:00",
@@ -646,25 +876,49 @@
             "name": "Nang Thong Beach",
             "lat": 8.637,
             "lng": 98.24
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat%20Thai%20kung%20Chang%20Khien%20street%20stall.jpg?width=1200",
+              "caption": "A slow lunch in Nang Thong"
+            }
+          ]
         },
         {
           "time": "15:00",
           "title": "Beach or a gentle bike ride",
           "type": "activity",
-          "description": "The coastal road behind Bang Niang is flat and quiet. Bicycles rent for around 100 baht a day from shops along the strip."
+          "description": "The coastal road behind Bang Niang is flat and quiet. Bicycles rent for around 100 baht a day from shops along the strip.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak-Lam%20Ru%20National%20Park%2C%20Rainforest%2C%20Thailand.jpg?width=1200",
+              "caption": "Flat lanes behind the beach"
+            }
+          ]
         },
         {
           "time": "17:30",
           "title": "Sunset from a beachfront bar",
           "type": "food",
-          "description": "The west-facing beach makes every evening here a good one. Low tables on the sand, a cold drink, and no need to be anywhere."
+          "description": "The west-facing beach makes every evening here a good one. Low tables on the sand, a cold drink, and no need to be anywhere.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20at%20Promthep%20cape%2C%20Phuket%20island%2C%20Thailand.jpg?width=1200",
+              "caption": "Sunset on the Andaman coast"
+            }
+          ]
         },
         {
           "time": "19:30",
           "title": "Final Khao Lak dinner",
           "type": "food",
-          "description": "A quiet seafood dinner. Turtle Cafe and the Bang Niang beachfront grills are reliable choices."
+          "description": "A quiet seafood dinner. Turtle Cafe and the Bang Niang beachfront grills are reliable choices.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai%20Food%20in%20street.JPG?width=1200",
+              "caption": "The last Khao Lak dinner"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1400"
@@ -690,7 +944,13 @@
             "name": "Sarasin Bridge",
             "lat": 8.2,
             "lng": 98.296
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phuket%20airport%20%282013%20December%29%20-%20panoramio.jpg?width=1200",
+              "caption": "South past the airport to Phuket"
+            }
+          ]
         },
         {
           "time": "12:00",
@@ -701,7 +961,13 @@
             "name": "Kata Beach",
             "lat": 7.82,
             "lng": 98.298
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Karon%20Beach%2C%20Phuket.jpg?width=1200",
+              "caption": "Karon, on the quieter west coast"
+            }
+          ]
         },
         {
           "time": "14:00",
@@ -710,8 +976,12 @@
           "description": "Settle in. Mind the flags: rip currents are genuine here in August.",
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1000",
-              "caption": "Kata Beach on the west coast"
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1200",
+              "caption": "Kata Beach"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Freedom%20beach%20-%20Karon%2C%20Phuket%2C%20Thailand%20-%20panoramio.jpg?width=1200",
+              "caption": "Freedom Beach, a boat ride away"
             }
           ]
         },
@@ -724,7 +994,17 @@
             "name": "Promthep Cape",
             "lat": 7.762,
             "lng": 98.305
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phuket%20Promthep%20Cape.jpg?width=1200",
+              "caption": "Promthep Cape"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lighthouse%20Promthep%20Cape%2005.jpg?width=1200",
+              "caption": "The lighthouse at the headland"
+            }
+          ]
         },
         {
           "time": "19:30",
@@ -735,7 +1015,13 @@
             "name": "Rawai Beach",
             "lat": 7.774,
             "lng": 98.326
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tom%20Yum%20Soup.JPG?width=1200",
+              "caption": "Dinner at Rawai or Nai Harn"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1400"
@@ -760,7 +1046,13 @@
             "name": "Rassada Pier",
             "lat": 7.879,
             "lng": 98.409
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phi%20Phi%20Island%20Tour%20%284297215540%29.jpg?width=1200",
+              "caption": "Out to the Phi Phi islands"
+            }
+          ]
         },
         {
           "time": "09:00",
@@ -774,11 +1066,11 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maya%20Bay.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maya%20Bay.jpg?width=1200",
               "caption": "Maya Bay"
             },
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20View%20from%20Maya%20Bay%2C%20Phi%20Phi%20Le.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20View%20from%20Maya%20Bay%2C%20Phi%20Phi%20Le.jpg?width=1200",
               "caption": "The cliffs above the beach"
             }
           ]
@@ -795,8 +1087,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Phi%20Phi%20Leh.JPG?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Phi%20Phi%20Leh.JPG?width=1200",
               "caption": "Limestone walls around Phi Phi Leh"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20boulder%20of%20the%20Loh%20Samah%20bay%20at%20Koh%20Phi%20Phi%20Leh.jpg?width=1200",
+              "caption": "Loh Samah bay"
             }
           ]
         },
@@ -809,7 +1105,13 @@
             "name": "Ton Sai Bay, Phi Phi Don",
             "lat": 7.737,
             "lng": 98.771
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Phi%20Phi%20Islands.JPG?width=1200",
+              "caption": "Lunch on Phi Phi Don"
+            }
+          ]
         },
         {
           "time": "14:00",
@@ -820,19 +1122,41 @@
             "name": "Bamboo Island",
             "lat": 7.793,
             "lng": 98.8
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bamboo%20Island.jpg?width=1200",
+              "caption": "Bamboo Island"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bamboo%20Island%20P1120579.JPG?width=1200",
+              "caption": "Shallow water all the way out"
+            }
+          ]
         },
         {
           "time": "16:30",
           "title": "Return to Phuket",
           "type": "travel",
-          "description": "Back at Rassada Pier around 17:30."
+          "description": "Back at Rassada Pier around 17:30.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Longtail%20Boat%20At%20Maya%20Bay%2C%20Krabi%2C%20Thailand.jpg?width=1200",
+              "caption": "Longtails head back at the end of the day"
+            }
+          ]
         },
         {
           "time": "19:30",
           "title": "Quiet dinner near the hotel",
           "type": "food",
-          "description": "A full-day boat trip is tiring. Keep the evening simple."
+          "description": "A full-day boat trip is tiring. Keep the evening simple.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pad%20Thai%20en%20Bangkok%2C%20Tailandia%20%2823790424338%29.jpg?width=1200",
+              "caption": "A quiet dinner near the hotel"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Maya%20Bay.jpg?width=1400"
@@ -857,13 +1181,29 @@
             "name": "Phuket Old Town",
             "lat": 7.884,
             "lng": 98.388
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thalang%20Road%2C%20Old%20Phuket%20Town.jpg?width=1200",
+              "caption": "Thalang Road, Phuket Old Town"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phuket%20Old%20Town%203.jpg?width=1200",
+              "caption": "Sino-Portuguese shophouses"
+            }
+          ]
         },
         {
           "time": "11:30",
           "title": "Coffee and a slow lunch",
           "type": "food",
-          "description": "The Old Town has Phuket's best cafe culture. Try a bowl of Hokkien mee, the island's signature noodle dish."
+          "description": "The Old Town has Phuket's best cafe culture. Try a bowl of Hokkien mee, the island's signature noodle dish.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phuket%20Town%20Thailand-Murals-in-Thalang-Road-01.jpg?width=1200",
+              "caption": "Murals along the old streets"
+            }
+          ]
         },
         {
           "time": "14:00",
@@ -877,8 +1217,12 @@
           },
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Big%20Buddha%2C%20Phuket.jpg?width=1000",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Big%20Buddha%2C%20Phuket.jpg?width=1200",
               "caption": "The 45-metre Big Buddha above Chalong"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Big%20Buddha%20-%20Phuket%2C%20Thailand.JPG?width=1200",
+              "caption": "Marble over a steel frame"
             }
           ]
         },
@@ -891,19 +1235,41 @@
             "name": "Karon Viewpoint",
             "lat": 7.797,
             "lng": 98.303
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phuket%20Viewpoint.jpg?width=1200",
+              "caption": "Kata Noi, Kata and Karon from the viewpoint"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Karon%20Beach%2C%20Phuket.jpg?width=1200",
+              "caption": "Karon Beach below"
+            }
+          ]
         },
         {
           "time": "18:00",
           "title": "Farewell dinner",
           "type": "food",
-          "description": "Consider a cliffside restaurant near Kata Noi or Nai Harn for the last evening."
+          "description": "Consider a cliffside restaurant near Kata Noi or Nai Harn for the last evening.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tom%20yum%20goong-01.jpg?width=1200",
+              "caption": "The farewell dinner"
+            }
+          ]
         },
         {
           "time": "21:00",
           "title": "Pack and prepare",
           "type": "note",
-          "description": "Confirm the airport transfer for the morning."
+          "description": "Confirm the airport transfer for the morning.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1200",
+              "caption": "One last look at the coast"
+            }
+          ]
         }
       ],
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Big%20Buddha%2C%20Phuket.jpg?width=1400"
@@ -921,7 +1287,13 @@
           "time": "07:30",
           "title": "Breakfast and checkout",
           "type": "hotel",
-          "description": "Standard checkout is 11:00 or 12:00, comfortably ahead of the transfer."
+          "description": "Standard checkout is 11:00 or 12:00, comfortably ahead of the transfer.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Karon%20Beach%2C%20Phuket.jpg?width=1200",
+              "caption": "Breakfast, then checkout"
+            }
+          ]
         },
         {
           "time": "08:45",
@@ -932,13 +1304,25 @@
             "name": "Phuket International Airport",
             "lat": 8.1132,
             "lng": 98.3169
-          }
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phuket%20airport%20%282013%20December%29%20-%20panoramio.jpg?width=1200",
+              "caption": "The road north to the airport"
+            }
+          ]
         },
         {
           "time": "10:15",
           "title": "Arrive at the airport",
           "type": "note",
-          "description": "Just over two hours before departure. Phuket airport is compact and check-in is usually quick, but shoulder-season crowds at the international terminal can be uneven."
+          "description": "Just over two hours before departure. Phuket airport is compact and check-in is usually quick, but shoulder-season crowds at the international terminal can be uneven.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/PhuketAirport02.jpg?width=1200",
+              "caption": "Phuket International"
+            }
+          ]
         },
         {
           "time": "12:30",
@@ -947,8 +1331,8 @@
           "description": "Flight home to India.",
           "images": [
             {
-              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%20Departures%20Hall%20Bangkok%20Thailand.jpg?width=1000",
-              "caption": "Departures at Phuket"
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20phuket%20international%20airport.jpg?width=1200",
+              "caption": "Wheels up"
             }
           ]
         }
@@ -959,35 +1343,43 @@
   "info": [
     {
       "title": "Visa",
-      "body": "Indian passport holders receive visa-free entry to Thailand for stays up to 60 days under the current arrangement. Verify close to departure, as this policy has been revised several times. Carry proof of onward travel and hotel bookings."
+      "body": "Indian passport holders receive visa-free entry to Thailand for stays up to 60 days under the current arrangement. Verify close to departure, as this policy has been revised several times. Carry proof of onward travel and hotel bookings.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%2C%20Arrival%20Hall.JPG?width=1000"
     },
     {
       "title": "Weather in late August",
-      "body": "The Andaman coast is in the monsoon tail. Expect clear mornings and short intense afternoon showers of an hour or two. Temperatures 26 to 32 degrees with high humidity. Pack a light rain shell rather than an umbrella, and quick-dry clothing."
+      "body": "The Andaman coast is in the monsoon tail. Expect clear mornings and short intense afternoon showers of an hour or two. Temperatures 26 to 32 degrees with high humidity. Pack a light rain shell rather than an umbrella, and quick-dry clothing.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunrise%2C%20Koh%20Yao%20Noi%20%28island%29%2C%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1000"
     },
     {
       "title": "Money",
-      "body": "The Thai baht is the only accepted currency. Avoid airport exchange counters. SuperRich and Vasu in Bangkok offer the best rates. Cards are widely accepted in hotels and larger restaurants, but street food, markets and longtail boats are cash only."
+      "body": "The Thai baht is the only accepted currency. Avoid airport exchange counters. SuperRich and Vasu in Bangkok offer the best rates. Cards are widely accepted in hotels and larger restaurants, but street food, markets and longtail boats are cash only.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Chatuchak%20Market%201.jpg?width=1000"
     },
     {
       "title": "Getting around",
-      "body": "Grab works across Bangkok and Phuket and is the simplest option. In Bangkok the BTS Skytrain and MRT metro are faster than any road transport during peak hours."
+      "body": "Grab works across Bangkok and Phuket and is the simplest option. In Bangkok the BTS Skytrain and MRT metro are faster than any road transport during peak hours.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20Express%20Boat%20Service%2C%20Bangkok%20%287053053911%29.jpg?width=1000"
     },
     {
       "title": "SIM and connectivity",
-      "body": "Buy a tourist SIM at Suvarnabhumi arrivals. AIS, TrueMove and dtac offer 8 to 15 day unlimited data packages for 300 to 600 baht. eSIM options are available if the phones support it."
+      "body": "Buy a tourist SIM at Suvarnabhumi arrivals. AIS, TrueMove and dtac offer 8 to 15 day unlimited data packages for 300 to 600 baht. eSIM options are available if the phones support it.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%2C%20Hall%2C%20Bangkok%2C%20Thailand.jpg?width=1000"
     },
     {
       "title": "Health",
-      "body": "No mandatory vaccinations. Drink bottled water only. Mosquito repellent is worth carrying, particularly in Khao Lak and in the evenings. Travel insurance covering the boat excursions is strongly recommended."
+      "body": "No mandatory vaccinations. Drink bottled water only. Mosquito repellent is worth carrying, particularly in Khao Lak and in the evenings. Travel insurance covering the boat excursions is strongly recommended.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai%20Massage.jpg?width=1000"
     },
     {
       "title": "Temple etiquette",
-      "body": "Shoulders and knees covered at all temples for both men and women. Shoes removed before entering any temple building. Never point feet toward a Buddha image. Women should not touch or hand items directly to monks."
+      "body": "Shoulders and knees covered at all temples for both men and women. Shoes removed before entering any temple building. Never point feet toward a Buddha image. Women should not touch or hand items directly to monks.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Palace%20Bangkok%2C%20Thailand.jpg?width=1000"
     },
     {
       "title": "Pacing",
-      "body": "Every day has at most one committed activity. Afternoons from roughly 13:00 to 16:00 are deliberately unstructured. Skipping anything here costs nothing."
+      "body": "Every day has at most one committed activity. Afternoons from roughly 13:00 to 16:00 are deliberately unstructured. Skipping anything here costs nothing.",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1000"
     }
   ],
   "contacts": [
