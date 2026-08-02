@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trip Companion Itinerary",
+  "type": "object",
+  "required": ["trip", "days"],
+  "properties": {
+    "version": { "type": "integer", "default": 1 },
+    "trip": {
+      "type": "object",
+      "required": ["title", "startDate", "endDate"],
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "startDate": { "type": "string", "description": "YYYY-MM-DD" },
+        "endDate": { "type": "string", "description": "YYYY-MM-DD" },
+        "timezone": { "type": "string", "description": "IANA tz, e.g. Asia/Bangkok" },
+        "currency": { "type": "string" },
+        "travellers": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "stays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "city": { "type": "string" },
+          "address": { "type": "string" },
+          "checkIn": { "type": "string" },
+          "checkOut": { "type": "string" },
+          "phone": { "type": "string" },
+          "confirmation": { "type": "string" },
+          "notes": { "type": "string" },
+          "location": { "$ref": "#/definitions/location" }
+        }
+      }
+    },
+    "days": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date"],
+        "properties": {
+          "date": { "type": "string", "description": "YYYY-MM-DD" },
+          "base": { "type": "string", "description": "City or region label shown in the date strip" },
+          "title": { "type": "string" },
+          "summary": { "type": "string" },
+          "stayId": { "type": "string", "description": "id of an entry in stays[]" },
+          "notes": { "type": "array", "items": { "type": "string" } },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["title"],
+              "properties": {
+                "time": { "type": "string", "description": "HH:MM, or free text like 'Morning'" },
+                "endTime": { "type": "string" },
+                "title": { "type": "string" },
+                "type": {
+                  "type": "string",
+                  "enum": ["sight", "food", "travel", "flight", "hotel", "activity", "rest", "note"],
+                  "default": "activity"
+                },
+                "description": { "type": "string" },
+                "cost": { "type": "string" },
+                "booking": {
+                  "type": "object",
+                  "properties": {
+                    "ref": { "type": "string" },
+                    "url": { "type": "string" }
+                  }
+                },
+                "location": { "$ref": "#/definitions/location" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "info": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "body"],
+        "properties": {
+          "title": { "type": "string" },
+          "body": { "type": "string" }
+        }
+      }
+    },
+    "contacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "value"],
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "type": { "type": "string", "enum": ["phone", "url", "text"], "default": "text" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "location": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "placeId": { "type": "string", "description": "Google Place ID, optional" },
+        "googleMapsUrl": { "type": "string", "description": "Overrides generated URL if present" }
+      }
+    }
+  }
+}
