@@ -1,18 +1,27 @@
-# Trip Companion
+# Tripenerary
 
-A React Native (Expo) app that turns a JSON file into a day-by-day travel companion.
+A React Native (Expo) app that turns JSON files into day-by-day travel companions.
 Built for Android first, installs on iPhone too.
 
 Nothing about any particular trip is hard-coded. You paste a link to a JSON file, the app
 downloads it, saves a copy on the phone, and renders it. Change the JSON, pull to refresh,
-and the phone updates.
+and the phone updates. You can keep several trips side by side.
 
 ## What it does
 
+- **Splash screen** – animated compass mark while the trip library loads from disk.
+- **Home screen** – one photo card per trip, sorted so whatever is happening now comes first.
+  A badge shows "Day 3 · Now", "In 12 days" or "8 days ago". The **+** button adds another
+  trip from a link; a long press removes one.
+- **Daily refresh** – every trip re-downloads itself once a day when the app opens or returns
+  to the foreground. The **↻** button on the home screen forces it immediately, and each trip
+  has its own refresh button in Settings.
 - **Top date bar** – scrollable strip of every day in the trip. Today is marked with a dot,
   and a "Jump to today" bar appears when you scroll away from it.
-- **Day view** – day number, base city, title, summary, and a vertical timeline of the day's
-  schedule with times, descriptions and costs.
+- **Day view** – optional hero photo, day number, base city, title and summary, then the
+  schedule as full-width blocks: time on top, everything else underneath. No empty gutter.
+- **Photos** – trips, days, schedule items and stays can all carry images. They fade in over a
+  placeholder and are skipped silently if a link is dead. Turn them off in Settings.
 - **Maps** – every location shows a small embedded map preview plus two buttons: open the place
   in Google Maps, or get directions to it. On Android it opens the native Google Maps app.
 - **Stay card** – which hotel you are checked into on that day, with dates, confirmation number
@@ -20,8 +29,8 @@ and the phone updates.
 - **Local notes** – per-day tips.
 - **Trip info screen** – emergency numbers, all stays, and practical information (visa, money,
   weather, etc.).
-- **Works offline** – the last downloaded itinerary is cached. If the phone has no signal the
-  app still opens the full trip and quietly says it is showing the saved copy.
+- **Works offline** – every downloaded itinerary is cached separately. If the phone has no
+  signal the app still opens the full trip and quietly says it is showing the saved copy.
 
 ## Getting started
 
@@ -73,8 +82,8 @@ Any URL that returns raw JSON works. These share links are rewritten automatical
 A public GitHub Gist is the easiest option: create it, paste the URL, done. Editing the Gist
 and pulling to refresh in the app updates the trip.
 
-You can also set `DEFAULT_SOURCE_URL` in `src/config.js` so the app ships pre-pointed at your
-file and your parents never see the setup screen.
+You can also set `DEFAULT_SOURCE_URL` in `src/config.js` so the app ships with that trip
+already in the library and your parents never see an empty home screen.
 
 ## Writing the JSON
 
@@ -119,31 +128,59 @@ Notes on the fields:
   `googleMapsUrl` to override the generated link entirely.
 - `days[].stayId` points at an entry in `stays[]` and drives the hotel card.
 
+### Photos
+
+Four optional image fields, all plain https URLs:
+
+| Field | Where it shows |
+|---|---|
+| `trip.coverImage` | behind the trip card on the home screen |
+| `days[].image` | hero banner at the top of that day |
+| `days[].items[].images` | inside the schedule block, swipeable if there is more than one |
+| `stays[].image` | top of the stay card |
+
+Each accepts a bare string or an object, and `items[].images` also accepts an array:
+
+```json
+"images": [
+  "https://example.com/beach.jpg",
+  { "url": "https://example.com/temple.jpg", "caption": "Wat Arun at sunset" }
+]
+```
+
+Anything that is not an `https://` URL is ignored, and an image that fails to load leaves no
+gap in the layout. Point at a host that allows hotlinking; the sample uses Wikimedia Commons
+`Special:FilePath` links, which resize on request via `?width=1400`.
+
 Check a file before publishing it:
 
 ```bash
 node scripts/validate-itinerary.mjs sample/thailand-sample.json
 ```
 
-It reports missing titles, bad dates, duplicate days, `stayId` values that point nowhere, and
-coordinates out of range.
+It reports missing titles, bad dates, duplicate days, `stayId` values that point nowhere,
+coordinates out of range, and image URLs that will not load on a phone.
 
 ## Project layout
 
 ```
-App.js                      screen switching
-src/config.js               storage keys, defaults, optional built-in URL
-src/theme.js                colours, spacing, type scale
+App.js                      splash, base screen, overlays
+src/config.js               storage keys, defaults, refresh interval, optional built-in URL
+src/theme.js                colours, spacing, type scale, elevation
 src/lib/dates.js            YYYY-MM-DD helpers, no timezone drift
 src/lib/maps.js             Google Maps URL building and native app handoff
 src/lib/fetchItinerary.js   share-link rewriting, fetch with timeout
 src/lib/normalize.js        validation and shaping of raw JSON
-src/lib/storage.js          AsyncStorage wrapper
-src/hooks/useItinerary.js   cache-first load, refresh, prefs
-src/components/             DateStrip, ScheduleItem, StayCard, MapPreview, LocationRow, ...
-src/screens/                Onboarding, Trip, Settings, Info
+src/lib/images.js           image field parsing
+src/lib/tripSummary.js      card summaries, live/upcoming/past status, ordering
+src/lib/storage.js          AsyncStorage wrapper, trip index, v1 migration
+src/hooks/useTripLibrary.js the whole library: add, remove, open, refresh, prefs
+src/components/             TripCard, AddTripSheet, DateStrip, ScheduleItem, SmartImage, ...
+src/screens/                Splash, Landing, Trip, Settings, Info
 scripts/                    JSON validator, syntax checker
 ```
+
+Trips added in an older build are migrated into the library automatically on first launch.
 
 ## Handing it to your parents
 

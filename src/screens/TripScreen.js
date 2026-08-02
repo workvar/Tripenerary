@@ -1,8 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import {
-  ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text,
-  TouchableOpacity, View,
-} from 'react-native';
+import { ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateStrip from '../components/DateStrip';
 import DayHeader from '../components/DayHeader';
@@ -10,7 +7,9 @@ import ScheduleItem from '../components/ScheduleItem';
 import StayCard from '../components/StayCard';
 import NoteList from '../components/NoteList';
 import Message from '../components/Message';
-import { colors, spacing, type } from '../theme';
+import Press from '../components/Press';
+import { IconButton, SectionTitle } from '../components/ui';
+import { colors, radius, spacing, type } from '../theme';
 import { todayKey } from '../lib/dates';
 
 function pickInitialDate(days, today) {
@@ -19,8 +18,8 @@ function pickInitialDate(days, today) {
   return days[days.length - 1].date;
 }
 
-export default function TripScreen({ trip, onOpenSettings, onOpenInfo }) {
-  const { data, refreshing, error, refresh, prefs } = trip;
+export default function TripScreen({ data, status, prefs, onRefresh, onBack, onOpenSettings, onOpenInfo }) {
+  const { refreshing, error } = status;
   const today = todayKey(data && data.trip.timezone);
   const days = data ? data.days : [];
 
@@ -29,57 +28,57 @@ export default function TripScreen({ trip, onOpenSettings, onOpenInfo }) {
     if (days.length && !selected) setSelected(pickInitialDate(days, today));
   }, [days.length, selected, today]);
 
-  const day = useMemo(
-    () => days.find((d) => d.date === selected) || days[0],
-    [days, selected]
-  );
+  const day = useMemo(() => days.find((d) => d.date === selected) || days[0], [days, selected]);
   const stay = day && data.staysById ? data.staysById[day.stayId] : null;
   const showPreview = prefs.showMapPreview;
+  const showImages = prefs.showImages;
+  const hasToday = days.some((d) => d.date === today);
   const isOnToday = day && day.date === today;
 
   return (
     <SafeAreaView style={s.safe} edges={['top']}>
       <View style={s.header}>
         <View style={s.headerRow}>
+          <IconButton glyph={'\u{2039}'} tone="dark" onPress={onBack} size={34} />
           <View style={s.headerText}>
-            <Text style={s.title} numberOfLines={1}>
-              {data ? data.trip.title : 'Trip Companion'}
-            </Text>
+            <Text style={s.title} numberOfLines={1}>{data ? data.trip.title : 'Trip'}</Text>
             {data && data.trip.subtitle ? (
               <Text style={s.subtitle} numberOfLines={1}>{data.trip.subtitle}</Text>
             ) : null}
           </View>
-          <TouchableOpacity onPress={onOpenInfo} style={s.iconBtn} hitSlop={8}>
-            <Text style={s.iconText}>{'ℹ'}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onOpenSettings} style={s.iconBtn} hitSlop={8}>
-            <Text style={s.iconText}>{'⚙'}</Text>
-          </TouchableOpacity>
+          <IconButton glyph={'\u{21BB}'} tone="dark" onPress={onRefresh} spinning={refreshing} size={34} />
+          <View style={s.gap} />
+          <IconButton glyph={'\u{2139}'} tone="dark" onPress={onOpenInfo} size={34} />
+          <View style={s.gap} />
+          <IconButton glyph={'\u{2699}'} tone="dark" onPress={onOpenSettings} size={34} />
         </View>
 
         {days.length ? (
-          <DateStrip
-            days={days}
-            selectedDate={day ? day.date : null}
-            todayDate={today}
-            onSelect={setSelected}
-          />
+          <DateStrip days={days} selectedDate={day ? day.date : null} todayDate={today} onSelect={setSelected} />
         ) : null}
       </View>
 
-      {!isOnToday && days.some((d) => d.date === today) ? (
-        <TouchableOpacity style={s.todayBar} onPress={() => setSelected(today)}>
-          <Text style={s.todayBarText}>Jump to today</Text>
-        </TouchableOpacity>
+      {!isOnToday && hasToday ? (
+        <Press style={s.todayBar} onPress={() => setSelected(today)} scaleTo={0.99}>
+          <Text style={s.todayBarText}>{'Jump to today  \u{2193}'}</Text>
+        </Press>
       ) : null}
 
       <ScrollView
         contentContainerStyle={s.scroll}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={colors.primary} />
+        }
       >
         {error && !data ? (
-          <Message tone="error" title="Could not load the itinerary" body={error}
-            actionTitle="Open settings" onAction={onOpenSettings} />
+          <Message
+            tone="error"
+            title="Could not load the itinerary"
+            body={error}
+            actionTitle="Open settings"
+            onAction={onOpenSettings}
+          />
         ) : null}
 
         {!data && !error ? (
@@ -88,29 +87,45 @@ export default function TripScreen({ trip, onOpenSettings, onOpenInfo }) {
 
         {day ? (
           <>
-            <DayHeader day={day} totalDays={days.length} todayDate={today} />
+            <DayHeader day={day} totalDays={days.length} todayDate={today} showImages={showImages} />
 
             {error ? (
-              <View style={s.warn}><Text style={s.warnText}>{'Showing the saved copy. ' + error}</Text></View>
+              <View style={s.warn}>
+                <Text style={s.warnText}>{'Showing the saved copy. ' + error}</Text>
+              </View>
             ) : null}
 
             <View style={s.schedule}>
               {day.items.length === 0 ? (
-                <Text style={s.empty}>Nothing scheduled. Enjoy the day.</Text>
+                <View style={s.emptyDay}>
+                  <Text style={s.emptyGlyph}>{'\u{1F334}'}</Text>
+                  <Text style={s.empty}>Nothing scheduled. Enjoy the day.</Text>
+                </View>
               ) : (
-                day.items.map((item, i) => (
-                  <ScheduleItem
-                    key={item.key}
-                    item={item}
-                    isLast={i === day.items.length - 1}
-                    showPreview={showPreview}
-                  />
-                ))
+                <>
+                  <SectionTitle>Schedule</SectionTitle>
+                  {day.items.map((item) => (
+                    <ScheduleItem
+                      key={item.key}
+                      item={item}
+                      showPreview={showPreview}
+                      showImages={showImages}
+                    />
+                  ))}
+                </>
               )}
             </View>
 
-            {stay ? <View style={s.block}><StayCard stay={stay} showPreview={showPreview} /></View> : null}
-            {day.notes.length ? <View style={s.block}><NoteList notes={day.notes} /></View> : null}
+            {stay ? (
+              <View style={s.block}>
+                <SectionTitle>Stay</SectionTitle>
+                <StayCard stay={stay} showPreview={showPreview} showImages={showImages} />
+              </View>
+            ) : null}
+
+            {day.notes.length ? (
+              <View style={s.block}><NoteList notes={day.notes} /></View>
+            ) : null}
           </>
         ) : null}
       </ScrollView>
@@ -122,24 +137,34 @@ const s = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
   header: { backgroundColor: colors.primary },
   headerRow: {
-    flexDirection: 'row', alignItems: 'center',
-    paddingHorizontal: spacing.lg, paddingTop: spacing.md, paddingBottom: spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.md,
   },
-  headerText: { flex: 1 },
-  title: { fontSize: 17, fontWeight: '800', color: '#fff' },
-  subtitle: { fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 1 },
-  iconBtn: { paddingHorizontal: spacing.sm },
-  iconText: { fontSize: 19, color: '#fff' },
-  todayBar: { backgroundColor: colors.accent, paddingVertical: 7, alignItems: 'center' },
-  todayBarText: { color: '#fff', fontWeight: '700', fontSize: 12.5 },
+  headerText: { flex: 1, marginLeft: spacing.md, marginRight: spacing.sm },
+  title: { fontSize: 17, fontWeight: '800', letterSpacing: -0.3, color: '#fff' },
+  subtitle: { fontSize: 12, color: colors.onDarkMuted, marginTop: 1 },
+  gap: { width: 6 },
+
+  todayBar: { backgroundColor: colors.accent, paddingVertical: 9, alignItems: 'center' },
+  todayBarText: { color: '#fff', fontWeight: '700', fontSize: 13, letterSpacing: 0.2 },
+
   scroll: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xxl * 2 },
   center: { paddingVertical: spacing.xxl * 2 },
-  schedule: { marginTop: spacing.xl },
-  block: { marginTop: spacing.sm, marginBottom: spacing.lg },
-  empty: { ...type.body, color: colors.textMuted, fontStyle: 'italic' },
+  schedule: { marginTop: spacing.sm },
+  block: { marginTop: spacing.md, marginBottom: spacing.lg },
+
+  emptyDay: { alignItems: 'center', paddingVertical: spacing.xxl, gap: spacing.sm },
+  emptyGlyph: { fontSize: 30 },
+  empty: { ...type.body, color: colors.textMuted },
+
   warn: {
-    marginTop: spacing.md, padding: spacing.md,
-    backgroundColor: '#FDECEA', borderRadius: 8,
+    marginTop: spacing.md,
+    padding: spacing.md,
+    backgroundColor: colors.dangerSoft,
+    borderRadius: radius.sm,
   },
   warnText: { ...type.small, color: '#8B2F26' },
 });

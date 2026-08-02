@@ -1,9 +1,11 @@
 import React from 'react';
-import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Card } from '../components/ui';
+import ScreenHeader from '../components/ScreenHeader';
+import SmartImage from '../components/SmartImage';
 import Message from '../components/Message';
-import { colors, spacing, type } from '../theme';
+import { Card, SectionTitle } from '../components/ui';
+import { colors, radius, spacing, type, hairlineWidth } from '../theme';
 import { formatDate } from '../lib/dates';
 
 function contactHref(c) {
@@ -12,25 +14,22 @@ function contactHref(c) {
   return null;
 }
 
-export default function InfoScreen({ trip, onClose }) {
-  const data = trip.data;
-
+export default function InfoScreen({ data, showImages, onClose }) {
   return (
     <SafeAreaView style={s.safe} edges={['top']}>
-      <View style={s.header}>
-        <Text style={s.headerTitle}>Trip info</Text>
-        <TouchableOpacity onPress={onClose} hitSlop={10}>
-          <Text style={s.close}>Done</Text>
-        </TouchableOpacity>
-      </View>
+      <ScreenHeader title="Trip info" onClose={onClose} />
 
-      <ScrollView contentContainerStyle={s.scroll}>
+      <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
         {!data ? (
-          <Message title="No itinerary loaded" body="Add a link in settings first." />
+          <Message title="No itinerary loaded" body="Add a trip from the home screen first." />
         ) : (
           <>
-            <Card>
+            <Card style={s.hero}>
+              {showImages && data.trip.coverImage ? (
+                <SmartImage uri={data.trip.coverImage} style={s.cover} radiusValue={radius.md} />
+              ) : null}
               <Text style={s.title}>{data.trip.title}</Text>
+              {data.trip.subtitle ? <Text style={s.subtitle}>{data.trip.subtitle}</Text> : null}
               <Text style={s.dates}>
                 {formatDate(data.trip.startDate, { day: 'numeric', month: 'long' }) + ' to ' +
                  formatDate(data.trip.endDate, { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -42,7 +41,7 @@ export default function InfoScreen({ trip, onClose }) {
 
             {data.contacts.length ? (
               <>
-                <Text style={s.section}>USEFUL NUMBERS</Text>
+                <SectionTitle>Useful numbers</SectionTitle>
                 <Card>
                   {data.contacts.map((c, i) => {
                     const href = contactHref(c);
@@ -64,13 +63,14 @@ export default function InfoScreen({ trip, onClose }) {
 
             {data.stays.length ? (
               <>
-                <Text style={s.section}>STAYS</Text>
+                <SectionTitle>Stays</SectionTitle>
                 {data.stays.map((st) => (
                   <Card key={st.id} style={s.spaced}>
+                    {showImages && st.image ? (
+                      <SmartImage uri={st.image} style={s.thumb} radiusValue={radius.sm} />
+                    ) : null}
                     <Text style={s.infoTitle}>{st.name}</Text>
-                    <Text style={s.infoBody}>
-                      {[st.city, st.address].filter(Boolean).join(' · ')}
-                    </Text>
+                    <Text style={s.infoBody}>{[st.city, st.address].filter(Boolean).join(' · ')}</Text>
                     <Text style={s.meta}>
                       {formatDate(st.checkIn, { day: 'numeric', month: 'short' }) + ' to ' +
                        formatDate(st.checkOut, { day: 'numeric', month: 'short' })}
@@ -82,9 +82,12 @@ export default function InfoScreen({ trip, onClose }) {
 
             {data.info.length ? (
               <>
-                <Text style={s.section}>PRACTICAL INFORMATION</Text>
+                <SectionTitle>Practical information</SectionTitle>
                 {data.info.map((i, idx) => (
                   <Card key={idx} style={s.spaced}>
+                    {showImages && i.image ? (
+                      <SmartImage uri={i.image} style={s.thumb} radiusValue={radius.sm} />
+                    ) : null}
                     <Text style={s.infoTitle}>{i.title}</Text>
                     <Text style={s.infoBody}>{i.body}</Text>
                   </Card>
@@ -100,23 +103,20 @@ export default function InfoScreen({ trip, onClose }) {
 
 const s = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
-  header: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    paddingHorizontal: spacing.lg, paddingVertical: spacing.md, backgroundColor: colors.primary,
-  },
-  headerTitle: { fontSize: 17, fontWeight: '800', color: '#fff' },
-  close: { color: '#fff', fontWeight: '700', fontSize: 15 },
   scroll: { padding: spacing.lg, paddingBottom: spacing.xxl * 2 },
-  title: { ...type.h2 },
-  dates: { ...type.small, marginTop: spacing.xs },
+  hero: { padding: spacing.lg },
+  cover: { height: 160, marginBottom: spacing.lg },
+  thumb: { height: 120, marginBottom: spacing.md },
+  title: { ...type.h1 },
+  subtitle: { ...type.small, marginTop: 3 },
+  dates: { ...type.small, marginTop: spacing.sm, fontWeight: '600', color: colors.text },
   meta: { ...type.small, marginTop: spacing.xs },
-  section: { ...type.label, marginTop: spacing.xl, marginBottom: spacing.sm },
   spaced: { marginBottom: spacing.md },
   infoTitle: { ...type.h3, marginBottom: spacing.xs },
-  infoBody: { ...type.body },
+  infoBody: { ...type.body, color: colors.textMuted },
   contact: { paddingVertical: spacing.md },
-  contactBorder: { borderTopWidth: 1, borderTopColor: colors.border },
-  contactLabel: { ...type.small },
-  contactValue: { ...type.h3, marginTop: 2 },
-  link: { color: colors.primary, textDecorationLine: 'underline' },
+  contactBorder: { borderTopWidth: hairlineWidth, borderTopColor: colors.borderSoft },
+  contactLabel: { ...type.caption },
+  contactValue: { ...type.h3, marginTop: 3 },
+  link: { color: colors.primary },
 });

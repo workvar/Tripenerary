@@ -7,6 +7,12 @@ import { readFileSync } from 'node:fs';
 const TYPES = ['sight', 'food', 'travel', 'flight', 'hotel', 'activity', 'rest', 'note'];
 const isKey = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v || ''));
 
+// Images may be a URL string, an { url } object, or an array of either.
+function imageUrls(value) {
+  const list = Array.isArray(value) ? value : value ? [value] : [];
+  return list.map((v) => (typeof v === 'string' ? v : v && (v.url || v.src || v.uri)) || '');
+}
+
 const file = process.argv[2];
 if (!file) {
   console.error('Usage: node scripts/validate-itinerary.mjs <file.json>');
@@ -23,6 +29,16 @@ try {
 
 const errors = [];
 const warnings = [];
+let imageCount = 0;
+
+function checkImages(value, at) {
+  imageUrls(value).forEach((url, i) => {
+    if (!url) warnings.push(at + '[' + i + '] has no usable url and will be skipped.');
+    else if (!/^https:\/\//i.test(url)) {
+      warnings.push(at + '[' + i + '] is not an https URL; it will not load on device.');
+    } else imageCount += 1;
+  });
+}
 
 if (!data.trip || typeof data.trip !== 'object') errors.push('Missing "trip" object.');
 else {
@@ -31,6 +47,8 @@ else {
     if (!isKey(data.trip[k])) errors.push('trip.' + k + ' must be YYYY-MM-DD.');
   });
   if (!data.trip.timezone) warnings.push('trip.timezone missing; "today" will use the device timezone.');
+  if (data.trip.coverImage) checkImages(data.trip.coverImage, 'trip.coverImage');
+  else warnings.push('trip.coverImage missing; the home screen card will have no photo.');
 }
 
 if (!Array.isArray(data.days) || data.days.length === 0) {
@@ -41,6 +59,7 @@ const stayIds = new Set((data.stays || []).map((s) => s.id));
 (data.stays || []).forEach((s, i) => {
   if (!s.id) errors.push('stays[' + i + '] is missing "id".');
   if (!s.name) errors.push('stays[' + i + '] is missing "name".');
+  if (s.image) checkImages(s.image, 'stays[' + i + '].image');
 });
 
 const seenDates = new Set();
@@ -53,6 +72,7 @@ const seenDates = new Set();
   if (d.stayId && !stayIds.has(d.stayId)) {
     errors.push(at + '.stayId "' + d.stayId + '" does not match any stays[].id.');
   }
+  if (d.image) checkImages(d.image, at + '.image');
   if (!Array.isArray(d.items)) {
     warnings.push(at + ' has no "items" array.');
     return;
@@ -63,6 +83,7 @@ const seenDates = new Set();
     if (it.type && !TYPES.includes(it.type)) {
       warnings.push(iat + '.type "' + it.type + '" is unknown, will render as "activity".');
     }
+    if (it.images || it.image) checkImages(it.images || it.image, iat + '.images');
     const loc = it.location;
     if (loc) {
       const hasLat = typeof loc.lat === 'number';
@@ -90,4 +111,7 @@ if (errors.length) {
   console.log('\n' + errors.length + ' error(s). Not loadable.');
   process.exit(1);
 }
-console.log('\nOK  ' + dayCount + ' days, ' + itemCount + ' items, ' + pinned + ' mapped locations, ' + stayIds.size + ' stays.');
+console.log(
+  '\nOK  ' + dayCount + ' days, ' + itemCount + ' items, ' + pinned + ' mapped locations, ' +
+  stayIds.size + ' stays, ' + imageCount + ' images.'
+);

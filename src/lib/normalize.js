@@ -1,4 +1,5 @@
 import { isValidKey } from './dates';
+import { normImages, normImageUrl } from './images';
 
 const ITEM_TYPES = [
   'sight', 'food', 'travel', 'flight', 'hotel', 'activity', 'rest', 'note',
@@ -41,6 +42,7 @@ function normItem(raw, index) {
       ? { ref: str(raw.booking.ref), url: str(raw.booking.url) }
       : null,
     location: normLocation(raw.location),
+    images: normImages(raw.images || raw.image),
   };
 }
 
@@ -56,6 +58,7 @@ function normStay(raw) {
     confirmation: str(raw.confirmation),
     notes: str(raw.notes),
     location: normLocation(raw.location),
+    image: normImageUrl(raw.image),
   };
 }
 
@@ -69,6 +72,7 @@ function normDay(raw, index) {
     stayId: str(raw.stayId),
     notes: arr(raw.notes).map(str).filter(Boolean),
     items: arr(raw.items).map(normItem),
+    image: normImageUrl(raw.image),
   };
 }
 
@@ -106,13 +110,14 @@ export function normalizeItinerary(input) {
       timezone: str(input.trip.timezone),
       currency: str(input.trip.currency),
       travellers: arr(input.trip.travellers).map(str).filter(Boolean),
+      coverImage: normImageUrl(input.trip.coverImage || input.trip.image),
     },
     stays,
     staysById,
     days,
     info: arr(input.info)
       .filter((i) => i && i.title && i.body)
-      .map((i) => ({ title: str(i.title), body: str(i.body) })),
+      .map((i) => ({ title: str(i.title), body: str(i.body), image: normImageUrl(i.image) })),
     contacts: arr(input.contacts)
       .filter((c) => c && c.label && c.value)
       .map((c) => ({ label: str(c.label), value: str(c.value), type: str(c.type) || 'text' })),

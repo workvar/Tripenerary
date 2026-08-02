@@ -1,104 +1,124 @@
-import React, { useState } from 'react';
-import {
-  ActivityIndicator, Alert, ScrollView, StyleSheet, Switch, Text,
-  TextInput, TouchableOpacity, View,
-} from 'react-native';
+import React from 'react';
+import { Alert, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button, Card, Divider } from '../components/ui';
+import ScreenHeader from '../components/ScreenHeader';
+import Press from '../components/Press';
+import { Button, Card, Divider, SectionTitle } from '../components/ui';
 import { colors, radius, spacing, type } from '../theme';
 import { formatSyncedAt } from '../lib/dates';
 
-function Row({ label, hint, value, onValueChange }) {
+function ToggleRow({ label, hint, value, onValueChange }) {
   return (
     <View style={s.row}>
       <View style={s.rowText}>
         <Text style={s.rowLabel}>{label}</Text>
         {hint ? <Text style={s.rowHint}>{hint}</Text> : null}
       </View>
-      <Switch value={value} onValueChange={onValueChange} trackColor={{ true: colors.primary }} />
+      <Switch
+        value={value}
+        onValueChange={onValueChange}
+        trackColor={{ true: colors.primary, false: colors.border }}
+        thumbColor="#fff"
+      />
     </View>
   );
 }
 
-export default function SettingsScreen({ trip, onClose }) {
-  const { sourceUrl, syncedAt, prefs, setSource, updatePrefs, reset, refreshing } = trip;
-  const [draft, setDraft] = useState(sourceUrl || '');
-  const [status, setStatus] = useState(null);
+function TripRow({ trip, busy, onRefresh, onRemove }) {
+  return (
+    <View style={s.tripRow}>
+      <View style={s.tripText}>
+        <Text style={s.tripTitle} numberOfLines={1}>{trip.title || 'Untitled trip'}</Text>
+        <Text style={s.tripUrl} numberOfLines={1}>{trip.url || 'No link'}</Text>
+        <Text style={s.tripMeta}>{'Synced ' + formatSyncedAt(trip.syncedAt)}</Text>
+      </View>
+      <Press onPress={onRefresh} style={s.tripAction} scaleTo={0.9}>
+        <Text style={s.tripActionText}>{busy ? '…' : '\u{21BB}'}</Text>
+      </Press>
+      <Press onPress={onRemove} style={[s.tripAction, s.tripRemove]} scaleTo={0.9}>
+        <Text style={[s.tripActionText, s.tripRemoveText]}>{'\u{2715}'}</Text>
+      </Press>
+    </View>
+  );
+}
 
-  const load = async () => {
-    setStatus(null);
-    const res = await setSource(draft);
-    if (res.ok) {
-      setStatus({ ok: true, text: 'Itinerary loaded and saved for offline use.' });
-    } else {
-      setStatus({ ok: false, text: res.error });
-    }
+export default function SettingsScreen({ library, onClose }) {
+  const { trips, status, prefs, updatePrefs, refreshAll, refreshTrip, removeTrip, resetAll } = library;
+  const anyRefreshing = Object.values(status).some((v) => v && v.refreshing);
+
+  const confirmRemove = (trip) => {
+    Alert.alert(trip.title || 'Remove trip', 'Remove this trip and its offline copy?', [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Remove', style: 'destructive', onPress: () => removeTrip(trip.id) },
+    ]);
   };
 
   const confirmReset = () => {
-    Alert.alert('Clear saved data?', 'This removes the link and the offline copy.', [
+    Alert.alert('Clear everything?', 'This removes all trips, their offline copies and your settings.', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Clear', style: 'destructive', onPress: () => { reset(); setDraft(''); } },
+      { text: 'Clear', style: 'destructive', onPress: resetAll },
     ]);
   };
 
   return (
     <SafeAreaView style={s.safe} edges={['top']}>
-      <View style={s.header}>
-        <Text style={s.headerTitle}>Settings</Text>
-        <TouchableOpacity onPress={onClose} hitSlop={10}>
-          <Text style={s.close}>Done</Text>
-        </TouchableOpacity>
-      </View>
+      <ScreenHeader title="Settings" onClose={onClose} />
 
-      <ScrollView contentContainerStyle={s.scroll} keyboardShouldPersistTaps="handled">
+      <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
+        <SectionTitle style={s.firstSection}>Display</SectionTitle>
         <Card>
-          <Text style={s.label}>ITINERARY LINK</Text>
-          <Text style={s.help}>
-            Paste a link to a JSON file. GitHub, Gist, Google Drive and Dropbox share links are
-            converted to direct links automatically.
-          </Text>
-          <TextInput
-            value={draft}
-            onChangeText={setDraft}
-            placeholder="https://example.com/my-trip.json"
-            placeholderTextColor={colors.textMuted}
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="url"
-            style={s.input}
-            multiline
+          <ToggleRow
+            label="Show photos"
+            hint="Day headers, place photos and stay pictures."
+            value={prefs.showImages}
+            onValueChange={(v) => updatePrefs({ showImages: v })}
           />
-          <View style={s.actions}>
-            <Button title={refreshing ? 'Loading...' : 'Load itinerary'} onPress={load} disabled={refreshing} />
-          </View>
-          {refreshing ? <ActivityIndicator style={s.spinner} color={colors.primary} /> : null}
-          {status ? (
-            <Text style={[s.status, status.ok ? s.ok : s.bad]}>{status.text}</Text>
-          ) : null}
           <Divider />
-          <Text style={s.meta}>{'Last synced: ' + formatSyncedAt(syncedAt)}</Text>
-        </Card>
-
-        <Card style={s.card}>
-          <Text style={s.label}>DISPLAY</Text>
-          <Row
+          <ToggleRow
             label="Show map previews"
             hint="Small embedded map under each location. Turn off to save data."
             value={prefs.showMapPreview}
             onValueChange={(v) => updatePrefs({ showMapPreview: v })}
           />
-          <Divider />
-          <Row
-            label="Refresh on launch"
-            hint="Check the link for updates each time the app opens."
+        </Card>
+
+        <SectionTitle>Syncing</SectionTitle>
+        <Card>
+          <ToggleRow
+            label="Refresh daily"
+            hint="Each trip is re-downloaded once a day when the app opens."
             value={prefs.autoRefreshOnLaunch}
             onValueChange={(v) => updatePrefs({ autoRefreshOnLaunch: v })}
           />
+          <Divider />
+          <Button
+            title={anyRefreshing ? 'Refreshing…' : 'Refresh all trips now'}
+            onPress={refreshAll}
+            loading={anyRefreshing}
+          />
         </Card>
 
-        <View style={s.card}>
-          <Button title="Clear saved data" variant="ghost" onPress={confirmReset} />
+        <SectionTitle>{'Trips (' + trips.length + ')'}</SectionTitle>
+        {trips.length === 0 ? (
+          <Card flat><Text style={s.emptyText}>No trips added yet.</Text></Card>
+        ) : (
+          <Card style={s.tripCard}>
+            {trips.map((t, i) => (
+              <View key={t.id}>
+                {i > 0 ? <Divider /> : null}
+                <TripRow
+                  trip={t}
+                  busy={status[t.id] && status[t.id].refreshing}
+                  onRefresh={() => refreshTrip(t.id)}
+                  onRemove={() => confirmRemove(t)}
+                />
+              </View>
+            ))}
+          </Card>
+        )}
+
+        <View style={s.danger}>
+          <Button title="Clear all saved data" variant="danger" onPress={confirmReset} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -107,30 +127,29 @@ export default function SettingsScreen({ trip, onClose }) {
 
 const s = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
-  header: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    paddingHorizontal: spacing.lg, paddingVertical: spacing.md,
-    backgroundColor: colors.primary,
-  },
-  headerTitle: { fontSize: 17, fontWeight: '800', color: '#fff' },
-  close: { color: '#fff', fontWeight: '700', fontSize: 15 },
   scroll: { padding: spacing.lg, paddingBottom: spacing.xxl * 2 },
-  card: { marginTop: spacing.lg },
-  label: { ...type.label, marginBottom: spacing.sm },
-  help: { ...type.small, lineHeight: 18, marginBottom: spacing.md },
-  input: {
-    borderWidth: 1, borderColor: colors.border, borderRadius: radius.sm,
-    paddingHorizontal: spacing.md, paddingVertical: spacing.md,
-    ...type.body, minHeight: 56, backgroundColor: '#FBFAF7',
-  },
-  actions: { marginTop: spacing.md },
-  spinner: { marginTop: spacing.md },
-  status: { ...type.small, marginTop: spacing.md },
-  ok: { color: colors.primary },
-  bad: { color: colors.danger },
-  meta: { ...type.small },
+  firstSection: { marginTop: 0 },
+
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, paddingVertical: spacing.xs },
   rowText: { flex: 1 },
   rowLabel: { ...type.h3 },
-  rowHint: { ...type.small, marginTop: 2, lineHeight: 17 },
+  rowHint: { ...type.small, marginTop: 2, lineHeight: 18 },
+
+  tripCard: { paddingVertical: spacing.sm },
+  tripRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, paddingVertical: spacing.sm },
+  tripText: { flex: 1 },
+  tripTitle: { ...type.h3 },
+  tripUrl: { ...type.caption, marginTop: 2 },
+  tripMeta: { ...type.caption, color: colors.textFaint, marginTop: 1 },
+  tripAction: {
+    width: 34, height: 34, borderRadius: 17,
+    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: colors.primarySoft,
+  },
+  tripActionText: { fontSize: 14, fontWeight: '700', color: colors.primary },
+  tripRemove: { backgroundColor: colors.dangerSoft },
+  tripRemoveText: { color: colors.danger },
+
+  emptyText: { ...type.small },
+  danger: { marginTop: spacing.xxl },
 });

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Linking, Text, View, StyleSheet } from 'react-native';
-import { colors, radius, spacing, type } from '../theme';
 import LocationRow from './LocationRow';
+import ImageStrip from './ImageStrip';
+import { colors, radius, spacing, type, elevation, hairlineWidth } from '../theme';
 
 const ICONS = {
   sight: '\u{1F5FA}',
@@ -14,34 +15,56 @@ const ICONS = {
   note: '\u{1F4CC}',
 };
 
-export default function ScheduleItem({ item, isLast, showPreview }) {
+const LABELS = {
+  sight: 'Sight',
+  food: 'Food',
+  travel: 'Travel',
+  flight: 'Flight',
+  hotel: 'Hotel',
+  activity: 'Activity',
+  rest: 'Rest',
+  note: 'Note',
+};
+
+// Full-bleed block: time header on top, everything else stacked beneath it.
+// No left rail, so nothing is wasted on an empty gutter.
+export default function ScheduleItem({ item, showPreview, showImages }) {
+  const timeLabel = item.time || 'Any time';
+  const booking = item.booking && (item.booking.ref || item.booking.url) ? item.booking : null;
+
   return (
-    <View style={s.row}>
-      <View style={s.rail}>
-        <Text style={s.time}>{item.time || ' '}</Text>
-        <View style={s.markerWrap}>
-          <View style={s.marker} />
-          {!isLast ? <View style={s.line} /> : null}
+    <View style={s.block}>
+      <View style={s.timeRow}>
+        <View style={s.dot} />
+        <Text style={s.time}>{timeLabel}</Text>
+        {item.endTime ? <Text style={s.endTime}>{'– ' + item.endTime}</Text> : null}
+        <View style={s.spacer} />
+        <View style={s.typeChip}>
+          <Text style={s.typeGlyph}>{ICONS[item.type] || ICONS.activity}</Text>
+          <Text style={s.typeText}>{LABELS[item.type] || LABELS.activity}</Text>
         </View>
       </View>
 
-      <View style={s.body}>
-        <View style={s.titleRow}>
-          <Text style={s.icon}>{ICONS[item.type] || ICONS.activity}</Text>
-          <Text style={s.title}>{item.title}</Text>
-        </View>
-
-        {item.endTime ? <Text style={s.until}>{'until ' + item.endTime}</Text> : null}
+      <View style={s.card}>
+        <Text style={s.title}>{item.title}</Text>
         {item.description ? <Text style={s.desc}>{item.description}</Text> : null}
-        {item.cost ? <Text style={s.cost}>{item.cost}</Text> : null}
 
-        {item.booking && (item.booking.ref || item.booking.url) ? (
-          <Text
-            style={[s.cost, item.booking.url && s.link]}
-            onPress={() => item.booking.url && Linking.openURL(item.booking.url)}
-          >
-            {'Booking' + (item.booking.ref ? ': ' + item.booking.ref : '')}
-          </Text>
+        {showImages ? <ImageStrip images={item.images} height={170} /> : null}
+
+        {item.cost || booking ? (
+          <View style={s.metaRow}>
+            {item.cost ? (
+              <View style={s.costChip}><Text style={s.costText}>{item.cost}</Text></View>
+            ) : null}
+            {booking ? (
+              <Text
+                style={[s.booking, booking.url && s.link]}
+                onPress={booking.url ? () => Linking.openURL(booking.url) : undefined}
+              >
+                {'Booking' + (booking.ref ? ' · ' + booking.ref : '')}
+              </Text>
+            ) : null}
+          </View>
         ) : null}
 
         <LocationRow location={item.location} showPreview={showPreview} />
@@ -51,18 +74,44 @@ export default function ScheduleItem({ item, isLast, showPreview }) {
 }
 
 const s = StyleSheet.create({
-  row: { flexDirection: 'row', gap: spacing.md },
-  rail: { width: 52, alignItems: 'flex-end' },
-  time: { fontSize: 12.5, fontWeight: '800', color: colors.primary },
-  markerWrap: { position: 'absolute', right: -spacing.md + 3, top: 3, alignItems: 'center', bottom: 0 },
-  marker: { width: 9, height: 9, borderRadius: 5, backgroundColor: colors.accent },
-  line: { flex: 1, width: 2, backgroundColor: colors.border, marginTop: 2 },
-  body: { flex: 1, paddingBottom: spacing.xl, marginLeft: spacing.sm },
-  titleRow: { flexDirection: 'row', gap: spacing.sm, alignItems: 'flex-start' },
-  icon: { fontSize: 14, marginTop: 1 },
-  title: { ...type.h3, flex: 1 },
-  until: { ...type.small, marginTop: 2 },
-  desc: { ...type.body, marginTop: spacing.xs },
-  cost: { ...type.small, marginTop: spacing.xs, fontWeight: '700', color: colors.accent },
+  block: { marginBottom: spacing.lg },
+
+  timeRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.sm, paddingLeft: 2 },
+  dot: { width: 6, height: 6, borderRadius: 3, backgroundColor: colors.accent, marginRight: spacing.sm },
+  time: { fontSize: 13.5, fontWeight: '800', letterSpacing: 0.2, color: colors.primary },
+  endTime: { fontSize: 13, fontWeight: '600', color: colors.textFaint, marginLeft: 5 },
+  spacer: { flex: 1 },
+  typeChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 9,
+    paddingVertical: 3,
+    borderRadius: radius.pill,
+    backgroundColor: colors.surfaceSunken,
+  },
+  typeGlyph: { fontSize: 11 },
+  typeText: { fontSize: 11, fontWeight: '700', color: colors.textMuted, letterSpacing: 0.1 },
+
+  card: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    borderWidth: hairlineWidth,
+    borderColor: colors.borderSoft,
+    padding: spacing.lg,
+    ...elevation.sm,
+  },
+  title: { ...type.h2 },
+  desc: { ...type.body, color: colors.textMuted, marginTop: spacing.sm },
+
+  metaRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, marginTop: spacing.md, flexWrap: 'wrap' },
+  costChip: {
+    backgroundColor: colors.accentSoft,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: radius.xs,
+  },
+  costText: { fontSize: 12.5, fontWeight: '800', color: colors.accent },
+  booking: { ...type.small, fontWeight: '700', color: colors.primary },
   link: { textDecorationLine: 'underline' },
 });

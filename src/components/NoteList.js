@@ -8,7 +8,10 @@ export default function NoteList({ notes }) {
     <View style={s.wrap}>
       <Text style={s.title}>LOCAL NOTES</Text>
       {notes.map((n, i) => (
-        <Text key={i} style={s.note}>{'•  ' + n}</Text>
+        <View key={i} style={s.row}>
+          <View style={s.bullet} />
+          <Text style={s.note}>{n}</Text>
+        </View>
       ))}
     </View>
   );
@@ -16,13 +19,13 @@ export default function NoteList({ notes }) {
 
 const s = StyleSheet.create({
   wrap: {
-    backgroundColor: '#FAF1E7',
-    borderLeftWidth: 3,
-    borderLeftColor: colors.accent,
-    borderRadius: radius.sm,
+    backgroundColor: colors.accentSoft,
+    borderRadius: radius.lg,
     padding: spacing.lg,
-    gap: spacing.sm,
+    gap: spacing.md,
   },
   title: { ...type.label },
-  note: { ...type.body, color: '#5B4636' },
+  row: { flexDirection: 'row', gap: spacing.md },
+  bullet: { width: 5, height: 5, borderRadius: 3, backgroundColor: colors.accent, marginTop: 8 },
+  note: { ...type.body, color: '#5B4636', flex: 1 },
 });

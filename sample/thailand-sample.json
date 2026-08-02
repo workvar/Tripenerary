@@ -7,7 +7,11 @@
     "endDate": "2026-09-02",
     "timezone": "Asia/Bangkok",
     "currency": "THB",
-    "travellers": ["Mum", "Dad"]
+    "travellers": [
+      "Mum",
+      "Dad"
+    ],
+    "coverImage": "https://commons.wikimedia.org/wiki/Special:FilePath/Wat%20Arun%20from%20Chao%20Phraya%20River%20at%20sunset.jpg?width=1600"
   },
   "stays": [
     {
@@ -20,7 +24,12 @@
       "phone": "",
       "confirmation": "",
       "notes": "Booked for the 22nd with a note about the 04:00 arrival and luggage storage. Ask about paid early check-in on arrival.",
-      "location": { "name": "Bangkok Riverside", "lat": 13.7225, "lng": 100.5140 }
+      "location": {
+        "name": "Bangkok Riverside",
+        "lat": 13.7225,
+        "lng": 100.514
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20of%20Chao%20Phraya%20River%20from%20Iconsiam%20at%20night%2C%20Bangkok.jpg?width=1000"
     },
     {
       "id": "khaolak",
@@ -32,7 +41,12 @@
       "phone": "",
       "confirmation": "",
       "notes": "Confirm the airport-to-Khao Lak cab the day before so a driver is waiting.",
-      "location": { "name": "Bang Niang Beach, Khao Lak", "lat": 8.6560, "lng": 98.2450 }
+      "location": {
+        "name": "Bang Niang Beach, Khao Lak",
+        "lat": 8.656,
+        "lng": 98.245
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1000"
     },
     {
       "id": "phuket",
@@ -44,7 +58,12 @@
       "phone": "",
       "confirmation": "",
       "notes": "West coast bases, all quieter than Patong. Grab is much cheaper than island taxis.",
-      "location": { "name": "Kata Beach, Phuket", "lat": 7.8200, "lng": 98.2980 }
+      "location": {
+        "name": "Kata Beach, Phuket",
+        "lat": 7.82,
+        "lng": 98.298
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1000"
     }
   ],
   "days": [
@@ -64,21 +83,39 @@
           "title": "Arrival at Suvarnabhumi Airport",
           "type": "flight",
           "description": "Land, clear immigration and collect baggage. Queues are short at this hour. Expect to be out of the terminal by 05:15.",
-          "location": { "name": "Suvarnabhumi Airport", "lat": 13.6900, "lng": 100.7501 }
+          "location": {
+            "name": "Suvarnabhumi Airport",
+            "lat": 13.69,
+            "lng": 100.7501
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%2C%20Hall%2C%20Bangkok%2C%20Thailand.jpg?width=1000",
+              "caption": "Suvarnabhumi arrivals hall"
+            }
+          ]
         },
         {
           "time": "05:30",
           "title": "Airport breakfast and freshening up",
           "type": "food",
           "description": "Magic Food Point on Level 1 is the staff canteen: cheap, clean and open early. Miracle Lounge in arrivals has pay-per-use showers, worth it after a night flight.",
-          "location": { "name": "Magic Food Point, Suvarnabhumi", "lat": 13.6889, "lng": 100.7470 }
+          "location": {
+            "name": "Magic Food Point, Suvarnabhumi",
+            "lat": 13.6889,
+            "lng": 100.747
+          }
         },
         {
           "time": "07:30",
           "title": "Transfer into the city",
           "type": "travel",
           "description": "Airport Rail Link to Phaya Thai, or a metered taxi. Traffic before 08:00 is manageable. Head to the hotel and request luggage storage.",
-          "location": { "name": "Phaya Thai Station", "lat": 13.7570, "lng": 100.5340 }
+          "location": {
+            "name": "Phaya Thai Station",
+            "lat": 13.757,
+            "lng": 100.534
+          }
         },
         {
           "time": "09:00",
@@ -86,14 +123,33 @@
           "type": "sight",
           "description": "Calmer than the Grand Palace and opens at 08:00. The 46-metre Reclining Buddha is arresting. The on-site massage school offers an hour-long treatment for a fraction of hotel spa prices.",
           "cost": "300 THB entry",
-          "location": { "name": "Wat Pho", "lat": 13.7465, "lng": 100.4927, "address": "2 Sanamchai Road, Phra Nakhon, Bangkok" }
+          "location": {
+            "name": "Wat Pho",
+            "lat": 13.7465,
+            "lng": 100.4927,
+            "address": "2 Sanamchai Road, Phra Nakhon, Bangkok"
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Pho%20reclining%20Buddha.jpg?width=1000",
+              "caption": "The 46-metre Reclining Buddha"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Arun%20P1130114.JPG?width=1000",
+              "caption": "Riverside temple spires nearby"
+            }
+          ]
         },
         {
           "time": "12:30",
           "title": "Lunch at Tha Tien",
           "type": "food",
           "description": "The riverside pier area next to Wat Pho. Try boat noodle soup or pad kra pao.",
-          "location": { "name": "Tha Tien Pier", "lat": 13.7433, "lng": 100.4920 }
+          "location": {
+            "name": "Tha Tien Pier",
+            "lat": 13.7433,
+            "lng": 100.492
+          }
         },
         {
           "time": "14:00",
@@ -106,9 +162,20 @@
           "title": "Chao Phraya river dinner cruise",
           "type": "activity",
           "description": "A slow, seated introduction to the city with no walking. Book a cruise departing from Asiatique or River City Pier.",
-          "location": { "name": "Asiatique The Riverfront", "lat": 13.7043, "lng": 100.5029 }
+          "location": {
+            "name": "Asiatique The Riverfront",
+            "lat": 13.7043,
+            "lng": 100.5029
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20of%20Chao%20Phraya%20River%20from%20Iconsiam%20at%20night%2C%20Bangkok.jpg?width=1000",
+              "caption": "The Chao Phraya after dark"
+            }
+          ]
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Pho%20reclining%20Buddha.jpg?width=1400"
     },
     {
       "date": "2026-08-23",
@@ -127,14 +194,38 @@
           "type": "sight",
           "description": "Arrive at opening. By 10:00 the complex fills with tour groups. Allow two hours.",
           "cost": "500 THB entry",
-          "location": { "name": "Grand Palace", "lat": 13.7500, "lng": 100.4913 }
+          "location": {
+            "name": "Grand Palace",
+            "lat": 13.75,
+            "lng": 100.4913
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Grand%20Palace%20Wat%20Phra%20Kaew%20triple.jpg?width=1000",
+              "caption": "Wat Phra Kaew inside the Grand Palace"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Palace%20Bangkok%2C%20Thailand.jpg?width=1000",
+              "caption": "Gilded chedis in the palace grounds"
+            }
+          ]
         },
         {
           "time": "10:30",
           "title": "Wat Arun by river ferry",
           "type": "sight",
           "description": "The cross-river ferry from Tha Tien costs a few baht and takes four minutes. The steep upper stairs are optional.",
-          "location": { "name": "Wat Arun", "lat": 13.7437, "lng": 100.4889 }
+          "location": {
+            "name": "Wat Arun",
+            "lat": 13.7437,
+            "lng": 100.4889
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wat%20Arun%20from%20Chao%20Phraya%20River%20at%20sunset.jpg?width=1000",
+              "caption": "Wat Arun at sunset from the river"
+            }
+          ]
         },
         {
           "time": "12:30",
@@ -148,16 +239,31 @@
           "type": "activity",
           "description": "Stilt houses and waterside temples on the western bank. A private longtail hired at Tha Tien or Chang Pier is far better than a shared tour.",
           "cost": "~1,500 THB per hour",
-          "location": { "name": "Tha Chang Pier", "lat": 13.7522, "lng": 100.4893 }
+          "location": {
+            "name": "Tha Chang Pier",
+            "lat": 13.7522,
+            "lng": 100.4893
+          }
         },
         {
           "time": "19:00",
           "title": "Dinner in Chinatown, Yaowarat",
           "type": "food",
           "description": "Yaowarat Road comes alive after dark and the seafood stalls set up around 18:00. The side streets are just as good and considerably calmer.",
-          "location": { "name": "Yaowarat Road", "lat": 13.7400, "lng": 100.5100 }
+          "location": {
+            "name": "Yaowarat Road",
+            "lat": 13.74,
+            "lng": 100.51
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinatown%20in%20Bangkok.JPG?width=1000",
+              "caption": "Yaowarat Road in Chinatown"
+            }
+          ]
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Grand%20Palace%20Wat%20Phra%20Kaew%20triple.jpg?width=1400"
     },
     {
       "date": "2026-08-24",
@@ -174,21 +280,39 @@
           "title": "Chatuchak Weekend Market",
           "type": "sight",
           "description": "Over 15,000 stalls, so treat it as a wander rather than a mission. Sections 2 to 4 hold handicrafts and ceramics. Arrive early, the aisles get hot and dense by 11:00.",
-          "location": { "name": "Chatuchak Weekend Market", "lat": 13.7999, "lng": 100.5503 }
+          "location": {
+            "name": "Chatuchak Weekend Market",
+            "lat": 13.7999,
+            "lng": 100.5503
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chatuchak%20Weekend%20Market%20P1100759.JPG?width=1000",
+              "caption": "A quiet corner of Chatuchak"
+            }
+          ]
         },
         {
           "time": "11:30",
           "title": "Escape to Bang Krachao",
           "type": "activity",
           "description": "Bangkok's green lung: a horseshoe island of mangrove and elevated walkways. Boat from Klong Toey Pier, rent bicycles at the landing. Flat, shaded and almost silent.",
-          "location": { "name": "Klong Toey Pier", "lat": 13.7080, "lng": 100.5670 }
+          "location": {
+            "name": "Klong Toey Pier",
+            "lat": 13.708,
+            "lng": 100.567
+          }
         },
         {
           "time": "14:00",
           "title": "Lunch at Bang Nam Pheung floating market",
           "type": "food",
           "description": "Weekend-only, local rather than touristic. Grilled river prawns and coconut desserts are the specialities.",
-          "location": { "name": "Bang Nam Pheung Floating Market", "lat": 13.6866, "lng": 100.5657 }
+          "location": {
+            "name": "Bang Nam Pheung Floating Market",
+            "lat": 13.6866,
+            "lng": 100.5657
+          }
         },
         {
           "time": "17:00",
@@ -196,7 +320,8 @@
           "type": "rest",
           "description": "Consider a Thai massage near the hotel, then an early night. Tomorrow is a full day trip."
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chatuchak%20Weekend%20Market%20P1100759.JPG?width=1400"
     },
     {
       "date": "2026-08-25",
@@ -220,21 +345,39 @@
           "title": "Sanctuary of Truth",
           "type": "sight",
           "description": "An enormous, entirely wooden temple on the seafront at Naklua, still under construction after four decades. Every surface hand-carved. About ninety minutes. Hard hats provided and required.",
-          "location": { "name": "Sanctuary of Truth", "lat": 12.9727, "lng": 100.8890 }
+          "location": {
+            "name": "Sanctuary of Truth",
+            "lat": 12.9727,
+            "lng": 100.889
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanctuary%20of%20Truth%20Pattaya.jpg?width=1000",
+              "caption": "The all-teak Sanctuary of Truth"
+            }
+          ]
         },
         {
           "time": "11:30",
           "title": "Coral Island, Koh Larn",
           "type": "activity",
           "description": "Speedboat or public ferry from Bali Hai Pier, around forty minutes. Head to Samae or Tien Beach, both quieter than Tawaen. Swim and take a beachfront seafood lunch.",
-          "location": { "name": "Bali Hai Pier", "lat": 12.9188, "lng": 100.8746 }
+          "location": {
+            "name": "Bali Hai Pier",
+            "lat": 12.9188,
+            "lng": 100.8746
+          }
         },
         {
           "time": "15:30",
           "title": "Return ferry and Pattaya Viewpoint",
           "type": "sight",
           "description": "Drive up to Pratumnak Hill for the classic curve-of-the-bay view before heading back.",
-          "location": { "name": "Pattaya Viewpoint, Pratumnak Hill", "lat": 12.9153, "lng": 100.8672 }
+          "location": {
+            "name": "Pattaya Viewpoint, Pratumnak Hill",
+            "lat": 12.9153,
+            "lng": 100.8672
+          }
         },
         {
           "time": "17:00",
@@ -248,7 +391,8 @@
           "type": "food",
           "description": "Keep the last Bangkok evening simple, since tomorrow involves a flight."
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanctuary%20of%20Truth%20Pattaya.jpg?width=1400"
     },
     {
       "date": "2026-08-26",
@@ -272,7 +416,11 @@
           "title": "Transfer to Suvarnabhumi Airport",
           "type": "travel",
           "description": "Allow ninety minutes including traffic. Arriving around 12:30 gives a comfortable margin.",
-          "location": { "name": "Suvarnabhumi Airport", "lat": 13.6900, "lng": 100.7501 }
+          "location": {
+            "name": "Suvarnabhumi Airport",
+            "lat": 13.69,
+            "lng": 100.7501
+          }
         },
         {
           "time": "14:00",
@@ -280,31 +428,53 @@
           "type": "flight",
           "description": "Approximately eighty minutes. Thai Airways, Bangkok Airways and Thai Vietjet all operate this route frequently.",
           "cost": "4,000 to 7,000 THB for two",
-          "booking": { "ref": "", "url": "" },
-          "location": { "name": "Phuket International Airport", "lat": 8.1132, "lng": 98.3169 }
+          "booking": {
+            "ref": "",
+            "url": ""
+          },
+          "location": {
+            "name": "Phuket International Airport",
+            "lat": 8.1132,
+            "lng": 98.3169
+          }
         },
         {
           "time": "16:00",
           "title": "Cab from Phuket Airport to Khao Lak",
           "type": "travel",
           "description": "Around ninety minutes north by road. Arrange in advance. The scenery improves steadily as the development thins out.",
-          "cost": "1,800 to 2,500 THB"
+          "cost": "1,800 to 2,500 THB",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1000",
+              "caption": "The long, calm beach at Khao Lak"
+            }
+          ]
         },
         {
           "time": "17:45",
           "title": "Check in and decompress",
           "type": "hotel",
           "description": "A long, quiet stretch of beach backed by rainforest and national park. No nightlife to speak of, which is precisely the point.",
-          "location": { "name": "Khao Lak", "lat": 8.6560, "lng": 98.2450 }
+          "location": {
+            "name": "Khao Lak",
+            "lat": 8.656,
+            "lng": 98.245
+          }
         },
         {
           "time": "19:00",
           "title": "First Khao Lak dinner",
           "type": "food",
           "description": "A quiet beachfront seafood dinner at Bang Niang after the travel day.",
-          "location": { "name": "Bang Niang Beach", "lat": 8.6600, "lng": 98.2420 }
+          "location": {
+            "name": "Bang Niang Beach",
+            "lat": 8.66,
+            "lng": 98.242
+          }
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1400"
     },
     {
       "date": "2026-08-27",
@@ -321,21 +491,39 @@
           "title": "Khao Lak-Lam Ru National Park",
           "type": "activity",
           "description": "A moderate coastal trail from the visitor centre to a clifftop viewpoint over the Andaman Sea, about an hour each way at an easy pace. Go early, before the heat builds.",
-          "location": { "name": "Khao Lak-Lam Ru National Park", "lat": 8.5900, "lng": 98.2400 }
+          "location": {
+            "name": "Khao Lak-Lam Ru National Park",
+            "lat": 8.59,
+            "lng": 98.24
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak-Lam%20Ru%20National%20Park%2C%20Rainforest%2C%20Thailand.jpg?width=1000",
+              "caption": "Khao Lak-Lam Ru rainforest"
+            }
+          ]
         },
         {
           "time": "11:30",
           "title": "Ton Chong Fa Waterfall",
           "type": "sight",
           "description": "A five-tier waterfall. The first two tiers are an easy fifteen-minute walk from the car park with deep, cool swimming pools. Flow is strong in August.",
-          "location": { "name": "Ton Chong Fa Waterfall", "lat": 8.6810, "lng": 98.2820 }
+          "location": {
+            "name": "Ton Chong Fa Waterfall",
+            "lat": 8.681,
+            "lng": 98.282
+          }
         },
         {
           "time": "13:30",
           "title": "Lunch in Nang Thong",
           "type": "food",
           "description": "The main village strip has a good spread of Thai and international restaurants.",
-          "location": { "name": "Nang Thong Beach", "lat": 8.6370, "lng": 98.2400 }
+          "location": {
+            "name": "Nang Thong Beach",
+            "lat": 8.637,
+            "lng": 98.24
+          }
         },
         {
           "time": "15:00",
@@ -348,9 +536,14 @@
           "title": "Dinner and the Tsunami Memorial",
           "type": "sight",
           "description": "The memorial at Bang Niang, built around Police Boat 813 which was carried two kilometres inland in 2004. Best in the soft light of early evening.",
-          "location": { "name": "Tsunami Memorial Police Boat 813", "lat": 8.6626, "lng": 98.2437 }
+          "location": {
+            "name": "Tsunami Memorial Police Boat 813",
+            "lat": 8.6626,
+            "lng": 98.2437
+          }
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao%20Lak-Lam%20Ru%20National%20Park%2C%20Rainforest%2C%20Thailand.jpg?width=1400"
     },
     {
       "date": "2026-08-28",
@@ -368,21 +561,43 @@
           "type": "travel",
           "description": "Roughly an hour's drive south to the pier at Ao Por or Surakul. Book a longtail or small-group tour rather than a large speedboat operation.",
           "cost": "4,000 to 6,000 THB for two",
-          "location": { "name": "Ao Por Pier", "lat": 8.0500, "lng": 98.4600 }
+          "location": {
+            "name": "Ao Por Pier",
+            "lat": 8.05,
+            "lng": 98.46
+          }
         },
         {
           "time": "09:30",
           "title": "Sea canoeing through the hongs",
           "type": "activity",
           "description": "Guided canoes paddle through low sea caves into collapsed interior lagoons open to the sky and ringed by vertical cliffs. Access depends on the tide, so the operator sets the timing. No physical effort needed, a guide paddles.",
-          "location": { "name": "Phang Nga Bay", "lat": 8.2700, "lng": 98.5000 }
+          "location": {
+            "name": "Phang Nga Bay",
+            "lat": 8.27,
+            "lng": 98.5
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunrise%2C%20Koh%20Yao%20Noi%20%28island%29%2C%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1000",
+              "caption": "Sunrise over Phang Nga Bay"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ko%20Tapu%20%28James%20Bond%29%20Island%20in%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1000",
+              "caption": "Ko Tapu, the James Bond island"
+            }
+          ]
         },
         {
           "time": "12:00",
           "title": "James Bond Island and Koh Panyee",
           "type": "sight",
           "description": "Khao Phing Kan is brief and crowded but the karst is remarkable. Koh Panyee, a Muslim fishing village built entirely on stilts over the water, is the better stop and where lunch is usually taken.",
-          "location": { "name": "Koh Panyee", "lat": 8.3230, "lng": 98.5060 }
+          "location": {
+            "name": "Koh Panyee",
+            "lat": 8.323,
+            "lng": 98.506
+          }
         },
         {
           "time": "15:30",
@@ -396,7 +611,8 @@
           "type": "food",
           "description": "Beachfront seafood at Bang Niang."
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ko%20Tapu%20%28James%20Bond%29%20Island%20in%20Phang%20Nga%20Bay%2C%20Thailand.jpg?width=1400"
     },
     {
       "date": "2026-08-29",
@@ -426,7 +642,11 @@
           "title": "Slow lunch in Nang Thong",
           "type": "food",
           "description": "Wander the main strip and pick whatever appeals. No agenda.",
-          "location": { "name": "Nang Thong Beach", "lat": 8.6370, "lng": 98.2400 }
+          "location": {
+            "name": "Nang Thong Beach",
+            "lat": 8.637,
+            "lng": 98.24
+          }
         },
         {
           "time": "15:00",
@@ -446,7 +666,8 @@
           "type": "food",
           "description": "A quiet seafood dinner. Turtle Cafe and the Bang Niang beachfront grills are reliable choices."
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thailand%20-%20Khao%20Lak%20-%20Beach%20Resort%20%2816345629343%29.jpg?width=1400"
     },
     {
       "date": "2026-08-30",
@@ -465,36 +686,59 @@
           "type": "travel",
           "description": "Ninety minutes by road, crossing the Sarasin Bridge onto the island.",
           "cost": "2,000 to 3,000 THB",
-          "location": { "name": "Sarasin Bridge", "lat": 8.2000, "lng": 98.2960 }
+          "location": {
+            "name": "Sarasin Bridge",
+            "lat": 8.2,
+            "lng": 98.296
+          }
         },
         {
           "time": "12:00",
           "title": "Check in on the west coast",
           "type": "hotel",
           "description": "Kata, Karon or Kamala. All quieter than Patong while remaining central. Kata has a good beach, a walkable village and easy access south.",
-          "location": { "name": "Kata Beach", "lat": 7.8200, "lng": 98.2980 }
+          "location": {
+            "name": "Kata Beach",
+            "lat": 7.82,
+            "lng": 98.298
+          }
         },
         {
           "time": "14:00",
           "title": "Beach afternoon",
           "type": "rest",
-          "description": "Settle in. Mind the flags: rip currents are genuine here in August."
+          "description": "Settle in. Mind the flags: rip currents are genuine here in August.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1000",
+              "caption": "Kata Beach on the west coast"
+            }
+          ]
         },
         {
           "time": "17:00",
           "title": "Promthep Cape at sunset",
           "type": "sight",
           "description": "The southernmost point of Phuket and the island's classic sunset viewpoint. Arrive by 17:30 for parking. A lighthouse and small shrine sit at the headland.",
-          "location": { "name": "Promthep Cape", "lat": 7.7620, "lng": 98.3050 }
+          "location": {
+            "name": "Promthep Cape",
+            "lat": 7.762,
+            "lng": 98.305
+          }
         },
         {
           "time": "19:30",
           "title": "Dinner at Rawai or Nai Harn",
           "type": "food",
           "description": "Excellent, unpretentious seafood. Rawai's beachfront restaurants will cook fish bought fresh from the adjacent market.",
-          "location": { "name": "Rawai Beach", "lat": 7.7740, "lng": 98.3260 }
+          "location": {
+            "name": "Rawai Beach",
+            "lat": 7.774,
+            "lng": 98.326
+          }
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kata%20Beach%20November%202011%20-%20panoramio.jpg?width=1400"
     },
     {
       "date": "2026-08-31",
@@ -512,35 +756,71 @@
           "type": "travel",
           "description": "Speedboat from Rassada Pier, around fifty minutes. Book a small-group tour capped at twenty-five people rather than a large ferry excursion.",
           "cost": "5,000 to 7,000 THB for two",
-          "location": { "name": "Rassada Pier", "lat": 7.8790, "lng": 98.4090 }
+          "location": {
+            "name": "Rassada Pier",
+            "lat": 7.879,
+            "lng": 98.409
+          }
         },
         {
           "time": "09:00",
           "title": "Maya Bay",
           "type": "sight",
           "description": "Reopened after a multi-year closure for reef restoration, now with strict limits. Swimming inside the bay is prohibited and boats moor at the rear entrance at Loh Samah. Early arrival matters enormously.",
-          "location": { "name": "Maya Bay", "lat": 7.6790, "lng": 98.7660 }
+          "location": {
+            "name": "Maya Bay",
+            "lat": 7.679,
+            "lng": 98.766
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maya%20Bay.jpg?width=1000",
+              "caption": "Maya Bay"
+            },
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20View%20from%20Maya%20Bay%2C%20Phi%20Phi%20Le.jpg?width=1000",
+              "caption": "The cliffs above the beach"
+            }
+          ]
         },
         {
           "time": "10:30",
           "title": "Pileh Lagoon and Viking Cave",
           "type": "activity",
           "description": "Pileh is an enclosed emerald lagoon between sheer cliffs, calm enough for comfortable swimming. The best snorkelling of the day is usually here or at Loh Samah Bay.",
-          "location": { "name": "Pileh Lagoon", "lat": 7.6836, "lng": 98.7690 }
+          "location": {
+            "name": "Pileh Lagoon",
+            "lat": 7.6836,
+            "lng": 98.769
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Phi%20Phi%20Leh.JPG?width=1000",
+              "caption": "Limestone walls around Phi Phi Leh"
+            }
+          ]
         },
         {
           "time": "12:30",
           "title": "Lunch on Phi Phi Don",
           "type": "food",
           "description": "The main inhabited island. Most tours include a buffet lunch at Ton Sai.",
-          "location": { "name": "Ton Sai Bay, Phi Phi Don", "lat": 7.7370, "lng": 98.7710 }
+          "location": {
+            "name": "Ton Sai Bay, Phi Phi Don",
+            "lat": 7.737,
+            "lng": 98.771
+          }
         },
         {
           "time": "14:00",
           "title": "Monkey Beach and Bamboo Island",
           "type": "activity",
           "description": "Bamboo Island has the finest white sand of the group and shallow, clear water. Access is occasionally restricted in the rainy season, so the operator may substitute.",
-          "location": { "name": "Bamboo Island", "lat": 7.7930, "lng": 98.8000 }
+          "location": {
+            "name": "Bamboo Island",
+            "lat": 7.793,
+            "lng": 98.8
+          }
         },
         {
           "time": "16:30",
@@ -554,7 +834,8 @@
           "type": "food",
           "description": "A full-day boat trip is tiring. Keep the evening simple."
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Maya%20Bay.jpg?width=1400"
     },
     {
       "date": "2026-09-01",
@@ -572,7 +853,11 @@
           "title": "Phuket Old Town",
           "type": "sight",
           "description": "Thalang, Dibuk and Yaowarat roads are lined with restored Sino-Portuguese shophouses in faded pastels, now holding cafes, galleries and small museums. Entirely walkable and shaded. Allow two to three hours.",
-          "location": { "name": "Phuket Old Town", "lat": 7.8840, "lng": 98.3880 }
+          "location": {
+            "name": "Phuket Old Town",
+            "lat": 7.884,
+            "lng": 98.388
+          }
         },
         {
           "time": "11:30",
@@ -585,14 +870,28 @@
           "title": "Big Buddha",
           "type": "sight",
           "description": "A 45-metre marble Buddha on Nakkerd Hill with a 360-degree view over Chalong Bay and Kata. The drive up is steep but paved. Free entry.",
-          "location": { "name": "Big Buddha Phuket", "lat": 7.8280, "lng": 98.3120 }
+          "location": {
+            "name": "Big Buddha Phuket",
+            "lat": 7.828,
+            "lng": 98.312
+          },
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Big%20Buddha%2C%20Phuket.jpg?width=1000",
+              "caption": "The 45-metre Big Buddha above Chalong"
+            }
+          ]
         },
         {
           "time": "16:00",
           "title": "Karon Viewpoint",
           "type": "sight",
           "description": "Overlooks Kata Noi, Kata and Karon in sequence. A five-minute stop, but the best coastal panorama on the island.",
-          "location": { "name": "Karon Viewpoint", "lat": 7.7970, "lng": 98.3030 }
+          "location": {
+            "name": "Karon Viewpoint",
+            "lat": 7.797,
+            "lng": 98.303
+          }
         },
         {
           "time": "18:00",
@@ -606,7 +905,8 @@
           "type": "note",
           "description": "Confirm the airport transfer for the morning."
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Big%20Buddha%2C%20Phuket.jpg?width=1400"
     },
     {
       "date": "2026-09-02",
@@ -628,7 +928,11 @@
           "title": "Transfer to Phuket International Airport",
           "type": "travel",
           "description": "Departing at 08:45 gives a comfortable margin for a 12:30 flight.",
-          "location": { "name": "Phuket International Airport", "lat": 8.1132, "lng": 98.3169 }
+          "location": {
+            "name": "Phuket International Airport",
+            "lat": 8.1132,
+            "lng": 98.3169
+          }
         },
         {
           "time": "10:15",
@@ -640,25 +944,72 @@
           "time": "12:30",
           "title": "Departure",
           "type": "flight",
-          "description": "Flight home to India."
+          "description": "Flight home to India.",
+          "images": [
+            {
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%20Departures%20Hall%20Bangkok%20Thailand.jpg?width=1000",
+              "caption": "Departures at Phuket"
+            }
+          ]
         }
-      ]
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarnabhumi%20Airport%20Departures%20Hall%20Bangkok%20Thailand.jpg?width=1400"
     }
   ],
   "info": [
-    { "title": "Visa", "body": "Indian passport holders receive visa-free entry to Thailand for stays up to 60 days under the current arrangement. Verify close to departure, as this policy has been revised several times. Carry proof of onward travel and hotel bookings." },
-    { "title": "Weather in late August", "body": "The Andaman coast is in the monsoon tail. Expect clear mornings and short intense afternoon showers of an hour or two. Temperatures 26 to 32 degrees with high humidity. Pack a light rain shell rather than an umbrella, and quick-dry clothing." },
-    { "title": "Money", "body": "The Thai baht is the only accepted currency. Avoid airport exchange counters. SuperRich and Vasu in Bangkok offer the best rates. Cards are widely accepted in hotels and larger restaurants, but street food, markets and longtail boats are cash only." },
-    { "title": "Getting around", "body": "Grab works across Bangkok and Phuket and is the simplest option. In Bangkok the BTS Skytrain and MRT metro are faster than any road transport during peak hours." },
-    { "title": "SIM and connectivity", "body": "Buy a tourist SIM at Suvarnabhumi arrivals. AIS, TrueMove and dtac offer 8 to 15 day unlimited data packages for 300 to 600 baht. eSIM options are available if the phones support it." },
-    { "title": "Health", "body": "No mandatory vaccinations. Drink bottled water only. Mosquito repellent is worth carrying, particularly in Khao Lak and in the evenings. Travel insurance covering the boat excursions is strongly recommended." },
-    { "title": "Temple etiquette", "body": "Shoulders and knees covered at all temples for both men and women. Shoes removed before entering any temple building. Never point feet toward a Buddha image. Women should not touch or hand items directly to monks." },
-    { "title": "Pacing", "body": "Every day has at most one committed activity. Afternoons from roughly 13:00 to 16:00 are deliberately unstructured. Skipping anything here costs nothing." }
+    {
+      "title": "Visa",
+      "body": "Indian passport holders receive visa-free entry to Thailand for stays up to 60 days under the current arrangement. Verify close to departure, as this policy has been revised several times. Carry proof of onward travel and hotel bookings."
+    },
+    {
+      "title": "Weather in late August",
+      "body": "The Andaman coast is in the monsoon tail. Expect clear mornings and short intense afternoon showers of an hour or two. Temperatures 26 to 32 degrees with high humidity. Pack a light rain shell rather than an umbrella, and quick-dry clothing."
+    },
+    {
+      "title": "Money",
+      "body": "The Thai baht is the only accepted currency. Avoid airport exchange counters. SuperRich and Vasu in Bangkok offer the best rates. Cards are widely accepted in hotels and larger restaurants, but street food, markets and longtail boats are cash only."
+    },
+    {
+      "title": "Getting around",
+      "body": "Grab works across Bangkok and Phuket and is the simplest option. In Bangkok the BTS Skytrain and MRT metro are faster than any road transport during peak hours."
+    },
+    {
+      "title": "SIM and connectivity",
+      "body": "Buy a tourist SIM at Suvarnabhumi arrivals. AIS, TrueMove and dtac offer 8 to 15 day unlimited data packages for 300 to 600 baht. eSIM options are available if the phones support it."
+    },
+    {
+      "title": "Health",
+      "body": "No mandatory vaccinations. Drink bottled water only. Mosquito repellent is worth carrying, particularly in Khao Lak and in the evenings. Travel insurance covering the boat excursions is strongly recommended."
+    },
+    {
+      "title": "Temple etiquette",
+      "body": "Shoulders and knees covered at all temples for both men and women. Shoes removed before entering any temple building. Never point feet toward a Buddha image. Women should not touch or hand items directly to monks."
+    },
+    {
+      "title": "Pacing",
+      "body": "Every day has at most one committed activity. Afternoons from roughly 13:00 to 16:00 are deliberately unstructured. Skipping anything here costs nothing."
+    }
   ],
   "contacts": [
-    { "label": "Tourist Police", "value": "1155", "type": "phone" },
-    { "label": "Emergency", "value": "191", "type": "phone" },
-    { "label": "Ambulance", "value": "1669", "type": "phone" },
-    { "label": "Indian Embassy, Bangkok", "value": "+6626580300", "type": "phone" }
+    {
+      "label": "Tourist Police",
+      "value": "1155",
+      "type": "phone"
+    },
+    {
+      "label": "Emergency",
+      "value": "191",
+      "type": "phone"
+    },
+    {
+      "label": "Ambulance",
+      "value": "1669",
+      "type": "phone"
+    },
+    {
+      "label": "Indian Embassy, Bangkok",
+      "value": "+6626580300",
+      "type": "phone"
+    }
   ]
 }

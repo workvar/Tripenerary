@@ -1,41 +1,57 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
-import { colors, radius, spacing, type, shadow } from '../theme';
+import { ActivityIndicator, Text, View, StyleSheet } from 'react-native';
+import Press from './Press';
+import { colors, radius, spacing, type, elevation, hairlineWidth } from '../theme';
 
-export function Card({ children, style }) {
-  return <View style={[s.card, style]}>{children}</View>;
+export function Card({ children, style, flat }) {
+  return <View style={[s.card, flat && s.cardFlat, style]}>{children}</View>;
 }
 
-export function SectionTitle({ children }) {
-  return <Text style={s.section}>{children}</Text>;
+export function SectionTitle({ children, style }) {
+  return <Text style={[s.section, style]}>{String(children).toUpperCase()}</Text>;
 }
 
 export function Pill({ label, tone }) {
-  const isAccent = tone === 'accent';
+  const map = { accent: s.pillAccent, primary: s.pillPrimary, light: s.pillLight };
+  const textMap = { accent: s.pillTextOn, primary: s.pillTextOn, light: s.pillTextLight };
   return (
-    <View style={[s.pill, isAccent && s.pillAccent]}>
-      <Text style={[s.pillText, isAccent && s.pillTextAccent]}>{label}</Text>
+    <View style={[s.pill, map[tone]]}>
+      <Text style={[s.pillText, textMap[tone]]}>{label}</Text>
     </View>
   );
 }
 
-export function Button({ title, onPress, variant, disabled }) {
-  const ghost = variant === 'ghost';
-  const light = variant === 'light';
+export function Button({ title, onPress, variant, disabled, loading, style }) {
+  const tone = {
+    ghost: [s.btnGhost, s.btnTextGhost],
+    light: [s.btnLight, s.btnTextLight],
+    danger: [s.btnDanger, s.btnTextDanger],
+  }[variant] || [];
+
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      disabled={disabled}
-      activeOpacity={0.8}
-      style={[s.btn, ghost && s.btnGhost, light && s.btnLight, disabled && s.btnDisabled]}
-    >
-      <Text style={[s.btnText, ghost && s.btnTextGhost, light && s.btnTextLight]}>{title}</Text>
-    </TouchableOpacity>
+    <Press onPress={onPress} disabled={disabled || loading} style={[s.btn, tone[0], style]} scaleTo={0.98}>
+      <View style={s.btnInner}>
+        {loading ? <ActivityIndicator size="small" color={variant ? colors.primary : '#fff'} /> : null}
+        <Text style={[s.btnText, tone[1]]}>{title}</Text>
+      </View>
+    </Press>
   );
 }
 
-export function Divider() {
-  return <View style={s.divider} />;
+export function IconButton({ glyph, onPress, tone, size = 36, spinning }) {
+  return (
+    <Press onPress={onPress} style={[s.icon, { width: size, height: size, borderRadius: size / 2 }, tone === 'dark' && s.iconDark]} scaleTo={0.9}>
+      {spinning ? (
+        <ActivityIndicator size="small" color={tone === 'dark' ? '#fff' : colors.primary} />
+      ) : (
+        <Text style={[s.iconGlyph, tone === 'dark' && s.iconGlyphDark]}>{glyph}</Text>
+      )}
+    </Press>
+  );
+}
+
+export function Divider({ inset = 0 }) {
+  return <View style={[s.divider, { marginLeft: inset }]} />;
 }
 
 const s = StyleSheet.create({
@@ -43,33 +59,54 @@ const s = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
     padding: spacing.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    ...shadow,
+    borderWidth: hairlineWidth,
+    borderColor: colors.borderSoft,
+    ...elevation.sm,
   },
+  cardFlat: { ...elevation.none, backgroundColor: colors.bgElevated, borderColor: colors.border },
   section: { ...type.label, marginBottom: spacing.sm, marginTop: spacing.xl },
+
   pill: {
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: 11,
     paddingVertical: 5,
     borderRadius: radius.pill,
-    backgroundColor: colors.border,
+    backgroundColor: colors.surfaceSunken,
     alignSelf: 'flex-start',
   },
   pillAccent: { backgroundColor: colors.accent },
-  pillText: { fontSize: 11.5, fontWeight: '700', color: colors.textMuted },
-  pillTextAccent: { color: '#fff' },
+  pillPrimary: { backgroundColor: colors.primary },
+  pillLight: { backgroundColor: 'rgba(255,255,255,0.18)' },
+  pillText: { fontSize: 11.5, fontWeight: '700', letterSpacing: 0.2, color: colors.textMuted },
+  pillTextOn: { color: '#fff' },
+  pillTextLight: { color: '#fff' },
+
   btn: {
     backgroundColor: colors.primary,
-    paddingVertical: 13,
+    paddingVertical: 14,
     paddingHorizontal: spacing.lg,
     borderRadius: radius.md,
     alignItems: 'center',
   },
-  btnGhost: { backgroundColor: 'transparent', borderWidth: 1, borderColor: colors.border },
+  btnInner: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  btnGhost: { backgroundColor: 'transparent', borderWidth: hairlineWidth, borderColor: colors.border },
   btnLight: { backgroundColor: '#fff' },
-  btnDisabled: { opacity: 0.5 },
-  btnText: { color: '#fff', fontWeight: '700', fontSize: 15 },
+  btnDanger: { backgroundColor: colors.dangerSoft },
+  btnText: { color: '#fff', fontWeight: '700', fontSize: 15.5, letterSpacing: -0.2 },
   btnTextGhost: { color: colors.primary },
   btnTextLight: { color: colors.primary },
-  divider: { height: 1, backgroundColor: colors.border, marginVertical: spacing.md },
+  btnTextDanger: { color: colors.danger },
+
+  icon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surface,
+    borderWidth: hairlineWidth,
+    borderColor: colors.borderSoft,
+    ...elevation.xs,
+  },
+  iconDark: { backgroundColor: 'rgba(255,255,255,0.14)', borderColor: 'rgba(255,255,255,0.16)' },
+  iconGlyph: { fontSize: 16, color: colors.primary, fontWeight: '600' },
+  iconGlyphDark: { color: '#fff' },
+
+  divider: { height: hairlineWidth, backgroundColor: colors.borderSoft, marginVertical: spacing.md },
 });
