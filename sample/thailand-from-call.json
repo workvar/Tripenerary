@@ -1,0 +1,414 @@
+{
+  "version": 1,
+  "trip": {
+    "title": "Thailand 2026",
+    "subtitle": "Bangkok, Pattaya, Khao Lak, Phuket",
+    "startDate": "2026-08-22",
+    "endDate": "2026-09-02",
+    "timezone": "Asia/Bangkok",
+    "currency": "THB",
+    "travellers": []
+  },
+  "stays": [
+    {
+      "id": "bkk",
+      "name": "Bangkok hotel (to book)",
+      "city": "Bangkok",
+      "checkIn": "2026-08-22",
+      "checkOut": "2026-08-25",
+      "notes": "Book the hotel first, then lock the rest around it. Agreed on the call: nothing too expensive.",
+      "location": {
+        "name": "Bangkok",
+        "lat": 13.7563,
+        "lng": 100.5018
+      }
+    },
+    {
+      "id": "pattaya",
+      "name": "Pattaya hotel (to book)",
+      "city": "Pattaya",
+      "checkIn": "2026-08-25",
+      "checkOut": "2026-08-26",
+      "notes": "One night only. Check out on the 26th and go straight to the airport, no return to Bangkok.",
+      "location": {
+        "name": "Pattaya",
+        "lat": 12.9236,
+        "lng": 100.8825
+      }
+    },
+    {
+      "id": "khaolak",
+      "name": "Khao Lak resort (to book)",
+      "city": "Khao Lak, Phang Nga",
+      "checkIn": "2026-08-26",
+      "checkOut": "2026-08-30",
+      "notes": "Khao Lak was chosen over Krabi on the call, described as the better and quieter of the two. Four nights. Pullman has a property here as well as in Phuket, so decide which leg gets it.",
+      "location": {
+        "name": "Bang Niang Beach, Khao Lak",
+        "lat": 8.656,
+        "lng": 98.245
+      }
+    },
+    {
+      "id": "phuket",
+      "name": "Phuket hotel (to book)",
+      "city": "Phuket",
+      "checkIn": "2026-08-30",
+      "checkOut": "2026-09-02",
+      "notes": "At least one night at a Pullman for the experience, ideally the last day. Still open whether that is the Phuket or the Khao Lak Pullman.",
+      "location": {
+        "name": "Phuket",
+        "lat": 7.9519,
+        "lng": 98.3381
+      }
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-08-22",
+      "base": "Bangkok",
+      "title": "Land in Bangkok",
+      "summary": "Arrive, settle in, then an easy first evening on the river.",
+      "stayId": "bkk",
+      "notes": [
+        "Flight times were not settled on the call. Tickets were to be booked the next day, after midday."
+      ],
+      "items": [
+        {
+          "time": "Afternoon",
+          "title": "Arrive in Bangkok",
+          "type": "flight",
+          "description": "Land, clear immigration and get to the hotel.",
+          "location": {
+            "name": "Suvarnabhumi Airport",
+            "lat": 13.69,
+            "lng": 100.7501
+          }
+        },
+        {
+          "time": "Evening",
+          "title": "Asiatique ferris wheel",
+          "type": "sight",
+          "description": "Riverside night market with the big wheel. An easy first evening after a flight.",
+          "location": {
+            "name": "Asiatique The Riverfront",
+            "lat": 13.7046,
+            "lng": 100.5029
+          }
+        },
+        {
+          "time": "Night",
+          "title": "Romantic dinner cruise",
+          "type": "food",
+          "description": "Dinner cruise on the Chao Phraya, past Wat Arun and the Rama VIII bridge.",
+          "location": {
+            "name": "Chao Phraya river, ICONSIAM pier",
+            "lat": 13.7263,
+            "lng": 100.51
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "base": "Bangkok",
+      "title": "Chatuchak and the canals",
+      "summary": "The weekend market in the morning, then the old city by boat.",
+      "stayId": "bkk",
+      "notes": [
+        "Chatuchak only runs at the weekend, so this has to be the Sunday. It cannot move to Monday."
+      ],
+      "items": [
+        {
+          "time": "Morning",
+          "title": "Chatuchak weekend market",
+          "type": "activity",
+          "description": "Enormous weekend market. Go early, it gets hot and crowded by midday.",
+          "location": {
+            "name": "Chatuchak Weekend Market",
+            "lat": 13.7999,
+            "lng": 100.5503
+          }
+        },
+        {
+          "time": "Afternoon",
+          "title": "Long-tail boat through the Thonburi canals",
+          "type": "activity",
+          "description": "Long-tail boat through the khlongs on the Thonburi side, the older and quieter half of the city.",
+          "location": {
+            "name": "Thonburi canals",
+            "lat": 13.75,
+            "lng": 100.489
+          }
+        },
+        {
+          "time": "Evening",
+          "title": "Downtown Bangkok",
+          "type": "sight",
+          "description": "Wander downtown. Nothing fixed, this was left loose on the call."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "base": "Bangkok",
+      "title": "Malls and the shopping belt",
+      "summary": "The Siam district end to end, finishing at CentralWorld if there is energy left.",
+      "stayId": "bkk",
+      "notes": [
+        "Described on the call as the luxury shopping day. Everything here is walkable or one BTS stop apart."
+      ],
+      "items": [
+        {
+          "time": "Late morning",
+          "title": "Siam Paragon",
+          "type": "activity",
+          "description": "The flagship mall. Sea Life aquarium is in the basement if that appeals.",
+          "location": {
+            "name": "Siam Paragon",
+            "lat": 13.7462,
+            "lng": 100.5347
+          }
+        },
+        {
+          "time": "Afternoon",
+          "title": "Siam Center and Siam Discovery",
+          "type": "activity",
+          "description": "Next door to Paragon and connected by walkway. Cheaper and more design-led.",
+          "location": {
+            "name": "Siam Center",
+            "lat": 13.7458,
+            "lng": 100.532
+          }
+        },
+        {
+          "time": "Afternoon",
+          "title": "Supermarket run",
+          "type": "activity",
+          "description": "Snacks and things to bring home. Cheaper here than at the airport."
+        },
+        {
+          "time": "Evening",
+          "title": "CentralWorld",
+          "type": "activity",
+          "description": "Only if there is energy left at the end of the day. This was explicitly optional on the call.",
+          "location": {
+            "name": "CentralWorld",
+            "lat": 13.7466,
+            "lng": 100.5393
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "base": "Pattaya",
+      "title": "Down to Pattaya",
+      "summary": "Leave Bangkok for the coast. One night only.",
+      "stayId": "pattaya",
+      "notes": [
+        "How you get to Pattaya was not settled. Car is about two hours from Bangkok."
+      ],
+      "items": [
+        {
+          "time": "Morning",
+          "title": "Bangkok to Pattaya",
+          "type": "travel",
+          "description": "Roughly two hours by car, longer if you leave in traffic.",
+          "location": {
+            "name": "Pattaya",
+            "lat": 12.9236,
+            "lng": 100.8825
+          }
+        },
+        {
+          "time": "Afternoon",
+          "title": "Pattaya",
+          "type": "rest",
+          "description": "Nothing specific was planned for Pattaya on the call beyond being there for the night."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "base": "Khao Lak",
+      "title": "Pattaya to Khao Lak",
+      "summary": "Straight from the hotel to the airport, fly south, then drive up the coast.",
+      "stayId": "khaolak",
+      "notes": [
+        "Agreed on the call: go directly from Pattaya to the airport, do not route back through Bangkok.",
+        "Khao Lak is about an hour and a half north of Phuket airport. Arrange the car before you land."
+      ],
+      "items": [
+        {
+          "time": "Morning",
+          "title": "Pattaya to the airport",
+          "type": "travel",
+          "description": "Direct from the Pattaya hotel to the airport. U-Tapao is closer, Suvarnabhumi has more flights."
+        },
+        {
+          "time": "Midday",
+          "title": "Flight south to Phuket",
+          "type": "flight",
+          "description": "Ticket for the 26th. This was one of the tickets to be booked the next day.",
+          "location": {
+            "name": "Phuket International Airport",
+            "lat": 8.1132,
+            "lng": 98.3169
+          }
+        },
+        {
+          "time": "Afternoon",
+          "title": "Airport to Khao Lak",
+          "type": "travel",
+          "description": "About 90 minutes north by road. Confirm the driver the day before.",
+          "location": {
+            "name": "Khao Lak",
+            "lat": 8.656,
+            "lng": 98.245
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "base": "Khao Lak",
+      "title": "Khao Lak",
+      "summary": "First full day on the quiet coast.",
+      "stayId": "khaolak",
+      "notes": [
+        "Nothing specific was planned for the Khao Lak days on the call. Four nights were set aside deliberately as the slow part of the trip."
+      ],
+      "items": [
+        {
+          "time": "All day",
+          "title": "Beach day",
+          "type": "rest",
+          "description": "Unplanned by design."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "base": "Khao Lak",
+      "title": "Khao Lak",
+      "summary": "Second full day.",
+      "stayId": "khaolak",
+      "notes": [],
+      "items": [
+        {
+          "time": "All day",
+          "title": "Beach day",
+          "type": "rest",
+          "description": "Similar Islands and Khao Sok are both day trips from here if you want one fixed thing."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-29",
+      "base": "Khao Lak",
+      "title": "Khao Lak",
+      "summary": "Last full day before moving on.",
+      "stayId": "khaolak",
+      "notes": [],
+      "items": [
+        {
+          "time": "All day",
+          "title": "Beach day",
+          "type": "rest",
+          "description": "Unplanned by design."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-30",
+      "base": "Phuket",
+      "title": "Khao Lak to Phuket",
+      "summary": "Drive back down the coast for the last leg.",
+      "stayId": "phuket",
+      "notes": [
+        "At least one night at a Pullman was agreed, ideally the last day. Whether that is the Phuket Pullman or the Khao Lak one was left open."
+      ],
+      "items": [
+        {
+          "time": "Late morning",
+          "title": "Khao Lak to Phuket",
+          "type": "travel",
+          "description": "Roughly two hours by road.",
+          "location": {
+            "name": "Phuket",
+            "lat": 7.9519,
+            "lng": 98.3381
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "base": "Phuket",
+      "title": "Phuket",
+      "summary": "Nothing fixed.",
+      "stayId": "phuket",
+      "notes": [],
+      "items": [
+        {
+          "time": "All day",
+          "title": "Phuket",
+          "type": "rest",
+          "description": "Not discussed on the call."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "base": "Phuket",
+      "title": "Pullman day",
+      "summary": "The one splurge night, if it lands here.",
+      "stayId": "phuket",
+      "notes": [
+        "This is the day pencilled in for the Pullman, on the reasoning that it should be the last one."
+      ],
+      "items": [
+        {
+          "time": "All day",
+          "title": "Pullman",
+          "type": "hotel",
+          "description": "One night at a Pullman for the experience. The rest of the trip stays modest to pay for it."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "base": "Phuket",
+      "title": "Fly home",
+      "summary": "Out of Phuket.",
+      "stayId": "phuket",
+      "notes": [
+        "Return flight was not discussed on the call."
+      ],
+      "items": [
+        {
+          "time": "Morning",
+          "title": "Phuket airport",
+          "type": "flight",
+          "description": "Departure.",
+          "location": {
+            "name": "Phuket International Airport",
+            "lat": 8.1132,
+            "lng": 98.3169
+          }
+        }
+      ]
+    }
+  ],
+  "info": [
+    {
+      "title": "What was actually decided",
+      "body": "From the call:\n\n- Land in Bangkok on the 22nd. Ferris wheel and a romantic dinner cruise that evening.\n- 23rd is downtown and Chatuchak.\n- Long-tail boat through the Thonburi canals.\n- 24th is the shopping day: Siam Paragon, Siam Center, a supermarket run, and CentralWorld in the evening if there is energy left.\n- Pattaya on the 25th.\n- On the 26th, go straight from Pattaya to the airport rather than back through Bangkok.\n- Khao Lak over Krabi, four nights, the 26th to the 30th.\n- Phuket after that, with at least one night at a Pullman, ideally the last day.\n- Keep the hotels modest otherwise."
+    },
+    {
+      "title": "Still open",
+      "body": "- All flight tickets. These were to be booked the day after the call, after midday.\n- Every hotel. The Bangkok one was to be booked first so the rest could be built around it.\n- Whether the Pullman night is in Phuket or Khao Lak. Both have one.\n- How you get from Bangkok to Pattaya.\n- Which airport you fly out of on the 26th, U-Tapao or Suvarnabhumi.\n- The Khao Lak and Phuket days have nothing scheduled. That was deliberate, but Khao Sok and the Similan Islands are the obvious day trips if you want one fixed thing."
+    }
+  ]
+}
