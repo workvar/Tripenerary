@@ -1,0 +1,62 @@
+// Release signing configuration. Requires secrets.gradle to have been applied.
+//
+// The keystore and its passwords are never committed. Supply them via
+// environment variables (CI) or gradle.properties / .env (local):
+//
+//   TRIPENERARY_UPLOAD_STORE_FILE      path, relative to android/app/ or absolute
+//   TRIPENERARY_UPLOAD_STORE_PASSWORD
+//   TRIPENERARY_UPLOAD_KEY_ALIAS
+//   TRIPENERARY_UPLOAD_KEY_PASSWORD
+//
+// If the keystore is missing, the release build keeps the debug signing config
+// set in build.gradle, so `assembleRelease` still works for local smoke testing.
+// A loud warning is printed, because such a build cannot be published.
+
+def secrets = project.ext.tripSecrets
+
+String storeFileName = secrets.get('TRIPENERARY_UPLOAD_STORE_FILE')
+if (storeFileName == null || storeFileName.isEmpty()) {
+    storeFileName = 'release.keystore'
+}
+
+def candidate = new File(storeFileName)
+def resolvedStore = candidate.isAbsolute() ? candidate : new File(projectDir, storeFileName)
+
+String storePw = secrets.get('TRIPENERARY_UPLOAD_STORE_PASSWORD')
+String keyAliasName = secrets.get('TRIPENERARY_UPLOAD_KEY_ALIAS')
+String keyPw = secrets.get('TRIPENERARY_UPLOAD_KEY_PASSWORD')
+
+if (keyAliasName == null || keyAliasName.isEmpty()) {
+    keyAliasName = 'upload'
+}
+if (keyPw == null || keyPw.isEmpty()) {
+    keyPw = storePw
+}
+
+boolean keystoreReady = resolvedStore.exists() && storePw != null && !storePw.isEmpty()
+ext.hasReleaseKeystore = keystoreReady
+
+if (keystoreReady) {
+    android {
+        signingConfigs {
+            release {
+                storeFile resolvedStore
+                storePassword storePw
+                keyAlias keyAliasName
+                keyPassword keyPw
+            }
+        }
+        buildTypes {
+            release {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+} else {
+    String reason = resolvedStore.exists()
+            ? 'TRIPENERARY_UPLOAD_STORE_PASSWORD is not set'
+            : ('no keystore at ' + resolvedStore.getAbsolutePath())
+    logger.warn('\n  WARNING: ' + reason + '.\n' +
+            '  Release builds will be signed with the DEBUG key and cannot be published.\n' +
+            '  See docs/RELEASE.md.\n')
+}

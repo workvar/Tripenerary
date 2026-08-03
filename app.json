@@ -6,7 +6,10 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "scheme": "tripcompanion",
+    "icon": "./assets/icon.png",
+    "primaryColor": "#0E4F4C",
     "splash": {
+      "image": "./assets/splash-icon.png",
       "backgroundColor": "#0E4F4C",
       "resizeMode": "contain"
     },
@@ -14,7 +17,18 @@
     "android": {
       "package": "com.tripcompanion.app",
       "versionCode": 1,
-      "adaptiveIcon": { "backgroundColor": "#0E4F4C" }
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "monochromeImage": "./assets/monochrome-icon.png",
+        "backgroundColor": "#0E4F4C"
+      },
+      "permissions": ["android.permission.INTERNET"],
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.VIBRATE"
+      ]
     },
     "ios": {
       "bundleIdentifier": "com.tripcompanion.app",

@@ -7,7 +7,12 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && node scripts/validate-itinerary.mjs sample/thailand-sample.json"
+    "check": "npm run typecheck && node scripts/validate-itinerary.mjs sample/thailand-sample.json",
+    "icons": "python3 scripts/generate-icons.py",
+    "preflight": "node scripts/preflight-release.mjs",
+    "build:apk": "npm run preflight && cd android && ./gradlew assembleRelease",
+    "build:aab": "npm run preflight && cd android && ./gradlew bundleRelease",
+    "clean:android": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",

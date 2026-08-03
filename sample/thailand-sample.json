@@ -212,37 +212,46 @@
       "date": "2026-08-24",
       "base": "Bangkok",
       "title": "Malls and the shopping belt",
-      "summary": "The Siam district end to end, finishing at CentralWorld if there is energy left.",
+      "summary": "Indulge in a day of modern shopping across Siam, culminating in an evening at CentralWorld.",
       "stayId": "bkk",
       "notes": [
         "Described on the call as the luxury shopping day. Everything here is walkable or one BTS stop apart."
       ],
       "items": [
         {
-          "time": "Late morning",
+          "time": "10:45",
           "title": "Siam Paragon",
           "type": "activity",
-          "description": "The flagship mall. Sea Life aquarium is in the basement if that appeals.",
+          "description": "Spend the late morning exploring Siam Paragon, a massive shopping mall with a wide variety of shops and restaurants. Allow about two hours to wander through the levels, and consider checking out the Sea Life aquarium located in the basement if you're interested. Wear comfortable shoes, as you'll be doing a lot of walking.",
+          "cost": "1400 TBH",
           "location": {
             "name": "Siam Paragon",
             "lat": 13.7462,
             "lng": 100.5347
-          }
+          },
+          "images": [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlwmzT6UNv3xfSnBQ9GQhakcDeiEM0u1DiFgO-qKyJlYIE1P7Hh3_s9Bv0&s=10",
+            {
+              "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUNnjhohiprdWffNwxXQZI-tq8S4kk0OTVw85SpP-nn0aEVDFzdH06I-NK&s=10",
+              "caption": "Aquarium"
+            }
+          ]
         },
         {
-          "time": "Afternoon",
+          "time": "12:00",
           "title": "Siam Center and Siam Discovery",
           "type": "activity",
-          "description": "Next door to Paragon and connected by walkway. Cheaper and more design-led.",
+          "description": "Spend the afternoon exploring Siam Center, right next to Paragon and easily reachable via a connected walkway. You can easily browse a variety of shops, from popular brands to more unique designs. Allow about two to three hours for your visit, and wear comfortable shoes as you'll be doing a fair amount of walking.",
           "location": {
             "name": "Siam Center",
             "lat": 13.7458,
             "lng": 100.532
-          }
+          },
+          "images": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6a/32/79/photo6jpg.jpg?w=1200&h=-1&s=1"
         },
         {
-          "time": "Afternoon",
-          "title": "Supermarket run",
+          "time": "14:00",
+          "title": "Lunch and exploring around",
           "type": "activity",
           "description": "Snacks and things to bring home. Cheaper here than at the airport."
         },
@@ -250,12 +259,13 @@
           "time": "Evening",
           "title": "CentralWorld",
           "type": "activity",
-          "description": "Only if there is energy left at the end of the day. This was explicitly optional on the call.",
+          "description": "Spend the evening exploring CentralWorld, Bangkok's Largest Shopping Complex. You can wander through shops, grab a bite to eat, or maybe catch a show. Allow about 2-3 hours for this, and wear comfortable shoes – you’ll be doing a lot of walking.",
           "location": {
             "name": "CentralWorld",
             "lat": 13.7466,
             "lng": 100.5393
-          }
+          },
+          "images": "https://www.novotellivingbangkoklegacy.com/wp-content/uploads/sites/57/2023/11/centralworld.jpg"
         }
       ]
     },
@@ -263,36 +273,92 @@
       "date": "2026-08-25",
       "base": "Pattaya",
       "title": "Down to Pattaya",
-      "summary": "Leave Bangkok for the coast. One night only.",
+      "summary": "Enjoy a quick trip to Pattaya, arriving from Bangkok for an afternoon of coastal exploration.",
       "stayId": "pattaya",
       "notes": [
         "How you get to Pattaya was not settled. Car is about two hours from Bangkok."
       ],
       "items": [
         {
-          "time": "Morning",
+          "time": "10:30",
           "title": "Bangkok to Pattaya",
           "type": "travel",
-          "description": "Roughly two hours by car, longer if you leave in traffic.",
+          "description": "The drive from Bangkok to Pattaya begins at 10:30. The trip usually takes around two hours, though traffic can add to the travel time. For a more budget-friendly option, consider taking the bus or train instead of a private taxi.",
           "location": {
             "name": "Pattaya",
             "lat": 12.9236,
             "lng": 100.8825
-          }
+          },
+          "images": "https://thaipass.org/wp-content/uploads/2025/05/7-outside_2-1024x768.jpg"
         },
         {
-          "time": "Afternoon",
-          "title": "Pattaya",
-          "type": "rest",
-          "description": "Nothing specific was planned for Pattaya on the call beyond being there for the night."
+          "time": "14:00",
+          "title": "Check-in to your hotel",
+          "type": "hotel",
+          "description": "Arrive in Pattaya around 2 PM and check into your hotel. This should take roughly an hour, allowing time for any paperwork and settling into your room.  A helpful tip is to confirm check-in times with the hotel beforehand, just to be sure."
+        },
+        {
+          "time": "14:30",
+          "title": "Lunch",
+          "type": "food",
+          "description": "Enjoy lunch at a local restaurant in Pattaya. You'll have about two hours to relax and savor Thai cuisine. Try ordering a variety of dishes to experience different flavors – it’s a great way to sample the local food scene."
+        },
+        {
+          "time": "15:00",
+          "title": "The Sanctuary of Truth",
+          "type": "sight",
+          "description": "Explore The Sanctuary of Truth, a magnificent wooden temple with detailed carvings and philosophical meaning – it’s the world’s largest all-wood building. Allow two to three hours to wander through its galleries and discover its history. The entrance fee is 500 BHT, so be prepared with cash.",
+          "cost": "500 BHT",
+          "location": {
+            "name": "The Sanctuary of Truth",
+            "lat": 12.97060636039421,
+            "lng": 100.8906232934499
+          },
+          "images": [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeaHoDvKMr7Wb11GSRCUBLcp0t0B1hSCs8W6BFzTpREql6m3k_V2ygMjSP&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMjx0RW97CkdNcIy2r8GcWR2lgkt7ARL7PfNlCy2DWr0XsbN62kfXThyo&s=10"
+          ]
+        },
+        {
+          "time": "18:00",
+          "endTime": "19:15",
+          "title": "Tiffany's Show Pattaya",
+          "type": "activity",
+          "description": "Tiffany's Show Pattaya is ranked 4th among the top 10 shows in the world. Enjoy a lively cabaret performance featuring elaborate costumes, energetic dancing, and impressive routines. The show runs for about 1 hour and 15 minutes, so arriving a bit early is a good idea to secure a seat. The cost of admission is 2000 BHT, and wearing comfortable shoes will make your experience more enjoyable, as you may be on your feet during the performance.",
+          "cost": "2000 BHT",
+          "location": {
+            "name": "Tiffany's Show",
+            "lat": 12.948992863488426,
+            "lng": 100.88906588183787
+          },
+          "images": [
+            "https://cdn-imgix.headout.com/media/images/49e584c1359040399986d289ce30c070-11226-pattaya-tickets-to-tiffany-s-show-02.jpg?auto=compress%2Cformat&w=438&h=274.5&q=90&crop=faces&fit=crop",
+            "https://cdn-imgix.headout.com/media/images/11c74d647ddd15585791d8170c1fa6bf-11226-pattaya-tickets-to-tiffany-s-show-05.jpg?auto=compress%2Cformat&w=438&h=274.5&q=90&crop=faces&fit=crop"
+          ]
+        },
+        {
+          "title": "Pattaya Walking Street",
+          "type": "activity",
+          "description": "Pattaya Walking Street is a vibrant evening experience, bustling with street performers, vendors, and a lively atmosphere. Allow a couple of hours to wander through the stalls, soak it all in, and maybe grab some street food. Be aware that it can get very crowded, so wear comfortable shoes and be mindful of your belongings.",
+          "location": {
+            "name": "Walking Street",
+            "lat": 12.927556496071677,
+            "lng": 100.87506909922274
+          },
+          "images": [
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/43/44/db/photo0jpg.jpg?w=900&h=500&s=1",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUACOJ0S4MVPEI0js7pcc5xDsr3h5q9QejB7md2QosL-06xjGl2qwxb7Nh&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl3IlIkdNPtS3sJgqMWBZSs1nkkgDkDRfiFXhhKNfPc6VQPm8wmJ5Y-_p4&s=10"
+          ]
         }
-      ]
+      ],
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCk4U_DHHfBeen79LT79vtiAAnGjm6gjFukpliB4yKqWYbKpWKg-9WzHBv&s=10"
     },
     {
       "date": "2026-08-26",
       "base": "Khao Lak",
       "title": "Pattaya to Khao Lak",
-      "summary": "Straight from the hotel to the airport, fly south, then drive up the coast.",
+      "summary": "Depart Pattaya early, fly to Phuket, and then journey to the tranquil beaches of Khao Lak.",
       "stayId": "khaolak",
       "notes": [
         "Agreed on the call: go directly from Pattaya to the airport, do not route back through Bangkok.",
@@ -300,13 +366,20 @@
       ],
       "items": [
         {
-          "time": "Morning",
+          "time": "10:45",
           "title": "Pattaya to the airport",
           "type": "travel",
-          "description": "Direct from the Pattaya hotel to the airport. U-Tapao is closer, Suvarnabhumi has more flights."
+          "description": "You'll depart from your hotel in Pattaya and travel to Suvarnabhumi Airport. This journey will take approximately two to three hours, allowing ample time for check-in and security.  It's a good idea to confirm your transfer arrangements the day before your departure to avoid any unexpected delays.",
+          "location": {
+            "name": "Suvarnabhumi Airport",
+            "lat": 13.683915267603334,
+            "lng": 100.75005625248842
+          },
+          "images": "https://www.renown-travel.com/images/suvarnabhumi-airport-bangkok-l.jpg"
         },
         {
-          "time": "Midday",
+          "time": "15:15",
+          "endTime": "16:50",
           "title": "Flight south to Phuket",
           "type": "flight",
           "description": "Ticket for the 26th. This was one of the tickets to be booked the next day.",
@@ -314,20 +387,31 @@
             "name": "Phuket International Airport",
             "lat": 8.1132,
             "lng": 98.3169
-          }
+          },
+          "images": "https://etimg.etb2bimg.com/photo/112371682.cms"
         },
         {
-          "time": "Afternoon",
-          "title": "Airport to Khao Lak",
+          "time": "17:30",
+          "endTime": "19:00",
+          "title": "Phuket Airport to Khao Lak",
           "type": "travel",
-          "description": "About 90 minutes north by road. Confirm the driver the day before.",
+          "description": "Your transfer from Phuket Airport to Khao Lak begins at 5:30 PM, and will take approximately 90 minutes.  Enjoy the ride north to your resort in Khao Lak.  It's a good idea to double-check with your driver the day before your arrival.",
           "location": {
             "name": "Khao Lak",
             "lat": 8.656,
             "lng": 98.245
-          }
+          },
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh2FXE1wjO7IqxB3a_yUigziSmJ6jkgPocvXyKFwyHpwSu1MRLU3XxhGw&s=10"
+        },
+        {
+          "time": "20:30",
+          "title": "Chill and dine at the beach",
+          "type": "food",
+          "description": "Evening in Khao Lak is all about relaxing on the beach. You can enjoy dinner at one of the many restaurants right on the sand as the sun goes down. This is a leisurely activity, plan for about two hours, and bring a mosquito repellent.",
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1_4txMIj3uajsZnjHleqB9wMK-GmjECv4fXLJzx2i50DIHNbsXpuwDx8&s=10"
         }
-      ]
+      ],
+      "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
     },
     {
       "date": "2026-08-27",
@@ -345,7 +429,8 @@
           "type": "rest",
           "description": "Unplanned by design."
         }
-      ]
+      ],
+      "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
     },
     {
       "date": "2026-08-28",
@@ -360,7 +445,8 @@
           "type": "rest",
           "description": "Similar Islands and Khao Sok are both day trips from here if you want one fixed thing."
         }
-      ]
+      ],
+      "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
     },
     {
       "date": "2026-08-29",
@@ -375,7 +461,8 @@
           "type": "rest",
           "description": "Unplanned by design."
         }
-      ]
+      ],
+      "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
     },
     {
       "date": "2026-08-30",

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash window background for Android 11 and below.
+     The icon is a centred bitmap with no gravity flags that would stretch it,
+     which is what made the previous full-bleed launcher icon look distorted. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@color/splashscreen_background"/>
+  <item>
+    <bitmap
+      android:src="@drawable/splash_icon"
+      android:gravity="center"
+      android:tileMode="disabled"/>
+  </item>
+</layer-list>

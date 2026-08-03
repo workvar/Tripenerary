@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <item name="android:enforceNavigationBarContrast" tools:targetApi="29">true</item>
+    <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="android:statusBarColor">@color/splashscreen_background</item>
+    <item name="android:windowBackground">@color/splashscreen_background</item>
+  </style>
+
+  <!-- Launch theme, Android 11 and below. The icon is centred at its natural
+       size rather than stretched to fill the window. Android 12+ overrides this
+       in values-v31/styles.xml. -->
+  <style name="Theme.App.SplashScreen" parent="AppTheme">
+    <item name="android:windowBackground">@drawable/splashscreen</item>
+  </style>
+</resources>
