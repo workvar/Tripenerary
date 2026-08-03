@@ -14,17 +14,11 @@
     "android": {
       "package": "com.tripcompanion.app",
       "versionCode": 1,
-      "adaptiveIcon": { "backgroundColor": "#0E4F4C" },
-      "config": {
-        "googleMaps": { "apiKey": "REPLACE_WITH_ANDROID_MAPS_API_KEY" }
-      }
+      "adaptiveIcon": { "backgroundColor": "#0E4F4C" }
     },
     "ios": {
       "bundleIdentifier": "com.tripcompanion.app",
-      "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": "REPLACE_WITH_IOS_MAPS_API_KEY"
-      }
+      "supportsTablet": true
     },
     "extra": {
       "eas": { "projectId": "" }

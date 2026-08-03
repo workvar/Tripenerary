@@ -68,10 +68,23 @@ The "Open in Maps" and "Directions" buttons work with no key at all. The small p
 needs one on Android.
 
 1. Google Cloud Console → enable **Maps SDK for Android**.
-2. Create an API key, restrict it to your Android package name `com.tripcompanion.app`.
-3. Put it in `app.json` under `expo.android.config.googleMaps.apiKey`.
+2. Create an API key, restrict it to your Android package name `com.tripcompanion.app` plus the
+   build's SHA-1 fingerprint.
+3. `cp .env.example .env` and set `GOOGLE_MAPS_ANDROID_KEY`.
 
-On iOS the preview uses Apple Maps, so no key is required.
+Keys are never committed: `.env` is gitignored, and `app.config.ts` reads it at build time and
+injects it into the native config. For EAS builds, push the same names to EAS so the cloud
+builder can see them:
+
+```bash
+eas env:create --name GOOGLE_MAPS_ANDROID_KEY --value <key> --environment production --visibility sensitive
+```
+
+On iOS the preview uses Apple Maps, so no key is required; set `GOOGLE_MAPS_IOS_KEY` only if you
+switch the iOS provider to Google.
+
+The key ends up inside the installed binary either way, so the real protection is the platform
+and fingerprint restriction on the key, not where you store it.
 
 If you would rather skip all of this, turn off **Show map previews** in Settings. Everything
 else keeps working.

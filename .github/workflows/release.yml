@@ -9,6 +9,29 @@ permissions:
   contents: write
 
 jobs:
+  builder-typecheck:
+    name: Typecheck builder app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: builder/package-lock.json
+
+      - name: Install dependencies
+        working-directory: builder
+        run: npm ci
+
+      - name: Typecheck
+        working-directory: builder
+        run: npm run typecheck
+
   build:
     name: Build Android APK
     runs-on: ubuntu-latest
@@ -22,6 +45,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Setup Java
         uses: actions/setup-java@v4
