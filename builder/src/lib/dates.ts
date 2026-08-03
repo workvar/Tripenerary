@@ -42,6 +42,18 @@ export const weekdayShort = (key: string) => part(key, 'weekday');
 export const dayOfMonth = (key: string) => part(key, 'day');
 export const monthShort = (key: string) => part(key, 'month');
 
+/** `Wed 12 Aug` for the day slider header. */
+export function formatDayLabel(key: string): string {
+  const d = parseKey(key);
+  if (!d) return key || 'No date';
+  return new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'UTC',
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+  }).format(d);
+}
+
 export function longDate(key: string): string {
   const d = parseKey(key);
   if (!d) return key;

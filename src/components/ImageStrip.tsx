@@ -10,7 +10,7 @@ interface ImageStripProps {
   readonly height?: number;
 }
 
-/** One image fills the width; several become a swipeable row of cards. */
+/** One or two images fill the width; three or more become a swipeable row of cards. */
 export default function ImageStrip({ images, height = 190 }: ImageStripProps) {
   if (!images || images.length === 0) return null;
 
@@ -20,6 +20,23 @@ export default function ImageStrip({ images, height = 190 }: ImageStripProps) {
       <View style={s.single}>
         <SmartImage uri={only.url} style={{ height }} radiusValue={radius.md} />
         {only.caption ? <Text style={s.caption}>{only.caption}</Text> : null}
+      </View>
+    );
+  }
+
+  if (images.length === 2) {
+    return (
+      <View style={s.pair}>
+        {images.map((img) => (
+          <View key={img.url} style={s.pairCell}>
+            <SmartImage uri={img.url} style={{ height }} radiusValue={radius.md} />
+            {img.caption ? (
+              <Text style={s.caption} numberOfLines={2}>
+                {img.caption}
+              </Text>
+            ) : null}
+          </View>
+        ))}
       </View>
     );
   }
@@ -47,6 +64,8 @@ export default function ImageStrip({ images, height = 190 }: ImageStripProps) {
 
 const s = StyleSheet.create({
   single: { marginTop: spacing.md },
+  pair: { marginTop: spacing.md, flexDirection: 'row', gap: spacing.sm },
+  pairCell: { flex: 1, minWidth: 0 },
   scroll: { marginTop: spacing.md, marginHorizontal: -spacing.lg },
   row: { paddingHorizontal: spacing.lg, gap: spacing.sm },
   cell: { width: CELL_WIDTH },

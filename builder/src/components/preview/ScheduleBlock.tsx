@@ -1,5 +1,6 @@
 'use client';
 
+import BlockImages from './BlockImages';
 import { ITEM_TYPE_META } from '@/types/itinerary';
 import type { DraftBlock } from '@/types/itinerary';
 
@@ -33,19 +34,7 @@ export default function ScheduleBlock({ block }: { readonly block: DraftBlock })
           <p className="mt-2 whitespace-pre-wrap text-[15px] leading-[22px] text-muted">{block.description}</p>
         ) : null}
 
-        {photos.length > 0 ? (
-          <div className="phone-scroll mt-3 flex gap-2 overflow-x-auto">
-            {photos.map((img) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={img.id}
-                src={img.url}
-                alt={img.caption || block.title}
-                className="h-[170px] w-[260px] shrink-0 rounded-md object-cover"
-              />
-            ))}
-          </div>
-        ) : null}
+        <BlockImages images={photos} alt={block.title} />
 
         {block.cost || hasBooking ? (
           <div className="mt-3 flex flex-wrap items-center gap-3">
