@@ -401,7 +401,7 @@
             "lat": 8.656,
             "lng": 98.245
           },
-          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh2FXE1wjO7IqxB3a_yUigziSmJ6jkgPocvXyKFwyHpwSu1MRLU3XxhGw&s=10"
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRulhiv3scu5TZCrJ1uG0JA_2XYUeL23V0dEloW4bRTRch9PYMj_LAE0bk&s=10"
         },
         {
           "time": "20:30",
@@ -427,7 +427,8 @@
           "time": "All day",
           "title": "Beach day",
           "type": "rest",
-          "description": "Unplanned by design."
+          "description": "Enjoy a relaxed day at the beach in Khao Lak. Spend your time swimming, sunbathing, or simply unwinding with a good book. This day is flexible, so feel free to linger as long as you like; pack sunscreen and a hat to stay comfortable.",
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPwkDw2jvHGVzep0V9ecsksh6ozcf25CzrAuqlfHPtU5pAsMJmONrFK-kp&s=10"
         }
       ],
       "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
@@ -435,18 +436,25 @@
     {
       "date": "2026-08-28",
       "base": "Khao Lak",
-      "title": "Khao Lak",
-      "summary": "Second full day.",
+      "title": "Khao Sok National Park",
+      "summary": "Relax and soak up the sun on a leisurely beach day in Khao Lak.",
       "stayId": "khaolak",
       "items": [
         {
-          "time": "All day",
-          "title": "Beach day",
-          "type": "rest",
-          "description": "Similar Islands and Khao Sok are both day trips from here if you want one fixed thing."
+          "time": "8:30",
+          "title": "Khao Sok National Park",
+          "type": "activity",
+          "description": "Today you're heading to Khao Sok National Park. The journey takes about two and a half hours, and you'll experience beautiful scenery along the way. Pack a refillable water bottle to stay hydrated during the taxi ride and your exploration of the park.",
+          "cost": "400 TBH",
+          "location": {
+            "name": "Khao Sok National Park",
+            "lat": 8.988105947874123,
+            "lng": 98.66617696116997
+          },
+          "images": "https://www.placesofjuma.com/wp-content/uploads/2019/04/Khao-Sok-Facebook.jpg"
         }
       ],
-      "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI9mU_OSxnUszb0GubPM_RrZgwEaLBaj0jjVU9qeOtmpRjF3kP3H7_ksp-&s=10"
     },
     {
       "date": "2026-08-29",
@@ -456,10 +464,15 @@
       "stayId": "khaolak",
       "items": [
         {
-          "time": "All day",
-          "title": "Beach day",
-          "type": "rest",
-          "description": "Unplanned by design."
+          "title": "James Bond Island",
+          "type": "activity",
+          "description": "Today you'll explore James Bond Island, also known as Khao Phing Kan, a picturesque limestone island famous from the movie Goldfinger. The boat trip and exploration usually take around 2-3 hours, including travel time. Wear sunscreen and a hat, as you'll be spending a good amount of time in the sun.",
+          "location": {
+            "name": "Khao Phing Kan",
+            "lat": 8.293555117214627,
+            "lng": 98.50503352321545
+          },
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsnVWyUvDKXS2WfcDXJWqQ8nItyBPHLZeQFw31a3wExZRoHaFhSzDSyz4&s=10"
         }
       ],
       "image": "https://media.cntravellerme.com/photos/69317a6c7dbc81ac2b5baf3e/16:9/w_2560%2Cc_limit/1389700899"
@@ -475,10 +488,10 @@
       ],
       "items": [
         {
-          "time": "Late morning",
+          "time": "12:00",
           "title": "Khao Lak to Phuket",
           "type": "travel",
-          "description": "Roughly two hours by road.",
+          "description": "Today you'll travel from Khao Lak to Phuket by road. The journey takes about two hours, offering scenic views of the Thai countryside along the way.  Pack a book or download some podcasts to keep you entertained during the drive.",
           "location": {
             "name": "Phuket",
             "lat": 7.9519,
@@ -491,21 +504,30 @@
       "date": "2026-08-31",
       "base": "Phuket",
       "title": "Phuket",
-      "summary": "Nothing fixed.",
+      "summary": "Enjoy a free day to explore Phuket at your own pace.",
       "stayId": "phuket",
       "items": [
         {
           "time": "All day",
-          "title": "Phuket",
+          "title": "Phi Phi Island",
           "type": "rest",
-          "description": "Not discussed on the call."
+          "description": "Spend the day relaxing on Phi Phi Island. Enjoy the beautiful beaches, swim in the clear waters, or simply unwind with a good book. This is a full-day activity, so pack sunscreen, a hat, and a comfortable outfit.",
+          "location": {
+            "name": "Nui Beach",
+            "lat": 7.762571634499682,
+            "lng": 98.7592022507159
+          },
+          "images": [
+            "https://img.avianexperiences.com/attractions/644df1e1-1fcd-4831-ac15-de2631571c32",
+            "https://res.cloudinary.com/zublu/image/fetch/f_webp,w_600,h_360,c_scale,q_50/https://www.zubludiving.com/images/Thailand/Phuket-Phi-Phi-Krabi-and-Lanta/Phuket-Phi-Phi-Krabi-Lanta-Scuba-Diving-Thailand-banner.jpg"
+          ]
         }
       ]
     },
     {
       "date": "2026-09-01",
       "base": "Phuket",
-      "title": "Pullman day",
+      "title": "Relaxing at Phuket",
       "summary": "The one splurge night, if it lands here.",
       "stayId": "phuket",
       "notes": [
@@ -513,10 +535,19 @@
       ],
       "items": [
         {
-          "time": "All day",
-          "title": "Pullman",
-          "type": "hotel",
-          "description": "One night at a Pullman for the experience. The rest of the trip stays modest to pay for it."
+          "title": "Chill at beaches of Phuket",
+          "type": "rest",
+          "description": "Spend the morning relaxing on one of Phuket's beautiful beaches. You can swim in the Andaman Sea, sunbathe on the sand, or just unwind with a good book. Allow at least three hours for a truly restful experience, and remember to bring sunscreen!",
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkJowuF9tEl6WOGnWPjoTs1kQ3s0tueL806u9SDx9Iqlp_5d9zpkV34L9&s=10"
+        },
+        {
+          "title": "Phang Nga Bay Bioluminescence (Optional)",
+          "type": "activity",
+          "description": "Consider an optional evening trip to Phang Nga Bay to witness bioluminescence. You’ll board a boat for a 2.5-hour excursion to a sheltered bay where tiny organisms create a dazzling light show with every splash. For the best viewing, wear dark-colored clothing.",
+          "images": [
+            "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/1b/77/09.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqFS-fL61MyQ1e9eWg5quoVLj9MWy4_woUeUDnFU_fKfnk1ZvgKb5tfSd8&s=10"
+          ]
         }
       ]
     },
@@ -524,14 +555,14 @@
       "date": "2026-09-02",
       "base": "Phuket",
       "title": "Fly home",
-      "summary": "Out of Phuket.",
+      "summary": "Depart from Phuket Airport this morning to head back to India.",
       "stayId": "phuket",
       "notes": [
         "Return flight was not discussed on the call."
       ],
       "items": [
         {
-          "time": "Morning",
+          "time": "9:30",
           "title": "Phuket airport",
           "type": "flight",
           "description": "Departure.",
@@ -541,7 +572,8 @@
             "lng": 98.3169
           }
         }
-      ]
+      ],
+      "image": "https://i.ytimg.com/vi/KMckZjMEhFU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCAdBzbwG-aOo2ZAtrdAXcyLWf7IA"
     }
   ],
   "info": [
