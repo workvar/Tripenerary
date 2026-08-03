@@ -108,6 +108,31 @@
           "images": "https://ik.imagekit.io/tvlk/blog/2024/04/shutterstock_1062873146.jpg"
         },
         {
+          "time": "9:00",
+          "endTime": "12:00",
+          "title": "Wat Pho and the Reclining Buddha",
+          "type": "activity",
+          "description": "Visit Wat Pho to see the massive Reclining Buddha, a truly impressive sight. Allow a couple of hours to wander through the temple grounds and appreciate the intricate details. Comfortable shoes are a must, as you'll be doing a lot of walking.",
+          "images": [
+            "https://pattayacitytourcoltd.com/uploads/blog/8eacecc9f3afeaa79cc981a58716ffbb.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb70ediX0dgaLU7t_sLvlJKFMpchxaM4Lt7_Pf-AujrCQC_IhjJvpWjS4A&s=10"
+          ]
+        },
+        {
+          "time": "12:00",
+          "endTime": "13:30",
+          "title": "Lunch at Tha Tien",
+          "type": "food",
+          "description": "Enjoy lunch at Tha Tien, a riverside restaurant near Wat Pho. You'll likely spend about an hour and a half there, savoring Thai dishes with a view. It's a good idea to bring small bills for easy tipping.",
+          "images": "https://res.klook.com/image/upload/w_500,h_313,c_fill,q_85/activities/cv41bimyg7a5fk31j1ad.jpg"
+        },
+        {
+          "time": "14:00",
+          "title": "Check in to Hotel",
+          "type": "hotel",
+          "description": "Arrive at your hotel in Bangkok around 2 PM. Check in, leave your luggage, and take a moment to settle into your room. An afternoon nap serves well."
+        },
+        {
           "time": "19:15",
           "endTime": "19:45",
           "title": "Asiatique ferris wheel",
@@ -132,7 +157,8 @@
             "name": "Chao Phraya river, ICONSIAM pier",
             "lat": 13.7263,
             "lng": 100.51
-          }
+          },
+          "images": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/76/90/1a.jpg"
         }
       ],
       "image": "https://media.istockphoto.com/id/2149112736/photo/wat-arun-temple-at-sunset-bangkok-in-thailand.jpg?s=612x612&w=0&k=20&c=1JqYAueTVDWfnj8iwCRlS_VIp-3YBeDp6Wp-Pq19qVk="
@@ -141,25 +167,27 @@
       "date": "2026-08-23",
       "base": "Bangkok",
       "title": "Chatuchak and the canals",
-      "summary": "The weekend market in the morning, then the old city by boat.",
+      "summary": "Explore bustling stalls and ancient waterways, experiencing Bangkok's vibrant energy.",
       "stayId": "bkk",
       "notes": [
         "Chatuchak only runs at the weekend, so this has to be the Sunday. It cannot move to Monday."
       ],
       "items": [
         {
-          "time": "Morning",
+          "time": "9:00",
           "title": "Chatuchak weekend market",
           "type": "activity",
-          "description": "Enormous weekend market. Go early, it gets hot and crowded by midday.",
+          "description": "Explore the vast Chatuchak Weekend Market, a treasure trove of goods from clothing and crafts to food and souvenirs.  It's a great place to wander and discover unique finds, so plan to spend a few hours there.  Arriving early in the morning is recommended to beat the midday heat and large crowds.",
           "location": {
             "name": "Chatuchak Weekend Market",
             "lat": 13.7999,
             "lng": 100.5503
-          }
+          },
+          "images": "https://themanduls.com/wp-content/uploads/2025/08/Chatuchak-Weekend-Market-Bangkok-25.jpg"
         },
         {
-          "time": "Afternoon",
+          "time": "14:30",
+          "endTime": "16:30",
           "title": "Long-tail boat through the Thonburi canals",
           "type": "activity",
           "description": "Long-tail boat through the khlongs on the Thonburi side, the older and quieter half of the city.",
@@ -167,13 +195,16 @@
             "name": "Thonburi canals",
             "lat": 13.75,
             "lng": 100.489
-          }
+          },
+          "images": "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_728/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/flp80drajzmx8k9zotoy/BangkokLocalCanalTourbyLong-tailBoat.jpg"
         },
         {
-          "time": "Evening",
+          "time": "18:00",
+          "endTime": "20:30",
           "title": "Downtown Bangkok",
           "type": "sight",
-          "description": "Wander downtown. Nothing fixed, this was left loose on the call."
+          "description": "In the evening, explore downtown Bangkok at your own pace. There's no fixed itinerary for this time; it's an opportunity to wander and discover modern Thailand. Allow about two hours for this flexible exploration, and wear comfortable shoes as you'll be doing a lot of walking.",
+          "images": "https://media.istockphoto.com/id/505779722/photo/bangkok-city-view-from-above-thailand.jpg?s=612x612&w=0&k=20&c=rCvIhLpKQwr_HnRKArjTvqBLCmXNVvh4XWYAcA0vN6E="
         }
       ]
     },
