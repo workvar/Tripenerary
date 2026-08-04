@@ -4,7 +4,7 @@
     "title": "Thailand 2026",
     "subtitle": "Bangkok, Pattaya, Khao Lak, Phuket",
     "startDate": "2026-08-22",
-    "endDate": "2026-09-02",
+    "endDate": "2026-09-03",
     "timezone": "Asia/Bangkok",
     "currency": "THB"
   },
@@ -63,6 +63,89 @@
     }
   ],
   "days": [
+    {
+      "date": "2026-08-21",
+      "base": "Bangkok",
+      "title": "Travelling to Thailand",
+      "summary": "Following a flight from Guwahati via Kolkata, you'll arrive in Bangkok and settle into your accommodation.",
+      "items": [
+        {
+          "time": "19:15",
+          "endTime": "20:30",
+          "title": "Guwahati to Kolkata",
+          "type": "flight",
+          "description": "Your flight departs Guwahati at 19:15, arriving at Kolkata International Airport at 20:30.  Allow ample time to check in your checked baggage – you'll be checking in a 7kg bag and a 20kg bag with Indigo, and will receive your luggage in Bangkok.  It's a good idea to arrive at the airport at least two hours before your scheduled departure to comfortably handle check-in and security.",
+          "cost": "8,492 INR x 2 person",
+          "booking": {
+            "ref": "WGHI3U"
+          },
+          "location": {
+            "name": "Lokpriya Gopinath Bordoloi International Airport - Terminal 2",
+            "lat": 26.12106773759251,
+            "lng": 91.59866680963341
+          },
+          "images": "https://parametric-architecture.com/wp-content/uploads/2025/08/International-Architectural-Award-2025-Guwahati-Airport-05.webp",
+          "attachments": [
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQATgOL0M3zpRL5i5tfbn46sAfcBgEwwcQB7NcPLV9i8OeM",
+              "title": "Ranjana - Guwahati to Bangkok Ticket",
+              "kind": "pdf",
+              "note": "PNR: WGHI3U"
+            },
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQBQwqj8CVBAQYOvDWIhnYsKAeeLHPD0NJjNgLnzLTgyKkI?e=6fH843",
+              "title": "Praveen - Guwahati to Bangkok Ticket",
+              "kind": "pdf",
+              "note": "PNR: WGHI3U"
+            }
+          ]
+        },
+        {
+          "time": "20:30",
+          "endTime": "23:30",
+          "title": "Layover at Kolkata Airport",
+          "type": "travel",
+          "description": "You'll spend a few hours at Kolkata Airport during your Bangkok trip. There’s ample time to relax, maybe grab a bite to eat, or explore the airport amenities.  Allow about four hours for this layover, and consider downloading an entertainment app beforehand to pass the time.",
+          "location": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "lat": 22.653816457559234,
+            "lng": 88.44525635721115
+          }
+        },
+        {
+          "time": "23:30",
+          "endTime": "03:45",
+          "title": "Kolkata to Bangkok",
+          "type": "flight",
+          "description": "Depart from Kolkata Airport at 11:30 PM and arrive at Bangkok’s Suvarnabhumi Airport at 3:45 AM the next day. This flight takes approximately 9 hours and 15 minutes.  Remember to double-check your passport and visa requirements well in advance of your departure.",
+          "cost": "8,491 INR x 2 person",
+          "booking": {
+            "ref": "WGHI3U"
+          },
+          "location": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "lat": 22.653816457559234,
+            "lng": 88.44525635721115
+          },
+          "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV-rNRuQgvIcwUAbiangqXHh3eTJTN3nexO3fXwR2sWCKhdv_eQ8rbi4c&s=10",
+          "attachments": [
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQATgOL0M3zpRL5i5tfbn46sAfcBgEwwcQB7NcPLV9i8OeM",
+              "title": "Ranjana - Guwahati to Bangkok Ticket",
+              "kind": "pdf",
+              "note": "PNR: WGHI3U"
+            },
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQBQwqj8CVBAQYOvDWIhnYsKAeeLHPD0NJjNgLnzLTgyKkI?e=6fH843",
+              "title": "Praveen - Guwahati to Bangkok Ticket",
+              "kind": "pdf",
+              "note": "PNR: WGHI3U"
+            }
+          ]
+        }
+      ],
+      "image": "https://cdn.tourradar.com/s3/serp/1500x800/4600_t8afNwa2.jpg"
+    },
     {
       "date": "2026-08-22",
       "base": "Bangkok",
@@ -388,7 +471,15 @@
             "lat": 8.1132,
             "lng": 98.3169
           },
-          "images": "https://etimg.etb2bimg.com/photo/112371682.cms"
+          "images": "https://etimg.etb2bimg.com/photo/112371682.cms",
+          "attachments": [
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQCniIBvceT9TbdKH3chfTpNAYw-q8AnhN6reyiJZ5K56Z0",
+              "title": "Tickets for Both",
+              "kind": "pdf",
+              "note": "PNR: QWTBMQ"
+            }
+          ]
         },
         {
           "time": "17:30",
@@ -556,21 +647,43 @@
       "base": "Phuket",
       "title": "Fly home",
       "summary": "Depart from Phuket Airport this morning to head back to India.",
-      "stayId": "phuket",
-      "notes": [
-        "Return flight was not discussed on the call."
-      ],
       "items": [
         {
           "time": "9:30",
+          "title": "Checkout from Hotel",
+          "type": "hotel",
+          "description": "Your hotel check-out in Phuket starts at 9:30 AM. This usually takes about 15 to 30 minutes, depending on how busy the front desk is. To make things smoother, gather your belongings and any travel documents the night before."
+        },
+        {
+          "time": "12:55",
+          "endTime": "13:55",
           "title": "Phuket airport",
           "type": "flight",
-          "description": "Departure.",
+          "description": "Your flight departs Phuket International Airport at 12:55 PM and arrives back at 1:55 PM (IST). The flight duration is approximately 3 hours.  For a smoother experience, aim to arrive at the airport at least an hour before your departure.",
+          "cost": "29,900 INR",
+          "booking": {
+            "ref": "V88WXF"
+          },
           "location": {
             "name": "Phuket International Airport",
             "lat": 8.1132,
             "lng": 98.3169
-          }
+          },
+          "images": "https://www.aci-asiapac.aero/f/blog/1130/1200c630/10_HKT%202.jpg",
+          "attachments": [
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQDU5haf7L2VT6tiEhsZEVz7Afoir4Y-NLVY2Kj1a3MvZnA?e=vUL8VN",
+              "title": "Praveen - Phuket to Kolkata Ticket",
+              "kind": "pdf",
+              "note": "PNR: V88WX"
+            },
+            {
+              "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQDfWSMwJkC2Q4yeNWwDmPhWAWRcix_nNkEpHukBX11sY5U?e=s6Hidn",
+              "title": "Ranjana - Phuket to Kolkata Ticket",
+              "kind": "pdf",
+              "note": "PNR: V88WX"
+            }
+          ]
         }
       ],
       "image": "https://i.ytimg.com/vi/KMckZjMEhFU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCAdBzbwG-aOo2ZAtrdAXcyLWf7IA"
