@@ -1,5 +1,6 @@
 import {
   emptyLocation,
+  newAttachment,
   newBlock,
   newContact,
   newDay,
@@ -8,10 +9,13 @@ import {
   newInfo,
   newStay,
 } from '@/lib/factories';
-import { ITEM_TYPES, CONTACT_TYPES } from '@/types/itinerary';
+import { normalizeDraft } from '@/lib/normalizeDraft';
+import { ITEM_TYPES, CONTACT_TYPES, ATTACHMENT_KINDS } from '@/types/itinerary';
 import type {
+  AttachmentKind,
   ContactType,
   Draft,
+  DraftAttachment,
   DraftImage,
   DraftLocation,
   ItemType,
@@ -58,6 +62,49 @@ function readImages(v: unknown): DraftImage[] {
 
 const firstImageUrl = (v: unknown): string => readImages(v)[0]?.url ?? '';
 
+/** Mirrors the app's inference so a bare URL round-trips with the same badge. */
+const EXT_KIND: Record<string, AttachmentKind> = {
+  pdf: 'pdf',
+  png: 'image',
+  jpg: 'image',
+  jpeg: 'image',
+  webp: 'image',
+  heic: 'image',
+  doc: 'doc',
+  docx: 'doc',
+  txt: 'doc',
+  pkpass: 'ticket',
+};
+
+function attachmentKind(url: string, hint: unknown): AttachmentKind {
+  if (ATTACHMENT_KINDS.includes(hint as AttachmentKind)) return hint as AttachmentKind;
+  const file = (url.split(/[?#]/)[0] ?? '').split('/').pop() ?? '';
+  const dot = file.lastIndexOf('.');
+  const ext = dot > 0 ? file.slice(dot + 1).toLowerCase() : '';
+  return EXT_KIND[ext] ?? 'link';
+}
+
+/** Accepts a URL string, an { url, title, kind, note } object, or an array of either. */
+function readAttachments(v: unknown): DraftAttachment[] {
+  const list = Array.isArray(v) ? v : v ? [v] : [];
+  return list
+    .map((entry) => {
+      if (typeof entry === 'string') {
+        return entry ? { ...newAttachment(entry), kind: attachmentKind(entry, undefined) } : null;
+      }
+      const o = obj(entry);
+      const url = str(o.url) || str(o.href) || str(o.link);
+      if (!url) return null;
+      return {
+        ...newAttachment(url),
+        title: str(o.title) || str(o.label) || str(o.name),
+        kind: attachmentKind(url, o.kind ?? o.type),
+        note: str(o.note) || str(o.description),
+      };
+    })
+    .filter((a): a is DraftAttachment => a !== null);
+}
+
 export function fromItinerary(raw: unknown): Draft {
   const root = obj(raw);
   const base = newDraft();
@@ -78,6 +125,7 @@ export function fromItinerary(raw: unknown): Draft {
       notes: str(o.notes),
       location: readLocation(o.location),
       image: firstImageUrl(o.image),
+      attachments: readAttachments(o.attachments ?? o.documents),
     };
   });
 
@@ -106,6 +154,7 @@ export function fromItinerary(raw: unknown): Draft {
           bookingUrl: str(booking.url),
           location: readLocation(i.location),
           images: readImages(i.images),
+          attachments: readAttachments(i.attachments ?? i.documents),
         };
       }),
     };
@@ -132,6 +181,7 @@ export function fromItinerary(raw: unknown): Draft {
       currency: str(trip.currency),
       travellers: arr(trip.travellers).map(str).filter(Boolean),
       coverImage: firstImageUrl(trip.coverImage),
+      attachments: readAttachments(trip.attachments ?? trip.documents ?? root.attachments),
     },
     stays,
     days: days.length > 0 ? days : base.days,
@@ -142,7 +192,7 @@ export function fromItinerary(raw: unknown): Draft {
 
 export function parseDraft(text: string): { ok: true; draft: Draft } | { ok: false; error: string } {
   try {
-    const draft = fromItinerary(JSON.parse(text));
+    const draft = normalizeDraft(fromItinerary(JSON.parse(text)));
     return { ok: true, draft };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : 'Could not read that file' };

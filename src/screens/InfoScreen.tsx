@@ -3,6 +3,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenHeader from '@/components/ScreenHeader';
 import SmartImage from '@/components/SmartImage';
 import Message from '@/components/Message';
+import Press from '@/components/Press';
+import AttachmentList from '@/components/AttachmentList';
+import { useLightbox } from '@/components/lightbox/context';
 import { Card, SectionTitle } from '@/components/ui';
 import { colors, hairlineWidth, radius, spacing, type } from '@/theme';
 import { formatDate } from '@/lib/dates';
@@ -23,6 +26,10 @@ interface InfoScreenProps {
 }
 
 export default function InfoScreen({ data, showImages, onClose }: InfoScreenProps) {
+  const openLightbox = useLightbox();
+  const enlarge = (url: string, caption: string) => () =>
+    openLightbox([{ url, caption, credit: '' }]);
+
   return (
     <SafeAreaView style={s.safe} edges={['top']}>
       <ScreenHeader title="Trip info" onClose={onClose} />
@@ -34,7 +41,13 @@ export default function InfoScreen({ data, showImages, onClose }: InfoScreenProp
           <>
             <Card style={s.hero}>
               {showImages && data.trip.coverImage ? (
-                <SmartImage uri={data.trip.coverImage} style={s.cover} radiusValue={radius.md} />
+                <Press
+                  onPress={enlarge(data.trip.coverImage, data.trip.title)}
+                  scaleTo={0.99}
+                  accessibilityLabel="Enlarge cover photo"
+                >
+                  <SmartImage uri={data.trip.coverImage} style={s.cover} radiusValue={radius.md} />
+                </Press>
               ) : null}
               <Text style={s.title}>{data.trip.title}</Text>
               {data.trip.subtitle ? <Text style={s.subtitle}>{data.trip.subtitle}</Text> : null}
@@ -48,6 +61,15 @@ export default function InfoScreen({ data, showImages, onClose }: InfoScreenProp
                 <Text style={s.meta}>{data.trip.travellers.join(' and ')}</Text>
               ) : null}
             </Card>
+
+            {data.trip.attachments.length > 0 ? (
+              <>
+                <SectionTitle>Travel documents</SectionTitle>
+                <Card>
+                  <AttachmentList attachments={data.trip.attachments} label="TAP TO OPEN" flush />
+                </Card>
+              </>
+            ) : null}
 
             {data.contacts.length > 0 ? (
               <>
@@ -77,13 +99,20 @@ export default function InfoScreen({ data, showImages, onClose }: InfoScreenProp
                 {data.stays.map((stay) => (
                   <Card key={stay.id} style={s.spaced}>
                     {showImages && stay.image ? (
-                      <SmartImage uri={stay.image} style={s.thumb} radiusValue={radius.sm} />
+                      <Press
+                        onPress={enlarge(stay.image, stay.name)}
+                        scaleTo={0.99}
+                        accessibilityLabel="Enlarge hotel photo"
+                      >
+                        <SmartImage uri={stay.image} style={s.thumb} radiusValue={radius.sm} />
+                      </Press>
                     ) : null}
                     <Text style={s.infoTitle}>{stay.name}</Text>
                     <Text style={s.infoBody}>
                       {[stay.city, stay.address].filter(Boolean).join(' · ')}
                     </Text>
                     <Text style={s.meta}>{`${shortDate(stay.checkIn)} to ${shortDate(stay.checkOut)}`}</Text>
+                    <AttachmentList attachments={stay.attachments} label="BOOKING DOCUMENTS" />
                   </Card>
                 ))}
               </>
@@ -95,7 +124,13 @@ export default function InfoScreen({ data, showImages, onClose }: InfoScreenProp
                 {data.info.map((section) => (
                   <Card key={section.title} style={s.spaced}>
                     {showImages && section.image ? (
-                      <SmartImage uri={section.image} style={s.thumb} radiusValue={radius.sm} />
+                      <Press
+                        onPress={enlarge(section.image, section.title)}
+                        scaleTo={0.99}
+                        accessibilityLabel="Enlarge photo"
+                      >
+                        <SmartImage uri={section.image} style={s.thumb} radiusValue={radius.sm} />
+                      </Press>
                     ) : null}
                     <Text style={s.infoTitle}>{section.title}</Text>
                     <Text style={s.infoBody}>{section.body}</Text>

@@ -4,6 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useTripLibrary from '@/hooks/useTripLibrary';
 import ScreenTransition from '@/components/ScreenTransition';
+import LightboxProvider from '@/components/lightbox/Lightbox';
+import { TripScopeContext } from '@/components/TripScope';
 import SplashScreen from '@/screens/SplashScreen';
 import LandingScreen from '@/screens/LandingScreen';
 import TripScreen from '@/screens/TripScreen';
@@ -52,23 +54,27 @@ export default function App() {
         style={onLanding ? 'dark' : 'light'}
         backgroundColor={onLanding ? colors.bg : colors.primary}
       />
-      <View style={s.root}>
-        <ScreenTransition id={activeId ?? 'landing'} from="right">
-          {base}
-        </ScreenTransition>
+      <TripScopeContext.Provider value={activeId}>
+      <LightboxProvider>
+        <View style={s.root}>
+          <ScreenTransition id={activeId ?? 'landing'} from="right">
+            {base}
+          </ScreenTransition>
 
-        {sheet && overlay ? (
-          <View style={s.overlay}>
-            <ScreenTransition id={overlay} from="up">
-              {sheet}
-            </ScreenTransition>
-          </View>
-        ) : null}
+          {sheet && overlay ? (
+            <View style={s.overlay}>
+              <ScreenTransition id={overlay} from="up">
+                {sheet}
+              </ScreenTransition>
+            </View>
+          ) : null}
 
-        {!splashDone ? (
-          <SplashScreen ready={!library.booting} onDone={() => setSplashDone(true)} />
-        ) : null}
-      </View>
+          {!splashDone ? (
+            <SplashScreen ready={!library.booting} onDone={() => setSplashDone(true)} />
+          ) : null}
+        </View>
+      </LightboxProvider>
+      </TripScopeContext.Provider>
     </SafeAreaProvider>
   );
 }

@@ -21,7 +21,13 @@ and the phone updates. You can keep several trips side by side.
 - **Day view** – optional hero photo, day number, base city, title and summary, then the
   schedule as full-width blocks: time on top, everything else underneath. No empty gutter.
 - **Photos** – trips, days, schedule items and stays can all carry images. They fade in over a
-  placeholder and are skipped silently if a link is dead. Turn them off in Settings.
+  placeholder and are skipped silently if a link is dead. Turn them off in Settings. Tap any
+  photo to open it full screen, then pinch to zoom, drag to pan, double-tap to toggle, and
+  flick down to close.
+- **Documents** – schedule blocks, stays and the trip itself can carry linked PDFs: flight
+  tickets, hotel confirmations, show tickets, insurance. Tapping one downloads it and opens
+  it in the device's own PDF viewer. The copy is kept, so it opens again with no signal.
+  Settings shows how much space the downloads use and can clear them.
 - **Maps** – every location shows a small embedded map preview plus two buttons: open the place
   in Google Maps, or get directions to it. On Android it opens the native Google Maps app.
 - **Stay card** – which hotel you are checked into on that day, with dates, confirmation number
@@ -181,6 +187,69 @@ photos do not appear: the URL is fine in a browser but returns HTML, a redirect 
 https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Maya_Bay.jpg/800px-Maya_Bay.jpg
 ```
 
+### Documents
+
+Three optional `attachments` fields, each a list of links to files:
+
+| Field | Where it shows |
+|---|---|
+| `trip.attachments` | a "Travel documents" section on the Trip info screen |
+| `stays[].attachments` | under the stay card, labelled "Booking documents" |
+| `days[].items[].attachments` | inside the schedule block |
+
+Each entry is a bare URL string, or an object:
+
+```json
+"attachments": [
+  "https://example.com/hotel-voucher.pdf",
+  {
+    "url": "https://example.com/boarding-pass.pdf",
+    "title": "Boarding pass · BKK to CNX",
+    "kind": "ticket",
+    "note": "Confirmation ABC123"
+  }
+]
+```
+
+- `title` falls back to the file name, then the host.
+- `kind` is one of `pdf`, `image`, `doc`, `ticket`, `link`, and only picks the icon and badge.
+  Leave it out and it is inferred from the file extension.
+- `note` is a small second line, useful for a confirmation number.
+
+The link has to be **direct and publicly reachable** — a Google Drive or Dropbox preview page
+opens as a web page asking to sign in, not as the document. Anything that is not an `https://`
+URL is dropped, same as images.
+
+#### How documents are cached
+
+The first tap on a document downloads it into the app's private storage, then opens that local
+copy; every tap after that skips the network. On Android the file is handed over as a
+`content://` URI through the FileProvider that `expo-file-system` registers, with an explicit
+`VIEW` intent, because Android refuses a bare `file://` URI from another app. If anything in
+that chain fails — no signal, file too large, no viewer installed — the original URL is opened
+instead, so a tap always does something.
+
+Nothing is downloaded in the background. A refresh will not pull a document the traveller has
+never opened; it only reconciles what is already there:
+
+1. **Delete** – files whose attachment has left the itinerary, plus any empty file left by a
+   failed download, are removed.
+2. **Re-check** – each surviving document is `HEAD`ed and compared against the `ETag` and
+   `Content-Length` recorded when it was downloaded.
+3. **Fetch** – the ones that changed are pulled again.
+
+A failed `HEAD` leaves the cached copy alone, which is the right call on a bad connection: a
+stale ticket beats no ticket. Removing a trip deletes its whole document folder.
+
+Two caps keep this from quietly eating the phone, both in `src/config.ts`:
+
+| Cap | Default |
+|---|---|
+| `DOCUMENT_CACHE.maxFileBytes` | 25 MB per document |
+| `DOCUMENT_CACHE.maxTripBytes` | 150 MB per trip |
+
+A document over the limit is not kept offline; it still opens, straight from the network.
+
 **Some hosts refuse the phone outright.** Wikimedia answers 403 to React Native's Android
 image loader, is not talked round by a polite `User-Agent`, and refuses image proxies too.
 The symptom is distinctive: maps render fine, every photo silently fails. Requests do carry
@@ -241,6 +310,8 @@ src/lib/maps.ts             Google Maps URL building and native app handoff
 src/lib/fetchItinerary.ts   share-link rewriting, fetch with timeout
 src/lib/normalize.ts        parses `unknown` JSON into a typed Itinerary
 src/lib/images.ts           image field parsing
+src/lib/attachments.ts      document link parsing
+src/lib/cache/             offline document copies: download, re-check, sweep, open
 src/lib/tripSummary.ts      card summaries, live/upcoming/past status, ordering
 src/lib/storage.ts          AsyncStorage wrapper, trip index, v1 migration
 src/hooks/useTripLibrary.ts the whole library: add, remove, open, refresh, prefs

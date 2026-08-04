@@ -17,6 +17,9 @@ export type ItemType = (typeof ITEM_TYPES)[number];
 export const CONTACT_TYPES = ['phone', 'url', 'text'] as const;
 export type ContactType = (typeof CONTACT_TYPES)[number];
 
+export const ATTACHMENT_KINDS = ['pdf', 'image', 'doc', 'ticket', 'link'] as const;
+export type AttachmentKind = (typeof ATTACHMENT_KINDS)[number];
+
 /** A plain `YYYY-MM-DD` string. Branded so a raw string cannot be passed by mistake. */
 export type DateKey = string & { readonly __dateKey: unique symbol };
 
@@ -40,6 +43,15 @@ export interface Booking {
   readonly url: string;
 }
 
+/** A linked document: boarding pass, hotel voucher, show ticket, insurance PDF. */
+export interface Attachment {
+  readonly key: string;
+  readonly title: string;
+  readonly url: string;
+  readonly kind: AttachmentKind;
+  readonly note: string;
+}
+
 export interface ScheduleItem {
   readonly key: string;
   readonly time: string;
@@ -51,6 +63,7 @@ export interface ScheduleItem {
   readonly booking: Booking | null;
   readonly location: TripLocation | null;
   readonly images: readonly TripImage[];
+  readonly attachments: readonly Attachment[];
 }
 
 export interface Stay {
@@ -65,6 +78,7 @@ export interface Stay {
   readonly notes: string;
   readonly location: TripLocation | null;
   readonly image: string;
+  readonly attachments: readonly Attachment[];
 }
 
 export interface Day {
@@ -88,6 +102,7 @@ export interface TripMeta {
   readonly currency: string;
   readonly travellers: readonly string[];
   readonly coverImage: string;
+  readonly attachments: readonly Attachment[];
 }
 
 export interface InfoSection {

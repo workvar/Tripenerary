@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import ImportDialog from '@/components/ImportDialog';
+import PdfButton from '@/components/PdfButton';
 import Button from '@/components/ui/Button';
 import { suggestedFilename, toJsonString } from '@/lib/exportJson';
 import { newDraft } from '@/lib/factories';
@@ -70,6 +71,7 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
           <Button size="sm" onClick={() => setImporting(true)}>
             Import JSON
           </Button>
+          <PdfButton draft={draft} label="PDF · all days" />
           <Button size="sm" variant="primary" onClick={exportFile}>
             Export JSON
           </Button>

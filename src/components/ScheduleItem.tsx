@@ -1,6 +1,7 @@
 import { Linking, StyleSheet, Text, View } from 'react-native';
 import LocationRow from './LocationRow';
 import ImageStrip from './ImageStrip';
+import AttachmentList from './AttachmentList';
 import { colors, elevation, hairlineWidth, radius, spacing, type } from '@/theme';
 import type { ItemType, ScheduleItem as Item } from '@/types';
 
@@ -73,6 +74,8 @@ export default function ScheduleItem({ item, showPreview, showImages }: Schedule
             ) : null}
           </View>
         ) : null}
+
+        <AttachmentList attachments={item.attachments} />
 
         <LocationRow location={item.location} showPreview={showPreview} />
       </View>

@@ -5,15 +5,28 @@ export type MergeMode = 'replace' | 'append' | 'days-only';
 
 /** Fresh ids for everything, so an imported draft can sit beside the current one. */
 export function rekeyDraft(draft: Draft): Draft {
+  const rekeyAttachments = <T extends { id: string }>(list: T[]): T[] =>
+    list.map((a) => ({ ...a, id: uid('att') }));
+
   return {
     ...draft,
-    stays: draft.stays.map((s) => ({ ...s, id: uid('stay') })),
+    trip: { ...draft.trip, attachments: rekeyAttachments(draft.trip.attachments) },
+    stays: draft.stays.map((s) => ({
+      ...s,
+      id: uid('stay'),
+      attachments: rekeyAttachments(s.attachments),
+    })),
     info: draft.info.map((i) => ({ ...i, id: uid('info') })),
     contacts: draft.contacts.map((c) => ({ ...c, id: uid('con') })),
     days: draft.days.map((d) => ({
       ...d,
       id: uid('day'),
-      items: d.items.map((b) => ({ ...b, id: uid('blk'), images: b.images.map((im) => ({ ...im, id: uid('img') })) })),
+      items: d.items.map((b) => ({
+        ...b,
+        id: uid('blk'),
+        images: b.images.map((im) => ({ ...im, id: uid('img') })),
+        attachments: rekeyAttachments(b.attachments),
+      })),
     })),
   };
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import BlockImages from './BlockImages';
+import { DOC_GLYPH, DOC_LABEL, fileLabel } from '@/lib/attachmentMeta';
 import { ITEM_TYPE_META } from '@/types/itinerary';
 import type { DraftBlock } from '@/types/itinerary';
 
@@ -9,6 +10,7 @@ export default function ScheduleBlock({ block }: { readonly block: DraftBlock })
   const meta = ITEM_TYPE_META[block.type];
   const hasBooking = Boolean(block.bookingRef || block.bookingUrl);
   const photos = block.images.filter((i) => i.url.trim());
+  const docs = block.attachments.filter((a) => a.url.trim());
   const place = block.location.name || block.location.address;
 
   return (
@@ -35,6 +37,33 @@ export default function ScheduleBlock({ block }: { readonly block: DraftBlock })
         ) : null}
 
         <BlockImages images={photos} alt={block.title} />
+
+        {docs.length > 0 ? (
+          <div className="mt-4">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-faint">Documents</span>
+            <div className="mt-2 space-y-2">
+              {docs.map((d) => (
+                <div
+                  key={d.id}
+                  className="flex items-center gap-3 rounded-sm border border-line bg-elevated px-3 py-2"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xs bg-primarySoft text-sm">
+                    {DOC_GLYPH[d.kind]}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[15px] font-bold text-ink">
+                      {d.title || fileLabel(d.url)}
+                    </span>
+                    <span className="block truncate text-[11.5px] text-faint">
+                      {d.note || DOC_LABEL[d.kind]}
+                    </span>
+                  </span>
+                  <span className="text-[15px] text-faint">{'\u{203A}'}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         {block.cost || hasBooking ? (
           <div className="mt-3 flex flex-wrap items-center gap-3">

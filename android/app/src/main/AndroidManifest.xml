@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-  <!-- The app only fetches itinerary JSON, map tiles and remote images. Anything
-       a library tries to merge in beyond that is removed explicitly: store
-       reviewers flag storage and overlay permissions that have no stated use. -->
+  <!-- The app only fetches itinerary JSON, map tiles, remote images and the
+       documents an itinerary links to. Anything a library tries to merge in
+       beyond that is removed explicitly: store reviewers flag storage and
+       overlay permissions that have no stated use. -->
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+  <!-- expo-file-system declares both of these, but cached documents live in the
+       app's own private directory, so neither is needed. Removing them keeps the
+       permission list matching what the app actually does. -->
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="remove"/>
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove"/>

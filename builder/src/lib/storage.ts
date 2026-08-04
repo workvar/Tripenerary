@@ -1,4 +1,5 @@
 import { newDraft } from '@/lib/factories';
+import { normalizeDraft } from '@/lib/normalizeDraft';
 import type { Draft } from '@/types/itinerary';
 
 const KEY = 'trip-builder.draft.v1';
@@ -7,7 +8,7 @@ export function loadDraft(): Draft {
   if (typeof window === 'undefined') return newDraft();
   try {
     const raw = window.localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as Draft) : newDraft();
+    return raw ? normalizeDraft(JSON.parse(raw)) : newDraft();
   } catch {
     return newDraft();
   }

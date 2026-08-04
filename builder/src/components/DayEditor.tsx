@@ -3,6 +3,7 @@
 import { Area, Grid2, Select, Text } from '@/components/Field';
 import BlockEditor from '@/components/BlockEditor';
 import NotesEditor from '@/components/NotesEditor';
+import PdfButton from '@/components/PdfButton';
 import Button, { IconButton } from '@/components/ui/Button';
 import AiFillButton from '@/components/ai/AiFillButton';
 import { dayProgress } from '@/lib/stats';
@@ -70,6 +71,7 @@ export default function DayEditor({ day, index, total, stays, api }: Props) {
           <Button size="sm" onClick={() => api.duplicateDay(day.id)}>
             Duplicate
           </Button>
+          <PdfButton draft={api.draft} dayIndex={index} label="Download PDF" />
           <Button size="sm" variant="danger" disabled={total <= 1} onClick={() => api.removeDay(day.id)}>
             Delete day
           </Button>

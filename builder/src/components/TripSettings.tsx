@@ -1,6 +1,7 @@
 'use client';
 
 import { Grid2, Grid3, Text } from '@/components/Field';
+import AttachmentFields from '@/components/AttachmentFields';
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import AiFillButton from '@/components/ai/AiFillButton';
@@ -113,6 +114,13 @@ export default function TripSettings({ api }: { readonly api: DraftApi }) {
         </div>
 
         <Text label="Cover image URL" value={draft.trip.coverImage} onChange={(v) => patchTrip({ coverImage: v })} placeholder="https://..." />
+
+        <AttachmentFields
+          attachments={draft.trip.attachments}
+          onChange={(attachments) => patchTrip({ attachments })}
+          label="Travel documents"
+          hint="Passport scan, insurance, visa. Shown under Trip info in the app."
+        />
       </div>
 
       <StatsPanel api={api} />

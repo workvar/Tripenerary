@@ -1,4 +1,4 @@
-import type { Draft, DraftImage, DraftLocation } from '@/types/itinerary';
+import type { Draft, DraftAttachment, DraftImage, DraftLocation } from '@/types/itinerary';
 
 type Json = Record<string, unknown>;
 
@@ -47,6 +47,21 @@ function exportImages(images: DraftImage[]): unknown {
   return list.length === 1 ? list[0] : list;
 }
 
+/** Attachments always export as objects: the kind badge is worth keeping explicit. */
+function exportAttachments(attachments: DraftAttachment[]): unknown {
+  const list = attachments
+    .filter((a) => clean(a.url))
+    .map((a) =>
+      compact({
+        url: clean(a.url),
+        title: clean(a.title),
+        kind: a.kind,
+        note: clean(a.note),
+      })
+    );
+  return list.length > 0 ? list : undefined;
+}
+
 export function toItinerary(draft: Draft): Json {
   const trip = compact({
     title: clean(draft.trip.title),
@@ -57,6 +72,7 @@ export function toItinerary(draft: Draft): Json {
     currency: clean(draft.trip.currency),
     travellers: draft.trip.travellers.map(clean).filter(Boolean),
     coverImage: clean(draft.trip.coverImage),
+    attachments: exportAttachments(draft.trip.attachments),
   });
 
   const stays = draft.stays
@@ -74,6 +90,7 @@ export function toItinerary(draft: Draft): Json {
         notes: clean(s.notes),
         location: exportLocation(s.location),
         image: clean(s.image),
+        attachments: exportAttachments(s.attachments),
       })
     );
 
@@ -98,6 +115,7 @@ export function toItinerary(draft: Draft): Json {
             booking: compact({ ref: clean(i.bookingRef), url: clean(i.bookingUrl) }),
             location: exportLocation(i.location),
             images: exportImages(i.images),
+            attachments: exportAttachments(i.attachments),
           })
         ),
       image: clean(d.image),

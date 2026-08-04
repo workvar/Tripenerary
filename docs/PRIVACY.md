@@ -24,11 +24,14 @@ storage, and is deleted when you uninstall the app:
 
 - The itinerary URLs you add.
 - A cached copy of each itinerary's contents.
+- Copies of any attached documents you have opened, such as tickets and booking
+  confirmations, so they still open without a connection. You can delete these at
+  any time from Settings, under Documents.
 - Your display preferences (map previews, images, auto-refresh).
 
 ## Network requests
 
-The app makes requests to three kinds of destination:
+The app makes requests to four kinds of destination:
 
 1. **The itinerary URL you supply.** The operator of that URL can see your device's
    IP address and the time of the request, as with any web request.
@@ -36,6 +39,9 @@ The app makes requests to three kinds of destination:
    [Google's Privacy Policy](https://policies.google.com/privacy).
 3. **Image hosts referenced inside your itinerary**, to display photos. These are
    whichever hosts your itinerary points at.
+4. **Hosts of documents attached to your itinerary**, to download a document you have
+   tapped, and afterwards to check whether that document has changed. The app never
+   downloads an attached document you have not opened.
 
 We do not control and cannot see what those third parties log.
 

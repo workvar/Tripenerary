@@ -18,11 +18,23 @@ export type ItemType = (typeof ITEM_TYPES)[number];
 export const CONTACT_TYPES = ['phone', 'url', 'text'] as const;
 export type ContactType = (typeof CONTACT_TYPES)[number];
 
+export const ATTACHMENT_KINDS = ['pdf', 'image', 'doc', 'ticket', 'link'] as const;
+export type AttachmentKind = (typeof ATTACHMENT_KINDS)[number];
+
 export interface DraftImage {
   readonly id: string;
   url: string;
   caption: string;
   credit: string;
+}
+
+/** A linked document: boarding pass, hotel voucher, show ticket. */
+export interface DraftAttachment {
+  readonly id: string;
+  url: string;
+  title: string;
+  kind: AttachmentKind;
+  note: string;
 }
 
 export interface DraftLocation {
@@ -46,6 +58,7 @@ export interface DraftBlock {
   bookingUrl: string;
   location: DraftLocation;
   images: DraftImage[];
+  attachments: DraftAttachment[];
 }
 
 export interface DraftDay {
@@ -73,6 +86,7 @@ export interface DraftStay {
   notes: string;
   location: DraftLocation;
   image: string;
+  attachments: DraftAttachment[];
 }
 
 export interface DraftInfo {
@@ -98,6 +112,7 @@ export interface DraftTrip {
   currency: string;
   travellers: string[];
   coverImage: string;
+  attachments: DraftAttachment[];
 }
 
 export interface Draft {

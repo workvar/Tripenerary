@@ -5,6 +5,7 @@ import { fetchItinerary } from '@/lib/fetchItinerary';
 import { normalizeItinerary } from '@/lib/normalize';
 import { summarise } from '@/lib/tripSummary';
 import * as storage from '@/lib/storage';
+import { clearDocumentCache, forgetTrip, syncTripCache, totalBytes } from '@/lib/cache';
 import {
   fail,
   ok,
@@ -37,6 +38,9 @@ export interface TripLibrary {
   refreshAll: () => void;
   updatePrefs: (partial: Partial<Prefs>) => void;
   resetAll: () => Promise<void>;
+  /** Bytes of downloaded documents across every trip. */
+  readonly documentBytes: number;
+  clearDocuments: () => Promise<void>;
 }
 
 interface PullOptions {
@@ -69,6 +73,9 @@ export default function useTripLibrary(): TripLibrary {
   const [status, setStatus] = useState<ById<TripFetchState>>({});
   const [activeId, setActiveId] = useState<string | null>(null);
   const [prefs, setPrefsState] = useState<Prefs>(DEFAULT_PREFS);
+  const [documentBytes, setDocumentBytes] = useState(0);
+
+  const measureDocuments = useCallback(() => setDocumentBytes(totalBytes()), []);
 
   // Refs mirror state so callbacks stay stable and never close over stale trips.
   const tripsRef = useRef<readonly TripRecord[]>(trips);
@@ -102,6 +109,12 @@ export default function useTripLibrary(): TripLibrary {
           tripsRef.current.map((t) => (t.id === id ? { ...t, ...summarise(data), syncedAt } : t))
         );
         setTripStatus(id, { refreshing: false, error: null });
+
+        // Sweep documents that left the itinerary and re-pull the ones that
+        // changed. Deliberately not awaited: the trip is already on screen, and
+        // a slow HEAD on a bad connection must not hold up the refresh spinner.
+        void syncTripCache(id, data).then(measureDocuments, () => undefined);
+
         return ok(data);
       } catch (e) {
         const error = messageOf(e);
@@ -109,7 +122,7 @@ export default function useTripLibrary(): TripLibrary {
         return fail(error);
       }
     },
-    [persist, setTripStatus]
+    [measureDocuments, persist, setTripStatus]
   );
 
   const refreshTrip = useCallback(
@@ -172,12 +185,13 @@ export default function useTripLibrary(): TripLibrary {
       setPrefsState(savedPrefs);
       setActiveId(savedActive && list.some((t) => t.id === savedActive) ? savedActive : null);
       void storage.setTrips(list);
+      measureDocuments();
       setBooting(false);
       refreshStale(false);
     })();
 
     return () => controller.abort();
-  }, [refreshStale]);
+  }, [measureDocuments, refreshStale]);
 
   // Coming back after a day away should quietly pick up itinerary edits.
   useEffect(() => {
@@ -206,6 +220,7 @@ export default function useTripLibrary(): TripLibrary {
       if (!res.ok) {
         persist(tripsRef.current.filter((t) => t.id !== id));
         await storage.removeTripData(id);
+        await forgetTrip(id);
         return res;
       }
       return ok(id);
@@ -219,8 +234,11 @@ export default function useTripLibrary(): TripLibrary {
       setCache(({ [id]: _removed, ...rest }) => rest);
       setActiveId((current) => (current === id ? null : current));
       await storage.removeTripData(id);
+      // The trip's whole document folder goes with it, not just its JSON.
+      await forgetTrip(id);
+      measureDocuments();
     },
-    [persist]
+    [measureDocuments, persist]
   );
 
   const openTrip = useCallback(
@@ -248,12 +266,19 @@ export default function useTripLibrary(): TripLibrary {
 
   const resetAll = useCallback(async (): Promise<void> => {
     await storage.clearAll();
+    await clearDocumentCache();
     tripsRef.current = [];
     setTrips([]);
     setCache({});
     setStatus({});
     setActiveId(null);
     setPrefsState(DEFAULT_PREFS);
+    setDocumentBytes(0);
+  }, []);
+
+  const clearDocuments = useCallback(async (): Promise<void> => {
+    await clearDocumentCache();
+    setDocumentBytes(0);
   }, []);
 
   const refreshAll = useCallback(() => refreshStale(true), [refreshStale]);
@@ -287,5 +312,7 @@ export default function useTripLibrary(): TripLibrary {
     refreshAll,
     updatePrefs,
     resetAll,
+    documentBytes,
+    clearDocuments,
   };
 }

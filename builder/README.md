@@ -70,6 +70,22 @@ node ../scripts/validate-itinerary.mjs ~/Downloads/your-trip.json
 node ../scripts/validate-itinerary.mjs ~/Downloads/your-trip.json --check-images
 ```
 
+## PDF
+
+Two buttons produce a printable A4 page per day, sized for sharing or printing:
+
+- **Download PDF** on the day being edited — that day alone.
+- **PDF · all days** in the header — every day, one page each, in one file.
+
+A page carries the trip banner, the day title, date and summary, the schedule with
+times in the left margin, the stay, the notes and the route line. Long days
+continue onto a second page; the footer numbers them.
+
+The text is real text, so it stays sharp and is searchable. Hero images are
+fetched from their URL when you click, and are skipped without complaint if the
+host blocks browser requests. Emoji and non-Latin scripts are dropped, because the
+built-in PDF fonts cannot draw them.
+
 ## Import
 
 **Import JSON** opens a dialog that takes an existing itinerary three ways:

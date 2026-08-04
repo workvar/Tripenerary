@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Pill } from './ui';
 import SmartImage from './SmartImage';
+import Press from './Press';
+import { useLightbox } from './lightbox/context';
 import { colors, elevation, radius, spacing, type } from '@/theme';
 import { longDate, relativeLabel } from '@/lib/dates';
 import type { Day } from '@/types';
@@ -13,6 +15,7 @@ interface DayHeaderProps {
 }
 
 export default function DayHeader({ day, totalDays, todayDate, showImages }: DayHeaderProps) {
+  const openLightbox = useLightbox();
   const isToday = day.date === todayDate;
   const hero = showImages ? day.image : '';
   const counter = `DAY ${day.dayNumber} OF ${totalDays}`;
@@ -22,17 +25,23 @@ export default function DayHeader({ day, totalDays, todayDate, showImages }: Day
   return (
     <View style={s.wrap}>
       {hero ? (
-        <SmartImage uri={hero} style={s.hero} radiusValue={radius.lg}>
-          <View style={s.scrim} />
-          <View style={s.heroText}>
-            <Text style={s.heroKicker}>{counter}</Text>
-            {day.title ? (
-              <Text style={s.heroTitle} numberOfLines={2}>
-                {day.title}
-              </Text>
-            ) : null}
-          </View>
-        </SmartImage>
+        <Press
+          onPress={() => openLightbox([{ url: hero, caption: day.title, credit: '' }])}
+          scaleTo={0.99}
+          accessibilityLabel="Enlarge day photo"
+        >
+          <SmartImage uri={hero} style={s.hero} radiusValue={radius.lg}>
+            <View style={s.scrim} />
+            <View style={s.heroText}>
+              <Text style={s.heroKicker}>{counter}</Text>
+              {day.title ? (
+                <Text style={s.heroTitle} numberOfLines={2}>
+                  {day.title}
+                </Text>
+              ) : null}
+            </View>
+          </SmartImage>
+        </Press>
       ) : null}
 
       <View style={s.topRow}>

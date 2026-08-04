@@ -2,6 +2,9 @@ import { Linking, StyleSheet, Text, View } from 'react-native';
 import { Card } from './ui';
 import LocationRow from './LocationRow';
 import SmartImage from './SmartImage';
+import Press from './Press';
+import AttachmentList from './AttachmentList';
+import { useLightbox } from './lightbox/context';
 import { colors, hairlineWidth, radius, spacing, type } from '@/theme';
 import { formatDate } from '@/lib/dates';
 import type { Stay } from '@/types';
@@ -34,10 +37,18 @@ const shortDate = (key: string): string =>
   key ? formatDate(key, { day: 'numeric', month: 'short' }) : '';
 
 export default function StayCard({ stay, showPreview, showImages }: StayCardProps) {
+  const openLightbox = useLightbox();
+
   return (
     <Card style={s.card}>
       {showImages && stay.image ? (
-        <SmartImage uri={stay.image} style={s.photo} radiusValue={radius.md} />
+        <Press
+          onPress={() => openLightbox([{ url: stay.image, caption: stay.name, credit: '' }])}
+          scaleTo={0.99}
+          accessibilityLabel="Enlarge hotel photo"
+        >
+          <SmartImage uri={stay.image} style={s.photo} radiusValue={radius.md} />
+        </Press>
       ) : null}
 
       <Text style={s.kicker}>WHERE YOU ARE STAYING</Text>
@@ -61,6 +72,8 @@ export default function StayCard({ stay, showPreview, showImages }: StayCardProp
           <Text style={s.notes}>{stay.notes}</Text>
         </View>
       ) : null}
+
+      <AttachmentList attachments={stay.attachments} label="BOOKING DOCUMENTS" />
 
       <LocationRow location={stay.location} showPreview={showPreview} />
     </Card>

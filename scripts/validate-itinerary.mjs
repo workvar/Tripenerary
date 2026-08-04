@@ -9,6 +9,7 @@
 import { readFileSync } from 'node:fs';
 
 const TYPES = ['sight', 'food', 'travel', 'flight', 'hotel', 'activity', 'rest', 'note'];
+const ATTACHMENT_KINDS = ['pdf', 'image', 'doc', 'ticket', 'link'];
 const isKey = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v || ''));
 
 // Images may be a URL string, an { url } object, or an array of either.
@@ -35,6 +36,28 @@ const errors = [];
 const warnings = [];
 const seenImages = new Map(); // url -> first location it appeared
 let imageCount = 0;
+let attachmentCount = 0;
+
+// Attachments follow the same shape rule as images: a URL string or an object.
+function checkAttachments(value, at) {
+  const list = Array.isArray(value) ? value : value ? [value] : [];
+  list.forEach((entry, i) => {
+    const spot = at + '[' + i + ']';
+    const url = typeof entry === 'string' ? entry : entry && (entry.url || entry.href || entry.link);
+    if (!url) {
+      warnings.push(spot + ' has no usable url and will be skipped.');
+      return;
+    }
+    if (!/^https:\/\//i.test(url)) {
+      warnings.push(spot + ' is not an https URL; the phone may refuse to open it.');
+    }
+    const kind = entry && typeof entry === 'object' ? entry.kind || entry.type : undefined;
+    if (kind && !ATTACHMENT_KINDS.includes(kind)) {
+      warnings.push(spot + '.kind "' + kind + '" is unknown, will render as "link".');
+    }
+    attachmentCount += 1;
+  });
+}
 
 function checkImages(value, at) {
   imageUrls(value).forEach((url, i) => {
@@ -57,6 +80,7 @@ else {
   if (!data.trip.timezone) warnings.push('trip.timezone missing; "today" will use the device timezone.');
   if (data.trip.coverImage) checkImages(data.trip.coverImage, 'trip.coverImage');
   else warnings.push('trip.coverImage missing; the home screen card will have no photo.');
+  if (data.trip.attachments) checkAttachments(data.trip.attachments, 'trip.attachments');
 }
 
 if (!Array.isArray(data.days) || data.days.length === 0) {
@@ -68,6 +92,7 @@ const stayIds = new Set((data.stays || []).map((s) => s.id));
   if (!s.id) errors.push('stays[' + i + '] is missing "id".');
   if (!s.name) errors.push('stays[' + i + '] is missing "name".');
   if (s.image) checkImages(s.image, 'stays[' + i + '].image');
+  if (s.attachments) checkAttachments(s.attachments, 'stays[' + i + '].attachments');
 });
 
 const seenDates = new Set();
@@ -92,6 +117,7 @@ const seenDates = new Set();
       warnings.push(iat + '.type "' + it.type + '" is unknown, will render as "activity".');
     }
     if (it.images || it.image) checkImages(it.images || it.image, iat + '.images');
+    if (it.attachments) checkAttachments(it.attachments, iat + '.attachments');
     const loc = it.location;
     if (loc) {
       const hasLat = typeof loc.lat === 'number';
@@ -125,7 +151,8 @@ if (errors.length) {
 }
 console.log(
   '\nOK  ' + dayCount + ' days, ' + itemCount + ' items, ' + pinned + ' mapped locations, ' +
-  stayIds.size + ' stays, ' + imageCount + ' images (' + seenImages.size + ' distinct).'
+  stayIds.size + ' stays, ' + imageCount + ' images (' + seenImages.size + ' distinct), ' +
+  attachmentCount + ' attachments.'
 );
 
 if (process.argv.includes('--check-images')) {

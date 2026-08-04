@@ -49,6 +49,10 @@
         "coverImage": {
           "$ref": "#/definitions/image",
           "description": "Hero photo for the trip card on the home screen"
+        },
+        "attachments": {
+          "$ref": "#/definitions/attachments",
+          "description": "Trip-wide documents (passport scan, insurance, visa) shown under Trip info"
         }
       }
     },
@@ -94,6 +98,10 @@
           "image": {
             "$ref": "#/definitions/image",
             "description": "Photo of the hotel or resort"
+          },
+          "attachments": {
+            "$ref": "#/definitions/attachments",
+            "description": "Booking confirmation or voucher PDFs for this stay"
           }
         }
       }
@@ -185,6 +193,10 @@
                 "images": {
                   "$ref": "#/definitions/images",
                   "description": "One or more photos shown inside the schedule block"
+                },
+                "attachments": {
+                  "$ref": "#/definitions/attachments",
+                  "description": "Documents for this block: flight ticket, show ticket, tour voucher"
                 }
               }
             }
@@ -307,6 +319,59 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/image"
+          }
+        }
+      ]
+    },
+    "attachment": {
+      "description": "A linked document. Either a bare https URL string, or an object with url plus optional title, kind and note. Tapping it hands the URL to the phone, so a PDF opens in the device PDF viewer.",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "title": {
+              "type": "string",
+              "description": "Row label. Falls back to the file name when omitted."
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "pdf",
+                "image",
+                "doc",
+                "ticket",
+                "link"
+              ],
+              "description": "Icon and badge. Inferred from the file extension when omitted."
+            },
+            "note": {
+              "type": "string",
+              "description": "Small secondary line, e.g. a confirmation number"
+            }
+          }
+        }
+      ]
+    },
+    "attachments": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/attachment"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attachment"
           }
         }
       ]

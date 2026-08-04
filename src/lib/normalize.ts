@@ -1,5 +1,6 @@
 import { isDateKey } from './dates';
 import { normImages, normImageUrl } from './images';
+import { normAttachments } from './attachments';
 import {
   CONTACT_TYPES,
   ITEM_TYPES,
@@ -67,6 +68,7 @@ function normItem(raw: unknown, index: number): ScheduleItem {
     booking,
     location: normLocation(it['location']),
     images: normImages(it['images'] ?? it['image']),
+    attachments: normAttachments(it['attachments'] ?? it['documents']),
   };
 }
 
@@ -84,6 +86,7 @@ function normStay(raw: unknown): Stay {
     notes: str(st['notes']),
     location: normLocation(st['location']),
     image: normImageUrl(st['image']),
+    attachments: normAttachments(st['attachments'] ?? st['documents']),
   };
 }
 
@@ -164,6 +167,9 @@ export function normalizeItinerary(input: unknown): Itinerary {
       currency: str(trip['currency']),
       travellers: arr(trip['travellers']).map(str).filter(Boolean),
       coverImage: normImageUrl(trip['coverImage'] ?? trip['image']),
+      attachments: normAttachments(
+        trip['attachments'] ?? trip['documents'] ?? input['attachments'] ?? input['documents']
+      ),
     },
     stays,
     staysById,

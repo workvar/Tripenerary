@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Area, Grid3, Select, Text } from '@/components/Field';
 import ImageFields from '@/components/ImageFields';
+import AttachmentFields from '@/components/AttachmentFields';
 import LocationFields from '@/components/LocationFields';
 import { IconButton } from '@/components/ui/Button';
 import AiFillButton from '@/components/ai/AiFillButton';
@@ -123,6 +124,10 @@ export default function BlockEditor({
 
           <LocationFields value={block.location} onChange={(location) => onPatch({ location })} />
           <ImageFields images={block.images} onChange={(images) => onPatch({ images })} />
+          <AttachmentFields
+            attachments={block.attachments}
+            onChange={(attachments) => onPatch({ attachments })}
+          />
         </div>
       ) : null}
     </div>

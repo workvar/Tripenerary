@@ -2,6 +2,7 @@
 
 import { Area, Grid2, Grid3, Text } from '@/components/Field';
 import LocationFields from '@/components/LocationFields';
+import AttachmentFields from '@/components/AttachmentFields';
 import Button, { IconButton } from '@/components/ui/Button';
 import AiFillButton from '@/components/ai/AiFillButton';
 import { newStay } from '@/lib/factories';
@@ -94,6 +95,12 @@ export default function StaysEditor({ api }: { readonly api: DraftApi }) {
             }
           />
           <LocationFields value={stay.location} onChange={(location) => patch(stay.id, { location })} />
+          <AttachmentFields
+            attachments={stay.attachments}
+            onChange={(attachments) => patch(stay.id, { attachments })}
+            label="Booking documents"
+            hint="Hotel confirmation or voucher PDF. Use a direct, publicly reachable link."
+          />
         </div>
       ))}
     </div>

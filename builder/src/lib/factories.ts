@@ -1,5 +1,6 @@
 import type {
   Draft,
+  DraftAttachment,
   DraftBlock,
   DraftContact,
   DraftDay,
@@ -33,6 +34,14 @@ export const newImage = (url = ''): DraftImage => ({
   credit: '',
 });
 
+export const newAttachment = (url = ''): DraftAttachment => ({
+  id: uid('att'),
+  url,
+  title: '',
+  kind: 'pdf',
+  note: '',
+});
+
 export const newBlock = (): DraftBlock => ({
   id: uid('blk'),
   time: '',
@@ -45,6 +54,7 @@ export const newBlock = (): DraftBlock => ({
   bookingUrl: '',
   location: emptyLocation(),
   images: [],
+  attachments: [],
 });
 
 export const newDay = (date: string): DraftDay => ({
@@ -72,6 +82,7 @@ export const newStay = (): DraftStay => ({
   notes: '',
   location: emptyLocation(),
   image: '',
+  attachments: [],
 });
 
 export const newInfo = (): DraftInfo => ({ id: uid('info'), title: '', body: '', image: '' });
@@ -96,6 +107,7 @@ export function newDraft(): Draft {
       currency: '',
       travellers: [],
       coverImage: '',
+      attachments: [],
     },
     stays: [],
     days: [newDay(today)],

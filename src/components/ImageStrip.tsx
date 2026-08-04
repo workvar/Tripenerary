@@ -1,5 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import SmartImage from './SmartImage';
+import Press from './Press';
+import { useLightbox } from './lightbox/context';
 import { colors, radius, spacing, type } from '@/theme';
 import type { TripImage } from '@/types';
 
@@ -10,15 +12,22 @@ interface ImageStripProps {
   readonly height?: number;
 }
 
-/** One or two images fill the width; three or more become a swipeable row of cards. */
+/** One or two images fill the width; three or more become a swipeable row of cards.
+ *  Tapping any of them opens the full-screen viewer. */
 export default function ImageStrip({ images, height = 190 }: ImageStripProps) {
+  const openLightbox = useLightbox();
+
   if (!images || images.length === 0) return null;
+
+  const enlarge = (index: number) => () => openLightbox(images, index);
 
   const [only] = images;
   if (images.length === 1 && only) {
     return (
       <View style={s.single}>
-        <SmartImage uri={only.url} style={{ height }} radiusValue={radius.md} />
+        <Press onPress={enlarge(0)} scaleTo={0.99} accessibilityLabel="Enlarge photo">
+          <SmartImage uri={only.url} style={{ height }} radiusValue={radius.md} />
+        </Press>
         {only.caption ? <Text style={s.caption}>{only.caption}</Text> : null}
       </View>
     );
@@ -27,9 +36,11 @@ export default function ImageStrip({ images, height = 190 }: ImageStripProps) {
   if (images.length === 2) {
     return (
       <View style={s.pair}>
-        {images.map((img) => (
+        {images.map((img, i) => (
           <View key={img.url} style={s.pairCell}>
-            <SmartImage uri={img.url} style={{ height }} radiusValue={radius.md} />
+            <Press onPress={enlarge(i)} scaleTo={0.98} accessibilityLabel="Enlarge photo">
+              <SmartImage uri={img.url} style={{ height }} radiusValue={radius.md} />
+            </Press>
             {img.caption ? (
               <Text style={s.caption} numberOfLines={2}>
                 {img.caption}
@@ -48,9 +59,15 @@ export default function ImageStrip({ images, height = 190 }: ImageStripProps) {
       contentContainerStyle={s.row}
       style={s.scroll}
     >
-      {images.map((img) => (
+      {images.map((img, i) => (
         <View key={img.url} style={s.cell}>
-          <SmartImage uri={img.url} style={{ height, width: CELL_WIDTH }} radiusValue={radius.md} />
+          <Press onPress={enlarge(i)} scaleTo={0.98} accessibilityLabel="Enlarge photo">
+            <SmartImage
+              uri={img.url}
+              style={{ height, width: CELL_WIDTH }}
+              radiusValue={radius.md}
+            />
+          </Press>
           {img.caption ? (
             <Text style={[s.caption, s.captionCell]} numberOfLines={2}>
               {img.caption}

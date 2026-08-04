@@ -5,6 +5,7 @@ import Press from '@/components/Press';
 import { Button, Card, Divider, SectionTitle } from '@/components/ui';
 import { colors, spacing, type } from '@/theme';
 import { formatSyncedAt } from '@/lib/dates';
+import { formatBytes } from '@/lib/cache';
 import type { TripLibrary } from '@/hooks/useTripLibrary';
 import type { Prefs, TripRecord } from '@/types';
 
@@ -73,8 +74,19 @@ interface SettingsScreenProps {
 }
 
 export default function SettingsScreen({ library, onClose }: SettingsScreenProps) {
-  const { trips, status, prefs, anyRefreshing, updatePrefs, refreshAll, refreshTrip, removeTrip, resetAll } =
-    library;
+  const {
+    trips,
+    status,
+    prefs,
+    anyRefreshing,
+    updatePrefs,
+    refreshAll,
+    refreshTrip,
+    removeTrip,
+    resetAll,
+    documentBytes,
+    clearDocuments,
+  } = library;
 
   const toggle = (key: keyof Prefs) => (value: boolean) => updatePrefs({ [key]: value });
 
@@ -83,6 +95,17 @@ export default function SettingsScreen({ library, onClose }: SettingsScreenProps
       { text: 'Cancel', style: 'cancel' },
       { text: 'Remove', style: 'destructive', onPress: () => void removeTrip(trip.id) },
     ]);
+  };
+
+  const confirmClearDocuments = () => {
+    Alert.alert(
+      'Clear downloaded documents?',
+      'Tickets and confirmations will download again the next time you open them. You will need a connection.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Clear', style: 'destructive', onPress: () => void clearDocuments() },
+      ]
+    );
   };
 
   const confirmReset = () => {
@@ -130,6 +153,27 @@ export default function SettingsScreen({ library, onClose }: SettingsScreenProps
           />
         </Card>
 
+        <SectionTitle>Documents</SectionTitle>
+        <Card>
+          <View style={s.row}>
+            <View style={s.rowText}>
+              <Text style={s.rowLabel}>Saved for offline</Text>
+              <Text style={s.rowHint}>
+                {documentBytes > 0
+                  ? 'Tickets and confirmations you have opened are kept on this phone, so they still open with no signal.'
+                  : 'Nothing downloaded yet. Opening a ticket or confirmation keeps a copy on this phone.'}
+              </Text>
+            </View>
+            <Text style={s.size}>{formatBytes(documentBytes)}</Text>
+          </View>
+          {documentBytes > 0 ? (
+            <>
+              <Divider />
+              <Button title="Clear downloads" variant="ghost" onPress={confirmClearDocuments} />
+            </>
+          ) : null}
+        </Card>
+
         <SectionTitle>{`Trips (${trips.length})`}</SectionTitle>
         {trips.length === 0 ? (
           <Card flat>
@@ -168,6 +212,7 @@ const s = StyleSheet.create({
   rowText: { flex: 1 },
   rowLabel: { ...type.h3 },
   rowHint: { ...type.small, marginTop: 2, lineHeight: 18 },
+  size: { ...type.h3, color: colors.primary },
 
   tripCard: { paddingVertical: spacing.sm },
   tripRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, paddingVertical: spacing.sm },
