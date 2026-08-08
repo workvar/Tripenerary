@@ -59,9 +59,20 @@ npm run check       # typecheck, then validate the sample itinerary
 ### Building an installable app
 
 ```bash
+npm run build:apk   # signed release APK for sideloading (needs .env + keystore)
+npm run build:aab   # Play Store upload bundle
+```
+
+See `docs/RELEASE.md` for the full Google Play checklist (signing, Data safety,
+store listing, Maps key SHA-1s). Listing copy and graphics live under `store/`.
+
+EAS still works if you prefer the cloud builder:
+
+```bash
 npm install -g eas-cli
 eas login
-eas build --profile preview --platform android   # produces an .apk you can sideload
+eas build --profile preview --platform android   # .apk to sideload
+eas build --profile production --platform android  # .aab for Play
 eas build --profile preview --platform ios       # needs an Apple Developer account
 ```
 
@@ -329,8 +340,9 @@ Trips added in an older build are migrated into the library automatically on fir
 ## Handing it to your parents
 
 1. Put the JSON somewhere public (Gist is fine).
-2. Set `DEFAULT_SOURCE_URL` in `src/config.js` to that link.
-3. `eas build --profile preview --platform android`, send them the APK.
+2. Set `DEFAULT_SOURCE_URL` in `src/config.ts` to that link.
+3. `npm run build:apk` (or `eas build --profile preview --platform android`) and
+   send them the APK — or publish the AAB to Play and share the store link.
 
 They open it and see today's plan. No setup screen, no accounts, and it keeps working in
 airplane mode.

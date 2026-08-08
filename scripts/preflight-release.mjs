@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Refuses to let a broken release build reach the store.
+ * Refuses to let a broken release build reach Google Play.
  *
  *   node scripts/preflight-release.mjs
  *
  * Checks the things that fail silently at runtime rather than at build time:
- * a missing Maps key, a debug-signed release, placeholder icons, and permissions
- * the listing does not justify.
+ * a missing Maps key, a debug-signed release, placeholder / wrong-size Play
+ * listing graphics, and permissions the listing does not justify.
  */
 
 import { execFileSync } from 'node:child_process';
@@ -89,18 +89,36 @@ if (!existsSync(keystorePath)) {
   }
 }
 
-// --- Icons -------------------------------------------------------------------
+// --- Icons / Play listing graphics ------------------------------------------
 const requiredAssets = [
   'assets/icon.png',
   'assets/adaptive-icon.png',
   'assets/splash-icon.png',
   'store/icon-512.png',
+  'store/feature-graphic.png',
   'android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml',
   'android/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png',
   'android/app/src/main/res/drawable-xxxhdpi/splash_icon.png',
 ];
 for (const rel of requiredAssets) {
   if (!existsSync(join(ROOT, rel))) fail(`Missing icon asset: ${rel}. Run scripts/generate-icons.py.`);
+}
+
+const featureGraphic = join(ROOT, 'store', 'feature-graphic.png');
+if (existsSync(featureGraphic)) {
+  // PNG IHDR: width/height are big-endian u32 at bytes 16 and 20.
+  const buf = readFileSync(featureGraphic);
+  if (buf.length >= 24 && buf.toString('ascii', 1, 4) === 'PNG') {
+    const width = buf.readUInt32BE(16);
+    const height = buf.readUInt32BE(20);
+    if (width !== 1024 || height !== 500) {
+      fail(`store/feature-graphic.png must be 1024×500 (Play requirement); got ${width}×${height}.`);
+    }
+  }
+}
+
+for (const rel of ['store/LISTING.md', 'store/DATA_SAFETY.md', 'docs/PRIVACY.md', 'docs/RELEASE.md']) {
+  if (!existsSync(join(ROOT, rel))) fail(`Missing store/release doc: ${rel}.`);
 }
 
 // --- Build flags -------------------------------------------------------------
@@ -110,6 +128,22 @@ if (!/android\.enableMinifyInReleaseBuilds\s*=\s*true/.test(gradleProps)) {
 }
 if (/^reactNativeArchitectures=.*x86/m.test(gradleProps)) {
   warn('x86 ABIs are still enabled. They are emulator-only and inflate the AAB.');
+}
+if (!/armeabi-v7a|arm64-v8a/.test(gradleProps)) {
+  warn('No ARM ABIs configured in reactNativeArchitectures. Play devices need arm64-v8a.');
+}
+
+const appJson = JSON.parse(readFileSync(join(ROOT, 'app.json'), 'utf8'));
+const androidPkg = appJson?.expo?.android?.package;
+if (androidPkg !== 'com.tripcompanion.app') {
+  fail(`app.json android.package is "${androidPkg}", expected com.tripcompanion.app.`);
+}
+if (!appJson?.expo?.android?.versionCode) {
+  warn('app.json android.versionCode is missing; Gradle defaults to 1.');
+}
+
+if (!readFileSync(join(ROOT, 'src', 'config.ts'), 'utf8').match(/DEFAULT_SOURCE_URL\s*=\s*'https?:\/\//)) {
+  warn('DEFAULT_SOURCE_URL is empty. Play reviewers opening an empty library often reject the app — set one or put a sample URL in the review notes.');
 }
 
 // --- Report ------------------------------------------------------------------
