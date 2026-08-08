@@ -1,10 +1,11 @@
 # Privacy Policy — Tripenerary
 
-**Draft.** Host this at a public URL and enter that URL in the Galaxy Store Seller
-Portal. Review it against the app's actual behaviour before publishing, and have a
-lawyer look at it if you are distributing commercially. This is not legal advice.
+**Draft.** Host this at a public HTTPS URL and enter that URL in Google Play
+Console (App content → Privacy policy, and the store listing). Review it against
+the app's actual behaviour before publishing, and have a lawyer look at it if you
+are distributing commercially. This is not legal advice.
 
-Last updated: _[date]_
+Last updated: 2026-08-08
 
 ## What this app does
 
@@ -67,9 +68,9 @@ Tripenerary is not directed at children under 13 and collects no data from anyon
 ## Changes to this policy
 
 If this policy changes, the updated version will be posted at this URL with a new
-"last updated" date, and the change will be noted in the app's release notes in
-the Galaxy Store.
+"last updated" date, and the change will be noted in the app's release notes on
+Google Play.
 
 ## Contact
 
-_[your support email]_
+Support: _[your support email — replace before publishing]_
