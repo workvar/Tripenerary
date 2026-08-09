@@ -31,6 +31,27 @@ export default function AuthModal({ open, onClose, auth }: Props) {
 
   if (!open) return null;
 
+  if (!auth.available) {
+    return (
+      <Modal title="Sign in" onClose={onClose} width="md">
+        <p className="text-sm text-muted">
+          Cloud sign-in is not configured for this build. Add the{' '}
+          <code className="rounded-sm bg-elevated px-1 py-0.5 text-[12px] text-ink">
+            NEXT_PUBLIC_FIREBASE_*
+          </code>{' '}
+          keys from <code className="rounded-sm bg-elevated px-1 py-0.5 text-[12px] text-ink">builder/.env.example</code>{' '}
+          to <code className="rounded-sm bg-elevated px-1 py-0.5 text-[12px] text-ink">builder/.env.local</code>{' '}
+          (or your host&apos;s environment variables), then restart the builder.
+        </p>
+        <div className="mt-5">
+          <Button size="sm" onClick={onClose}>
+            Close
+          </Button>
+        </div>
+      </Modal>
+    );
+  }
+
   const submit = async () => {
     setBusy(true);
     setError(null);

@@ -89,24 +89,34 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
     <>
       <header className="z-30 shrink-0 border-b border-line bg-white/90 backdrop-blur">
         <div className="flex flex-wrap items-center gap-3 px-5 py-3">
-          <div className="mr-auto min-w-0">
-            <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
-            <p className="truncate text-[11px] text-muted">
-              {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
-              {' · '}
-              <span
-                className={
-                  api.saveStatus === 'over-limit' || api.saveStatus === 'error'
-                    ? 'font-bold text-danger'
-                    : api.saveStatus === 'saved'
-                      ? 'font-bold text-primary'
-                      : ''
-                }
-              >
-                {saveLabel(api, Boolean(auth.uid))}
-              </span>
-              {issuesReady ? null : <span className="ml-1 font-bold text-danger">· add a day</span>}
-            </p>
+          <div className="mr-auto flex min-w-0 items-center gap-2.5">
+            <img
+              src="/favicon.png"
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 shrink-0 rounded-sm"
+              decoding="async"
+            />
+            <div className="min-w-0">
+              <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
+              <p className="truncate text-[11px] text-muted">
+                {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
+                {' · '}
+                <span
+                  className={
+                    api.saveStatus === 'over-limit' || api.saveStatus === 'error'
+                      ? 'font-bold text-danger'
+                      : api.saveStatus === 'saved'
+                        ? 'font-bold text-primary'
+                        : ''
+                  }
+                >
+                  {saveLabel(api, Boolean(auth.uid))}
+                </span>
+                {issuesReady ? null : <span className="ml-1 font-bold text-danger">· add a day</span>}
+              </p>
+            </div>
           </div>
 
           {message ? (
@@ -115,17 +125,15 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
             </span>
           ) : null}
 
-          {auth.available ? (
-            auth.user ? (
-              <Button size="sm" onClick={() => void auth.signOut()} title={auth.email ?? undefined}>
-                Sign out
-              </Button>
-            ) : (
-              <Button size="sm" onClick={() => setAuthOpen(true)}>
-                Sign in
-              </Button>
-            )
-          ) : null}
+          {auth.user ? (
+            <Button size="sm" onClick={() => void auth.signOut()} title={auth.email ?? undefined}>
+              Sign out
+            </Button>
+          ) : (
+            <Button size="sm" onClick={() => setAuthOpen(true)} disabled={!auth.ready}>
+              Sign in
+            </Button>
+          )}
 
           <Button size="sm" onClick={onReset}>
             New
