@@ -15,6 +15,8 @@ export interface FirebaseConfig {
   readonly storageBucket: string;
   readonly messagingSenderId: string;
   readonly appId: string;
+  /** Google Analytics measurement ID (G-…). Optional. */
+  readonly measurementId?: string;
 }
 
 function readConfig(): FirebaseConfig | null {
@@ -24,6 +26,7 @@ function readConfig(): FirebaseConfig | null {
   const storageBucket = process.env['EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET'] ?? '';
   const messagingSenderId = process.env['EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID'] ?? '';
   const appId = process.env['EXPO_PUBLIC_FIREBASE_APP_ID'] ?? '';
+  const measurementId = process.env['EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID'] ?? '';
 
   if (!apiKey || !authDomain || !projectId || !appId) return null;
 
@@ -34,6 +37,7 @@ function readConfig(): FirebaseConfig | null {
     storageBucket,
     messagingSenderId,
     appId,
+    ...(measurementId ? { measurementId } : {}),
   };
 }
 

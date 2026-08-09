@@ -35,7 +35,7 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
 | `TRIPENERARY_UPLOAD_KEY_PASSWORD` | secret | Key password (often same as store) |
 | `GOOGLE_MAPS_ANDROID_KEY` | secret | Maps SDK key restricted to the upload SHA-1 |
 | `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` | secret | Full JSON of the Play service account |
-| `EXPO_PUBLIC_FIREBASE_*` | secrets | Firebase web config (see `.env.example`) |
+| `EXPO_PUBLIC_FIREBASE_*` | secrets | Firebase web config including `MEASUREMENT_ID` (see `.env.example`) |
 | `PLAY_STORE_ENABLED` | variable | Set to `true` to enable the Play upload job |
 | `PLAY_STORE_TRACK` | variable | Optional. `internal` (default), `alpha`, `beta`, or `production` |
 
