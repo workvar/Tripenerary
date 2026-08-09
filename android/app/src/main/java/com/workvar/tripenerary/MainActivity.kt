@@ -1,4 +1,4 @@
-package com.tripcompanion.app
+package com.workvar.tripenerary
 
 import android.os.Build
 import android.os.Bundle

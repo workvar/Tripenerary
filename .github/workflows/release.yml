@@ -263,7 +263,7 @@ jobs:
           print("If upload fails with 'The caller does not have permission':")
           print(f"  1. Enable Google Play Android Developer API on GCP project {project}")
           print(f"  2. Play Console → Users and permissions → Invite user: {email}")
-          print("  3. App access: com.tripcompanion.app")
+          print("  3. App access: com.workvar.tripenerary")
           print("  4. App permissions: View app information + Manage testing tracks / releases")
           print("  5. Wait a few minutes, then re-run Publish Play Store AAB for this tag")
           PY
@@ -272,7 +272,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: com.tripcompanion.app
+          packageName: com.workvar.tripenerary
           releaseFiles: dist/tripenerary-${{ needs.build.outputs.version_name }}.aab
           tracks: ${{ vars.PLAY_STORE_TRACK || 'internal' }}
           status: ${{ vars.PLAY_STORE_STATUS || 'draft' }}

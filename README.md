@@ -88,7 +88,7 @@ The "Open in Maps" and "Directions" buttons work with no key at all. The small p
 needs one on Android.
 
 1. Google Cloud Console → enable **Maps SDK for Android**.
-2. Create an API key, restrict it to your Android package name `com.tripcompanion.app` plus the
+2. Create an API key, restrict it to your Android package name `com.workvar.tripenerary` plus the
    build's SHA-1 fingerprint.
 3. `cp .env.example .env` and set `GOOGLE_MAPS_ANDROID_KEY`.
 
