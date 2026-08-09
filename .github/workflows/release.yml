@@ -209,10 +209,33 @@ jobs:
         run: |
           if [ -z "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" ]; then
             echo "::error::GOOGLE_PLAY_SERVICE_ACCOUNT_JSON secret is empty or missing."
-            echo "Add the Play Console service account JSON as a repository secret, then re-run."
+            echo "Add the Play Console service account JSON as a Production environment secret, then re-run."
             exit 1
           fi
-          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" | python3 -c 'import json,sys; json.load(sys.stdin); print("Service account JSON parses OK")'
+          python3 <<'PY'
+          import json, os, sys
+          raw = os.environ["GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"]
+          try:
+              data = json.loads(raw)
+          except json.JSONDecodeError as e:
+              print(f"::error::Service account JSON is not valid JSON: {e}")
+              sys.exit(1)
+          email = data.get("client_email")
+          project = data.get("project_id")
+          if not email:
+              print("::error::Service account JSON is missing client_email")
+              sys.exit(1)
+          print(f"Service account JSON parses OK")
+          print(f"client_email={email}")
+          print(f"project_id={project}")
+          print()
+          print("If upload fails with 'The caller does not have permission':")
+          print(f"  1. Enable Google Play Android Developer API on GCP project {project}")
+          print(f"  2. Play Console → Users and permissions → Invite user: {email}")
+          print("  3. App access: com.tripcompanion.app")
+          print("  4. App permissions: View app information + Manage testing tracks / releases")
+          print("  5. Wait a few minutes, then re-run Publish Play Store AAB for this tag")
+          PY
 
       - name: Upload to Google Play
         uses: r0adkll/upload-google-play@v1
