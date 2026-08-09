@@ -155,21 +155,28 @@ jobs:
 
       - name: Verify release signing (reject debug)
         run: |
+          set +o pipefail
           AAB="dist/tripenerary-${{ steps.version.outputs.version_name }}.aab"
           APK="dist/tripenerary-${{ steps.version.outputs.version_name }}.apk"
           for ARTIFACT in "$AAB" "$APK"; do
             echo "Checking $ARTIFACT"
-            CERTS=$(jarsigner -verify -verbose -certs "$ARTIFACT" 2>&1 || true)
-            echo "$CERTS" | head -n 40
-            if echo "$CERTS" | grep -q 'CN=Android Debug'; then
+            if [ ! -f "$ARTIFACT" ]; then
+              echo "::error::Missing artifact $ARTIFACT"
+              exit 1
+            fi
+            # Write full jarsigner output to a file so `head` cannot trip pipefail.
+            jarsigner -verify -verbose -certs "$ARTIFACT" > /tmp/jarsigner-out.txt 2>&1 || true
+            head -n 60 /tmp/jarsigner-out.txt
+            if grep -q 'CN=Android Debug' /tmp/jarsigner-out.txt; then
               echo "::error::$ARTIFACT is still signed with the Android Debug key. Play will reject it."
               exit 1
             fi
-            if ! echo "$CERTS" | grep -Eq 'jar verified|Signer'; then
-              echo "::error::Could not verify signature on $ARTIFACT"
+            if ! grep -q 'CN=' /tmp/jarsigner-out.txt; then
+              echo "::error::Could not find a signing certificate on $ARTIFACT"
               exit 1
             fi
-            echo "OK: $ARTIFACT is not debug-signed"
+            CN_LINE=$(grep -m1 'CN=' /tmp/jarsigner-out.txt || true)
+            echo "OK: $ARTIFACT signer → ${CN_LINE}"
           done
 
       - name: Upload build artifacts
