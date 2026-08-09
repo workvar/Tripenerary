@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tripenerary",
     "slug": "trip-companion",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "scheme": "tripcompanion",
@@ -16,7 +16,7 @@
     "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.tripcompanion.app",
-      "versionCode": 10100,
+      "versionCode": 10101,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "monochromeImage": "./assets/monochrome-icon.png",
