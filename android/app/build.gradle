@@ -14,8 +14,8 @@ String googleMapsApiKey = project.ext.tripSecrets.get('GOOGLE_MAPS_ANDROID_KEY')
 // Version, overridable from CI so releases do not need a file edit.
 def versionCodeProp = project.findProperty('tripenerary.versionCode')
 def versionNameProp = project.findProperty('tripenerary.versionName')
-int tripeneraryVersionCode = (versionCodeProp == null) ? 1 : Integer.parseInt(versionCodeProp.toString())
-String tripeneraryVersionName = (versionNameProp == null) ? '1.0.0' : versionNameProp.toString()
+int tripeneraryVersionCode = (versionCodeProp == null) ? 10100 : Integer.parseInt(versionCodeProp.toString())
+String tripeneraryVersionName = (versionNameProp == null) ? '1.1.0' : versionNameProp.toString()
 
 if (googleMapsApiKey == null || googleMapsApiKey.isEmpty()) {
     logger.warn("\n  WARNING: GOOGLE_MAPS_ANDROID_KEY is not set.\n" +

@@ -38,13 +38,17 @@ Nothing about any particular trip is hard-coded. You control the content by edit
 No accounts. No ads. No tracking. Your itinerary stays on your phone.
 ```
 
-### Release notes (version 1.0.0)
+### Release notes (version 1.1.0)
 
 ```
-First release on Google Play.
-• Add trips from a JSON URL
-• Day-by-day schedule, maps, stays, and offline documents
+Tripenerary 1.1.0 — Google Play release
+• Sign in to sync trips across devices
+• Offline cache for tickets and booking PDFs
+• Day picker and richer day-by-day schedules
+• Signed Play builds with maps and store listing ready
 ```
+
+See `store/releases/v1.1.0.md` for the full GitHub Release notes.
 
 ## Graphics checklist
 
