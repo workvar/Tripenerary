@@ -155,7 +155,7 @@ jobs:
               echo "::error::$ARTIFACT is still signed with the Android Debug key. Play will reject it."
               exit 1
             fi
-            if ! echo "$CERTS" | grep -Eq 'jar verified|sbsigner|Signer'; then
+            if ! echo "$CERTS" | grep -Eq 'jar verified|Signer'; then
               echo "::error::Could not verify signature on $ARTIFACT"
               exit 1
             fi
