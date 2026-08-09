@@ -36,11 +36,15 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
 | `GOOGLE_MAPS_ANDROID_KEY` | secret | Maps SDK key restricted to the upload SHA-1 |
 | `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` | secret | Full JSON of the Play service account |
 | `EXPO_PUBLIC_FIREBASE_*` | secrets | Firebase web config including `MEASUREMENT_ID` (see `.env.example`) |
-| `PLAY_STORE_ENABLED` | variable | Set to `true` to enable the Play upload job |
+| `PLAY_STORE_ENABLED` | variable | Optional. Set to `false` to skip Play upload; otherwise the job runs for non-prerelease tags |
 | `PLAY_STORE_TRACK` | variable | Optional. `internal` (default), `alpha`, `beta`, or `production` |
 
-Enable the Play job only after the Play Console app exists and the service
-account can see it; otherwise the upload step fails even when the AAB is fine.
+Play upload needs `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` and a Play Console app the
+service account can reach; otherwise the upload step fails even when the AAB is fine.
+
+Per-tag GitHub Release notes live in `store/releases/vX.Y.Z.md` (same format as
+Highlights / Added / Changed / Downloads / Upgrade notes). Play “what's new”
+copy is in `store/whatsnew/en-US`.
 
 ### Versioning
 
