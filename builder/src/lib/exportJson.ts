@@ -62,6 +62,12 @@ function exportAttachments(attachments: DraftAttachment[]): unknown {
   return list.length > 0 ? list : undefined;
 }
 
+/** Keep a block when it has a title OR linked documents — otherwise PDFs on
+ *  untitled blocks would vanish from the phone. */
+function blockWorthKeeping(title: string, attachments: DraftAttachment[]): boolean {
+  return Boolean(clean(title) || attachments.some((a) => clean(a.url)));
+}
+
 export function toItinerary(draft: Draft): Json {
   const trip = compact({
     title: clean(draft.trip.title),
@@ -76,11 +82,11 @@ export function toItinerary(draft: Draft): Json {
   });
 
   const stays = draft.stays
-    .filter((s) => clean(s.name) || clean(s.key))
+    .filter((s) => clean(s.name) || clean(s.key) || s.attachments.some((a) => clean(a.url)))
     .map((s) =>
       compact({
         id: clean(s.key) || s.id,
-        name: clean(s.name),
+        name: clean(s.name) || 'Stay',
         city: clean(s.city),
         address: clean(s.address),
         checkIn: clean(s.checkIn),
@@ -103,12 +109,12 @@ export function toItinerary(draft: Draft): Json {
       stayId: clean(d.stayId),
       notes: d.notes.map(clean).filter(Boolean),
       items: d.items
-        .filter((i) => clean(i.title))
+        .filter((i) => blockWorthKeeping(i.title, i.attachments))
         .map((i) =>
           compact({
             time: clean(i.time),
             endTime: clean(i.endTime),
-            title: clean(i.title),
+            title: clean(i.title) || 'Documents',
             type: i.type,
             description: clean(i.description),
             cost: clean(i.cost),
@@ -130,10 +136,40 @@ export function toItinerary(draft: Draft): Json {
     .filter((c) => clean(c.label) && clean(c.value))
     .map((c) => compact({ label: clean(c.label), value: clean(c.value), type: c.type }));
 
-  return compact({ version: draft.version || 1, trip, stays, days, info, contacts });
+  const emergencyContacts = draft.emergency.contacts
+    .filter((c) => clean(c.label) && clean(c.value))
+    .map((c) => compact({ label: clean(c.label), value: clean(c.value), type: c.type }));
+
+  const emergencyLocations = draft.emergency.locations
+    .filter((l) => clean(l.name) || clean(l.address) || clean(l.phone) || exportLocation(l.location))
+    .map((l) =>
+      compact({
+        label: clean(l.label) || 'Embassy',
+        name: clean(l.name),
+        address: clean(l.address),
+        phone: clean(l.phone),
+        notes: clean(l.notes),
+        location: exportLocation(l.location),
+      })
+    );
+
+  const emergency =
+    emergencyContacts.length > 0 || emergencyLocations.length > 0
+      ? compact({
+          contacts: emergencyContacts.length > 0 ? emergencyContacts : undefined,
+          locations: emergencyLocations.length > 0 ? emergencyLocations : undefined,
+        })
+      : undefined;
+
+  return compact({ version: draft.version || 1, trip, stays, days, info, contacts, emergency });
 }
 
 export const toJsonString = (draft: Draft): string => JSON.stringify(toItinerary(draft), null, 2);
+
+/** UTF-8 byte length of the exported itinerary JSON. */
+export function exportByteLength(draft: Draft): number {
+  return new TextEncoder().encode(toJsonString(draft)).length;
+}
 
 export function suggestedFilename(draft: Draft): string {
   const slug =

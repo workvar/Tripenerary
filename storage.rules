@@ -1,0 +1,26 @@
+rules_version = '2';
+
+// Deploy with: firebase deploy --only storage
+// Drafts are private. Published itineraries are publicly readable so the
+// Tripenerary app can fetch them by URL. Soft size cap: 20 MiB.
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function underLimit() {
+      return request.resource.size < 20 * 1024 * 1024;
+    }
+
+    match /users/{userId}/{allPaths=**} {
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow write: if signedIn() && request.auth.uid == userId && underLimit();
+    }
+
+    match /published/{userId}/{fileName} {
+      allow read: if true;
+      allow write: if signedIn() && request.auth.uid == userId && underLimit();
+    }
+  }
+}

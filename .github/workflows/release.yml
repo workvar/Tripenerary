@@ -33,12 +33,39 @@ jobs:
         run: npm run typecheck
 
   build:
+  
     name: Build Play Store AAB
     runs-on: ubuntu-latest
+
+    outputs:
+      version_name: ${{ steps.version.outputs.version_name }}
+      version_code: ${{ steps.version.outputs.version_code }}
+      is_prerelease: ${{ steps.version.outputs.is_prerelease }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Resolve version from tag
+        id: version
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          NAME="${TAG#v}"
+          if [[ "$NAME" == *-* ]]; then
+            echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+          # Strip pre-release suffix for numeric code (1.2.3-beta → 1.2.3)
+          BASE="${NAME%%-*}"
+          IFS=. read -r MAJOR MINOR PATCH <<< "${BASE}.0.0"
+          MAJOR="${MAJOR:-0}"
+          MINOR="${MINOR:-0}"
+          PATCH="${PATCH:-0}"
+          CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+          echo "version_name=${NAME}" >> "$GITHUB_OUTPUT"
+          echo "version_code=${CODE}" >> "$GITHUB_OUTPUT"
+          echo "Tag ${TAG} → versionName=${NAME} versionCode=${CODE}"
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -62,42 +89,30 @@ jobs:
       - name: Typecheck and validate
         run: npm run check
 
-      # The committed android/ tree carries Maps key injection, upload signing,
-      # splash wiring, and trimmed permissions. Never expo prebuild --clean here.
-
       - name: Decode upload keystore
         env:
-          TRIPENERARY_UPLOAD_KEYSTORE_BASE64: ${{ secrets.TRIPENERARY_UPLOAD_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
-          if [ -z "$TRIPENERARY_UPLOAD_KEYSTORE_BASE64" ]; then
-            echo "Missing secret TRIPENERARY_UPLOAD_KEYSTORE_BASE64" >&2
-            exit 1
+          if [ -z "$ANDROID_KEYSTORE_BASE64" ]; then
+            echo "ANDROID_KEYSTORE_BASE64 not set; release will use debug signing."
+            exit 0
           fi
-          echo "$TRIPENERARY_UPLOAD_KEYSTORE_BASE64" | base64 -d > android/app/release.keystore
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/app/release.keystore
+          ls -la android/app/release.keystore
 
-      - name: Derive version from tag
-        id: ver
-        run: |
-          TAG="${GITHUB_REF_NAME#v}"
-          # versionCode: major*10000 + minor*100 + patch for tags like 1.2.3
-          IFS=. read -r MAJ MIN PAT <<EOF
-          ${TAG%%-*}
-          EOF
-          MAJ=${MAJ:-0}; MIN=${MIN:-0}; PAT=${PAT:-0}
-          CODE=$((10#$MAJ * 10000 + 10#$MIN * 100 + 10#$PAT))
-          echo "versionName=$TAG" >> "$GITHUB_OUTPUT"
-          echo "versionCode=$CODE" >> "$GITHUB_OUTPUT"
-
-      - name: Preflight release config
+      - name: Prebuild native Android project
+        run: npx expo prebuild --platform android --no-install --clean
         env:
+          EXPO_NO_TELEMETRY: "1"
           GOOGLE_MAPS_ANDROID_KEY: ${{ secrets.GOOGLE_MAPS_ANDROID_KEY }}
-          TRIPENERARY_UPLOAD_STORE_FILE: release.keystore
-          TRIPENERARY_UPLOAD_STORE_PASSWORD: ${{ secrets.TRIPENERARY_UPLOAD_STORE_PASSWORD }}
-          TRIPENERARY_UPLOAD_KEY_ALIAS: ${{ secrets.TRIPENERARY_UPLOAD_KEY_ALIAS }}
-          TRIPENERARY_UPLOAD_KEY_PASSWORD: ${{ secrets.TRIPENERARY_UPLOAD_KEY_PASSWORD }}
-        run: npm run preflight
+          EXPO_PUBLIC_FIREBASE_API_KEY: ${{ secrets.EXPO_PUBLIC_FIREBASE_API_KEY }}
+          EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          EXPO_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_PROJECT_ID }}
+          EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET }}
+          EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
+          EXPO_PUBLIC_FIREBASE_APP_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_APP_ID }}
 
-      - name: Build release AAB
+      - name: Build release APK and App Bundle
         working-directory: android
         env:
           GOOGLE_MAPS_ANDROID_KEY: ${{ secrets.GOOGLE_MAPS_ANDROID_KEY }}
@@ -105,10 +120,16 @@ jobs:
           TRIPENERARY_UPLOAD_STORE_PASSWORD: ${{ secrets.TRIPENERARY_UPLOAD_STORE_PASSWORD }}
           TRIPENERARY_UPLOAD_KEY_ALIAS: ${{ secrets.TRIPENERARY_UPLOAD_KEY_ALIAS }}
           TRIPENERARY_UPLOAD_KEY_PASSWORD: ${{ secrets.TRIPENERARY_UPLOAD_KEY_PASSWORD }}
-        run: >
-          ./gradlew bundleRelease assembleRelease --no-daemon
-          -Ptripenerary.versionCode=${{ steps.ver.outputs.versionCode }}
-          -Ptripenerary.versionName=${{ steps.ver.outputs.versionName }}
+          EXPO_PUBLIC_FIREBASE_API_KEY: ${{ secrets.EXPO_PUBLIC_FIREBASE_API_KEY }}
+          EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          EXPO_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_PROJECT_ID }}
+          EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET }}
+          EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
+          EXPO_PUBLIC_FIREBASE_APP_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_APP_ID }}
+        run: |
+          ./gradlew assembleRelease bundleRelease --no-daemon \
+            -Ptripenerary.versionCode=${{ steps.version.outputs.version_code }} \
+            -Ptripenerary.versionName=${{ steps.version.outputs.version_name }}
 
       - name: Collect artifacts
         run: |
@@ -116,28 +137,49 @@ jobs:
           cp android/app/build/outputs/bundle/release/app-release.aab \
              "dist/tripenerary-${GITHUB_REF_NAME}.aab"
           cp android/app/build/outputs/apk/release/app-release.apk \
-             "dist/tripenerary-${GITHUB_REF_NAME}.apk"
+             "dist/tripenerary-${{ steps.version.outputs.version_name }}.apk"
+          cp android/app/build/outputs/bundle/release/app-release.aab \
+             "dist/tripenerary-${{ steps.version.outputs.version_name }}.aab"
 
-      - name: Upload build artifact
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: tripenerary-play
+          name: tripenerary-android
           path: |
-            dist/*.aab
             dist/*.apk
+            dist/*.aab
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/*.aab
             dist/*.apk
+            dist/*.aab
           generate_release_notes: true
           draft: false
-          prerelease: ${{ contains(github.ref_name, '-') }}
-          body: |
-            Play Store upload: `tripenerary-${{ github.ref_name }}.aab`
-            Sideload smoke-test: `tripenerary-${{ github.ref_name }}.apk`
+          prerelease: ${{ steps.version.outputs.is_prerelease == 'true' }}
 
-            Upload the AAB in Play Console → Production (or a testing track).
-            See `docs/RELEASE.md`.
+  play-store:
+    name: Publish to Play Store
+    needs: build
+    runs-on: ubuntu-latest
+    # Skip prerelease tags (v1.0.0-beta) and runs without a Play service account.
+    if: ${{ needs.build.outputs.is_prerelease != 'true' && vars.PLAY_STORE_ENABLED == 'true' }}
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tripenerary-android
+          path: dist
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.tripcompanion.app
+          releaseFiles: dist/tripenerary-${{ needs.build.outputs.version_name }}.aab
+          track: ${{ vars.PLAY_STORE_TRACK || 'internal' }}
+          status: completed
+          inAppUpdatePriority: 2
+          changesNotSentForReview: false

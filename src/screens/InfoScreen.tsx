@@ -5,6 +5,7 @@ import SmartImage from '@/components/SmartImage';
 import Message from '@/components/Message';
 import Press from '@/components/Press';
 import AttachmentList from '@/components/AttachmentList';
+import LocationRow from '@/components/LocationRow';
 import { useLightbox } from '@/components/lightbox/context';
 import { Card, SectionTitle } from '@/components/ui';
 import { colors, hairlineWidth, radius, spacing, type } from '@/theme';
@@ -62,6 +63,47 @@ export default function InfoScreen({ data, showImages, onClose }: InfoScreenProp
               ) : null}
             </Card>
 
+            {data.emergency.contacts.length > 0 || data.emergency.locations.length > 0 ? (
+              <>
+                <SectionTitle>Emergency</SectionTitle>
+                {data.emergency.contacts.length > 0 ? (
+                  <Card>
+                    {data.emergency.contacts.map((contact, i) => {
+                      const href = contactHref(contact);
+                      return (
+                        <View key={`e-${contact.label}-${i}`} style={[s.contact, i > 0 && s.contactBorder]}>
+                          <Text style={s.contactLabel}>{contact.label}</Text>
+                          <Text
+                            style={[s.contactValue, href ? s.link : null]}
+                            onPress={href ? () => void Linking.openURL(href) : undefined}
+                          >
+                            {contact.value}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </Card>
+                ) : null}
+                {data.emergency.locations.map((place, i) => (
+                  <Card key={`el-${place.name}-${i}`} style={s.spaced}>
+                    <Text style={s.placeLabel}>{place.label.toUpperCase()}</Text>
+                    <Text style={s.infoTitle}>{place.name || place.label}</Text>
+                    {place.address ? <Text style={s.infoBody}>{place.address}</Text> : null}
+                    {place.phone ? (
+                      <Text
+                        style={[s.contactValue, s.link]}
+                        onPress={() => void Linking.openURL(`tel:${place.phone.replace(/\s/g, '')}`)}
+                      >
+                        {place.phone}
+                      </Text>
+                    ) : null}
+                    {place.notes ? <Text style={[s.infoBody, s.notes]}>{place.notes}</Text> : null}
+                    <LocationRow location={place.location} showPreview />
+                  </Card>
+                ))}
+              </>
+            ) : null}
+
             {data.trip.attachments.length > 0 ? (
               <>
                 <SectionTitle>Travel documents</SectionTitle>
@@ -78,7 +120,7 @@ export default function InfoScreen({ data, showImages, onClose }: InfoScreenProp
                   {data.contacts.map((contact, i) => {
                     const href = contactHref(contact);
                     return (
-                      <View key={contact.label} style={[s.contact, i > 0 && s.contactBorder]}>
+                      <View key={`${contact.label}-${i}`} style={[s.contact, i > 0 && s.contactBorder]}>
                         <Text style={s.contactLabel}>{contact.label}</Text>
                         <Text
                           style={[s.contactValue, href ? s.link : null]}
@@ -158,6 +200,8 @@ const s = StyleSheet.create({
   spaced: { marginBottom: spacing.md },
   infoTitle: { ...type.h3, marginBottom: spacing.xs },
   infoBody: { ...type.body, color: colors.textMuted },
+  notes: { marginTop: spacing.sm },
+  placeLabel: { ...type.label, marginBottom: spacing.xs },
   contact: { paddingVertical: spacing.md },
   contactBorder: { borderTopWidth: hairlineWidth, borderTopColor: colors.borderSoft },
   contactLabel: { ...type.caption },

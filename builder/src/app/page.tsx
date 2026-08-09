@@ -1,5 +1,12 @@
+'use client';
+
 import Builder from '@/components/Builder';
+import { AuthProvider } from '@/lib/useAuth';
 
 export default function Page() {
-  return <Builder />;
+  return (
+    <AuthProvider>
+      <Builder />
+    </AuthProvider>
+  );
 }

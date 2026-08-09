@@ -9,8 +9,9 @@ import NoteList from '@/components/NoteList';
 import RouteMap from '@/components/RouteMap';
 import Message from '@/components/Message';
 import Press from '@/components/Press';
+import AttachmentList from '@/components/AttachmentList';
 import { prefetch } from '@/components/SmartImage';
-import { IconButton, SectionTitle } from '@/components/ui';
+import { Card, IconButton, SectionTitle } from '@/components/ui';
 import { colors, elevation, radius, spacing, type } from '@/theme';
 import { todayKey } from '@/lib/dates';
 import { buildRoute } from '@/lib/route';
@@ -135,6 +136,15 @@ export default function TripScreen({
             {error ? (
               <View style={s.warn}>
                 <Text style={s.warnText}>{`Showing the saved copy. ${error}`}</Text>
+              </View>
+            ) : null}
+
+            {data && data.trip.attachments.length > 0 ? (
+              <View style={s.block}>
+                <SectionTitle>Travel documents</SectionTitle>
+                <Card>
+                  <AttachmentList attachments={data.trip.attachments} label="TAP TO OPEN" flush />
+                </Card>
               </View>
             ) : null}
 

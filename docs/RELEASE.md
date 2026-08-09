@@ -1,4 +1,64 @@
-# Releasing Tripenerary to Google Play
+# Publishing Tripenerary
+
+## Galaxy Store
+
+See the Galaxy Store checklist below (signing, Maps key, screenshots, review rules).
+
+## Google Play Store (GitHub Actions)
+
+Pushing a version tag (`v1.2.3`) runs `.github/workflows/release.yml`:
+
+1. Typechecks the builder and the app.
+2. Builds a signed **APK** and **AAB**.
+3. Attaches both to a GitHub Release.
+4. When Play publishing is enabled, uploads the AAB to Google Play.
+
+Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** publish to Play.
+
+### One-time Play Console setup
+
+1. Create the app in [Google Play Console](https://play.google.com/console) with
+   package `com.tripcompanion.app`.
+2. Complete the store listing, content rating, and Data safety form (see
+   `docs/PRIVACY.md`).
+3. Create a Google Cloud service account with **Release Manager** (or narrower
+   “Manage production releases / testing tracks”) access to the Play Console app.
+4. Download the service account JSON key.
+
+### Repository secrets and variables
+
+| Name | Type | Purpose |
+|---|---|---|
+| `ANDROID_KEYSTORE_BASE64` | secret | Base64 of `android/app/release.keystore` (`base64 -w0 release.keystore`) |
+| `TRIPENERARY_UPLOAD_STORE_PASSWORD` | secret | Keystore password |
+| `TRIPENERARY_UPLOAD_KEY_ALIAS` | secret | Usually `upload` |
+| `TRIPENERARY_UPLOAD_KEY_PASSWORD` | secret | Key password (often same as store) |
+| `GOOGLE_MAPS_ANDROID_KEY` | secret | Maps SDK key restricted to the upload SHA-1 |
+| `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` | secret | Full JSON of the Play service account |
+| `EXPO_PUBLIC_FIREBASE_*` | secrets | Firebase web config (see `.env.example`) |
+| `PLAY_STORE_ENABLED` | variable | Set to `true` to enable the Play upload job |
+| `PLAY_STORE_TRACK` | variable | Optional. `internal` (default), `alpha`, `beta`, or `production` |
+
+Enable the Play job only after the Play Console app exists and the service
+account can see it; otherwise the upload step fails even when the AAB is fine.
+
+### Versioning
+
+Tag `vMAJOR.MINOR.PATCH`. The workflow sets:
+
+- `versionName` → the tag without the leading `v`
+- `versionCode` → `MAJOR * 10000 + MINOR * 100 + PATCH`
+
+`versionCode` must always increase for Play uploads.
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+---
+
+# Releasing Tripenerary to the Galaxy Store
 
 ## 0. One-time setup
 
@@ -44,7 +104,27 @@ The Android Maps key is injected into `AndroidManifest.xml` at build time by
 > map still works because that fires an intent to the Google Maps app, which does
 > not use your key at all. That symptom is always a key problem, never a layout one.
 
-### Upload keystore
+### Firebase (optional, for account sync)
+
+1. Create a Firebase project and a Web app; copy the config into `.env` using the
+   `EXPO_PUBLIC_FIREBASE_*` names in `.env.example`.
+2. Authentication → Sign-in method → enable **Email/Password**.
+3. Firestore → create a database, then deploy `firestore.rules`:
+   `firebase deploy --only firestore:rules`
+4. Without these keys the app still works offline; Settings shows that cloud sync
+   is not configured.
+
+### Release keystore
+
+Already generated at `android/app/release.keystore` (RSA 4096, alias `upload`,
+valid until 2056). Its passwords are in `.env`.
+
+**Back both up now.** They are gitignored by design. If you lose either, you can
+never publish an update to the same Galaxy Store listing; you would have to ship
+under a new package name and lose every existing install.
+
+Somewhere durable means a password manager plus one offline copy, not just this
+laptop.
 
 Generate once and keep forever:
 
@@ -157,17 +237,24 @@ data, no sharing, everything stays on device.
 
 ### Content rating
 
-Start the IARC questionnaire in Play Console. Tripenerary has no user-generated
-chat, no violence, no ads, no location tracking of the user — expect a low rating
-(Everyone / PEGI 3 class). Answer truthfully from the app's actual behaviour.
+Tripenerary stores itineraries on-device and, when you sign in, syncs trips and
+display preferences to Firebase (Firestore) under your account. Declare:
 
-### Privacy policy
+- Account info (email) when the user signs in.
+- App activity / user-generated content: itinerary URLs and cached trip JSON the
+  user chose to sync.
+- Shared with third parties: Google Firebase (processing), Google Maps (map tiles).
+- Note that the app also makes network requests to the itinerary URL the user
+  supplies and to image/document hosts referenced by that itinerary.
 
 A public HTTPS URL is required. Host `docs/PRIVACY.md` (GitHub Pages, a gist raw
 URL behind a static host, or any site you control) and paste the URL into both the
 store listing and the App content → Privacy policy field.
 
-### Review notes
+If Firebase is enabled, provide a test account email/password for reviewers.
+Also include a note: "The app requires an itinerary JSON URL to show content. A
+working sample is at <URL>." Reviewers who open an empty app tend to fail it
+under 1.2.1.
 
 The app has no login, so no test account is needed. Include a note for reviewers:
 

@@ -37,6 +37,9 @@ and the phone updates. You can keep several trips side by side.
   weather, etc.).
 - **Works offline** – every downloaded itinerary is cached separately. If the phone has no
   signal the app still opens the full trip and quietly says it is showing the saved copy.
+- **Account sync** – optional Firebase sign-in from Settings. Trips and display preferences
+  sync to Firestore so they follow you to another phone. Without keys, the app stays fully
+  local.
 
 ## Getting started
 
@@ -105,6 +108,29 @@ and fingerprint restriction on the key, not where you store it.
 
 If you would rather skip all of this, turn off **Show map previews** in Settings. Everything
 else keeps working.
+
+### Firebase (optional account sync)
+
+1. Create a Firebase project, add a Web app, and enable **Email/Password** under Authentication.
+2. Create a Firestore database and deploy the rules in `firestore.rules`.
+3. `cp .env.example .env` and fill in the `EXPO_PUBLIC_FIREBASE_*` values from the Firebase
+   console.
+
+Without these variables the app runs as before (local-only). Settings will say cloud sync is
+not configured. With them, Sign in under Settings syncs the trip list and preferences.
+
+### Play Store releases
+
+Tag a version to build and (optionally) publish:
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+That runs `.github/workflows/release.yml`: APK + AAB on the GitHub Release, and an AAB upload
+to Google Play when `PLAY_STORE_ENABLED=true`. Full secret list and Play Console steps are in
+`docs/RELEASE.md`.
 
 ## Hosting the itinerary JSON
 
@@ -323,10 +349,13 @@ src/lib/normalize.ts        parses `unknown` JSON into a typed Itinerary
 src/lib/images.ts           image field parsing
 src/lib/attachments.ts      document link parsing
 src/lib/cache/             offline document copies: download, re-check, sweep, open
+src/lib/firebase.ts         Firebase app / Auth / Firestore init from EXPO_PUBLIC_* env
+src/lib/cloudSync.ts        Firestore pull/push/merge for prefs and trips
 src/lib/tripSummary.ts      card summaries, live/upcoming/past status, ordering
 src/lib/storage.ts          AsyncStorage wrapper, trip index, v1 migration
-src/hooks/useTripLibrary.ts the whole library: add, remove, open, refresh, prefs
-src/components/             TripCard, AddTripSheet, DateStrip, ScheduleItem, SmartImage, ...
+src/hooks/useAuth.tsx       AuthProvider + email/password sign-in
+src/hooks/useTripLibrary.ts the whole library: add, remove, open, refresh, prefs, cloud sync
+src/components/             TripCard, AddTripSheet, AuthSheet, DateStrip, ScheduleItem, ...
 src/screens/                Splash, Landing, Trip, Settings, Info
 scripts/                    standalone JSON validator
 ```
