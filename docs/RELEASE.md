@@ -39,11 +39,12 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
 | `PLAY_STORE_ENABLED` | variable | Optional. Set to `false` to skip Play upload; otherwise the job runs for non-prerelease tags |
 | `PLAY_STORE_TRACK` | variable | Optional. `internal` (default), `alpha`, `beta`, or `production` |
 | `PLAY_STORE_STATUS` | variable | Optional. `draft` (default), `completed`, `inProgress`, or `halted`. Draft apps can only receive `draft` releases |
+| `PLAY_STORE_ENVIRONMENT` | variable | Optional. GitHub Actions environment name that holds the secrets (default `Production`) |
 
-Play upload needs `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` and a Play Console app the
-service account can reach; otherwise the upload step fails even when the AAB is fine.
-The package must already exist in Play Console (create the app and preferably upload
-one manual AAB once so API access works).
+Store `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON`, the upload keystore secrets, and Firebase
+keys as **Environment secrets** on that GitHub Environment (Settings → Secrets →
+Actions → Environment secrets), or as repository secrets. The release jobs select
+the environment so Environment secrets are visible to the workflow.
 
 Per-tag GitHub Release notes live in `store/releases/vX.Y.Z.md` (same format as
 Highlights / Added / Changed / Downloads / Upgrade notes). Play “what's new”

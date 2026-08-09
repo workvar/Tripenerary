@@ -18,6 +18,7 @@ jobs:
   play-store:
     name: Publish to Play Store
     runs-on: ubuntu-latest
+    environment: ${{ vars.PLAY_STORE_ENVIRONMENT || 'Production' }}
     if: ${{ vars.PLAY_STORE_ENABLED != 'false' }}
 
     steps:
