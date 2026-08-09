@@ -16,8 +16,8 @@ def versionCodeProp = project.findProperty('tripenerary.versionCode')
 def versionNameProp = project.findProperty('tripenerary.versionName')
 String versionCodeRaw = versionCodeProp == null ? '' : versionCodeProp.toString().trim()
 String versionNameRaw = versionNameProp == null ? '' : versionNameProp.toString().trim()
-int tripeneraryVersionCode = versionCodeRaw.isEmpty() ? 10105 : Integer.parseInt(versionCodeRaw)
-String tripeneraryVersionName = versionNameRaw.isEmpty() ? '1.1.5' : versionNameRaw
+int tripeneraryVersionCode = versionCodeRaw.isEmpty() ? 10106 : Integer.parseInt(versionCodeRaw)
+String tripeneraryVersionName = versionNameRaw.isEmpty() ? '1.1.6' : versionNameRaw
 
 if (googleMapsApiKey == null || googleMapsApiKey.isEmpty()) {
     logger.warn("\n  WARNING: GOOGLE_MAPS_ANDROID_KEY is not set.\n" +
