@@ -21,9 +21,20 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
    package `com.tripcompanion.app`.
 2. Complete the store listing, content rating, and Data safety form (see
    `docs/PRIVACY.md`).
-3. Create a Google Cloud service account with **Release Manager** (or narrower
-   “Manage production releases / testing tracks”) access to the Play Console app.
-4. Download the service account JSON key.
+3. In Google Cloud, create a service account and download its JSON key. Enable the
+   **Google Play Android Developer API** on that Cloud project
+   (`androidpublisher.googleapis.com`).
+4. In Play Console → **Users and permissions** → **Invite new users**, add the
+   service account email (`…@….iam.gserviceaccount.com`). Grant app access for
+   `com.tripcompanion.app` with permission to **view app information** and
+   **manage releases on testing tracks** (or Admin / Release Manager).
+5. Wait a few minutes after inviting — Play permission changes are not always
+   instant. Upload one AAB manually once if the API still returns “Package not
+   found”.
+
+If GitHub Actions fails with **The caller does not have permission**, the JSON
+secret is fine but steps 3–4 above are incomplete (API not enabled, or the
+service account is not linked in Play Console Users and permissions).
 
 ### Repository secrets and variables
 
