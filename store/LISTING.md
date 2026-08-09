@@ -22,33 +22,41 @@ Day-by-day travel plans from a simple JSON link. Works offline.
 ```
 Tripenerary turns a travel itinerary JSON file into a day-by-day companion on your phone.
 
-Paste a link to your itinerary. The app downloads it, keeps a copy on the device, and shows today’s plan with times, places, stays, and notes. Pull to refresh when the file changes. Keep several trips side by side.
+Paste a link to your itinerary. The app downloads it, keeps a copy on the device, and shows today’s plan with times, places, stays, and notes. Pull to refresh when the file changes. Keep several trips side by side. Sign in optionally if you want the same library on another phone.
 
 What you get
 • Home screen of your trips, sorted so whatever is happening now comes first
-• Bottom date strip to jump between days
-• Schedule blocks with times, descriptions, and photos
+• Bottom date strip and day picker to jump between days, plus jump-to-today
+• Schedule blocks with times, descriptions, and photos (pinch-to-zoom lightbox)
 • Map previews plus buttons to open Google Maps or get directions
 • Stay cards with dates, confirmation numbers, and tappable phone numbers
+• Trip info for emergency numbers and practical notes
 • Offline document cache for tickets and booking PDFs you open
 • Works with no signal once a trip is saved
 
 Nothing about any particular trip is hard-coded. You control the content by editing the JSON wherever you host it — a GitHub Gist works fine.
 
-No accounts. No ads. No tracking. Your itinerary stays on your phone.
+No ads. Optional cloud sync only if you sign in. Your itinerary stays under your control.
 ```
 
-### Release notes (version 1.1.2)
+### Release notes (first Play release)
+
+Paste into Play Console → Release → “Release notes” / what’s new (`en-US`). Limit is 500 characters; this copy is under the limit and also lives at `store/whatsnew/whatsnew-en-US`.
 
 ```
-Tripenerary 1.1.2 — Play Store publish
-• Sign in to sync trips across devices
-• Offline cache for tickets and booking PDFs
-• Day picker and richer day-by-day schedules
-• Signed Play draft for internal testing
-```
+Welcome to Tripenerary — your day-by-day travel companion.
 
-See `store/releases/v1.1.2.md` for the full GitHub Release notes.
+• Add trips from a JSON link; keep several side by side
+• Home screen sorted around what’s happening now
+• Date strip, day picker, and jump-to-today
+• Schedule with times, photos, notes, and stays
+• Map previews, open in Maps, and directions
+• Offline cache for trips, tickets, and PDFs
+• Optional sign-in to sync across devices
+• Works offline once a trip is saved
+
+No ads. Your plans stay under your control.
+```
 
 ## Graphics checklist
 
