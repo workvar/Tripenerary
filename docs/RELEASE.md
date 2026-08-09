@@ -212,13 +212,15 @@ and it only shows up in release.
 adb install -r android/app/build/outputs/apk/release/app-release.apk
 ```
 
-Tagged pushes also build a signed AAB via `.github/workflows/release.yml` when these
-repository secrets are set:
+Tagged pushes also build a signed AAB via `.github/workflows/release.yml` using the
+committed `android/` tree (no `expo prebuild --clean` — that wiped the upload
+keystore and custom signing scripts). The job fails if the bundle is still
+debug-signed. Required secrets (Production environment):
 
 | Secret | Value |
 |---|---|
 | `GOOGLE_MAPS_ANDROID_KEY` | restricted Android Maps key |
-| `TRIPENERARY_UPLOAD_KEYSTORE_BASE64` | `base64 -w0 android/app/release.keystore` |
+| `ANDROID_KEYSTORE_BASE64` | `base64 -w0 android/app/release.keystore` |
 | `TRIPENERARY_UPLOAD_STORE_PASSWORD` | keystore password |
 | `TRIPENERARY_UPLOAD_KEY_ALIAS` | usually `upload` |
 | `TRIPENERARY_UPLOAD_KEY_PASSWORD` | key password (often same as store) |
