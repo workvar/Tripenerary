@@ -52,7 +52,19 @@ jobs:
             echo "::error::GOOGLE_PLAY_SERVICE_ACCOUNT_JSON secret is empty or missing."
             exit 1
           fi
-          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" | python3 -c 'import json,sys; json.load(sys.stdin); print("Service account JSON parses OK")'
+          python3 <<'PY'
+          import json, os, sys
+          data = json.loads(os.environ["GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"])
+          email = data.get("client_email")
+          project = data.get("project_id")
+          if not email:
+              print("::error::Service account JSON is missing client_email")
+              sys.exit(1)
+          print(f"Service account JSON parses OK")
+          print(f"client_email={email}")
+          print(f"project_id={project}")
+          print(f"Invite {email} in Play Console → Users and permissions for com.tripcompanion.app")
+          PY
 
       - name: Upload to Google Play
         uses: r0adkll/upload-google-play@v1
