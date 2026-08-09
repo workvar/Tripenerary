@@ -187,7 +187,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     # Skip prerelease tags (v1.0.0-beta). Requires GOOGLE_PLAY_SERVICE_ACCOUNT_JSON.
-    # Optional vars: PLAY_STORE_TRACK (default internal), PLAY_STORE_ENABLED=false to skip.
+    # Optional vars: PLAY_STORE_TRACK (default internal), PLAY_STORE_STATUS (default draft),
+    # PLAY_STORE_ENABLED=false to skip. Use draft until the Play Console app is out of draft.
     if: ${{ needs.build.outputs.is_prerelease != 'true' && vars.PLAY_STORE_ENABLED != 'false' }}
 
     steps:
@@ -200,6 +201,17 @@ jobs:
           name: tripenerary-android
           path: dist
 
+      - name: Verify Play service account secret
+        env:
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" ]; then
+            echo "::error::GOOGLE_PLAY_SERVICE_ACCOUNT_JSON secret is empty or missing."
+            echo "Add the Play Console service account JSON as a repository secret, then re-run."
+            exit 1
+          fi
+          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" | python3 -c 'import json,sys; json.load(sys.stdin); print("Service account JSON parses OK")'
+
       - name: Upload to Google Play
         uses: r0adkll/upload-google-play@v1
         with:
@@ -207,7 +219,7 @@ jobs:
           packageName: com.tripcompanion.app
           releaseFiles: dist/tripenerary-${{ needs.build.outputs.version_name }}.aab
           track: ${{ vars.PLAY_STORE_TRACK || 'internal' }}
-          status: completed
+          status: ${{ vars.PLAY_STORE_STATUS || 'draft' }}
           inAppUpdatePriority: 2
-          changesNotSentForReview: false
-          whatsnewDirectory: store/whatsnew
+          changesNotSentForReview: true
+          whatsNewDirectory: store/whatsnew
