@@ -135,8 +135,8 @@ if (!/armeabi-v7a|arm64-v8a/.test(gradleProps)) {
 
 const appJson = JSON.parse(readFileSync(join(ROOT, 'app.json'), 'utf8'));
 const androidPkg = appJson?.expo?.android?.package;
-if (androidPkg !== 'com.tripcompanion.app') {
-  fail(`app.json android.package is "${androidPkg}", expected com.tripcompanion.app.`);
+if (androidPkg !== 'com.workvar.tripenerary') {
+  fail(`app.json android.package is "${androidPkg}", expected com.workvar.tripenerary.`);
 }
 if (!appJson?.expo?.android?.versionCode) {
   warn('app.json android.versionCode is missing; Gradle defaults to 1.');

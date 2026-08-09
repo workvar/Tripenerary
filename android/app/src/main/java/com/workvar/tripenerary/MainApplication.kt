@@ -1,4 +1,4 @@
-package com.tripcompanion.app
+package com.workvar.tripenerary
 
 import android.app.Application
 import android.content.res.Configuration

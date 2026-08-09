@@ -18,7 +18,7 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
 ### One-time Play Console setup
 
 1. Create the app in [Google Play Console](https://play.google.com/console) with
-   package `com.tripcompanion.app`.
+   package `com.workvar.tripenerary`.
 2. Complete the store listing, content rating, and Data safety form (see
    `docs/PRIVACY.md`).
 3. In Google Cloud, create a service account and download its JSON key. Enable the
@@ -26,7 +26,7 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
    (`androidpublisher.googleapis.com`).
 4. In Play Console → **Users and permissions** → **Invite new users**, add the
    service account email (`…@….iam.gserviceaccount.com`). Grant app access for
-   `com.tripcompanion.app` with permission to **view app information** and
+   `com.workvar.tripenerary` with permission to **view app information** and
    **manage releases on testing tracks** (or Admin / Release Manager).
 5. Wait a few minutes after inviting — Play permission changes are not always
    instant. Upload one AAB manually once if the API still returns “Package not
@@ -107,9 +107,9 @@ The Android Maps key is injected into `AndroidManifest.xml` at build time by
 
    | Package name | SHA-1 |
    |---|---|
-   | `com.tripcompanion.app` | debug keystore SHA-1 |
-   | `com.tripcompanion.app` | upload keystore SHA-1 |
-   | `com.tripcompanion.app` | Play App Signing key SHA-1 (see below) |
+   | `com.workvar.tripenerary` | debug keystore SHA-1 |
+   | `com.workvar.tripenerary` | upload keystore SHA-1 |
+   | `com.workvar.tripenerary` | Play App Signing key SHA-1 (see below) |
 
    Print a keystore's SHA-1 with:
 
@@ -241,7 +241,7 @@ Open the app in [Play Console](https://play.google.com/console/).
 | Target API | 36 (Android 16) — required for new apps/updates from 31 Aug 2026 |
 | 64-bit | ships `arm64-v8a` (and `armeabi-v7a`) |
 | Permissions | `INTERNET`, `ACCESS_NETWORK_STATE` only |
-| Package | `com.tripcompanion.app` |
+| Package | `com.workvar.tripenerary` |
 
 ### Store listing
 
