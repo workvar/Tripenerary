@@ -5,9 +5,15 @@ field (max **500** per language).
 
 CI uploads every file under `store/whatsnew/` named `whatsnew-<LOCALE>`.
 
-## en-US (English)
+| Locale | File | Chars |
+|---|---|---|
+| English (en-US) | `whatsnew-en-US` | 470 |
+| Hindi (hi-IN) | `whatsnew-hi-IN` | 437 |
+| French (fr-FR) | `whatsnew-fr-FR` | 472 |
+| German (de-DE) | `whatsnew-de-DE` | 447 |
+| Chinese Simplified (zh-CN) | `whatsnew-zh-CN` | 186 |
 
-File: `store/whatsnew/whatsnew-en-US`
+## en-US (English)
 
 ```
 Welcome to Tripenerary — your day-by-day travel companion.
@@ -26,8 +32,6 @@ No ads. Your plans stay under your control.
 
 ## hi-IN (Hindi)
 
-File: `store/whatsnew/whatsnew-hi-IN`
-
 ```
 Tripenerary में आपका स्वागत है — आपका दिन-प्रतिदिन यात्रा साथी।
 
@@ -45,45 +49,39 @@ Tripenerary में आपका स्वागत है — आपका �
 
 ## fr-FR (French)
 
-File: `store/whatsnew/whatsnew-fr-FR`
-
 ```
-Bienvenue dans Tripenerary — votre compagnon de voyage au jour le jour.
+Bienvenue dans Tripenerary — compagnon de voyage au jour le jour.
 
-• Ajoutez des voyages via un lien JSON ; plusieurs à la fois
-• Accueil trié autour de ce qui se passe maintenant
-• Bandeau de dates, choix du jour et aller à aujourd’hui
-• Planning avec horaires, photos, notes et séjours
-• Aperçus de carte, ouvrir dans Maps et itinéraires
-• Cache hors ligne pour voyages, billets et PDF
-• Connexion optionnelle pour synchroniser les appareils
-• Fonctionne hors ligne une fois le voyage enregistré
+• Voyages via lien JSON ; plusieurs à la fois
+• Accueil centré sur ce qui se passe maintenant
+• Dates, choix du jour et aller à aujourd’hui
+• Planning : horaires, photos, notes, séjours
+• Carte, ouvrir dans Maps et itinéraires
+• Cache hors ligne : voyages, billets, PDF
+• Connexion optionnelle pour synchroniser
+• Hors ligne une fois le voyage enregistré
 
 Sans pubs. Vos plans restent sous votre contrôle.
 ```
 
 ## de-DE (German)
 
-File: `store/whatsnew/whatsnew-de-DE`
-
 ```
 Willkommen bei Tripenerary — Ihr Reisebegleiter Tag für Tag.
 
-• Reisen per JSON-Link hinzufügen; mehrere parallel
-• Startbildschirm nach dem aktuellen Tag sortiert
-• Datumsleiste, Tageswahl und Sprung zu heute
-• Zeitplan mit Zeiten, Fotos, Notizen und Unterkünften
-• Kartenvorschau, in Maps öffnen und Wegbeschreibung
-• Offline-Cache für Reisen, Tickets und PDFs
+• Reisen per JSON-Link; mehrere parallel
+• Start nach dem aktuellen Tag sortiert
+• Datumsleiste, Tageswahl, Sprung zu heute
+• Zeitplan mit Fotos, Notizen, Unterkünften
+• Kartenvorschau, Maps und Wegbeschreibung
+• Offline-Cache für Reisen, Tickets, PDFs
 • Optionale Anmeldung zum Geräte-Sync
-• Offline nutzbar, sobald eine Reise gespeichert ist
+• Offline nutzbar nach dem Speichern
 
 Keine Werbung. Ihre Pläne bleiben unter Ihrer Kontrolle.
 ```
 
 ## zh-CN (Chinese, Simplified)
-
-File: `store/whatsnew/whatsnew-zh-CN`
 
 ```
 欢迎使用 Tripenerary — 您的逐日旅行助手。
@@ -102,7 +100,7 @@ File: `store/whatsnew/whatsnew-zh-CN`
 
 ## Feature checklist covered
 
-| Area | Covered in notes |
+| Area | Covered |
 |---|---|
 | Add / manage multiple trips from JSON URLs | yes |
 | Home library sorted by “now” | yes |
@@ -110,15 +108,6 @@ File: `store/whatsnew/whatsnew-zh-CN`
 | Day schedule, photos, notes, stays | yes |
 | Maps preview + directions | yes |
 | Offline itinerary + PDF/ticket cache | yes |
-| Optional Firebase sign-in / sync | yes |
+| Optional sign-in / sync | yes |
 | Offline-first after download | yes |
 | No ads | yes |
-
-## Longer reviewer blurb (English only; not for the 500-char field)
-
-Tripenerary is a travel itinerary companion. Users paste a URL to a trip JSON file;
-the app downloads and caches it, then shows a day-by-day schedule with times, places,
-stays, photos, emergency info, and linked tickets/PDFs. Embedded map previews open
-into Google Maps for place details or directions. Optional sign-in syncs the trip
-library across devices; without sign-in the app remains fully local. Once cached,
-trips and opened documents work offline.
