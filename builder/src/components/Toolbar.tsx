@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import AuthModal from '@/components/AuthModal';
+import { useRouter } from 'next/navigation';
 import ImportDialog from '@/components/ImportDialog';
 import PdfButton from '@/components/PdfButton';
 import Button from '@/components/ui/Button';
@@ -28,12 +28,13 @@ function saveLabel(api: DraftApi, signedIn: boolean): string {
 
 export default function Toolbar({ api }: { readonly api: DraftApi }) {
   const auth = useAuth();
+  const router = useRouter();
   const { draft, setDraft, setDayIndex, reset, publish, publishBusy, message, flash, cloudMeta } = api;
   const [importing, setImporting] = useState(false);
-  const [authOpen, setAuthOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const issuesReady = draft.days.length > 0;
+  const accountLabel = auth.displayName || auth.email || 'Signed in';
 
   const exportFile = () => {
     const blob = new Blob([toJsonString(draft)], { type: 'application/json' });
@@ -58,7 +59,7 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
 
   const onPublish = async () => {
     if (!auth.uid) {
-      setAuthOpen(true);
+      router.push('/login');
       return;
     }
     const url = await publish();
@@ -85,28 +86,43 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
     }
   };
 
+  const onSignOut = async () => {
+    await auth.signOut();
+    if (auth.available) router.replace('/login');
+  };
+
   return (
     <>
       <header className="z-30 shrink-0 border-b border-line bg-white/90 backdrop-blur">
         <div className="flex flex-wrap items-center gap-3 px-5 py-3">
-          <div className="mr-auto min-w-0">
-            <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
-            <p className="truncate text-[11px] text-muted">
-              {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
-              {' · '}
-              <span
-                className={
-                  api.saveStatus === 'over-limit' || api.saveStatus === 'error'
-                    ? 'font-bold text-danger'
-                    : api.saveStatus === 'saved'
-                      ? 'font-bold text-primary'
-                      : ''
-                }
-              >
-                {saveLabel(api, Boolean(auth.uid))}
-              </span>
-              {issuesReady ? null : <span className="ml-1 font-bold text-danger">· add a day</span>}
-            </p>
+          <div className="mr-auto flex min-w-0 items-center gap-2.5">
+            <img
+              src="/favicon.png"
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 shrink-0 rounded-sm"
+              decoding="async"
+            />
+            <div className="min-w-0">
+              <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
+              <p className="truncate text-[11px] text-muted">
+                {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
+                {' · '}
+                <span
+                  className={
+                    api.saveStatus === 'over-limit' || api.saveStatus === 'error'
+                      ? 'font-bold text-danger'
+                      : api.saveStatus === 'saved'
+                        ? 'font-bold text-primary'
+                        : ''
+                  }
+                >
+                  {saveLabel(api, Boolean(auth.uid))}
+                </span>
+                {issuesReady ? null : <span className="ml-1 font-bold text-danger">· add a day</span>}
+              </p>
+            </div>
           </div>
 
           {message ? (
@@ -115,17 +131,31 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
             </span>
           ) : null}
 
-          {auth.available ? (
-            auth.user ? (
-              <Button size="sm" onClick={() => void auth.signOut()} title={auth.email ?? undefined}>
+          {auth.user ? (
+            <div className="flex min-w-0 items-center gap-2">
+              {auth.photoURL ? (
+                <img
+                  src={auth.photoURL}
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 shrink-0 rounded-full"
+                  referrerPolicy="no-referrer"
+                  decoding="async"
+                />
+              ) : null}
+              <span className="hidden max-w-[12rem] truncate text-xs font-semibold text-muted sm:inline" title={accountLabel}>
+                {accountLabel}
+              </span>
+              <Button size="sm" onClick={() => void onSignOut()}>
                 Sign out
               </Button>
-            ) : (
-              <Button size="sm" onClick={() => setAuthOpen(true)}>
-                Sign in
-              </Button>
-            )
-          ) : null}
+            </div>
+          ) : (
+            <Button size="sm" onClick={() => router.push('/login')} disabled={!auth.ready}>
+              Sign in
+            </Button>
+          )}
 
           <Button size="sm" onClick={onReset}>
             New
@@ -158,8 +188,6 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
       {importing ? (
         <ImportDialog current={draft} onApply={applyImport} onClose={() => setImporting(false)} />
       ) : null}
-
-      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} auth={auth} />
     </>
   );
 }
