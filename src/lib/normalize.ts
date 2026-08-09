@@ -7,6 +7,8 @@ import {
   type Contact,
   type ContactType,
   type Day,
+  type EmergencyInfo,
+  type EmergencyLocation,
   type InfoSection,
   type Itinerary,
   type ItemType,
@@ -125,6 +127,35 @@ function normContact(raw: unknown): Contact | null {
   return { label, value, type: isContactType(c['type']) ? c['type'] : 'text' };
 }
 
+function normEmergencyLocation(raw: unknown): EmergencyLocation | null {
+  const o = rec(raw);
+  const name = str(o['name']);
+  const address = str(o['address']);
+  const phone = str(o['phone']);
+  const location = normLocation(o['location']);
+  if (!name && !address && !phone && !location) return null;
+  return {
+    label: str(o['label']) || 'Embassy',
+    name,
+    address,
+    phone,
+    notes: str(o['notes']),
+    location,
+  };
+}
+
+function normEmergency(raw: unknown): EmergencyInfo {
+  const o = rec(raw);
+  return {
+    contacts: arr(o['contacts'])
+      .map(normContact)
+      .filter((c): c is Contact => c !== null),
+    locations: arr(o['locations'])
+      .map(normEmergencyLocation)
+      .filter((l): l is EmergencyLocation => l !== null),
+  };
+}
+
 export function normalizeItinerary(input: unknown): Itinerary {
   if (!isRecord(input)) {
     throw new ItineraryError('The file is not a JSON object.');
@@ -180,5 +211,6 @@ export function normalizeItinerary(input: unknown): Itinerary {
     contacts: arr(input['contacts'])
       .map(normContact)
       .filter((c): c is Contact => c !== null),
+    emergency: normEmergency(input['emergency']),
   };
 }

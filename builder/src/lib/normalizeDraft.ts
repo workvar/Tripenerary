@@ -1,10 +1,12 @@
-import { emptyLocation, newDraft, uid } from '@/lib/factories';
+import { emptyEmergency, emptyLocation, newDraft, uid } from '@/lib/factories';
 import type {
   Draft,
   DraftAttachment,
   DraftBlock,
   DraftContact,
   DraftDay,
+  DraftEmergency,
+  DraftEmergencyLocation,
   DraftImage,
   DraftInfo,
   DraftLocation,
@@ -132,6 +134,28 @@ function contact(v: unknown): DraftContact {
   };
 }
 
+function emergencyLocation(v: unknown): DraftEmergencyLocation {
+  const o = obj(v);
+  return {
+    id: str(o.id) || uid('emb'),
+    label: str(o.label) || 'Embassy',
+    name: str(o.name),
+    address: str(o.address),
+    phone: str(o.phone),
+    notes: str(o.notes),
+    location: location(o.location),
+  };
+}
+
+function emergency(v: unknown): DraftEmergency {
+  const o = obj(v);
+  if (!v || typeof v !== 'object') return emptyEmergency();
+  return {
+    contacts: list(o.contacts).map(contact),
+    locations: list(o.locations).map(emergencyLocation),
+  };
+}
+
 export function normalizeDraft(v: unknown): Draft {
   const base = newDraft();
   const o = obj(v);
@@ -155,5 +179,6 @@ export function normalizeDraft(v: unknown): Draft {
     days: days.length > 0 ? days : base.days,
     info: list(o.info).map(info),
     contacts: list(o.contacts).map(contact),
+    emergency: emergency(o.emergency),
   };
 }

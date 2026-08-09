@@ -4,6 +4,8 @@ import type {
   DraftBlock,
   DraftContact,
   DraftDay,
+  DraftEmergency,
+  DraftEmergencyLocation,
   DraftImage,
   DraftInfo,
   DraftLocation,
@@ -94,6 +96,21 @@ export const newContact = (): DraftContact => ({
   type: 'text',
 });
 
+export const newEmergencyLocation = (): DraftEmergencyLocation => ({
+  id: uid('emb'),
+  label: 'Embassy',
+  name: '',
+  address: '',
+  phone: '',
+  notes: '',
+  location: emptyLocation(),
+});
+
+export const emptyEmergency = (): DraftEmergency => ({
+  contacts: [],
+  locations: [],
+});
+
 export function newDraft(): Draft {
   const today = new Date().toISOString().slice(0, 10);
   return {
@@ -113,5 +130,6 @@ export function newDraft(): Draft {
     days: [newDay(today)],
     info: [],
     contacts: [],
+    emergency: emptyEmergency(),
   };
 }

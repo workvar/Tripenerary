@@ -26,8 +26,8 @@ export default function AttachmentList({
     <View style={flush ? undefined : s.wrap}>
       <Text style={s.label}>{label}</Text>
       <View style={s.rows}>
-        {attachments.map((a) => (
-          <AttachmentRow key={a.key} attachment={a} onFail={setFailed} />
+        {attachments.map((a, i) => (
+          <AttachmentRow key={`${a.url}-${i}`} attachment={a} onFail={setFailed} />
         ))}
       </View>
       {failed ? <Text style={s.error}>{failed}</Text> : null}
