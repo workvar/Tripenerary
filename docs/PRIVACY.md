@@ -5,7 +5,7 @@ Portal and Google Play Console. Review it against the app's actual behaviour bef
 publishing, and have a lawyer look at it if you are distributing commercially. This
 is not legal advice.
 
-Last updated: _[date]_
+Last updated: 2026-08-08
 
 ## What this app does
 
@@ -94,4 +94,4 @@ If this policy changes, the updated version will be posted at this URL with a ne
 
 ## Contact
 
-_[your support email]_
+Support: _[your support email — replace before publishing]_

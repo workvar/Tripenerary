@@ -9,7 +9,7 @@ icon and the in-app mark are the same drawing.
 Outputs:
     assets/                      master PNGs consumed by app.json / EAS
     android/app/src/main/res/    mipmaps, adaptive icon layers, splash icon
-    store/                       512px listing icon + 1024px feature master
+    store/                       Play listing icon, 1024px master, feature graphic
 """
 
 from __future__ import annotations
@@ -139,6 +139,49 @@ def circle_icon(size: int, scale: float) -> Image.Image:
     return out
 
 
+def feature_graphic(width: int = 1024, height: int = 500) -> Image.Image:
+    """Google Play feature graphic: brand mark on a teal field with warm accent.
+
+    Play requires exactly 1024×500. Keep copy out of the art — titles belong in
+    the listing text, and baked-in text fails when the Console localises.
+    """
+    px_w, px_h = width * SS, height * SS
+    img = Image.new("RGBA", (px_w, px_h), TEAL)
+    d = ImageDraw.Draw(img)
+
+    # Soft warm wash from the lower-right so the field is not a flat slab.
+    wash = Image.new("RGBA", (px_w, px_h), (0, 0, 0, 0))
+    wd = ImageDraw.Draw(wash)
+    for i in range(40):
+        t = i / 39
+        alpha = int(28 * (1 - t))
+        r = int(min(px_w, px_h) * (0.35 + 0.9 * t))
+        cx, cy = int(px_w * 0.82), int(px_h * 0.7)
+        color = (ACCENT[0], ACCENT[1], ACCENT[2], alpha)
+        wd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=color)
+    img = Image.alpha_composite(img, wash)
+
+    # Compass mark centred, sized for the short edge.
+    mark_size = int(min(width, height) * 0.72)
+    mark = draw_mark(mark_size, ICON_SCALE)
+    mark = mark.resize((mark_size * SS, mark_size * SS), Image.LANCZOS)
+    x = (px_w - mark.width) // 2
+    y = (px_h - mark.height) // 2
+    img.alpha_composite(mark, (x, y))
+
+    # Thin accent rule under the mark — reads as a horizon, not a sticker.
+    rule_y = y + mark.height + int(px_h * 0.04)
+    rule_half = int(px_w * 0.08)
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle(
+        [px_w // 2 - rule_half, rule_y, px_w // 2 + rule_half, rule_y + int(6 * SS)],
+        radius=int(3 * SS),
+        fill=ACCENT,
+    )
+
+    return img.resize((width, height), Image.LANCZOS)
+
+
 def save(img: Image.Image, path: Path, fmt: str = "PNG") -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     if fmt == "WEBP":
@@ -181,6 +224,7 @@ def main() -> None:
     print("Store listing ->")
     save(composite(512, ICON_SCALE), STORE / "icon-512.png")
     save(composite(1024, ICON_SCALE), STORE / "icon-1024.png")
+    save(feature_graphic(1024, 500), STORE / "feature-graphic.png")
 
 
 if __name__ == "__main__":
