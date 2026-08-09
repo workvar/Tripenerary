@@ -41,7 +41,20 @@ No ads. Optional cloud sync only if you sign in. Your itinerary stays under your
 
 ### Release notes (first Play release)
 
-Paste into Play Console → Release → “Release notes” / what’s new (`en-US`). Limit is 500 characters; this copy is under the limit and also lives at `store/whatsnew/whatsnew-en-US`.
+Paste into Play Console → Release → “Release notes” / what’s new. Limit is **500**
+characters per language. Sources of truth for CI:
+
+| Language | File |
+|---|---|
+| English | `store/whatsnew/whatsnew-en-US` |
+| Hindi | `store/whatsnew/whatsnew-hi-IN` |
+| French | `store/whatsnew/whatsnew-fr-FR` |
+| German | `store/whatsnew/whatsnew-de-DE` |
+| Chinese (Simplified) | `store/whatsnew/whatsnew-zh-CN` |
+
+Full paste blocks: `store/FIRST_RELEASE_NOTES.md`.
+
+English preview:
 
 ```
 Welcome to Tripenerary — your day-by-day travel companion.
