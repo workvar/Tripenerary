@@ -11,18 +11,31 @@ npm install
 npm run dev        # http://localhost:4000
 ```
 
-Nothing is uploaded anywhere. The draft autosaves to this browser's localStorage,
-and JSON files move in and out through the Import / Export buttons in the header.
+Nothing is uploaded until you sign in. Drafts still autosave to this browser's
+localStorage. With Firebase configured (`builder/.env.local`), **Sign in** enables
+cloud save (20 MB cap) and **Publish link**, which uploads the itinerary JSON and
+gives you a URL to paste into the Tripenerary app.
 
 ## The five editor tabs
 
 | Tab | What it holds |
 | --- | --- |
 | **Days** | The day strip, plus the day being edited: date, base city, title, summary, stay link, hero image, schedule blocks, notes. |
-| **Trip** | Trip master settings: title, dates, timezone, currency, travellers, cover image, and the progress panel. |
+| **Trip** | Trip master settings: title, dates, timezone, currency, travellers, cover image, travel documents, and the progress panel. |
 | **Stays** | Hotels and resorts. Each needs an **id**, which days reference. |
-| **Info** | Long-form document sections plus the contact list. |
+| **Info** | Emergency contacts & embassy locations, practical sections, and useful contacts. |
 | **Checks** | Errors and warnings, run before exporting. |
+
+## Account, save status, and publishing
+
+1. Create a Firebase project, enable Email/Password auth, Firestore, and Storage.
+2. Deploy `firestore.rules` and `storage.rules` from the repo root.
+3. Copy `builder/.env.example` to `builder/.env.local` and fill in the web app config.
+4. **Sign in** in the toolbar. The subtitle shows save status (`Saving…`, `Saved · 1.2 KB / 20 MB`).
+5. **Publish link** uploads the exported JSON to Storage and shows a shareable URL.
+   Paste that URL into the mobile app's **Add trip** sheet.
+
+Prerelease / over-limit drafts stay local; cloud save refuses uploads above 20 MB.
 
 ## Days and blocks
 

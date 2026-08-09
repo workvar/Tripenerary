@@ -103,6 +103,22 @@ export interface DraftContact {
   type: ContactType;
 }
 
+/** Embassy, hospital, or other place to go in an emergency. */
+export interface DraftEmergencyLocation {
+  readonly id: string;
+  label: string;
+  name: string;
+  address: string;
+  phone: string;
+  notes: string;
+  location: DraftLocation;
+}
+
+export interface DraftEmergency {
+  contacts: DraftContact[];
+  locations: DraftEmergencyLocation[];
+}
+
 export interface DraftTrip {
   title: string;
   subtitle: string;
@@ -122,6 +138,7 @@ export interface Draft {
   days: DraftDay[];
   info: DraftInfo[];
   contacts: DraftContact[];
+  emergency: DraftEmergency;
 }
 
 export const ITEM_TYPE_META: Record<ItemType, { glyph: string; label: string }> = {

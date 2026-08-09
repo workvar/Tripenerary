@@ -18,6 +18,10 @@ export function rekeyDraft(draft: Draft): Draft {
     })),
     info: draft.info.map((i) => ({ ...i, id: uid('info') })),
     contacts: draft.contacts.map((c) => ({ ...c, id: uid('con') })),
+    emergency: {
+      contacts: draft.emergency.contacts.map((c) => ({ ...c, id: uid('con') })),
+      locations: draft.emergency.locations.map((l) => ({ ...l, id: uid('emb') })),
+    },
     days: draft.days.map((d) => ({
       ...d,
       id: uid('day'),
@@ -50,6 +54,12 @@ export function mergeDraft(current: Draft, incoming: Draft, mode: MergeMode): Dr
   const stayKeys = new Set(current.stays.map((s) => s.key.trim()).filter(Boolean));
   const infoTitles = new Set(current.info.map((i) => i.title.trim().toLowerCase()));
   const contactKeys = new Set(current.contacts.map((c) => `${c.label}|${c.value}`.toLowerCase()));
+  const emergencyContactKeys = new Set(
+    current.emergency.contacts.map((c) => `${c.label}|${c.value}`.toLowerCase())
+  );
+  const emergencyLocationKeys = new Set(
+    current.emergency.locations.map((l) => `${l.label}|${l.name}`.toLowerCase())
+  );
 
   return {
     ...current,
@@ -60,6 +70,20 @@ export function mergeDraft(current: Draft, incoming: Draft, mode: MergeMode): Dr
       ...current.contacts,
       ...next.contacts.filter((c) => !contactKeys.has(`${c.label}|${c.value}`.toLowerCase())),
     ],
+    emergency: {
+      contacts: [
+        ...current.emergency.contacts,
+        ...next.emergency.contacts.filter(
+          (c) => !emergencyContactKeys.has(`${c.label}|${c.value}`.toLowerCase())
+        ),
+      ],
+      locations: [
+        ...current.emergency.locations,
+        ...next.emergency.locations.filter(
+          (l) => !emergencyLocationKeys.has(`${l.label}|${l.name}`.toLowerCase())
+        ),
+      ],
+    },
   };
 }
 

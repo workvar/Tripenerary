@@ -1,10 +1,12 @@
 import {
+  emptyEmergency,
   emptyLocation,
   newAttachment,
   newBlock,
   newContact,
   newDay,
   newDraft,
+  newEmergencyLocation,
   newImage,
   newInfo,
   newStay,
@@ -170,6 +172,26 @@ export function fromItinerary(raw: unknown): Draft {
     return { ...newContact(), label: str(o.label), value: str(o.value), type: contactType(o.type) };
   });
 
+  const emergencyRoot = obj(root.emergency);
+  const emergency = {
+    contacts: arr(emergencyRoot.contacts).map((entry) => {
+      const o = obj(entry);
+      return { ...newContact(), label: str(o.label), value: str(o.value), type: contactType(o.type) };
+    }),
+    locations: arr(emergencyRoot.locations).map((entry) => {
+      const o = obj(entry);
+      return {
+        ...newEmergencyLocation(),
+        label: str(o.label) || 'Embassy',
+        name: str(o.name),
+        address: str(o.address),
+        phone: str(o.phone),
+        notes: str(o.notes),
+        location: readLocation(o.location),
+      };
+    }),
+  };
+
   return {
     version: typeof root.version === 'number' ? root.version : 1,
     trip: {
@@ -187,6 +209,8 @@ export function fromItinerary(raw: unknown): Draft {
     days: days.length > 0 ? days : base.days,
     info,
     contacts,
+    emergency:
+      emergency.contacts.length > 0 || emergency.locations.length > 0 ? emergency : emptyEmergency(),
   };
 }
 

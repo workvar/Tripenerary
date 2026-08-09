@@ -255,6 +255,42 @@
           }
         }
       }
+    },
+    "emergency": {
+      "type": "object",
+      "description": "Emergency contacts and embassy / hospital locations shown first on Trip info",
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "properties": {
+              "label": { "type": "string" },
+              "value": { "type": "string" },
+              "type": {
+                "type": "string",
+                "enum": ["phone", "url", "text"],
+                "default": "phone"
+              }
+            }
+          }
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string", "description": "e.g. Embassy, Hospital" },
+              "name": { "type": "string" },
+              "address": { "type": "string" },
+              "phone": { "type": "string" },
+              "notes": { "type": "string" },
+              "location": { "$ref": "#/definitions/location" }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {

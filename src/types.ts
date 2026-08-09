@@ -117,6 +117,20 @@ export interface Contact {
   readonly type: ContactType;
 }
 
+export interface EmergencyLocation {
+  readonly label: string;
+  readonly name: string;
+  readonly address: string;
+  readonly phone: string;
+  readonly notes: string;
+  readonly location: TripLocation | null;
+}
+
+export interface EmergencyInfo {
+  readonly contacts: readonly Contact[];
+  readonly locations: readonly EmergencyLocation[];
+}
+
 export interface Itinerary {
   readonly version: number;
   readonly trip: TripMeta;
@@ -125,6 +139,7 @@ export interface Itinerary {
   readonly days: readonly Day[];
   readonly info: readonly InfoSection[];
   readonly contacts: readonly Contact[];
+  readonly emergency: EmergencyInfo;
 }
 
 /* ---------- library ---------- */
