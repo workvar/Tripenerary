@@ -11,10 +11,11 @@ npm install
 npm run dev        # http://localhost:4000
 ```
 
-Nothing is uploaded until you sign in. Drafts still autosave to this browser's
-localStorage. With Firebase configured (`builder/.env.local`), **Sign in** enables
-cloud save (20 MB cap) and **Publish link**, which uploads the itinerary JSON and
-gives you a URL to paste into the Tripenerary app.
+With Firebase configured (`builder/.env.local`), the builder opens on `/login`.
+Sign in with **Google** (or email/password); the session stays active in this
+browser until you sign out. Drafts still autosave to localStorage, and signing
+in enables cloud save (20 MB cap) plus **Publish link**, which uploads the
+itinerary JSON and gives you a URL to paste into the Tripenerary app.
 
 ## The five editor tabs
 
@@ -28,11 +29,13 @@ gives you a URL to paste into the Tripenerary app.
 
 ## Account, save status, and publishing
 
-1. Create a Firebase project, enable Email/Password auth, Firestore, and Storage.
-2. Deploy `firestore.rules` and `storage.rules` from the repo root.
-3. Copy `builder/.env.example` to `builder/.env.local` and fill in the web app config.
-4. **Sign in** in the toolbar. The subtitle shows save status (`Saving…`, `Saved · 1.2 KB / 20 MB`).
-5. **Publish link** uploads the exported JSON to Storage and shows a shareable URL.
+1. Create a Firebase project; enable **Google** and Email/Password auth, Firestore, and Storage.
+2. Authorize the builder domain under Authentication → Settings → Authorized domains.
+3. Deploy `firestore.rules` and `storage.rules` from the repo root.
+4. Copy `builder/.env.example` to `builder/.env.local` and fill in the web app config.
+5. Open the builder, sign in on `/login` (Google recommended). The toolbar subtitle
+   shows save status (`Saving…`, `Saved · 1.2 KB / 20 MB`).
+6. **Publish link** uploads the exported JSON to Storage and shows a shareable URL.
    Paste that URL into the mobile app's **Add trip** sheet.
 
 Prerelease / over-limit drafts stay local; cloud save refuses uploads above 20 MB.

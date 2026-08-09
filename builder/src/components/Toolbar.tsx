@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import AuthModal from '@/components/AuthModal';
+import { useRouter } from 'next/navigation';
 import ImportDialog from '@/components/ImportDialog';
 import PdfButton from '@/components/PdfButton';
 import Button from '@/components/ui/Button';
@@ -28,12 +28,13 @@ function saveLabel(api: DraftApi, signedIn: boolean): string {
 
 export default function Toolbar({ api }: { readonly api: DraftApi }) {
   const auth = useAuth();
+  const router = useRouter();
   const { draft, setDraft, setDayIndex, reset, publish, publishBusy, message, flash, cloudMeta } = api;
   const [importing, setImporting] = useState(false);
-  const [authOpen, setAuthOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const issuesReady = draft.days.length > 0;
+  const accountLabel = auth.displayName || auth.email || 'Signed in';
 
   const exportFile = () => {
     const blob = new Blob([toJsonString(draft)], { type: 'application/json' });
@@ -58,7 +59,7 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
 
   const onPublish = async () => {
     if (!auth.uid) {
-      setAuthOpen(true);
+      router.push('/login');
       return;
     }
     const url = await publish();
@@ -83,6 +84,11 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
     } catch {
       flash('Could not copy. Select the link manually.');
     }
+  };
+
+  const onSignOut = async () => {
+    await auth.signOut();
+    if (auth.available) router.replace('/login');
   };
 
   return (
@@ -126,11 +132,27 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
           ) : null}
 
           {auth.user ? (
-            <Button size="sm" onClick={() => void auth.signOut()} title={auth.email ?? undefined}>
-              Sign out
-            </Button>
+            <div className="flex min-w-0 items-center gap-2">
+              {auth.photoURL ? (
+                <img
+                  src={auth.photoURL}
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 shrink-0 rounded-full"
+                  referrerPolicy="no-referrer"
+                  decoding="async"
+                />
+              ) : null}
+              <span className="hidden max-w-[12rem] truncate text-xs font-semibold text-muted sm:inline" title={accountLabel}>
+                {accountLabel}
+              </span>
+              <Button size="sm" onClick={() => void onSignOut()}>
+                Sign out
+              </Button>
+            </div>
           ) : (
-            <Button size="sm" onClick={() => setAuthOpen(true)} disabled={!auth.ready}>
+            <Button size="sm" onClick={() => router.push('/login')} disabled={!auth.ready}>
               Sign in
             </Button>
           )}
@@ -166,8 +188,6 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
       {importing ? (
         <ImportDialog current={draft} onApply={applyImport} onClose={() => setImporting(false)} />
       ) : null}
-
-      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} auth={auth} />
     </>
   );
 }

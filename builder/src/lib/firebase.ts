@@ -1,6 +1,11 @@
 import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
 import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics';
-import { getAuth, type Auth } from 'firebase/auth';
+import {
+  browserLocalPersistence,
+  getAuth,
+  setPersistence,
+  type Auth,
+} from 'firebase/auth';
 import { getFirestore, type Firestore } from 'firebase/firestore';
 import { getStorage, type FirebaseStorage } from 'firebase/storage';
 
@@ -43,6 +48,7 @@ let db: Firestore | null = null;
 let storage: FirebaseStorage | null = null;
 let analytics: Analytics | null = null;
 let configured = false;
+let persistenceReady: Promise<void> | null = null;
 
 function ensure(): boolean {
   if (configured) return app !== null;
@@ -53,6 +59,8 @@ function ensure(): boolean {
 
   app = getApps().length === 0 ? initializeApp(config) : getApps()[0]!;
   auth = getAuth(app);
+  // Keep the Firebase session across tabs and reloads (IndexedDB / localStorage).
+  persistenceReady = setPersistence(auth, browserLocalPersistence).catch(() => undefined);
   db = getFirestore(app);
   storage = getStorage(app);
 
@@ -65,6 +73,12 @@ function ensure(): boolean {
   }
 
   return true;
+}
+
+/** Resolves once local auth persistence has been applied (or skipped). */
+export async function ensureAuthPersistence(): Promise<void> {
+  if (!ensure()) return;
+  await persistenceReady;
 }
 
 export function isFirebaseConfigured(): boolean {
