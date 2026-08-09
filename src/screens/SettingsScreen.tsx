@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenHeader from '@/components/ScreenHeader';
 import Press from '@/components/Press';
+import AuthSheet from '@/components/AuthSheet';
 import { Button, Card, Divider, SectionTitle } from '@/components/ui';
 import { colors, spacing, type } from '@/theme';
 import { formatSyncedAt } from '@/lib/dates';
 import { formatBytes } from '@/lib/cache';
+import { useAuth } from '@/hooks/useAuth';
 import type { TripLibrary } from '@/hooks/useTripLibrary';
 import type { Prefs, TripRecord } from '@/types';
 
@@ -74,11 +77,14 @@ interface SettingsScreenProps {
 }
 
 export default function SettingsScreen({ library, onClose }: SettingsScreenProps) {
+  const auth = useAuth();
+  const [authOpen, setAuthOpen] = useState(false);
   const {
     trips,
     status,
     prefs,
     anyRefreshing,
+    syncingAccount,
     updatePrefs,
     refreshAll,
     refreshTrip,
@@ -115,12 +121,59 @@ export default function SettingsScreen({ library, onClose }: SettingsScreenProps
     ]);
   };
 
+  const confirmSignOut = () => {
+    Alert.alert('Sign out?', 'Trips stay on this phone. Cloud sync pauses until you sign in again.', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Sign out',
+        style: 'destructive',
+        onPress: () => {
+          void auth.signOut().then((res) => {
+            if (!res.ok) Alert.alert('Could not sign out', res.error);
+          });
+        },
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView style={s.safe} edges={['top']}>
       <ScreenHeader title="Settings" onClose={onClose} />
 
       <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
-        <SectionTitle style={s.firstSection}>Display</SectionTitle>
+        <SectionTitle style={s.firstSection}>Account</SectionTitle>
+        <Card>
+          {!auth.available ? (
+            <Text style={s.emptyText}>
+              Cloud sync is not configured in this build. Add Firebase keys to enable sign-in.
+            </Text>
+          ) : auth.user ? (
+            <>
+              <View style={s.row}>
+                <View style={s.rowText}>
+                  <Text style={s.rowLabel}>{auth.email ?? 'Signed in'}</Text>
+                  <Text style={s.rowHint}>
+                    {syncingAccount
+                      ? 'Syncing trips and preferences…'
+                      : 'Trips and preferences sync to your account.'}
+                  </Text>
+                </View>
+              </View>
+              <Divider />
+              <Button title="Sign out" variant="ghost" onPress={confirmSignOut} />
+            </>
+          ) : (
+            <>
+              <Text style={s.emptyText}>
+                Sign in to keep your trips and preferences across phones.
+              </Text>
+              <Divider />
+              <Button title="Sign in or create account" onPress={() => setAuthOpen(true)} />
+            </>
+          )}
+        </Card>
+
+        <SectionTitle>Display</SectionTitle>
         <Card>
           <ToggleRow
             label="Show photos"
@@ -199,6 +252,8 @@ export default function SettingsScreen({ library, onClose }: SettingsScreenProps
           <Button title="Clear all saved data" variant="danger" onPress={confirmReset} />
         </View>
       </ScrollView>
+
+      <AuthSheet visible={authOpen} onClose={() => setAuthOpen(false)} auth={auth} />
     </SafeAreaView>
   );
 }
