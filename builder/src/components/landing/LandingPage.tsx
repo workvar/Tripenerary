@@ -26,9 +26,9 @@ const FAQ_ITEMS = [
       'Yes! The Visual Builder includes a PDF export engine that generates crisp, printable A4 pages with real searchable text. You can download an A4 sheet for a single day or export the entire multi-day trip as a single travel book PDF.',
   },
   {
-    question: 'Is sign-in required to use the Visual Builder or mobile app?',
+    question: 'Is sign-in required to use the Visual Builder?',
     answer:
-      'No. Sign-in is 100% optional. The Visual Builder autosaves your drafts locally in your browser storage. If you choose to sign in with Firebase, your trips and display preferences will sync across devices.',
+      'Yes. Sign-in is required for the Visual Web Builder so you can create, edit, save cloud drafts, and sync your itineraries across devices.',
   },
 ];
 
@@ -269,9 +269,9 @@ export default function LandingPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primarySoft text-primary text-xl">
                 ☁️
               </div>
-              <h3 className="mt-4 text-base font-bold text-ink">Optional Cloud Sync</h3>
+              <h3 className="mt-4 text-base font-bold text-ink">Cloud Sync & User Accounts</h3>
               <p className="mt-2 text-xs leading-relaxed text-muted">
-                Without Firebase keys, the app stays 100% local. With Firebase configured, optional sign-in syncs your trip library and display preferences across devices.
+                Sign in to the Visual Builder to save cloud drafts, manage your trip library, and sync itineraries seamlessly across devices.
               </p>
             </div>
           </div>
@@ -415,8 +415,8 @@ export default function LandingPage() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-bold text-ink">Account Requirement</td>
-                  <td className="px-6 py-4 font-bold text-emerald-700">Zero sign-in needed (optional sync)</td>
-                  <td className="px-6 py-4 text-muted">Mandatory registration & tracking</td>
+                  <td className="px-6 py-4 font-bold text-emerald-700">Sign-in required for builder cloud sync</td>
+                  <td className="px-6 py-4 text-muted">Ad tracking & forced marketing subcriptions</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-bold text-ink">PDF Export</td>
@@ -481,7 +481,7 @@ export default function LandingPage() {
             Ready to Plan Your Next Journey?
           </h2>
           <p className="mt-3 text-sm text-muted">
-            Start building your trip in the split-screen web editor right now—no registration required.
+            Sign in to start building your trip in the split-screen web editor and sync your itineraries.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

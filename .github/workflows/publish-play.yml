@@ -1,0 +1,79 @@
+name: Publish Play Store AAB
+
+# Re-upload an existing GitHub Release AAB without rebuilding (e.g. after fixing
+# Play Console access or what's-new copy).
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag that already has tripenerary-<version>.aab attached
+        required: true
+        default: v1.1.0
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  play-store:
+    name: Publish to Play Store
+    runs-on: ubuntu-latest
+    environment: ${{ vars.PLAY_STORE_ENVIRONMENT || 'Production' }}
+    if: ${{ vars.PLAY_STORE_ENABLED != 'false' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve version from tag
+        id: version
+        run: |
+          TAG="${{ inputs.tag }}"
+          NAME="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version_name=$NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Download AAB from GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p dist
+          gh release download "${{ steps.version.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --pattern "tripenerary-${{ steps.version.outputs.version_name }}.aab" \
+            --dir dist
+          ls -la dist
+
+      - name: Verify Play service account secret
+        env:
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" ]; then
+            echo "::error::GOOGLE_PLAY_SERVICE_ACCOUNT_JSON secret is empty or missing."
+            exit 1
+          fi
+          python3 <<'PY'
+          import json, os, sys
+          data = json.loads(os.environ["GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"])
+          email = data.get("client_email")
+          project = data.get("project_id")
+          if not email:
+              print("::error::Service account JSON is missing client_email")
+              sys.exit(1)
+          print(f"Service account JSON parses OK")
+          print(f"client_email={email}")
+          print(f"project_id={project}")
+          print(f"Invite {email} in Play Console → Users and permissions for com.workvar.tripenerary")
+          PY
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.workvar.tripenerary
+          releaseFiles: dist/tripenerary-${{ steps.version.outputs.version_name }}.aab
+          tracks: ${{ vars.PLAY_STORE_TRACK || 'internal' }}
+          status: ${{ vars.PLAY_STORE_STATUS || 'draft' }}
+          inAppUpdatePriority: 2
+          changesNotSentForReview: true
+          whatsNewDirectory: store/whatsnew

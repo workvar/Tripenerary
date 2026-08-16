@@ -3,63 +3,111 @@
   "trip": {
     "title": "Thailand 2026",
     "subtitle": "Bangkok, Pattaya, Khao Lak, Phuket",
-    "startDate": "2026-08-22",
-    "endDate": "2026-09-03",
+    "startDate": "2026-08-21",
+    "endDate": "2026-09-02",
     "timezone": "Asia/Bangkok",
     "currency": "THB"
   },
   "stays": [
     {
       "id": "bkk",
-      "name": "Bangkok hotel (to book)",
+      "name": "Kingston Suites bangkok Sukhumvit 15",
       "city": "Bangkok",
+      "address": "39, 3-7 Sukhumvit 15, Klongtoey-Nua Watthana, Bangkok 10110, Thailand",
       "checkIn": "2026-08-22",
       "checkOut": "2026-08-25",
-      "notes": "Book the hotel first, then lock the rest around it. Agreed on the call: nothing too expensive.",
+      "phone": "+66 2 120 8288",
+      "confirmation": "0183939740",
+      "notes": "Check-in allowed after 2 PM, and check-out before 12 PM",
       "location": {
         "name": "Bangkok",
         "lat": 13.7563,
         "lng": 100.5018
-      }
+      },
+      "image": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmd4YJrmf2vsZkQm1TeooWpg7qf6KpHX1La1yi5VPneyDQLrD89tzB0Vs0fcp0F8ZQ-HVmrTxfn3z_jlE7I4vW2LjSZfvIoB36klYaoptWBWjghitAM5uorVBpMWenIB8zZobTb=s1360-w1360-h1020",
+      "attachments": [
+        {
+          "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQCvlvI-RHJ3SYG_Qim7D-aGARRuqLireRFNC21U1mjsNeY",
+          "title": "Hotel Confirmation",
+          "kind": "pdf",
+          "note": "Booking ID: NH21133507073092"
+        }
+      ]
     },
     {
       "id": "pattaya",
-      "name": "Pattaya hotel (to book)",
+      "name": "Baywalk Residence Pattaya by Thaiwat",
       "city": "Pattaya",
+      "address": "555 5-6 หมู่ที่ 10 Beach Rd, Muang Pattaya, Bang Lamung District, Chon Buri 20150, Thailand",
       "checkIn": "2026-08-25",
       "checkOut": "2026-08-26",
-      "notes": "One night only. Check out on the 26th and go straight to the airport, no return to Bangkok.",
+      "phone": "+66 38 711 300",
+      "confirmation": "0184162099",
+      "notes": "Check-in allowed after 2 PM, and check-out before 12 PM. \nOne night only. Check out on the 26th and go straight to the airport, no return to Bangkok.",
       "location": {
         "name": "Pattaya",
         "lat": 12.9236,
         "lng": 100.8825
-      }
+      },
+      "image": "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/4219023832548710-a02576b6b7f711e897410a5eeb33cfee.jpg",
+      "attachments": [
+        {
+          "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQCpYqfsmCIsQ6E6Z7axt0MRAeMcLKGQ50aDzUZETOn5-VE",
+          "title": "Hotel Confirmation",
+          "kind": "link",
+          "note": "Booking ID: NH27165507750792"
+        }
+      ]
     },
     {
       "id": "khaolak",
-      "name": "Khao Lak resort (to book)",
+      "name": "Le Meridien Khao Lak Resort and Spa",
       "city": "Khao Lak, Phang Nga",
+      "address": "31 Moo 7 Bangmoung, Takuapa District, Khao Lak, Takua Pa District, Phang Nga 82190, Thailand",
       "checkIn": "2026-08-26",
       "checkOut": "2026-08-30",
-      "notes": "Khao Lak was chosen over Krabi on the call, described as the better and quieter of the two. Four nights. Pullman has a property here as well as in Phuket, so decide which leg gets it.",
+      "phone": "+66 76 429 000",
+      "confirmation": "88767335",
+      "notes": "Check-In after 3 PM and Checkout before 12 PM",
       "location": {
         "name": "Bang Niang Beach, Khao Lak",
         "lat": 8.656,
         "lng": 98.245
-      }
+      },
+      "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/5a/ac/37/swim-up-pool.jpg?w=900&h=500&s=1",
+      "attachments": [
+        {
+          "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQDTwCEk1Fp1RLRCHn-38UIMARn3iBRmckt2_yfl4_RdOlo",
+          "title": "Hotel Confirmation",
+          "kind": "link",
+          "note": "Booking ID: NH20083507083324"
+        }
+      ]
     },
     {
       "id": "phuket",
-      "name": "Phuket hotel (to book)",
+      "name": "Horizon Karon Beach Resort and Spa",
       "city": "Phuket",
+      "address": "3 Soi Karon 2 Karon Beach, Tambon Karon, Amphoe Muang District Phuket 83100, Thailand",
       "checkIn": "2026-08-30",
       "checkOut": "2026-09-02",
-      "notes": "At least one night at a Pullman for the experience, ideally the last day. Still open whether that is the Phuket or the Khao Lak Pullman.",
+      "phone": "+66 76 284 555",
+      "confirmation": "NH28243507085882",
+      "notes": "Check-In after 2 PM and Checkout before 12 PM",
       "location": {
         "name": "Phuket",
         "lat": 7.9519,
         "lng": 98.3381
-      }
+      },
+      "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/b4/c4/f9/family-wing.jpg?w=900&h=500&s=1",
+      "attachments": [
+        {
+          "url": "https://1drv.ms/b/c/7449ddb0fc71a35d/IQCIyOUXae4BRb5-XkF7JY0wAaRv8BlGTtURCYZz3LOSEDM",
+          "title": "Hotel Confirmation",
+          "kind": "link",
+          "note": "NH28243507085882"
+        }
+      ]
     }
   ],
   "days": [
@@ -689,14 +737,54 @@
       "image": "https://i.ytimg.com/vi/KMckZjMEhFU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCAdBzbwG-aOo2ZAtrdAXcyLWf7IA"
     }
   ],
-  "info": [
+  "contacts": [
     {
-      "title": "What was actually decided",
-      "body": "From the call:\n\n- Land in Bangkok on the 22nd. Ferris wheel and a romantic dinner cruise that evening.\n- 23rd is downtown and Chatuchak.\n- Long-tail boat through the Thonburi canals.\n- 24th is the shopping day: Siam Paragon, Siam Center, a supermarket run, and CentralWorld in the evening if there is energy left.\n- Pattaya on the 25th.\n- On the 26th, go straight from Pattaya to the airport rather than back through Bangkok.\n- Khao Lak over Krabi, four nights, the 26th to the 30th.\n- Phuket after that, with at least one night at a Pullman, ideally the last day.\n- Keep the hotels modest otherwise."
+      "label": "Bangkok Bus Services (BMTA)",
+      "value": "1348",
+      "type": "text"
     },
     {
-      "title": "Still open",
-      "body": "- All flight tickets. These were to be booked the day after the call, after midday.\n- Every hotel. The Bangkok one was to be booked first so the rest could be built around it.\n- Whether the Pullman night is in Phuket or Khao Lak. Both have one.\n- How you get from Bangkok to Pattaya.\n- Which airport you fly out of on the 26th, U-Tapao or Suvarnabhumi.\n- The Khao Lak and Phuket days have nothing scheduled. That was deliberate, but Khao Sok and the Similan Islands are the obvious day trips if you want one fixed thing."
+      "label": "Tourism Authority of Thailand (TAT)",
+      "value": "1672",
+      "type": "text"
     }
-  ]
+  ],
+  "emergency": {
+    "contacts": [
+      {
+        "label": "Tourist Police (English-speaking, 24/7)",
+        "value": "1155",
+        "type": "phone"
+      },
+      {
+        "label": "General Police Emergency",
+        "value": "191",
+        "type": "phone"
+      },
+      {
+        "label": "Public Ambulance and Medical Help",
+        "value": "1669",
+        "type": "phone"
+      },
+      {
+        "label": "Embassy of India (Emergency)",
+        "value": "+66-618819218",
+        "type": "phone"
+      }
+    ],
+    "locations": [
+      {
+        "label": "Embassy",
+        "name": "Embassy of India, Bangkok",
+        "address": "46, Prasarnmitr, Soi 23, Sukhumvit Road, Bangkok 10110, Thailand",
+        "phone": "+66-2-2580300",
+        "notes": "Opens at 9 AM - 12 PM, 4 PM - 5 PM",
+        "location": {
+          "name": "Embassy on India, Thailand",
+          "lat": 13.744423419672911,
+          "lng": 100.5638356282347
+        }
+      }
+    ]
+  }
 }

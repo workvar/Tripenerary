@@ -11,6 +11,9 @@
 // If the keystore is missing, the release build keeps the debug signing config
 // set in build.gradle, so `assembleRelease` still works for local smoke testing.
 // A loud warning is printed, because such a build cannot be published.
+//
+// Pass -Ptripenerary.requireReleaseSigning=true (CI does) to fail instead of
+// silently falling back to the debug key.
 
 def secrets = project.ext.tripSecrets
 
@@ -35,6 +38,7 @@ if (keyPw == null || keyPw.isEmpty()) {
 
 boolean keystoreReady = resolvedStore.exists() && storePw != null && !storePw.isEmpty()
 ext.hasReleaseKeystore = keystoreReady
+boolean requireRelease = (findProperty('tripenerary.requireReleaseSigning') ?: 'false').toString() == 'true'
 
 if (keystoreReady) {
     android {
@@ -52,11 +56,16 @@ if (keystoreReady) {
             }
         }
     }
+    logger.lifecycle("Release signing: using keystore ${resolvedStore.name} alias=${keyAliasName}")
 } else {
     String reason = resolvedStore.exists()
             ? 'TRIPENERARY_UPLOAD_STORE_PASSWORD is not set'
             : ('no keystore at ' + resolvedStore.getAbsolutePath())
-    logger.warn('\n  WARNING: ' + reason + '.\n' +
+    String message = '\n  WARNING: ' + reason + '.\n' +
             '  Release builds will be signed with the DEBUG key and cannot be published.\n' +
-            '  See docs/RELEASE.md.\n')
+            '  See docs/RELEASE.md.\n'
+    if (requireRelease) {
+        throw new GradleException(message + '  Refusing to continue because tripenerary.requireReleaseSigning=true.\n')
+    }
+    logger.warn(message)
 }

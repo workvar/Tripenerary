@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import AuthModal from '@/components/AuthModal';
+import { useRouter } from 'next/navigation';
 import ImportDialog from '@/components/ImportDialog';
 import PdfButton from '@/components/PdfButton';
 import Button from '@/components/ui/Button';
@@ -29,12 +29,13 @@ function saveLabel(api: DraftApi, signedIn: boolean): string {
 
 export default function Toolbar({ api }: { readonly api: DraftApi }) {
   const auth = useAuth();
+  const router = useRouter();
   const { draft, setDraft, setDayIndex, reset, publish, publishBusy, message, flash, cloudMeta } = api;
   const [importing, setImporting] = useState(false);
-  const [authOpen, setAuthOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const issuesReady = draft.days.length > 0;
+  const accountLabel = auth.displayName || auth.email || 'Signed in';
 
   const exportFile = () => {
     const blob = new Blob([toJsonString(draft)], { type: 'application/json' });
@@ -59,7 +60,7 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
 
   const onPublish = async () => {
     if (!auth.uid) {
-      setAuthOpen(true);
+      router.push('/login');
       return;
     }
     const url = await publish();
@@ -86,11 +87,16 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
     }
   };
 
+  const onSignOut = async () => {
+    await auth.signOut();
+    if (auth.available) router.replace('/login');
+  };
+
   return (
     <>
       <header className="z-30 shrink-0 border-b border-line bg-white/90 backdrop-blur">
         <div className="flex flex-wrap items-center gap-3 px-5 py-3">
-          <div className="mr-auto min-w-0 flex items-center gap-3">
+          <div className="mr-auto flex min-w-0 items-center gap-3">
             <Link
               href="/"
               className="group flex h-8 items-center justify-center rounded-md bg-sunken px-2.5 text-xs font-semibold text-ink transition hover:bg-primarySoft hover:text-primary"
@@ -98,7 +104,15 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
             >
               ← Home
             </Link>
-            <div>
+            <img
+              src="/favicon.png"
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 shrink-0 rounded-sm"
+              decoding="async"
+            />
+            <div className="min-w-0">
               <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
               <p className="truncate text-[11px] text-muted">
                 {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
@@ -119,57 +133,71 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
             </div>
           </div>
 
-          {message ? (
-            <span className="rounded-sm bg-primarySoft px-3 py-1.5 text-xs font-semibold text-primary">
-              {message}
-            </span>
-          ) : null}
-
-          {auth.available ? (
-            auth.user ? (
-              <Button size="sm" onClick={() => void auth.signOut()} title={auth.email ?? undefined}>
-                Sign out
-              </Button>
-            ) : (
-              <Button size="sm" onClick={() => setAuthOpen(true)}>
-                Sign in
-              </Button>
-            )
-          ) : null}
-
-          <Button size="sm" onClick={onReset}>
-            New
-          </Button>
-          <Button size="sm" onClick={() => setImporting(true)}>
-            Import JSON
-          </Button>
-          <PdfButton draft={draft} label="PDF · all days" />
-          <Button size="sm" onClick={exportFile}>
-            Export JSON
-          </Button>
-          <Button size="sm" variant="primary" disabled={publishBusy} onClick={() => void onPublish()}>
-            {publishBusy ? 'Publishing…' : 'Publish link'}
-          </Button>
-        </div>
-
-        {cloudMeta.publishedUrl ? (
-          <div className="flex flex-wrap items-center gap-2 border-t border-lineSoft bg-elevated px-5 py-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-muted">Shareable link</span>
-            <code className="min-w-0 flex-1 truncate rounded-sm bg-white px-2 py-1 text-[11px] text-ink">
-              {cloudMeta.publishedUrl}
-            </code>
-            <Button size="xs" variant="subtle" onClick={() => void copyPublished()}>
-              {copied ? 'Copied' : 'Copy for app'}
-            </Button>
-          </div>
-        ) : null}
-      </header>
-
-      {importing ? (
-        <ImportDialog current={draft} onApply={applyImport} onClose={() => setImporting(false)} />
+      {message ? (
+        <span className="rounded-sm bg-primarySoft px-3 py-1.5 text-xs font-semibold text-primary">
+          {message}
+        </span>
       ) : null}
 
-      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} auth={auth} />
+      {auth.user ? (
+        <div className="flex min-w-0 items-center gap-2">
+          {auth.photoURL ? (
+            <img
+              src={auth.photoURL}
+              alt=""
+              width={24}
+              height={24}
+              className="h-6 w-6 shrink-0 rounded-full"
+              referrerPolicy="no-referrer"
+              decoding="async"
+            />
+          ) : null}
+          <span className="hidden max-w-[12rem] truncate text-xs font-semibold text-muted sm:inline" title={accountLabel}>
+            {accountLabel}
+          </span>
+          <Button size="sm" onClick={() => void onSignOut()}>
+            Sign out
+          </Button>
+        </div>
+      ) : (
+        <Button size="sm" onClick={() => router.push('/login')} disabled={!auth.ready}>
+          Sign in
+        </Button>
+      )}
+
+      <Button size="sm" onClick={onReset}>
+        New
+      </Button>
+      <Button size="sm" onClick={() => setImporting(true)}>
+        Import JSON
+      </Button>
+      <PdfButton draft={draft} label="PDF · all days" />
+      <Button size="sm" onClick={exportFile}>
+        Export JSON
+      </Button>
+      <Button size="sm" variant="primary" disabled={publishBusy} onClick={() => void onPublish()}>
+        {publishBusy ? 'Publishing…' : 'Publish link'}
+      </Button>
+    </div>
+
+    {cloudMeta.publishedUrl ? (
+      <div className="flex flex-wrap items-center gap-2 border-t border-lineSoft bg-elevated px-5 py-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-muted">Shareable link</span>
+        <code className="min-w-0 flex-1 truncate rounded-sm bg-white px-2 py-1 text-[11px] text-ink">
+          {cloudMeta.publishedUrl}
+        </code>
+        <Button size="xs" variant="subtle" onClick={() => void copyPublished()}>
+          {copied ? 'Copied' : 'Copy for app'}
+        </Button>
+      </div>
+    ) : null}
+  </header>
+
+  {
+    importing ? (
+      <ImportDialog current={draft} onApply={applyImport} onClose={() => setImporting(false)} />
+    ) : null
+  }
     </>
   );
 }

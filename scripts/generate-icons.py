@@ -10,6 +10,8 @@ Outputs:
     assets/                      master PNGs consumed by app.json / EAS
     android/app/src/main/res/    mipmaps, adaptive icon layers, splash icon
     store/                       Play listing icon, 1024px master, feature graphic
+    builder/public/              favicon + apple touch icon for the web builder
+    builder/src/app/icon.png     Next.js App Router favicon convention
 """
 
 from __future__ import annotations
@@ -22,6 +24,8 @@ ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 RES = ROOT / "android" / "app" / "src" / "main" / "res"
 STORE = ROOT / "store"
+BUILDER_PUBLIC = ROOT / "builder" / "public"
+BUILDER_APP = ROOT / "builder" / "src" / "app"
 
 TEAL = (14, 79, 76, 255)  # colors.primary  #0E4F4C
 ACCENT = (217, 113, 60, 255)  # colors.accent   #D9713C
@@ -229,6 +233,16 @@ def main() -> None:
     save(composite(512, ICON_SCALE), STORE / "icon-512.png")
     save(composite(1024, ICON_SCALE), STORE / "icon-1024.png")
     save(feature_graphic(1024, 500), STORE / "feature-graphic.png")
+
+    print("Builder web ->")
+    BUILDER_PUBLIC.mkdir(parents=True, exist_ok=True)
+    BUILDER_APP.mkdir(parents=True, exist_ok=True)
+    # Browser tab + toolbar mark (served from /public).
+    save(composite(192, ICON_SCALE), BUILDER_PUBLIC / "favicon.png")
+    save(composite(180, ICON_SCALE), BUILDER_PUBLIC / "apple-touch-icon.png")
+    # Next.js App Router file convention (metadata icons).
+    save(composite(32, ICON_SCALE), BUILDER_APP / "icon.png")
+    save(composite(180, ICON_SCALE), BUILDER_APP / "apple-icon.png")
 
 
 if __name__ == "__main__":

@@ -18,12 +18,23 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
 ### One-time Play Console setup
 
 1. Create the app in [Google Play Console](https://play.google.com/console) with
-   package `com.tripcompanion.app`.
+   package `com.workvar.tripenerary`.
 2. Complete the store listing, content rating, and Data safety form (see
    `docs/PRIVACY.md`).
-3. Create a Google Cloud service account with **Release Manager** (or narrower
-   “Manage production releases / testing tracks”) access to the Play Console app.
-4. Download the service account JSON key.
+3. In Google Cloud, create a service account and download its JSON key. Enable the
+   **Google Play Android Developer API** on that Cloud project
+   (`androidpublisher.googleapis.com`).
+4. In Play Console → **Users and permissions** → **Invite new users**, add the
+   service account email (`…@….iam.gserviceaccount.com`). Grant app access for
+   `com.workvar.tripenerary` with permission to **view app information** and
+   **manage releases on testing tracks** (or Admin / Release Manager).
+5. Wait a few minutes after inviting — Play permission changes are not always
+   instant. Upload one AAB manually once if the API still returns “Package not
+   found”.
+
+If GitHub Actions fails with **The caller does not have permission**, the JSON
+secret is fine but steps 3–4 above are incomplete (API not enabled, or the
+service account is not linked in Play Console Users and permissions).
 
 ### Repository secrets and variables
 
@@ -36,11 +47,22 @@ Prerelease tags (`v1.2.3-beta`) still create a GitHub Release but **do not** pub
 | `GOOGLE_MAPS_ANDROID_KEY` | secret | Maps SDK key restricted to the upload SHA-1 |
 | `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` | secret | Full JSON of the Play service account |
 | `EXPO_PUBLIC_FIREBASE_*` | secrets | Firebase web config including `MEASUREMENT_ID` (see `.env.example`) |
-| `PLAY_STORE_ENABLED` | variable | Set to `true` to enable the Play upload job |
+| `PLAY_STORE_ENABLED` | variable | Optional. Set to `false` to skip Play upload; otherwise the job runs for non-prerelease tags |
 | `PLAY_STORE_TRACK` | variable | Optional. `internal` (default), `alpha`, `beta`, or `production` |
+| `PLAY_STORE_STATUS` | variable | Optional. `draft` (default), `completed`, `inProgress`, or `halted`. Draft apps can only receive `draft` releases |
+| `PLAY_STORE_ENVIRONMENT` | variable | Optional. GitHub Actions environment name that holds the secrets (default `Production`) |
 
-Enable the Play job only after the Play Console app exists and the service
-account can see it; otherwise the upload step fails even when the AAB is fine.
+Store `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON`, the upload keystore secrets, and Firebase
+keys as **Environment secrets** on that GitHub Environment (Settings → Secrets →
+Actions → Environment secrets), or as repository secrets. The release jobs select
+the environment so Environment secrets are visible to the workflow.
+
+Per-tag GitHub Release notes live in `store/releases/vX.Y.Z.md` (same format as
+Highlights / Added / Changed / Downloads / Upgrade notes). Play “what's new”
+files live in `store/whatsnew/whatsnew-<LOCALE>` (e.g. `whatsnew-en-US`).
+
+To re-upload an existing release AAB without rebuilding, run the
+**Publish Play Store AAB** workflow (`workflow_dispatch`) with the tag name.
 
 ### Versioning
 
@@ -85,9 +107,9 @@ The Android Maps key is injected into `AndroidManifest.xml` at build time by
 
    | Package name | SHA-1 |
    |---|---|
-   | `com.tripcompanion.app` | debug keystore SHA-1 |
-   | `com.tripcompanion.app` | upload keystore SHA-1 |
-   | `com.tripcompanion.app` | Play App Signing key SHA-1 (see below) |
+   | `com.workvar.tripenerary` | debug keystore SHA-1 |
+   | `com.workvar.tripenerary` | upload keystore SHA-1 |
+   | `com.workvar.tripenerary` | Play App Signing key SHA-1 (see below) |
 
    Print a keystore's SHA-1 with:
 
@@ -190,13 +212,15 @@ and it only shows up in release.
 adb install -r android/app/build/outputs/apk/release/app-release.apk
 ```
 
-Tagged pushes also build a signed AAB via `.github/workflows/release.yml` when these
-repository secrets are set:
+Tagged pushes also build a signed AAB via `.github/workflows/release.yml` using the
+committed `android/` tree (no `expo prebuild --clean` — that wiped the upload
+keystore and custom signing scripts). The job fails if the bundle is still
+debug-signed. Required secrets (Production environment):
 
 | Secret | Value |
 |---|---|
 | `GOOGLE_MAPS_ANDROID_KEY` | restricted Android Maps key |
-| `TRIPENERARY_UPLOAD_KEYSTORE_BASE64` | `base64 -w0 android/app/release.keystore` |
+| `ANDROID_KEYSTORE_BASE64` | `base64 -w0 android/app/release.keystore` |
 | `TRIPENERARY_UPLOAD_STORE_PASSWORD` | keystore password |
 | `TRIPENERARY_UPLOAD_KEY_ALIAS` | usually `upload` |
 | `TRIPENERARY_UPLOAD_KEY_PASSWORD` | key password (often same as store) |
@@ -217,7 +241,7 @@ Open the app in [Play Console](https://play.google.com/console/).
 | Target API | 36 (Android 16) — required for new apps/updates from 31 Aug 2026 |
 | 64-bit | ships `arm64-v8a` (and `armeabi-v7a`) |
 | Permissions | `INTERNET`, `ACCESS_NETWORK_STATE` only |
-| Package | `com.tripcompanion.app` |
+| Package | `com.workvar.tripenerary` |
 
 ### Store listing
 
