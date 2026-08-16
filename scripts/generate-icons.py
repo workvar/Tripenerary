@@ -179,7 +179,11 @@ def feature_graphic(width: int = 1024, height: int = 500) -> Image.Image:
         fill=ACCENT,
     )
 
-    return img.resize((width, height), Image.LANCZOS)
+    # Play requires a 24-bit PNG with no alpha channel for the feature graphic
+    # (the 512 icon is the opposite: 32-bit with alpha). Flatten onto teal.
+    flat = Image.new("RGB", (px_w, px_h), TEAL[:3])
+    flat.paste(img, (0, 0), img)
+    return flat.resize((width, height), Image.LANCZOS)
 
 
 def save(img: Image.Image, path: Path, fmt: str = "PNG") -> None:

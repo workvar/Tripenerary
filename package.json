@@ -9,6 +9,8 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && node scripts/validate-itinerary.mjs sample/thailand-sample.json",
     "icons": "python3 scripts/generate-icons.py",
+    "screenshots": "node scripts/capture-screenshots.mjs",
+    "screenshots:fit": "python3 scripts/fit-screenshots.py",
     "preflight": "node scripts/preflight-release.mjs",
     "build:apk": "npm run preflight && cd android && ./gradlew assembleRelease",
     "build:aab": "npm run preflight && cd android && ./gradlew bundleRelease",

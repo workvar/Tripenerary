@@ -19,3 +19,6 @@ ios/
 # config (Maps key injection, signing, splash, trimmed permissions) that would
 # be lost on every prebuild. Build artifacts inside it are ignored by
 # android/.gitignore.
+
+# Raw screenshot captures. The Play-ready copies in store/screenshots/*/play/ are kept.
+store/screenshots/*/*.png

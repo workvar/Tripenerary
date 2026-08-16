@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import AuthModal from '@/components/AuthModal';
 import ImportDialog from '@/components/ImportDialog';
 import PdfButton from '@/components/PdfButton';
@@ -89,24 +90,33 @@ export default function Toolbar({ api }: { readonly api: DraftApi }) {
     <>
       <header className="z-30 shrink-0 border-b border-line bg-white/90 backdrop-blur">
         <div className="flex flex-wrap items-center gap-3 px-5 py-3">
-          <div className="mr-auto min-w-0">
-            <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
-            <p className="truncate text-[11px] text-muted">
-              {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
-              {' · '}
-              <span
-                className={
-                  api.saveStatus === 'over-limit' || api.saveStatus === 'error'
-                    ? 'font-bold text-danger'
-                    : api.saveStatus === 'saved'
-                      ? 'font-bold text-primary'
-                      : ''
-                }
-              >
-                {saveLabel(api, Boolean(auth.uid))}
-              </span>
-              {issuesReady ? null : <span className="ml-1 font-bold text-danger">· add a day</span>}
-            </p>
+          <div className="mr-auto min-w-0 flex items-center gap-3">
+            <Link
+              href="/"
+              className="group flex h-8 items-center justify-center rounded-md bg-sunken px-2.5 text-xs font-semibold text-ink transition hover:bg-primarySoft hover:text-primary"
+              title="Back to Landing Page & Features Overview"
+            >
+              ← Home
+            </Link>
+            <div>
+              <h1 className="text-sm font-extrabold tracking-tight text-ink">Trip Companion Builder</h1>
+              <p className="truncate text-[11px] text-muted">
+                {draft.days.length} {draft.days.length === 1 ? 'day' : 'days'}
+                {' · '}
+                <span
+                  className={
+                    api.saveStatus === 'over-limit' || api.saveStatus === 'error'
+                      ? 'font-bold text-danger'
+                      : api.saveStatus === 'saved'
+                        ? 'font-bold text-primary'
+                        : ''
+                  }
+                >
+                  {saveLabel(api, Boolean(auth.uid))}
+                </span>
+                {issuesReady ? null : <span className="ml-1 font-bold text-danger">· add a day</span>}
+              </p>
+            </div>
           </div>
 
           {message ? (

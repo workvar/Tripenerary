@@ -58,7 +58,7 @@ function ensure(): boolean {
 
   if (config.measurementId && typeof window !== 'undefined') {
     void isSupported()
-      .then((ok) => {
+      .then((ok: boolean) => {
         if (ok && app) analytics = getAnalytics(app);
       })
       .catch(() => undefined);

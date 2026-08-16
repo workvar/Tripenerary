@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { readonly children: ReactNode }) {
       setReady(true);
       return;
     }
-    return onAuthStateChanged(auth, (next) => {
+    return onAuthStateChanged(auth, (next: User | null) => {
       setUser(next);
       setReady(true);
     });
