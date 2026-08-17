@@ -1,0 +1,803 @@
+{
+  "version": 1,
+  "trip": {
+    "title": "Japan 2026",
+    "subtitle": "Tokyo, Kyoto, Osaka",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-20",
+    "timezone": "Asia/Tokyo",
+    "currency": "JPY"
+  },
+  "stays": [
+    {
+      "id": "tokyo",
+      "name": "Shibuya City Hotel",
+      "city": "Tokyo",
+      "address": "Shibuya, Tokyo, Japan",
+      "checkIn": "2026-10-11",
+      "checkOut": "2026-10-14",
+      "phone": "+81 3 0000 0000",
+      "confirmation": "DEMO-JP-TKY-001",
+      "notes": "Check-in after 3 PM and check-out before 11 AM. Luggage storage is available before check-in.",
+      "location": {
+        "name": "Shibuya, Tokyo",
+        "lat": 35.6595,
+        "lng": 139.7005
+      },
+      "image": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf"
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto Central Hotel",
+      "city": "Kyoto",
+      "address": "Kyoto Station Area, Kyoto, Japan",
+      "checkIn": "2026-10-14",
+      "checkOut": "2026-10-17",
+      "phone": "+81 75 0000 0000",
+      "confirmation": "DEMO-JP-KYO-002",
+      "notes": "Check-in after 3 PM and check-out before 11 AM. Kyoto Station is within walking distance.",
+      "location": {
+        "name": "Kyoto Station",
+        "lat": 34.9858,
+        "lng": 135.7588
+      },
+      "image": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+    },
+    {
+      "id": "osaka",
+      "name": "Namba City Hotel",
+      "city": "Osaka",
+      "address": "Namba, Osaka, Japan",
+      "checkIn": "2026-10-17",
+      "checkOut": "2026-10-20",
+      "phone": "+81 6 0000 0000",
+      "confirmation": "DEMO-JP-OSA-003",
+      "notes": "Check-in after 3 PM and check-out before 11 AM. Convenient for Dotonbori and Namba.",
+      "location": {
+        "name": "Namba, Osaka",
+        "lat": 34.6687,
+        "lng": 135.5013
+      },
+      "image": "https://images.unsplash.com/photo-1590559899731-a382839e5549"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-10-10",
+      "base": "Tokyo",
+      "title": "Flying to Japan",
+      "summary": "Begin the journey to Japan with an overnight international flight.",
+      "items": [
+        {
+          "time": "21:00",
+          "endTime": "22:30",
+          "title": "Arrive at the airport",
+          "type": "flight",
+          "description": "Arrive at the departure airport with enough time for international check-in, immigration and security.",
+          "cost": "65000 JPY",
+          "booking": {
+            "ref": "DEMO-JP-FLIGHT-001"
+          },
+          "location": {
+            "name": "Departure Airport",
+            "lat": 28.5562,
+            "lng": 77.1
+          }
+        },
+        {
+          "time": "23:30",
+          "title": "Flight to Tokyo",
+          "type": "flight",
+          "description": "Depart for Tokyo on an overnight international flight. Keep your passport, immigration documents and essential items in your cabin baggage.",
+          "booking": {
+            "ref": "DEMO-JP-FLIGHT-001"
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65"
+    },
+    {
+      "date": "2026-10-11",
+      "base": "Tokyo",
+      "title": "Welcome to Tokyo",
+      "summary": "Arrive in Tokyo, check in and experience Shibuya after dark.",
+      "stayId": "tokyo",
+      "items": [
+        {
+          "time": "07:30",
+          "title": "Arrive in Tokyo",
+          "type": "flight",
+          "description": "Arrive at Tokyo Haneda Airport. Complete immigration, collect baggage and prepare for the journey into central Tokyo.",
+          "location": {
+            "name": "Haneda Airport",
+            "lat": 35.5494,
+            "lng": 139.7798
+          },
+          "images": "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc"
+        },
+        {
+          "time": "09:30",
+          "title": "Transfer to Shibuya",
+          "type": "travel",
+          "description": "Travel from Haneda Airport into Tokyo and leave your luggage at the hotel if the room is not ready.",
+          "location": {
+            "name": "Shibuya",
+            "lat": 35.6595,
+            "lng": 139.7005
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Japanese lunch",
+          "type": "food",
+          "description": "Have your first Japanese lunch in Shibuya. Ramen, sushi or a simple teishoku set are good options after the flight."
+        },
+        {
+          "time": "15:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the hotel, unpack and take some time to recover from the overnight journey."
+        },
+        {
+          "time": "17:00",
+          "title": "Shibuya Crossing",
+          "type": "sight",
+          "description": "Experience one of Tokyo's most recognizable intersections and explore the surrounding shopping streets.",
+          "location": {
+            "name": "Shibuya Crossing",
+            "lat": 35.6595,
+            "lng": 139.7005
+          },
+          "images": "https://images.unsplash.com/photo-1542931287-023b922fa89b"
+        },
+        {
+          "time": "19:30",
+          "title": "Shibuya evening",
+          "type": "activity",
+          "description": "Explore Shibuya's neon-lit streets, department stores and restaurants before returning to the hotel."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf"
+    },
+    {
+      "date": "2026-10-12",
+      "base": "Tokyo",
+      "title": "Traditional Tokyo",
+      "summary": "Explore Asakusa, Senso-ji and the Tokyo Skytree before an evening in Akihabara.",
+      "stayId": "tokyo",
+      "items": [
+        {
+          "time": "08:30",
+          "title": "Senso-ji Temple",
+          "type": "sight",
+          "description": "Start the morning at Senso-ji, Tokyo's oldest temple. Walk through Kaminarimon Gate and Nakamise-dori before exploring the temple grounds.",
+          "location": {
+            "name": "Senso-ji Temple",
+            "lat": 35.7148,
+            "lng": 139.7967
+          },
+          "images": "https://images.unsplash.com/photo-1584286595398-a59f21d3101e"
+        },
+        {
+          "time": "10:30",
+          "title": "Asakusa streets",
+          "type": "activity",
+          "description": "Explore traditional shops and small food stalls around Asakusa."
+        },
+        {
+          "time": "12:30",
+          "title": "Lunch in Asakusa",
+          "type": "food",
+          "description": "Try tempura, soba or another traditional Japanese lunch."
+        },
+        {
+          "time": "14:00",
+          "title": "Tokyo Skytree",
+          "type": "sight",
+          "description": "Visit Tokyo Skytree for panoramic views across the Tokyo metropolitan area.",
+          "location": {
+            "name": "Tokyo Skytree",
+            "lat": 35.7101,
+            "lng": 139.8107
+          },
+          "images": "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc"
+        },
+        {
+          "time": "17:00",
+          "title": "Akihabara",
+          "type": "activity",
+          "description": "Explore Akihabara's electronics stores, gaming shops, anime stores and arcades.",
+          "location": {
+            "name": "Akihabara",
+            "lat": 35.6984,
+            "lng": 139.7731
+          },
+          "images": "https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1"
+        },
+        {
+          "time": "20:00",
+          "title": "Dinner in Akihabara",
+          "type": "food",
+          "description": "Have dinner around Akihabara before returning to Shibuya."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1584286595398-a59f21d3101e"
+    },
+    {
+      "date": "2026-10-13",
+      "base": "Tokyo",
+      "title": "Modern Tokyo",
+      "summary": "Explore Meiji Shrine, Harajuku, Omotesando and Shinjuku.",
+      "stayId": "tokyo",
+      "items": [
+        {
+          "time": "08:30",
+          "title": "Meiji Shrine",
+          "type": "sight",
+          "description": "Walk through the forested grounds of Meiji Shrine and experience one of Tokyo's most important Shinto sites.",
+          "location": {
+            "name": "Meiji Jingu",
+            "lat": 35.6764,
+            "lng": 139.6993
+          },
+          "images": "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
+        },
+        {
+          "time": "10:30",
+          "title": "Harajuku",
+          "type": "activity",
+          "description": "Explore Takeshita Street and the surrounding Harajuku neighbourhood."
+        },
+        {
+          "time": "12:30",
+          "title": "Lunch in Harajuku",
+          "type": "food",
+          "description": "Enjoy lunch around Harajuku before walking towards Omotesando."
+        },
+        {
+          "time": "14:00",
+          "title": "Omotesando",
+          "type": "activity",
+          "description": "Walk through Omotesando and explore its architecture, fashion stores and cafés.",
+          "location": {
+            "name": "Omotesando",
+            "lat": 35.6653,
+            "lng": 139.7123
+          }
+        },
+        {
+          "time": "17:00",
+          "title": "Shinjuku",
+          "type": "sight",
+          "description": "Explore Shinjuku's skyscrapers, shopping areas and atmospheric side streets.",
+          "location": {
+            "name": "Shinjuku",
+            "lat": 35.6938,
+            "lng": 139.7034
+          },
+          "images": "https://images.unsplash.com/photo-1519501025264-65ba15a82390"
+        },
+        {
+          "time": "19:30",
+          "title": "Omoide Yokocho",
+          "type": "food",
+          "description": "Explore the narrow lanes of Omoide Yokocho and try Japanese grilled dishes and small plates.",
+          "location": {
+            "name": "Omoide Yokocho",
+            "lat": 35.6922,
+            "lng": 139.6991
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1519501025264-65ba15a82390"
+    },
+    {
+      "date": "2026-10-14",
+      "base": "Kyoto",
+      "title": "Tokyo to Kyoto",
+      "summary": "Take the Shinkansen to Kyoto and spend the evening exploring Gion.",
+      "stayId": "kyoto",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Check out of Tokyo hotel",
+          "type": "hotel",
+          "description": "Check out and collect your luggage before heading to Tokyo Station."
+        },
+        {
+          "time": "09:30",
+          "title": "Tokyo to Kyoto by Shinkansen",
+          "type": "travel",
+          "description": "Take the Tokaido Shinkansen from Tokyo Station to Kyoto Station. Keep your luggage secure and enjoy the views during the journey.",
+          "location": {
+            "name": "Tokyo Station",
+            "lat": 35.6812,
+            "lng": 139.7671
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Arrive in Kyoto",
+          "type": "travel",
+          "description": "Arrive at Kyoto Station and transfer to the hotel.",
+          "location": {
+            "name": "Kyoto Station",
+            "lat": 34.9858,
+            "lng": 135.7588
+          }
+        },
+        {
+          "time": "13:30",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the Kyoto hotel and leave your luggage."
+        },
+        {
+          "time": "15:30",
+          "title": "Kiyomizu-dera",
+          "type": "sight",
+          "description": "Visit Kiyomizu-dera and explore the historic streets around Higashiyama.",
+          "location": {
+            "name": "Kiyomizu-dera",
+            "lat": 34.9949,
+            "lng": 135.785
+          },
+          "images": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+        },
+        {
+          "time": "18:00",
+          "title": "Gion",
+          "type": "activity",
+          "description": "Walk through Gion and Higashiyama as the traditional streets begin to light up for the evening.",
+          "location": {
+            "name": "Gion",
+            "lat": 35.0037,
+            "lng": 135.7788
+          },
+          "images": "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+        },
+        {
+          "time": "20:00",
+          "title": "Kyoto dinner",
+          "type": "food",
+          "description": "Enjoy a traditional Kyoto-style dinner."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+    },
+    {
+      "date": "2026-10-15",
+      "base": "Kyoto",
+      "title": "Classic Kyoto",
+      "summary": "Explore Fushimi Inari, Nijo Castle and Kyoto's historic centre.",
+      "stayId": "kyoto",
+      "items": [
+        {
+          "time": "07:30",
+          "title": "Fushimi Inari Shrine",
+          "type": "sight",
+          "description": "Start early at Fushimi Inari and walk through the famous rows of vermilion torii gates.",
+          "location": {
+            "name": "Fushimi Inari Taisha",
+            "lat": 34.9671,
+            "lng": 135.7727
+          },
+          "images": "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
+        },
+        {
+          "time": "10:30",
+          "title": "Nishiki Market",
+          "type": "activity",
+          "description": "Explore Nishiki Market and discover Kyoto snacks, pickles, tea and local ingredients.",
+          "location": {
+            "name": "Nishiki Market",
+            "lat": 35.005,
+            "lng": 135.7648
+          }
+        },
+        {
+          "time": "12:30",
+          "title": "Market lunch",
+          "type": "food",
+          "description": "Try a selection of Kyoto street foods and small dishes around Nishiki Market."
+        },
+        {
+          "time": "14:30",
+          "title": "Nijo Castle",
+          "type": "sight",
+          "description": "Explore Nijo Castle and its gardens, learning about Kyoto's samurai-era history.",
+          "location": {
+            "name": "Nijo Castle",
+            "lat": 35.0142,
+            "lng": 135.748
+          },
+          "images": "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+        },
+        {
+          "time": "17:30",
+          "title": "Pontocho Alley",
+          "type": "activity",
+          "description": "Walk through Pontocho's narrow traditional alley and explore the restaurants along the Kamo River.",
+          "location": {
+            "name": "Pontocho Alley",
+            "lat": 35.0038,
+            "lng": 135.7717
+          }
+        },
+        {
+          "time": "19:30",
+          "title": "Dinner by the Kamo River",
+          "type": "food",
+          "description": "Enjoy an evening meal around Pontocho and the Kamo River."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+    },
+    {
+      "date": "2026-10-16",
+      "base": "Kyoto",
+      "title": "Arashiyama and Bamboo Forest",
+      "summary": "Spend the day in western Kyoto exploring Arashiyama and its temples.",
+      "stayId": "kyoto",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Arashiyama Bamboo Grove",
+          "type": "sight",
+          "description": "Visit the famous bamboo grove early in the morning before the area becomes busy.",
+          "location": {
+            "name": "Arashiyama Bamboo Grove",
+            "lat": 35.017,
+            "lng": 135.6713
+          },
+          "images": "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+        },
+        {
+          "time": "09:30",
+          "title": "Tenryu-ji Temple",
+          "type": "sight",
+          "description": "Explore Tenryu-ji Temple and its landscaped garden.",
+          "location": {
+            "name": "Tenryu-ji",
+            "lat": 35.015,
+            "lng": 135.6748
+          }
+        },
+        {
+          "time": "11:30",
+          "title": "Arashiyama streets",
+          "type": "activity",
+          "description": "Walk through the traditional streets of Arashiyama and browse local shops."
+        },
+        {
+          "time": "13:00",
+          "title": "Kyoto lunch",
+          "type": "food",
+          "description": "Enjoy a casual Japanese lunch around Arashiyama."
+        },
+        {
+          "time": "14:30",
+          "title": "Togetsukyo Bridge",
+          "type": "sight",
+          "description": "Walk across the historic Togetsukyo Bridge and enjoy views of the surrounding mountains.",
+          "location": {
+            "name": "Togetsukyo Bridge",
+            "lat": 35.0095,
+            "lng": 135.6671
+          },
+          "images": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+        },
+        {
+          "time": "17:00",
+          "title": "Return to central Kyoto",
+          "type": "travel",
+          "description": "Return to the hotel and enjoy a relaxed evening."
+        },
+        {
+          "time": "19:30",
+          "title": "Kyoto izakaya",
+          "type": "food",
+          "description": "Try a casual Japanese izakaya for dinner."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+    },
+    {
+      "date": "2026-10-17",
+      "base": "Osaka",
+      "title": "Kyoto to Osaka",
+      "summary": "Travel to Osaka and spend the evening exploring Dotonbori.",
+      "stayId": "osaka",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Check out of Kyoto hotel",
+          "type": "hotel",
+          "description": "Check out and travel to Kyoto Station."
+        },
+        {
+          "time": "10:00",
+          "title": "Kyoto to Osaka",
+          "type": "travel",
+          "description": "Take a local or rapid train from Kyoto to Osaka. The journey is short, making Osaka an easy next stop.",
+          "location": {
+            "name": "Osaka Station",
+            "lat": 34.7025,
+            "lng": 135.4959
+          }
+        },
+        {
+          "time": "11:00",
+          "title": "Hotel luggage drop",
+          "type": "hotel",
+          "description": "Leave luggage at the hotel before exploring Osaka."
+        },
+        {
+          "time": "12:00",
+          "title": "Kuromon Market",
+          "type": "food",
+          "description": "Explore Kuromon Market and sample Osaka's seafood, street food and local specialties.",
+          "location": {
+            "name": "Kuromon Ichiba Market",
+            "lat": 34.6659,
+            "lng": 135.5062
+          },
+          "images": "https://images.unsplash.com/photo-1590559899731-a382839e5549"
+        },
+        {
+          "time": "15:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the Namba hotel and take a short break."
+        },
+        {
+          "time": "17:00",
+          "title": "Dotonbori",
+          "type": "sight",
+          "description": "Explore Dotonbori's neon signs, canal, restaurants and famous Glico Running Man sign.",
+          "location": {
+            "name": "Dotonbori",
+            "lat": 34.6687,
+            "lng": 135.5013
+          },
+          "images": "https://images.unsplash.com/photo-1590559899731-a382839e5549"
+        },
+        {
+          "time": "20:00",
+          "title": "Osaka street food",
+          "type": "food",
+          "description": "Try Osaka specialties such as takoyaki and okonomiyaki."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1590559899731-a382839e5549"
+    },
+    {
+      "date": "2026-10-18",
+      "base": "Osaka",
+      "title": "Osaka Castle and Umeda",
+      "summary": "Discover Osaka's history before enjoying the city's modern skyline.",
+      "stayId": "osaka",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Osaka Castle",
+          "type": "sight",
+          "description": "Explore Osaka Castle and the surrounding park.",
+          "location": {
+            "name": "Osaka Castle",
+            "lat": 34.6873,
+            "lng": 135.5262
+          },
+          "images": "https://images.unsplash.com/photo-1590559899731-a382839e5549"
+        },
+        {
+          "time": "12:00",
+          "title": "Osaka lunch",
+          "type": "food",
+          "description": "Have lunch around Osaka Castle before continuing into the city."
+        },
+        {
+          "time": "14:00",
+          "title": "Umeda",
+          "type": "activity",
+          "description": "Explore Osaka's Umeda district, shopping centres and modern architecture.",
+          "location": {
+            "name": "Umeda",
+            "lat": 34.7055,
+            "lng": 135.4983
+          }
+        },
+        {
+          "time": "17:00",
+          "title": "Umeda Sky Building",
+          "type": "sight",
+          "description": "Visit the observation area of Umeda Sky Building for views over Osaka.",
+          "location": {
+            "name": "Umeda Sky Building",
+            "lat": 34.7053,
+            "lng": 135.4897
+          }
+        },
+        {
+          "time": "19:30",
+          "title": "Dinner in Umeda",
+          "type": "food",
+          "description": "Enjoy dinner around Umeda and explore the area's evening atmosphere."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1590559899731-a382839e5549"
+    },
+    {
+      "date": "2026-10-19",
+      "base": "Osaka",
+      "title": "Nara Day Trip",
+      "summary": "Take a day trip to Nara to see the deer and historic temples.",
+      "stayId": "osaka",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Train to Nara",
+          "type": "travel",
+          "description": "Travel from Osaka to Nara by train for a full day exploring the historic city.",
+          "location": {
+            "name": "Nara Station",
+            "lat": 34.6803,
+            "lng": 135.8201
+          }
+        },
+        {
+          "time": "09:30",
+          "title": "Nara Park",
+          "type": "activity",
+          "description": "Walk through Nara Park and see the famous free-roaming deer.",
+          "location": {
+            "name": "Nara Park",
+            "lat": 34.6851,
+            "lng": 135.843
+          },
+          "images": "https://images.unsplash.com/photo-1558862107-d49ef2a04d72"
+        },
+        {
+          "time": "11:00",
+          "title": "Todai-ji Temple",
+          "type": "sight",
+          "description": "Visit Todai-ji and its enormous Great Buddha statue.",
+          "location": {
+            "name": "Todai-ji",
+            "lat": 34.6889,
+            "lng": 135.8398
+          },
+          "images": "https://images.unsplash.com/photo-1558862107-d49ef2a04d72"
+        },
+        {
+          "time": "13:00",
+          "title": "Nara lunch",
+          "type": "food",
+          "description": "Have lunch in Nara and try local dishes."
+        },
+        {
+          "time": "14:30",
+          "title": "Kasuga Taisha",
+          "type": "sight",
+          "description": "Walk through the forest to Kasuga Taisha and explore its lantern-lined grounds.",
+          "location": {
+            "name": "Kasuga Taisha",
+            "lat": 34.6814,
+            "lng": 135.848
+          }
+        },
+        {
+          "time": "17:00",
+          "title": "Return to Osaka",
+          "type": "travel",
+          "description": "Return to Namba and enjoy a relaxed final evening in Osaka."
+        },
+        {
+          "time": "19:30",
+          "title": "Final Osaka dinner",
+          "type": "food",
+          "description": "Enjoy one final Japanese dinner around Namba."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1558862107-d49ef2a04d72"
+    },
+    {
+      "date": "2026-10-20",
+      "base": "Osaka",
+      "title": "Fly Home",
+      "summary": "Enjoy breakfast, check out and head to Kansai International Airport.",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Breakfast",
+          "type": "food",
+          "description": "Have a final Japanese breakfast and prepare for departure."
+        },
+        {
+          "time": "10:00",
+          "title": "Hotel checkout",
+          "type": "hotel",
+          "description": "Check out of the hotel, collect your luggage and head towards Kansai International Airport."
+        },
+        {
+          "time": "11:00",
+          "title": "Transfer to Kansai Airport",
+          "type": "travel",
+          "description": "Travel from Namba to Kansai International Airport using the airport train service.",
+          "location": {
+            "name": "Kansai International Airport",
+            "lat": 34.4347,
+            "lng": 135.244
+          }
+        },
+        {
+          "time": "14:30",
+          "endTime": "17:30",
+          "title": "Flight home",
+          "type": "flight",
+          "description": "Depart Osaka and begin the journey home.",
+          "cost": "65000 JPY",
+          "booking": {
+            "ref": "DEMO-JP-RETURN-001"
+          },
+          "location": {
+            "name": "Kansai International Airport",
+            "lat": 34.4347,
+            "lng": 135.244
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65"
+    }
+  ],
+  "contacts": [
+    {
+      "label": "Japan Visitor Hotline",
+      "value": "+81-50-3816-2787",
+      "type": "phone"
+    },
+    {
+      "label": "Japan Travel Information",
+      "value": "JNTO",
+      "type": "text"
+    }
+  ],
+  "emergency": {
+    "contacts": [
+      {
+        "label": "Police",
+        "value": "110",
+        "type": "phone"
+      },
+      {
+        "label": "Ambulance and Fire",
+        "value": "119",
+        "type": "phone"
+      },
+      {
+        "label": "Japan Visitor Hotline",
+        "value": "+81-50-3816-2787",
+        "type": "phone"
+      },
+      {
+        "label": "Embassy of India in Japan",
+        "value": "+81-3-3262-2391",
+        "type": "phone"
+      }
+    ],
+    "locations": [
+      {
+        "label": "Embassy",
+        "name": "Embassy of India, Tokyo",
+        "address": "2-2-11 Kudan-Minami, Chiyoda-ku, Tokyo, Japan",
+        "phone": "+81-3-3262-2391",
+        "notes": "Use the embassy's official website to verify current consular hours before visiting.",
+        "location": {
+          "name": "Embassy of India, Tokyo",
+          "lat": 35.6938,
+          "lng": 139.7434
+        }
+      }
+    ]
+  }
+}
