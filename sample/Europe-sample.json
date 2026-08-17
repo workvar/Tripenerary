@@ -1,0 +1,492 @@
+{
+  "version": 1,
+  "trip": {
+    "title": "Europe 2026",
+    "subtitle": "Paris, Amsterdam, Zurich, Lucerne",
+    "startDate": "2026-09-10",
+    "endDate": "2026-09-20",
+    "timezone": "Europe/Paris",
+    "currency": "EUR"
+  },
+  "stays": [
+    {
+      "id": "paris",
+      "name": "Hotel Eiffel Kensington",
+      "city": "Paris",
+      "address": "15 Avenue de la Bourdonnais, 75007 Paris, France",
+      "checkIn": "2026-09-11",
+      "checkOut": "2026-09-14",
+      "phone": "+33 1 00 00 00 00",
+      "confirmation": "DEMO-PARIS-001",
+      "notes": "Check-in after 15:00 and check-out before 11:00",
+      "location": {
+        "name": "Paris",
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+      "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+    },
+    {
+      "id": "amsterdam",
+      "name": "Canal View Amsterdam Hotel",
+      "city": "Amsterdam",
+      "address": "Prinsengracht, Amsterdam, Netherlands",
+      "checkIn": "2026-09-14",
+      "checkOut": "2026-09-16",
+      "phone": "+31 20 000 0000",
+      "confirmation": "DEMO-AMS-002",
+      "notes": "Canal-side property near the city centre",
+      "location": {
+        "name": "Amsterdam",
+        "lat": 52.3676,
+        "lng": 4.9041
+      },
+      "image": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017"
+    },
+    {
+      "id": "lucerne",
+      "name": "Hotel Central Lucerne",
+      "city": "Lucerne",
+      "address": "Centralstrasse, 6003 Lucerne, Switzerland",
+      "checkIn": "2026-09-16",
+      "checkOut": "2026-09-19",
+      "phone": "+41 41 000 0000",
+      "confirmation": "DEMO-SUI-003",
+      "notes": "Check-in after 14:00 and check-out before 11:00",
+      "location": {
+        "name": "Lucerne",
+        "lat": 47.0502,
+        "lng": 8.3093
+      },
+      "image": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-09-10",
+      "base": "Paris",
+      "title": "Flying to Europe",
+      "summary": "Depart India and begin the European adventure.",
+      "items": [
+        {
+          "time": "21:00",
+          "title": "Flight to Paris",
+          "type": "flight",
+          "description": "Depart India for Paris on an overnight flight. Keep passports, travel documents and essential medication in your cabin baggage.",
+          "cost": "850 EUR",
+          "booking": {
+            "ref": "DEMO-EUROPE-FLT"
+          },
+          "location": {
+            "name": "Paris Charles de Gaulle Airport",
+            "lat": 49.0097,
+            "lng": 2.5479
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+    },
+    {
+      "date": "2026-09-11",
+      "base": "Paris",
+      "title": "Welcome to Paris",
+      "summary": "Arrive in Paris and explore the Eiffel Tower and Seine.",
+      "stayId": "paris",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Arrive in Paris",
+          "type": "flight",
+          "description": "Arrive at Charles de Gaulle Airport, complete immigration and transfer into central Paris.",
+          "location": {
+            "name": "Charles de Gaulle Airport",
+            "lat": 49.0097,
+            "lng": 2.5479
+          }
+        },
+        {
+          "time": "14:00",
+          "title": "Check in to hotel",
+          "type": "hotel",
+          "description": "Check in, leave your luggage and take some time to recover from the overnight flight."
+        },
+        {
+          "time": "17:00",
+          "title": "Eiffel Tower",
+          "type": "sight",
+          "description": "Visit the Eiffel Tower and enjoy panoramic views of Paris around sunset.",
+          "location": {
+            "name": "Eiffel Tower",
+            "lat": 48.8584,
+            "lng": 2.2945
+          },
+          "images": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f"
+        },
+        {
+          "time": "20:00",
+          "title": "Dinner by the Seine",
+          "type": "food",
+          "description": "Enjoy a relaxed French dinner near the Seine before returning to the hotel."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+    },
+    {
+      "date": "2026-09-12",
+      "base": "Paris",
+      "title": "Classic Paris",
+      "summary": "Explore the Louvre, Notre-Dame and the Latin Quarter.",
+      "stayId": "paris",
+      "items": [
+        {
+          "time": "09:30",
+          "title": "Louvre Museum",
+          "type": "activity",
+          "description": "Spend the morning exploring the Louvre and its major collections.",
+          "location": {
+            "name": "Louvre Museum",
+            "lat": 48.8606,
+            "lng": 2.3376
+          }
+        },
+        {
+          "time": "13:00",
+          "title": "Lunch in the Latin Quarter",
+          "type": "food",
+          "description": "Enjoy lunch at a traditional French café."
+        },
+        {
+          "time": "15:00",
+          "title": "Notre-Dame Cathedral",
+          "type": "sight",
+          "description": "Explore Île de la Cité and see Notre-Dame Cathedral from the surrounding area.",
+          "location": {
+            "name": "Notre-Dame de Paris",
+            "lat": 48.853,
+            "lng": 2.3499
+          }
+        },
+        {
+          "time": "18:30",
+          "title": "Montmartre",
+          "type": "sight",
+          "description": "Walk through Montmartre, visit Sacré-Cœur and enjoy the evening atmosphere.",
+          "location": {
+            "name": "Montmartre",
+            "lat": 48.8867,
+            "lng": 2.3431
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "base": "Paris",
+      "title": "Versailles Day",
+      "summary": "Take a day trip to the Palace of Versailles.",
+      "stayId": "paris",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Train to Versailles",
+          "type": "travel",
+          "description": "Travel from central Paris to Versailles by regional train.",
+          "location": {
+            "name": "Versailles",
+            "lat": 48.8049,
+            "lng": 2.1204
+          }
+        },
+        {
+          "time": "10:00",
+          "title": "Palace of Versailles",
+          "type": "activity",
+          "description": "Explore the palace, Hall of Mirrors and extensive gardens.",
+          "location": {
+            "name": "Palace of Versailles",
+            "lat": 48.8049,
+            "lng": 2.1203
+          }
+        },
+        {
+          "time": "18:00",
+          "title": "Return to Paris",
+          "type": "travel",
+          "description": "Return to Paris for a relaxed final evening."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "base": "Amsterdam",
+      "title": "Paris to Amsterdam",
+      "summary": "Take the high-speed train to Amsterdam and explore the canals.",
+      "stayId": "amsterdam",
+      "items": [
+        {
+          "time": "09:30",
+          "title": "Paris to Amsterdam",
+          "type": "travel",
+          "description": "Travel by high-speed train from Paris to Amsterdam.",
+          "location": {
+            "name": "Amsterdam Centraal",
+            "lat": 52.3791,
+            "lng": 4.9003
+          }
+        },
+        {
+          "time": "14:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the Amsterdam hotel and settle in."
+        },
+        {
+          "time": "16:00",
+          "title": "Amsterdam Canal Cruise",
+          "type": "activity",
+          "description": "Take an evening cruise through Amsterdam's historic canal network.",
+          "location": {
+            "name": "Amsterdam Canals",
+            "lat": 52.3676,
+            "lng": 4.9041
+          }
+        },
+        {
+          "time": "19:30",
+          "title": "Jordaan Dinner",
+          "type": "food",
+          "description": "Explore the Jordaan neighbourhood and enjoy dinner at a local restaurant."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017"
+    },
+    {
+      "date": "2026-09-15",
+      "base": "Amsterdam",
+      "title": "Art and Amsterdam",
+      "summary": "Discover Amsterdam's museums, parks and historic streets.",
+      "stayId": "amsterdam",
+      "items": [
+        {
+          "time": "09:30",
+          "title": "Rijksmuseum",
+          "type": "activity",
+          "description": "Explore Dutch masterpieces and European art at the Rijksmuseum.",
+          "location": {
+            "name": "Rijksmuseum",
+            "lat": 52.36,
+            "lng": 4.8852
+          }
+        },
+        {
+          "time": "13:00",
+          "title": "Vondelpark",
+          "type": "rest",
+          "description": "Relax and walk through Amsterdam's most famous city park."
+        },
+        {
+          "time": "15:30",
+          "title": "Anne Frank House area",
+          "type": "sight",
+          "description": "Explore the historic Jordaan area and the surroundings of the Anne Frank House.",
+          "location": {
+            "name": "Anne Frank House",
+            "lat": 52.3752,
+            "lng": 4.884
+          }
+        },
+        {
+          "time": "19:00",
+          "title": "Canal-side dinner",
+          "type": "food",
+          "description": "Enjoy dinner overlooking one of Amsterdam's canals."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "base": "Lucerne",
+      "title": "Into Switzerland",
+      "summary": "Travel from Amsterdam into the Swiss Alps.",
+      "stayId": "lucerne",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Amsterdam to Switzerland",
+          "type": "travel",
+          "description": "Travel by train through Germany towards Switzerland.",
+          "location": {
+            "name": "Lucerne",
+            "lat": 47.0502,
+            "lng": 8.3093
+          }
+        },
+        {
+          "time": "16:00",
+          "title": "Check in to Lucerne hotel",
+          "type": "hotel",
+          "description": "Check into the hotel and take an evening walk around Lake Lucerne."
+        },
+        {
+          "time": "18:00",
+          "title": "Lake Lucerne",
+          "type": "sight",
+          "description": "Walk along the lakefront and explore Lucerne's historic centre.",
+          "location": {
+            "name": "Lake Lucerne",
+            "lat": 47.0517,
+            "lng": 8.3059
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99"
+    },
+    {
+      "date": "2026-09-17",
+      "base": "Lucerne",
+      "title": "Mount Pilatus",
+      "summary": "Experience the Swiss Alps with a day on Mount Pilatus.",
+      "stayId": "lucerne",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Mount Pilatus",
+          "type": "activity",
+          "description": "Take the cable car and explore the mountain viewpoints and walking trails.",
+          "location": {
+            "name": "Mount Pilatus",
+            "lat": 46.979,
+            "lng": 8.253
+          }
+        },
+        {
+          "time": "17:00",
+          "title": "Return to Lucerne",
+          "type": "travel",
+          "description": "Return to Lucerne and enjoy a relaxed evening."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-18",
+      "base": "Lucerne",
+      "title": "Interlaken Day Trip",
+      "summary": "Explore the dramatic scenery around Interlaken.",
+      "stayId": "lucerne",
+      "items": [
+        {
+          "time": "07:30",
+          "title": "Train to Interlaken",
+          "type": "travel",
+          "description": "Take a scenic train through central Switzerland to Interlaken.",
+          "location": {
+            "name": "Interlaken",
+            "lat": 46.6863,
+            "lng": 7.8632
+          }
+        },
+        {
+          "time": "10:30",
+          "title": "Interlaken",
+          "type": "sight",
+          "description": "Explore Interlaken and enjoy views of the surrounding Alps."
+        },
+        {
+          "time": "15:00",
+          "title": "Lake Brienz",
+          "type": "activity",
+          "description": "Spend the afternoon around the turquoise waters of Lake Brienz.",
+          "location": {
+            "name": "Lake Brienz",
+            "lat": 46.7167,
+            "lng": 7.8833
+          }
+        },
+        {
+          "time": "19:30",
+          "title": "Return to Lucerne",
+          "type": "travel",
+          "description": "Return to the hotel for the night."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "base": "Lucerne",
+      "title": "Relaxed Switzerland",
+      "summary": "Enjoy a slower day exploring Lucerne.",
+      "stayId": "lucerne",
+      "items": [
+        {
+          "time": "10:00",
+          "title": "Chapel Bridge",
+          "type": "sight",
+          "description": "Visit Chapel Bridge and explore Lucerne's old town.",
+          "location": {
+            "name": "Chapel Bridge",
+            "lat": 47.0519,
+            "lng": 8.3064
+          }
+        },
+        {
+          "time": "13:00",
+          "title": "Swiss lunch",
+          "type": "food",
+          "description": "Try traditional Swiss dishes in the old town."
+        },
+        {
+          "time": "16:00",
+          "title": "Old Town Walk",
+          "type": "activity",
+          "description": "Spend the afternoon shopping and exploring Lucerne's historic streets."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "base": "Lucerne",
+      "title": "Fly Home",
+      "summary": "Check out and begin the journey back home.",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Hotel checkout",
+          "type": "hotel",
+          "description": "Check out of the hotel and transfer to the airport."
+        },
+        {
+          "time": "12:30",
+          "title": "Flight home",
+          "type": "flight",
+          "description": "Depart Switzerland for the return journey to India.",
+          "booking": {
+            "ref": "DEMO-EUROPE-RETURN"
+          },
+          "location": {
+            "name": "Zurich Airport",
+            "lat": 47.4582,
+            "lng": 8.5555
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99"
+    }
+  ],
+  "contacts": [
+    {
+      "label": "European Emergency",
+      "value": "112",
+      "type": "phone"
+    }
+  ],
+  "emergency": {
+    "contacts": [
+      {
+        "label": "European Emergency Number",
+        "value": "112",
+        "type": "phone"
+      }
+    ],
+    "locations": []
+  }
+}
