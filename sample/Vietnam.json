@@ -1,0 +1,899 @@
+{
+  "version": 1,
+  "trip": {
+    "title": "Vietnam 2026",
+    "subtitle": "Hanoi, Ha Long Bay, Da Nang, Hoi An, Ho Chi Minh City",
+    "startDate": "2026-11-07",
+    "endDate": "2026-11-18",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "currency": "VND"
+  },
+  "stays": [
+    {
+      "id": "hanoi",
+      "name": "Old Quarter Boutique Hotel",
+      "city": "Hanoi",
+      "address": "Hoan Kiem, Hanoi, Vietnam",
+      "checkIn": "2026-11-08",
+      "checkOut": "2026-11-10",
+      "phone": "+84 24 0000 0000",
+      "confirmation": "DEMO-VN-HAN-001",
+      "notes": "Check-in after 14:00 and check-out before 12:00. Airport transfer can be arranged.",
+      "location": {
+        "name": "Hanoi Old Quarter",
+        "lat": 21.034,
+        "lng": 105.8501
+      },
+      "image": "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a"
+    },
+    {
+      "id": "halong",
+      "name": "Emerald Bay Cruise",
+      "city": "Ha Long Bay",
+      "address": "Tuan Chau Marina, Ha Long, Vietnam",
+      "checkIn": "2026-11-10",
+      "checkOut": "2026-11-11",
+      "phone": "+84 24 0000 0001",
+      "confirmation": "DEMO-VN-HLB-002",
+      "notes": "Overnight cruise. Check-in at Tuan Chau Marina before departure.",
+      "location": {
+        "name": "Tuan Chau Marina",
+        "lat": 20.9503,
+        "lng": 107.0016
+      },
+      "image": "https://images.unsplash.com/photo-1528127269322-539801943592"
+    },
+    {
+      "id": "danang",
+      "name": "Han River Riverside Hotel",
+      "city": "Da Nang",
+      "address": "Hai Chau District, Da Nang, Vietnam",
+      "checkIn": "2026-11-11",
+      "checkOut": "2026-11-14",
+      "phone": "+84 236 000 0000",
+      "confirmation": "DEMO-VN-DAD-003",
+      "notes": "Central location near the Han River and Dragon Bridge.",
+      "location": {
+        "name": "Da Nang",
+        "lat": 16.0544,
+        "lng": 108.2022
+      },
+      "image": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+    },
+    {
+      "id": "hoian",
+      "name": "Hoi An Heritage Villa",
+      "city": "Hoi An",
+      "address": "Cam Chau, Hoi An, Vietnam",
+      "checkIn": "2026-11-14",
+      "checkOut": "2026-11-16",
+      "phone": "+84 235 000 0000",
+      "confirmation": "DEMO-VN-HOI-004",
+      "notes": "Quiet property within cycling distance of the Old Town.",
+      "location": {
+        "name": "Hoi An",
+        "lat": 15.8801,
+        "lng": 108.338
+      },
+      "image": "https://images.unsplash.com/photo-1528127269322-539801943592"
+    },
+    {
+      "id": "hochiminh",
+      "name": "District 1 City Hotel",
+      "city": "Ho Chi Minh City",
+      "address": "District 1, Ho Chi Minh City, Vietnam",
+      "checkIn": "2026-11-16",
+      "checkOut": "2026-11-18",
+      "phone": "+84 28 0000 0000",
+      "confirmation": "DEMO-VN-SGN-005",
+      "notes": "Central District 1 location near major attractions and restaurants.",
+      "location": {
+        "name": "District 1",
+        "lat": 10.7769,
+        "lng": 106.7009
+      },
+      "image": "https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-11-07",
+      "base": "Hanoi",
+      "title": "Flying to Vietnam",
+      "summary": "Begin the journey to Vietnam with an overnight flight.",
+      "items": [
+        {
+          "time": "20:00",
+          "title": "Airport check-in",
+          "type": "flight",
+          "description": "Arrive at the airport for international check-in and security. Keep your passport and travel documents in your cabin baggage.",
+          "booking": {
+            "ref": "DEMO-VN-FLIGHT-001"
+          }
+        },
+        {
+          "time": "22:30",
+          "title": "Flight to Hanoi",
+          "type": "flight",
+          "description": "Depart for Hanoi on an overnight international flight.",
+          "booking": {
+            "ref": "DEMO-VN-FLIGHT-001"
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a"
+    },
+    {
+      "date": "2026-11-08",
+      "base": "Hanoi",
+      "title": "Welcome to Hanoi",
+      "summary": "Arrive in Vietnam and explore Hanoi's atmospheric Old Quarter.",
+      "stayId": "hanoi",
+      "items": [
+        {
+          "time": "06:30",
+          "title": "Arrive in Hanoi",
+          "type": "flight",
+          "description": "Arrive at Noi Bai International Airport and complete immigration and baggage collection.",
+          "location": {
+            "name": "Noi Bai International Airport",
+            "lat": 21.2212,
+            "lng": 105.8072
+          }
+        },
+        {
+          "time": "08:30",
+          "title": "Transfer to Hanoi",
+          "type": "travel",
+          "description": "Travel from Noi Bai Airport to the city centre and leave luggage at the hotel.",
+          "location": {
+            "name": "Hanoi Old Quarter",
+            "lat": 21.034,
+            "lng": 105.8501
+          }
+        },
+        {
+          "time": "11:00",
+          "title": "Vietnamese breakfast",
+          "type": "food",
+          "description": "Start the trip with a traditional bowl of pho and Vietnamese coffee."
+        },
+        {
+          "time": "14:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the hotel and take some time to rest after the flight."
+        },
+        {
+          "time": "16:00",
+          "title": "Hoan Kiem Lake",
+          "type": "sight",
+          "description": "Walk around Hoan Kiem Lake and visit Ngoc Son Temple.",
+          "location": {
+            "name": "Hoan Kiem Lake",
+            "lat": 21.0285,
+            "lng": 105.8542
+          },
+          "images": "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a"
+        },
+        {
+          "time": "18:00",
+          "title": "Hanoi Old Quarter",
+          "type": "activity",
+          "description": "Explore the narrow streets, local shops and historic architecture of the Old Quarter.",
+          "location": {
+            "name": "Hanoi Old Quarter",
+            "lat": 21.034,
+            "lng": 105.8501
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Street food dinner",
+          "type": "food",
+          "description": "Try Vietnamese street food including bun cha, spring rolls and local desserts."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a"
+    },
+    {
+      "date": "2026-11-09",
+      "base": "Hanoi",
+      "title": "Historic Hanoi",
+      "summary": "Discover Hanoi's temples, museums and traditional neighbourhoods.",
+      "stayId": "hanoi",
+      "items": [
+        {
+          "time": "08:30",
+          "title": "Temple of Literature",
+          "type": "sight",
+          "description": "Visit the Temple of Literature, one of Hanoi's most important historic and cultural sites.",
+          "location": {
+            "name": "Temple of Literature",
+            "lat": 21.028,
+            "lng": 105.8352
+          },
+          "images": "https://images.unsplash.com/photo-1528127269322-539801943592"
+        },
+        {
+          "time": "10:30",
+          "title": "Ho Chi Minh Mausoleum area",
+          "type": "sight",
+          "description": "Explore the Ba Dinh Square area and surrounding historic landmarks.",
+          "location": {
+            "name": "Ba Dinh Square",
+            "lat": 21.0368,
+            "lng": 105.8347
+          }
+        },
+        {
+          "time": "12:30",
+          "title": "Lunch in Hanoi",
+          "type": "food",
+          "description": "Enjoy a traditional Vietnamese lunch in the city centre."
+        },
+        {
+          "time": "14:30",
+          "title": "Train Street",
+          "type": "activity",
+          "description": "Visit Hanoi's famous railway neighbourhood from a designated safe viewing area.",
+          "location": {
+            "name": "Hanoi Train Street",
+            "lat": 21.0258,
+            "lng": 105.842
+          }
+        },
+        {
+          "time": "17:00",
+          "title": "French Quarter",
+          "type": "activity",
+          "description": "Walk through Hanoi's French Quarter and admire its colonial-era architecture."
+        },
+        {
+          "time": "19:30",
+          "title": "Water puppet show",
+          "type": "activity",
+          "description": "Watch a traditional Vietnamese water puppet performance.",
+          "location": {
+            "name": "Thang Long Water Puppet Theatre",
+            "lat": 21.031,
+            "lng": 105.8524
+          }
+        },
+        {
+          "time": "21:00",
+          "title": "Hanoi night market",
+          "type": "activity",
+          "description": "Explore the evening streets and markets around the Old Quarter."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a"
+    },
+    {
+      "date": "2026-11-10",
+      "base": "Ha Long Bay",
+      "title": "Journey to Ha Long Bay",
+      "summary": "Leave Hanoi and board an overnight cruise through Ha Long Bay.",
+      "stayId": "halong",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Depart Hanoi",
+          "type": "travel",
+          "description": "Travel by shuttle from Hanoi to Tuan Chau Marina.",
+          "location": {
+            "name": "Tuan Chau Marina",
+            "lat": 20.9503,
+            "lng": 107.0016
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Board the cruise",
+          "type": "cruise",
+          "description": "Complete cruise check-in, board the ship and have lunch while sailing into Ha Long Bay.",
+          "booking": {
+            "ref": "DEMO-VN-HLB-CRUISE"
+          }
+        },
+        {
+          "time": "14:30",
+          "title": "Kayaking",
+          "type": "activity",
+          "description": "Explore the limestone karsts and calm waters of the bay by kayak.",
+          "location": {
+            "name": "Ha Long Bay",
+            "lat": 20.9101,
+            "lng": 107.1839
+          },
+          "images": "https://images.unsplash.com/photo-1528127269322-539801943592"
+        },
+        {
+          "time": "17:30",
+          "title": "Sunset on the bay",
+          "type": "sight",
+          "description": "Relax on deck and watch the sunset over the limestone islands."
+        },
+        {
+          "time": "19:30",
+          "title": "Cruise dinner",
+          "type": "food",
+          "description": "Enjoy a multi-course Vietnamese dinner onboard."
+        },
+        {
+          "time": "21:00",
+          "title": "Evening on the cruise",
+          "type": "activity",
+          "description": "Relax on deck, enjoy the night scenery or take part in onboard activities."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1528127269322-539801943592"
+    },
+    {
+      "date": "2026-11-11",
+      "base": "Da Nang",
+      "title": "Ha Long Bay to Da Nang",
+      "summary": "Wake up on the bay, return to land and fly south to Da Nang.",
+      "stayId": "danang",
+      "items": [
+        {
+          "time": "06:30",
+          "title": "Sunrise on Ha Long Bay",
+          "type": "sight",
+          "description": "Wake early for sunrise and enjoy the quiet waters of the bay."
+        },
+        {
+          "time": "07:30",
+          "title": "Breakfast on board",
+          "type": "food",
+          "description": "Enjoy breakfast while the cruise returns towards the marina."
+        },
+        {
+          "time": "10:30",
+          "title": "Cruise checkout",
+          "type": "cruise",
+          "description": "Disembark at Tuan Chau Marina and transfer towards the airport.",
+          "location": {
+            "name": "Tuan Chau Marina",
+            "lat": 20.9503,
+            "lng": 107.0016
+          }
+        },
+        {
+          "time": "14:30",
+          "title": "Flight to Da Nang",
+          "type": "flight",
+          "description": "Fly from northern Vietnam to Da Nang in central Vietnam.",
+          "booking": {
+            "ref": "DEMO-VN-DAD-FLIGHT"
+          },
+          "location": {
+            "name": "Da Nang International Airport",
+            "lat": 16.0439,
+            "lng": 108.1994
+          }
+        },
+        {
+          "time": "17:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the Da Nang hotel and settle in."
+        },
+        {
+          "time": "18:30",
+          "title": "My Khe Beach",
+          "type": "sight",
+          "description": "Take an evening walk along My Khe Beach.",
+          "location": {
+            "name": "My Khe Beach",
+            "lat": 16.0544,
+            "lng": 108.2479
+          },
+          "images": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+        },
+        {
+          "time": "20:00",
+          "title": "Seafood dinner",
+          "type": "food",
+          "description": "Enjoy fresh Vietnamese seafood near the beach."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+    },
+    {
+      "date": "2026-11-12",
+      "base": "Da Nang",
+      "title": "Ba Na Hills",
+      "summary": "Spend the day in the mountains at Ba Na Hills and the Golden Bridge.",
+      "stayId": "danang",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Depart for Ba Na Hills",
+          "type": "travel",
+          "description": "Travel from Da Nang into the Ba Na Hills mountain area.",
+          "location": {
+            "name": "Ba Na Hills",
+            "lat": 15.9977,
+            "lng": 107.9881
+          }
+        },
+        {
+          "time": "09:30",
+          "title": "Golden Bridge",
+          "type": "sight",
+          "description": "Visit the famous Golden Bridge and enjoy panoramic mountain views.",
+          "location": {
+            "name": "Golden Bridge",
+            "lat": 15.995,
+            "lng": 107.997
+          },
+          "images": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+        },
+        {
+          "time": "11:30",
+          "title": "Ba Na Hills",
+          "type": "activity",
+          "description": "Explore the mountain resort, gardens and attractions."
+        },
+        {
+          "time": "13:00",
+          "title": "Lunch",
+          "type": "food",
+          "description": "Have lunch at Ba Na Hills."
+        },
+        {
+          "time": "15:30",
+          "title": "Return to Da Nang",
+          "type": "travel",
+          "description": "Return to Da Nang and rest at the hotel."
+        },
+        {
+          "time": "18:30",
+          "title": "Dragon Bridge",
+          "type": "sight",
+          "description": "Visit Dragon Bridge and explore the Han River waterfront.",
+          "location": {
+            "name": "Dragon Bridge",
+            "lat": 16.061,
+            "lng": 108.227
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Dinner by the Han River",
+          "type": "food",
+          "description": "Enjoy dinner overlooking the river."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+    },
+    {
+      "date": "2026-11-13",
+      "base": "Da Nang",
+      "title": "Marble Mountains and Son Tra",
+      "summary": "Explore Da Nang's temples, caves and coastal viewpoints.",
+      "stayId": "danang",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Marble Mountains",
+          "type": "sight",
+          "description": "Explore the caves, pagodas and viewpoints of the Marble Mountains.",
+          "location": {
+            "name": "Marble Mountains",
+            "lat": 16.0031,
+            "lng": 108.2636
+          },
+          "images": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+        },
+        {
+          "time": "11:00",
+          "title": "Vietnamese lunch",
+          "type": "food",
+          "description": "Stop for a local lunch in Da Nang."
+        },
+        {
+          "time": "13:00",
+          "title": "Son Tra Peninsula",
+          "type": "activity",
+          "description": "Drive around the Son Tra Peninsula and enjoy views of the coast.",
+          "location": {
+            "name": "Son Tra Peninsula",
+            "lat": 16.102,
+            "lng": 108.278
+          }
+        },
+        {
+          "time": "15:00",
+          "title": "Linh Ung Pagoda",
+          "type": "sight",
+          "description": "Visit Linh Ung Pagoda and see the large Lady Buddha statue overlooking the sea.",
+          "location": {
+            "name": "Linh Ung Pagoda",
+            "lat": 16.0997,
+            "lng": 108.285
+          }
+        },
+        {
+          "time": "18:00",
+          "title": "My Khe sunset",
+          "type": "rest",
+          "description": "Relax at My Khe Beach and enjoy sunset."
+        },
+        {
+          "time": "20:00",
+          "title": "Da Nang dinner",
+          "type": "food",
+          "description": "Enjoy a final dinner in Da Nang."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
+    },
+    {
+      "date": "2026-11-14",
+      "base": "Hoi An",
+      "title": "Da Nang to Hoi An",
+      "summary": "Travel south to Hoi An and explore the ancient town after dark.",
+      "stayId": "hoian",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Check out of Da Nang hotel",
+          "type": "hotel",
+          "description": "Check out and travel towards Hoi An."
+        },
+        {
+          "time": "10:30",
+          "title": "Hoi An arrival",
+          "type": "travel",
+          "description": "Arrive in Hoi An and leave luggage at the hotel.",
+          "location": {
+            "name": "Hoi An",
+            "lat": 15.8801,
+            "lng": 108.338
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Hoi An lunch",
+          "type": "food",
+          "description": "Try local specialties such as cao lau, white rose dumplings or banh mi."
+        },
+        {
+          "time": "14:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the Hoi An villa and relax."
+        },
+        {
+          "time": "16:00",
+          "title": "Japanese Covered Bridge",
+          "type": "sight",
+          "description": "Explore Hoi An's historic centre and visit the Japanese Covered Bridge.",
+          "location": {
+            "name": "Japanese Covered Bridge",
+            "lat": 15.877,
+            "lng": 108.326
+          },
+          "images": "https://images.unsplash.com/photo-1528127269322-539801943592"
+        },
+        {
+          "time": "18:00",
+          "title": "Hoi An lantern streets",
+          "type": "activity",
+          "description": "Explore the lantern-lit streets of the Old Town after sunset.",
+          "location": {
+            "name": "Hoi An Ancient Town",
+            "lat": 15.877,
+            "lng": 108.326
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Riverside dinner",
+          "type": "food",
+          "description": "Have dinner along the Thu Bon River."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1528127269322-539801943592"
+    },
+    {
+      "date": "2026-11-15",
+      "base": "Hoi An",
+      "title": "Countryside and Beach",
+      "summary": "Explore Hoi An's countryside before relaxing at An Bang Beach.",
+      "stayId": "hoian",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Cycling through the countryside",
+          "type": "activity",
+          "description": "Cycle through rice fields and small villages surrounding Hoi An.",
+          "location": {
+            "name": "Hoi An Countryside",
+            "lat": 15.897,
+            "lng": 108.345
+          }
+        },
+        {
+          "time": "10:30",
+          "title": "Tra Que Vegetable Village",
+          "type": "activity",
+          "description": "Visit Tra Que village and learn about traditional local farming.",
+          "location": {
+            "name": "Tra Que Vegetable Village",
+            "lat": 15.902,
+            "lng": 108.328
+          }
+        },
+        {
+          "time": "12:30",
+          "title": "Cooking lunch",
+          "type": "food",
+          "description": "Take part in a Vietnamese cooking experience and enjoy the meal afterwards."
+        },
+        {
+          "time": "15:00",
+          "title": "An Bang Beach",
+          "type": "rest",
+          "description": "Relax at An Bang Beach and enjoy a slower afternoon.",
+          "location": {
+            "name": "An Bang Beach",
+            "lat": 15.9103,
+            "lng": 108.337
+          },
+          "images": "https://images.unsplash.com/photo-1528127269322-539801943592"
+        },
+        {
+          "time": "18:30",
+          "title": "Old Town evening",
+          "type": "activity",
+          "description": "Return to the Old Town for shopping and lantern-lit streets."
+        },
+        {
+          "time": "20:00",
+          "title": "Hoi An dinner",
+          "type": "food",
+          "description": "Enjoy a final dinner in Hoi An."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1528127269322-539801943592"
+    },
+    {
+      "date": "2026-11-16",
+      "base": "Ho Chi Minh City",
+      "title": "Fly to Ho Chi Minh City",
+      "summary": "Leave central Vietnam and continue south to Ho Chi Minh City.",
+      "stayId": "hochiminh",
+      "items": [
+        {
+          "time": "08:30",
+          "title": "Check out of Hoi An",
+          "type": "hotel",
+          "description": "Check out and transfer to Da Nang International Airport."
+        },
+        {
+          "time": "11:30",
+          "title": "Flight to Ho Chi Minh City",
+          "type": "flight",
+          "description": "Fly from Da Nang to Ho Chi Minh City.",
+          "booking": {
+            "ref": "DEMO-VN-SGN-FLIGHT"
+          },
+          "location": {
+            "name": "Tan Son Nhat International Airport",
+            "lat": 10.8188,
+            "lng": 106.652
+          }
+        },
+        {
+          "time": "14:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the District 1 hotel and settle in."
+        },
+        {
+          "time": "16:00",
+          "title": "Ben Thanh Market",
+          "type": "activity",
+          "description": "Explore one of Ho Chi Minh City's best-known markets.",
+          "location": {
+            "name": "Ben Thanh Market",
+            "lat": 10.7725,
+            "lng": 106.698
+          },
+          "images": "https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+        },
+        {
+          "time": "18:30",
+          "title": "Nguyen Hue Walking Street",
+          "type": "activity",
+          "description": "Walk along Nguyen Hue and experience the city's evening atmosphere.",
+          "location": {
+            "name": "Nguyen Hue Walking Street",
+            "lat": 10.774,
+            "lng": 106.703
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Vietnamese dinner",
+          "type": "food",
+          "description": "Enjoy a modern Vietnamese dinner in District 1."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+    },
+    {
+      "date": "2026-11-17",
+      "base": "Ho Chi Minh City",
+      "title": "History and Saigon",
+      "summary": "Discover Ho Chi Minh City's history and landmarks.",
+      "stayId": "hochiminh",
+      "items": [
+        {
+          "time": "08:30",
+          "title": "War Remnants Museum",
+          "type": "sight",
+          "description": "Visit the War Remnants Museum and learn about the history of the Vietnam War.",
+          "location": {
+            "name": "War Remnants Museum",
+            "lat": 10.7794,
+            "lng": 106.692
+          },
+          "images": "https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+        },
+        {
+          "time": "11:00",
+          "title": "Independence Palace",
+          "type": "sight",
+          "description": "Explore the Independence Palace and its historic grounds.",
+          "location": {
+            "name": "Independence Palace",
+            "lat": 10.777,
+            "lng": 106.6953
+          }
+        },
+        {
+          "time": "13:00",
+          "title": "Lunch in District 1",
+          "type": "food",
+          "description": "Enjoy pho, banh xeo or another Vietnamese specialty."
+        },
+        {
+          "time": "14:30",
+          "title": "Saigon Central Post Office",
+          "type": "sight",
+          "description": "Visit the historic Central Post Office and explore the surrounding French colonial district.",
+          "location": {
+            "name": "Saigon Central Post Office",
+            "lat": 10.7798,
+            "lng": 106.699
+          }
+        },
+        {
+          "time": "15:30",
+          "title": "Notre-Dame Cathedral area",
+          "type": "sight",
+          "description": "Explore the area surrounding Notre-Dame Cathedral Basilica of Saigon."
+        },
+        {
+          "time": "17:00",
+          "title": "Saigon River",
+          "type": "rest",
+          "description": "Take a relaxed walk near the Saigon River."
+        },
+        {
+          "time": "19:30",
+          "title": "Rooftop dinner",
+          "type": "food",
+          "description": "Enjoy dinner with a view over the Ho Chi Minh City skyline."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+    },
+    {
+      "date": "2026-11-18",
+      "base": "Ho Chi Minh City",
+      "title": "Fly Home",
+      "summary": "Enjoy breakfast, check out and head to the airport.",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Vietnamese breakfast",
+          "type": "food",
+          "description": "Have a final Vietnamese breakfast and coffee."
+        },
+        {
+          "time": "10:00",
+          "title": "Hotel checkout",
+          "type": "hotel",
+          "description": "Check out of the hotel and collect your luggage."
+        },
+        {
+          "time": "11:00",
+          "title": "Airport transfer",
+          "type": "travel",
+          "description": "Transfer from District 1 to Tan Son Nhat International Airport.",
+          "location": {
+            "name": "Tan Son Nhat International Airport",
+            "lat": 10.8188,
+            "lng": 106.652
+          }
+        },
+        {
+          "time": "14:30",
+          "title": "Flight home",
+          "type": "flight",
+          "description": "Depart Ho Chi Minh City for the return journey home.",
+          "cost": "6000000 VND",
+          "booking": {
+            "ref": "DEMO-VN-RETURN-001"
+          },
+          "location": {
+            "name": "Tan Son Nhat International Airport",
+            "lat": 10.8188,
+            "lng": 106.652
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+    }
+  ],
+  "contacts": [
+    {
+      "label": "Vietnam Tourism Information",
+      "value": "Vietnam National Authority of Tourism",
+      "type": "text"
+    },
+    {
+      "label": "Tourist Support",
+      "value": "Vietnam Tourism",
+      "type": "text"
+    }
+  ],
+  "emergency": {
+    "contacts": [
+      {
+        "label": "Police",
+        "value": "113",
+        "type": "phone"
+      },
+      {
+        "label": "Fire",
+        "value": "114",
+        "type": "phone"
+      },
+      {
+        "label": "Ambulance",
+        "value": "115",
+        "type": "phone"
+      },
+      {
+        "label": "General Emergency",
+        "value": "112",
+        "type": "phone"
+      },
+      {
+        "label": "Embassy of India in Vietnam",
+        "value": "+84 24 3633 0836",
+        "type": "phone"
+      }
+    ],
+    "locations": [
+      {
+        "label": "Embassy",
+        "name": "Embassy of India, Hanoi",
+        "address": "58-60 Tran Hung Dao Street, Hoan Kiem, Hanoi, Vietnam",
+        "phone": "+84 24 3633 0836",
+        "notes": "Verify current consular hours and contact details before visiting.",
+        "location": {
+          "name": "Embassy of India, Hanoi",
+          "lat": 21.021,
+          "lng": 105.849
+        }
+      }
+    ]
+  }
+}
