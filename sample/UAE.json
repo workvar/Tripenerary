@@ -1,0 +1,777 @@
+{
+  "version": 1,
+  "trip": {
+    "title": "UAE 2026",
+    "subtitle": "Dubai, Abu Dhabi, Desert Safari",
+    "startDate": "2026-12-05",
+    "endDate": "2026-12-14",
+    "timezone": "Asia/Dubai",
+    "currency": "AED"
+  },
+  "stays": [
+    {
+      "id": "dubai",
+      "name": "Downtown Dubai Hotel",
+      "city": "Dubai",
+      "address": "Downtown Dubai, Dubai, United Arab Emirates",
+      "checkIn": "2026-12-06",
+      "checkOut": "2026-12-10",
+      "phone": "+971 4 000 0000",
+      "confirmation": "DEMO-UAE-DXB-001",
+      "notes": "Check-in after 15:00 and check-out before 12:00.",
+      "location": {
+        "name": "Downtown Dubai",
+        "lat": 25.1972,
+        "lng": 55.2744
+      },
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c"
+    },
+    {
+      "id": "abudhabi",
+      "name": "Corniche City Hotel",
+      "city": "Abu Dhabi",
+      "address": "Corniche Road, Abu Dhabi, United Arab Emirates",
+      "checkIn": "2026-12-10",
+      "checkOut": "2026-12-13",
+      "phone": "+971 2 000 0000",
+      "confirmation": "DEMO-UAE-AUH-002",
+      "notes": "Central location near the Corniche. Check-in after 15:00.",
+      "location": {
+        "name": "Abu Dhabi Corniche",
+        "lat": 24.467,
+        "lng": 54.356
+      },
+      "image": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-12-05",
+      "base": "Dubai",
+      "title": "Flying to Dubai",
+      "summary": "Begin the UAE adventure with an overnight flight to Dubai.",
+      "items": [
+        {
+          "time": "20:00",
+          "title": "Airport check-in",
+          "type": "flight",
+          "description": "Arrive at the airport for international check-in, security and immigration.",
+          "booking": {
+            "ref": "DEMO-UAE-FLIGHT-001"
+          }
+        },
+        {
+          "time": "22:30",
+          "title": "Flight to Dubai",
+          "type": "flight",
+          "description": "Depart for Dubai on an overnight international flight.",
+          "booking": {
+            "ref": "DEMO-UAE-FLIGHT-001"
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c"
+    },
+    {
+      "date": "2026-12-06",
+      "base": "Dubai",
+      "title": "Welcome to Dubai",
+      "summary": "Arrive in Dubai, settle into the hotel and experience Downtown Dubai.",
+      "stayId": "dubai",
+      "items": [
+        {
+          "time": "06:30",
+          "title": "Arrive in Dubai",
+          "type": "flight",
+          "description": "Arrive at Dubai International Airport and complete immigration and baggage collection.",
+          "location": {
+            "name": "Dubai International Airport",
+            "lat": 25.2532,
+            "lng": 55.3657
+          }
+        },
+        {
+          "time": "08:00",
+          "title": "Transfer to Downtown Dubai",
+          "type": "travel",
+          "description": "Travel from Dubai International Airport to the hotel in Downtown Dubai.",
+          "location": {
+            "name": "Downtown Dubai",
+            "lat": 25.1972,
+            "lng": 55.2744
+          }
+        },
+        {
+          "time": "10:00",
+          "title": "Breakfast",
+          "type": "food",
+          "description": "Have breakfast at a café near Downtown Dubai."
+        },
+        {
+          "time": "14:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the hotel and take some time to rest after the flight."
+        },
+        {
+          "time": "16:30",
+          "title": "Dubai Mall",
+          "type": "activity",
+          "description": "Explore Dubai Mall and its extensive shopping, dining and entertainment options.",
+          "location": {
+            "name": "Dubai Mall",
+            "lat": 25.1972,
+            "lng": 55.2796
+          },
+          "images": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+        },
+        {
+          "time": "18:00",
+          "title": "Burj Khalifa",
+          "type": "sight",
+          "description": "Visit the observation deck of Burj Khalifa and see Dubai from above.",
+          "location": {
+            "name": "Burj Khalifa",
+            "lat": 25.1972,
+            "lng": 55.2744
+          },
+          "images": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+        },
+        {
+          "time": "20:00",
+          "title": "Dubai Fountain area",
+          "type": "activity",
+          "description": "Walk around Downtown Dubai and enjoy the evening atmosphere around the Burj Khalifa.",
+          "location": {
+            "name": "Dubai Fountain",
+            "lat": 25.195,
+            "lng": 55.275
+          }
+        },
+        {
+          "time": "21:00",
+          "title": "Dinner in Downtown",
+          "type": "food",
+          "description": "Enjoy dinner with views of the Dubai skyline."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c"
+    },
+    {
+      "date": "2026-12-07",
+      "base": "Dubai",
+      "title": "Old Dubai",
+      "summary": "Discover Dubai's historic neighbourhoods, creek and traditional souks.",
+      "stayId": "dubai",
+      "items": [
+        {
+          "time": "08:30",
+          "title": "Breakfast",
+          "type": "food",
+          "description": "Enjoy breakfast before heading towards historic Dubai."
+        },
+        {
+          "time": "09:30",
+          "title": "Al Fahidi Historical Neighbourhood",
+          "type": "sight",
+          "description": "Explore the traditional architecture, narrow lanes and cultural spaces of Al Fahidi.",
+          "location": {
+            "name": "Al Fahidi Historical Neighbourhood",
+            "lat": 25.2636,
+            "lng": 55.2972
+          },
+          "images": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+        },
+        {
+          "time": "11:00",
+          "title": "Dubai Creek",
+          "type": "sight",
+          "description": "Walk along Dubai Creek and experience one of the city's historic trading areas.",
+          "location": {
+            "name": "Dubai Creek",
+            "lat": 25.267,
+            "lng": 55.307
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Abra ride",
+          "type": "activity",
+          "description": "Cross Dubai Creek on a traditional abra boat.",
+          "location": {
+            "name": "Bur Dubai Abra Station",
+            "lat": 25.265,
+            "lng": 55.294
+          }
+        },
+        {
+          "time": "12:30",
+          "title": "Gold Souk",
+          "type": "activity",
+          "description": "Explore the traditional Gold Souk and surrounding Deira markets.",
+          "location": {
+            "name": "Dubai Gold Souk",
+            "lat": 25.285,
+            "lng": 55.297
+          }
+        },
+        {
+          "time": "14:00",
+          "title": "Emirati lunch",
+          "type": "food",
+          "description": "Try traditional Emirati and Middle Eastern dishes."
+        },
+        {
+          "time": "16:00",
+          "title": "Dubai Museum area",
+          "type": "sight",
+          "description": "Explore the historic Bur Dubai area around Al Fahidi Fort."
+        },
+        {
+          "time": "18:30",
+          "title": "Al Seef",
+          "type": "activity",
+          "description": "Walk along Al Seef, a waterfront district inspired by old Dubai.",
+          "location": {
+            "name": "Al Seef",
+            "lat": 25.263,
+            "lng": 55.303
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Dinner by the creek",
+          "type": "food",
+          "description": "Have dinner overlooking Dubai Creek."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+    },
+    {
+      "date": "2026-12-08",
+      "base": "Dubai",
+      "title": "Palm Jumeirah and Marina",
+      "summary": "Explore Palm Jumeirah, Dubai Marina and the waterfront.",
+      "stayId": "dubai",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Palm Jumeirah",
+          "type": "sight",
+          "description": "Explore Palm Jumeirah and enjoy views of Dubai's iconic artificial island.",
+          "location": {
+            "name": "Palm Jumeirah",
+            "lat": 25.1124,
+            "lng": 55.139
+          },
+          "images": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+        },
+        {
+          "time": "10:30",
+          "title": "The View at The Palm",
+          "type": "activity",
+          "description": "Enjoy panoramic views across Palm Jumeirah and the Dubai coastline.",
+          "location": {
+            "name": "The View at The Palm",
+            "lat": 25.112,
+            "lng": 55.139
+          }
+        },
+        {
+          "time": "12:30",
+          "title": "Lunch at Palm Jumeirah",
+          "type": "food",
+          "description": "Enjoy lunch near the Palm waterfront."
+        },
+        {
+          "time": "14:30",
+          "title": "Dubai Marina",
+          "type": "activity",
+          "description": "Explore Dubai Marina and walk along the waterfront promenade.",
+          "location": {
+            "name": "Dubai Marina",
+            "lat": 25.0806,
+            "lng": 55.1403
+          }
+        },
+        {
+          "time": "16:30",
+          "title": "Marina yacht cruise",
+          "type": "activity",
+          "description": "Take a relaxing cruise around Dubai Marina and the coastline.",
+          "location": {
+            "name": "Dubai Marina",
+            "lat": 25.0806,
+            "lng": 55.1403
+          }
+        },
+        {
+          "time": "19:00",
+          "title": "JBR Walk",
+          "type": "activity",
+          "description": "Explore The Walk at JBR and its restaurants and shops.",
+          "location": {
+            "name": "JBR Walk",
+            "lat": 25.077,
+            "lng": 55.131
+          }
+        },
+        {
+          "time": "20:30",
+          "title": "Dinner at JBR",
+          "type": "food",
+          "description": "Have dinner near the beach."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1518684079-3c830dcef090"
+    },
+    {
+      "date": "2026-12-09",
+      "base": "Dubai",
+      "title": "Desert Safari",
+      "summary": "Leave the city behind for an afternoon and evening in the Dubai desert.",
+      "stayId": "dubai",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Relaxed morning",
+          "type": "rest",
+          "description": "Keep the morning free for breakfast, swimming or relaxing at the hotel."
+        },
+        {
+          "time": "13:30",
+          "title": "Desert safari pickup",
+          "type": "travel",
+          "description": "Meet the safari operator and travel from Dubai into the desert.",
+          "location": {
+            "name": "Dubai Desert",
+            "lat": 25.047,
+            "lng": 55.564
+          },
+          "booking": {
+            "ref": "DEMO-UAE-SAFARI-001"
+          }
+        },
+        {
+          "time": "15:00",
+          "title": "Dune bashing",
+          "type": "activity",
+          "description": "Experience a guided 4x4 drive across the desert dunes."
+        },
+        {
+          "time": "16:30",
+          "title": "Desert sunset",
+          "type": "sight",
+          "description": "Stop on the dunes to watch the sunset over the desert."
+        },
+        {
+          "time": "18:00",
+          "title": "Bedouin-style camp",
+          "type": "activity",
+          "description": "Visit a desert camp and experience traditional-style hospitality and entertainment."
+        },
+        {
+          "time": "19:30",
+          "title": "Arabic dinner",
+          "type": "food",
+          "description": "Enjoy a buffet featuring Middle Eastern and Emirati-inspired dishes."
+        },
+        {
+          "time": "21:30",
+          "title": "Return to Dubai",
+          "type": "travel",
+          "description": "Return to the hotel after the desert experience."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1500534623283-312aade485b7"
+    },
+    {
+      "date": "2026-12-10",
+      "base": "Abu Dhabi",
+      "title": "Dubai to Abu Dhabi",
+      "summary": "Travel to Abu Dhabi and explore the Sheikh Zayed Grand Mosque.",
+      "stayId": "abudhabi",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Check out of Dubai hotel",
+          "type": "hotel",
+          "description": "Check out and collect luggage before travelling to Abu Dhabi."
+        },
+        {
+          "time": "10:00",
+          "title": "Dubai to Abu Dhabi",
+          "type": "travel",
+          "description": "Travel by road from Dubai to Abu Dhabi.",
+          "location": {
+            "name": "Abu Dhabi",
+            "lat": 24.4539,
+            "lng": 54.3773
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Hotel luggage drop",
+          "type": "hotel",
+          "description": "Leave luggage at the hotel before exploring the city."
+        },
+        {
+          "time": "12:30",
+          "title": "Lunch in Abu Dhabi",
+          "type": "food",
+          "description": "Enjoy lunch near the Corniche."
+        },
+        {
+          "time": "14:30",
+          "title": "Sheikh Zayed Grand Mosque",
+          "type": "sight",
+          "description": "Visit Sheikh Zayed Grand Mosque and admire its architecture and expansive grounds. Dress respectfully and follow visitor guidelines.",
+          "location": {
+            "name": "Sheikh Zayed Grand Mosque",
+            "lat": 24.4128,
+            "lng": 54.4749
+          },
+          "images": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e"
+        },
+        {
+          "time": "17:30",
+          "title": "Abu Dhabi Corniche",
+          "type": "activity",
+          "description": "Take an evening walk along the Corniche.",
+          "location": {
+            "name": "Abu Dhabi Corniche",
+            "lat": 24.467,
+            "lng": 54.356
+          }
+        },
+        {
+          "time": "19:30",
+          "title": "Corniche dinner",
+          "type": "food",
+          "description": "Enjoy dinner with views of the Abu Dhabi skyline."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e"
+    },
+    {
+      "date": "2026-12-11",
+      "base": "Abu Dhabi",
+      "title": "Culture and Yas Island",
+      "summary": "Experience Abu Dhabi's cultural landmarks before heading to Yas Island.",
+      "stayId": "abudhabi",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Qasr Al Watan",
+          "type": "sight",
+          "description": "Explore Qasr Al Watan and learn about UAE heritage, governance and architecture.",
+          "location": {
+            "name": "Qasr Al Watan",
+            "lat": 24.4618,
+            "lng": 54.304
+          },
+          "images": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e"
+        },
+        {
+          "time": "11:30",
+          "title": "Emirates Palace area",
+          "type": "sight",
+          "description": "Explore the area around Emirates Palace and Abu Dhabi's waterfront."
+        },
+        {
+          "time": "13:00",
+          "title": "Lunch",
+          "type": "food",
+          "description": "Enjoy lunch before heading towards Yas Island."
+        },
+        {
+          "time": "15:00",
+          "title": "Yas Island",
+          "type": "activity",
+          "description": "Explore Yas Island and its entertainment and leisure districts.",
+          "location": {
+            "name": "Yas Island",
+            "lat": 24.488,
+            "lng": 54.608
+          }
+        },
+        {
+          "time": "16:00",
+          "title": "Ferrari World",
+          "type": "activity",
+          "description": "Spend the afternoon exploring Ferrari World and its attractions.",
+          "location": {
+            "name": "Ferrari World Abu Dhabi",
+            "lat": 24.483,
+            "lng": 54.608
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Yas Island dinner",
+          "type": "food",
+          "description": "Have dinner around Yas Island."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e"
+    },
+    {
+      "date": "2026-12-12",
+      "base": "Abu Dhabi",
+      "title": "Louvre Abu Dhabi and Saadiyat",
+      "summary": "Spend the day exploring Abu Dhabi's cultural district and coastline.",
+      "stayId": "abudhabi",
+      "items": [
+        {
+          "time": "09:30",
+          "title": "Louvre Abu Dhabi",
+          "type": "sight",
+          "description": "Explore the galleries and architecture of Louvre Abu Dhabi.",
+          "location": {
+            "name": "Louvre Abu Dhabi",
+            "lat": 24.5337,
+            "lng": 54.3981
+          },
+          "images": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e"
+        },
+        {
+          "time": "12:30",
+          "title": "Saadiyat lunch",
+          "type": "food",
+          "description": "Have lunch around Saadiyat Island."
+        },
+        {
+          "time": "14:00",
+          "title": "Saadiyat Island",
+          "type": "activity",
+          "description": "Explore Saadiyat's cultural district and coastline.",
+          "location": {
+            "name": "Saadiyat Island",
+            "lat": 24.543,
+            "lng": 54.434
+          }
+        },
+        {
+          "time": "16:00",
+          "title": "Mangrove kayaking",
+          "type": "activity",
+          "description": "Take a guided kayak experience through Abu Dhabi's mangrove environment.",
+          "location": {
+            "name": "Abu Dhabi Mangroves",
+            "lat": 24.478,
+            "lng": 54.407
+          }
+        },
+        {
+          "time": "18:30",
+          "title": "Sunset by the water",
+          "type": "rest",
+          "description": "Relax by the waterfront and watch the sunset."
+        },
+        {
+          "time": "20:00",
+          "title": "Traditional Emirati dinner",
+          "type": "food",
+          "description": "Try traditional Emirati dishes and Arabic desserts."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e"
+    },
+    {
+      "date": "2026-12-13",
+      "base": "Dubai",
+      "title": "Return to Dubai",
+      "summary": "Return to Dubai for shopping, relaxation and a final night in the city.",
+      "stayId": "dubai",
+      "items": [
+        {
+          "time": "09:00",
+          "title": "Check out of Abu Dhabi hotel",
+          "type": "hotel",
+          "description": "Check out and collect luggage."
+        },
+        {
+          "time": "10:00",
+          "title": "Abu Dhabi to Dubai",
+          "type": "travel",
+          "description": "Travel back to Dubai.",
+          "location": {
+            "name": "Dubai",
+            "lat": 25.2048,
+            "lng": 55.2708
+          }
+        },
+        {
+          "time": "12:00",
+          "title": "Hotel check-in",
+          "type": "hotel",
+          "description": "Check into the Dubai hotel and leave your luggage."
+        },
+        {
+          "time": "13:00",
+          "title": "Lunch",
+          "type": "food",
+          "description": "Have lunch in Downtown Dubai."
+        },
+        {
+          "time": "15:00",
+          "title": "Mall of the Emirates",
+          "type": "activity",
+          "description": "Spend the afternoon shopping and exploring Mall of the Emirates.",
+          "location": {
+            "name": "Mall of the Emirates",
+            "lat": 25.1181,
+            "lng": 55.2006
+          }
+        },
+        {
+          "time": "18:00",
+          "title": "Dubai Marina sunset",
+          "type": "sight",
+          "description": "Return to Dubai Marina for a final sunset walk.",
+          "location": {
+            "name": "Dubai Marina",
+            "lat": 25.0806,
+            "lng": 55.1403
+          }
+        },
+        {
+          "time": "20:00",
+          "title": "Farewell dinner",
+          "type": "food",
+          "description": "Enjoy a final dinner overlooking Dubai's skyline."
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c"
+    },
+    {
+      "date": "2026-12-14",
+      "base": "Dubai",
+      "title": "Fly Home",
+      "summary": "Enjoy breakfast, check out and head to Dubai International Airport.",
+      "items": [
+        {
+          "time": "08:00",
+          "title": "Breakfast",
+          "type": "food",
+          "description": "Have a final breakfast in Dubai."
+        },
+        {
+          "time": "10:00",
+          "title": "Hotel checkout",
+          "type": "hotel",
+          "description": "Check out, collect your luggage and prepare for the airport."
+        },
+        {
+          "time": "11:00",
+          "title": "Airport transfer",
+          "type": "travel",
+          "description": "Transfer from Downtown Dubai to Dubai International Airport.",
+          "location": {
+            "name": "Dubai International Airport",
+            "lat": 25.2532,
+            "lng": 55.3657
+          }
+        },
+        {
+          "time": "14:30",
+          "title": "Flight home",
+          "type": "flight",
+          "description": "Depart Dubai and begin the journey home.",
+          "cost": "AED 2200",
+          "booking": {
+            "ref": "DEMO-UAE-RETURN-001"
+          },
+          "location": {
+            "name": "Dubai International Airport",
+            "lat": 25.2532,
+            "lng": 55.3657
+          }
+        }
+      ],
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c"
+    }
+  ],
+  "contacts": [
+    {
+      "label": "UAE Tourism",
+      "value": "UAE Government Tourism Information",
+      "type": "text"
+    },
+    {
+      "label": "Dubai Tourism",
+      "value": "Visit Dubai",
+      "type": "text"
+    },
+    {
+      "label": "Abu Dhabi Tourism",
+      "value": "Experience Abu Dhabi",
+      "type": "text"
+    }
+  ],
+  "emergency": {
+    "contacts": [
+      {
+        "label": "Police",
+        "value": "999",
+        "type": "phone"
+      },
+      {
+        "label": "Ambulance",
+        "value": "998",
+        "type": "phone"
+      },
+      {
+        "label": "Fire / Civil Defence",
+        "value": "997",
+        "type": "phone"
+      },
+      {
+        "label": "Coastguard",
+        "value": "996",
+        "type": "phone"
+      },
+      {
+        "label": "Find and Rescue",
+        "value": "995",
+        "type": "phone"
+      },
+      {
+        "label": "Indian Embassy 24x7 Emergency",
+        "value": "+971 50 899 5583",
+        "type": "phone"
+      },
+      {
+        "label": "Pravasi Bharatiya Sahayata Kendra",
+        "value": "800 46342",
+        "type": "phone"
+      }
+    ],
+    "locations": [
+      {
+        "label": "Embassy",
+        "name": "Embassy of India, Abu Dhabi",
+        "address": "Plot No. 10, Sector W-59/02, Diplomatic Area, Abu Dhabi, United Arab Emirates",
+        "phone": "+971 2 4492700",
+        "notes": "Verify current consular hours and emergency procedures before visiting.",
+        "location": {
+          "name": "Embassy of India, Abu Dhabi",
+          "lat": 24.431,
+          "lng": 54.409
+        }
+      },
+      {
+        "label": "Consulate",
+        "name": "Consulate General of India, Dubai",
+        "address": "Dubai, United Arab Emirates",
+        "phone": "800 46342",
+        "notes": "For Indian nationals in Dubai and the northern emirates, use the official Consulate/PBSK contacts for current assistance.",
+        "location": {
+          "name": "Consulate General of India, Dubai",
+          "lat": 25.2608,
+          "lng": 55.3024
+        }
+      }
+    ]
+  }
+}
